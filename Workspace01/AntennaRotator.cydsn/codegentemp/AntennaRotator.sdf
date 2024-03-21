@@ -1,0 +1,23 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2024-03-20T17:26:55Z")
+ (DESIGN "AntennaRotator")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.4")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "AntennaRotator")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT SW_UP_Pin\(0\)_PAD SW_UP_Pin\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_Pin\(0\)_PAD LED_Pin\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT SW_DOWN_Pin\(0\)_PAD SW_DOWN_Pin\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT SW_LEFT_Pin\(0\)_PAD SW_LEFT_Pin\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT SW_RIGHT_Pin\(0\)_PAD SW_RIGHT_Pin\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)

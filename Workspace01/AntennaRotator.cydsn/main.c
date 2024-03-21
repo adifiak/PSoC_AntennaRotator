@@ -19,7 +19,8 @@ int main(void)
 
     for(;;)
     {
-        /* Place your application code here. */
+       
+       LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_Read());
     }
 }
 

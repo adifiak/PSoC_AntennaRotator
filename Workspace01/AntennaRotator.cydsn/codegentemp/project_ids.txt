@@ -1,0 +1,8 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|9ff70783-e5fc-404e-9f50-fe26b561987e
+C:\Users\Dell\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|dc2da7f4-e1ee-426d-a166-a7befd0aeaf4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|fa8e1e11-8802-4db9-b9e1-1c34a41ec638
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|10483174-843b-4d85-af5c-492784092699
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|9b753e52-ef4b-4d43-a6ed-831015c47666
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|cca183bf-206a-4789-b4b2-b257f6e9208b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|a6ec28ab-5e08-4f00-a86f-4e7d29e708b9
+C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\AntennaRotator.cyprj|be928e8b-ace0-4eab-bb3c-949847595404
