@@ -29,6 +29,8 @@
 #include "SW_LEFT_Pin.h"
 #include "SW_RIGHT_Pin_aliases.h"
 #include "SW_RIGHT_Pin.h"
+#include "UART.h"
+#include "UART_IntClock.h"
 #include "core_cm3_psoc5.h"
 #include "CyDmac.h"
 #include "CyFlash.h"

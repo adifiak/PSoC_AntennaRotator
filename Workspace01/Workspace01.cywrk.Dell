@@ -62,6 +62,8 @@
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5\SW_LEFT_Pin</v>
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5\SW_RIGHT_Pin</v>
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5\SW_UP_Pin</v>
+<v>Workspace01\AntennaRotator\Generated_Source\PSoC5\UART</v>
+<v>Workspace01\AntennaRotator\Generated_Source\PSoC5\UART_IntClock</v>
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5\cycodeshareexport.ld</v>
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5\cycodeshareimport.ld</v>
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5\cycodeshareimport.scat</v>
@@ -123,6 +125,11 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SW_LEFT_Pin.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SW_RIGHT_Pin.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SW_UP_Pin.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_IntClock.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\AntennaRotator.elf</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\AntennaRotator.hex</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\AntennaRotator.map</v>
@@ -154,6 +161,11 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SW_LEFT_Pin.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SW_RIGHT_Pin.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SW_UP_Pin.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_IntClock.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\AntennaRotator.elf</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\AntennaRotator.hex</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\AntennaRotator.map</v>
@@ -183,6 +195,7 @@
 <v>Workspace01\AntennaRotator\Resistor_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\SwitchSPST_v1_0</v>
 <v>Workspace01\AntennaRotator\SwitchSPST_v1_0\SwitchSPST_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\UART_v2_50.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Workspace01</v>
@@ -199,6 +212,7 @@
 <v>Workspace01\AntennaRotator\Resistor_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\SwitchSPST_v1_0</v>
 <v>Workspace01\AntennaRotator\SwitchSPST_v1_0\SwitchSPST_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\UART_v2_50.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
