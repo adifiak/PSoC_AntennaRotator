@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "RotatorHorizon.h"	
 
 typedef enum READ_STATE{
     CMD, ARG1, ARG2, ARG3
@@ -23,7 +24,7 @@ typedef struct INPUT_BUFFER{
     int cnt;
 }INPUT_BUFFER;
 
-void ProcessCommand(struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3);
+bool ProcessCommand(struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3);
 void ResetInput(enum READ_STATE* readState, struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3);
 bool AddArgumentDigit(char c, struct INPUT_BUFFER* arg);
 bool AddCommandChar(char c, struct INPUT_BUFFER* cmd);
@@ -32,12 +33,8 @@ bool AddCommandChar(char c, struct INPUT_BUFFER* cmd);
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-
-    UART_Start();
-    UART_PutString("Hello World!");
     
+    /* Place your initialization/startup code here (e.g. MyInst_Start()) */      
     enum READ_STATE readState = CMD;
     
     struct INPUT_BUFFER cmd;
@@ -45,10 +42,26 @@ int main(void)
     struct INPUT_BUFFER arg2;
     struct INPUT_BUFFER arg3;
     
+    UART_Start();
+    I2C_OLED_Start();
+    ADC_SAR_1_Start();
+    ADC_SAR_1_StartConvert();
+  
+    initHorizon();
+    renderHorizon();
+    UART_PutString("Hello World!\n");
+    
     ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
     
     for(;;)
     {
+        if(ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS)){
+            int res = ADC_SAR_1_GetResult16();
+            char str[8];
+            sprintf(str, "%d\r\n", res);
+            UART_PutString(str);
+            ADC_SAR_1_StartConvert();
+        }
         //Input processing
         char inChar = UART_GetChar();
         if(inChar != 0){
@@ -56,8 +69,10 @@ int main(void)
             switch(inChar){
                 case 13:
                     readState = CMD;
-                    ProcessCommand(&cmd, &arg1, &arg2, &arg3);
-                    ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
+                    error = ProcessCommand(&cmd, &arg1, &arg2, &arg3);
+                    if(!error){
+                        ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
+                    }
                     break;
                 case 32:
                     switch(readState){
@@ -111,8 +126,41 @@ int main(void)
     }
 }
 
-void ProcessCommand(struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3){
-    
+bool ProcessCommand(struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3){
+    if(cmd->cnt == 4) {
+        if(!strcmp(cmd->data, "rhom")){
+            UART_PutString("Medve feladat 1");
+        } else if(!strcmp(cmd->data, "rhor")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "ract")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "rpos")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "rsos")){
+            UART_PutString("Medve feladat 2");
+        }else if(!strcmp(cmd->data, "whom")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "whor")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "wpos")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "wsos")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "wpoi")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "mhom")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "mact")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "mpoi")){
+            UART_PutString("Medve feladat 2");
+        } else if(!strcmp(cmd->data, "rpoi")){
+            UART_PutString("Medve feladat 2");
+        } else {
+            return true;
+        }
+    }
+    return false;
 }
 
 void ResetInput(enum READ_STATE* readState, struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3){

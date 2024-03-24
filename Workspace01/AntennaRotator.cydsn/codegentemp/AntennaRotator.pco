@@ -1,5 +1,5 @@
 # AntennaRotator
-# 2024-03-21 19:28:38Z
+# 2024-03-23 22:28:22Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -15,6 +15,12 @@ set_io "SW_LEFT_Pin(0)" iocell 1 2
 set_io "SW_RIGHT_Pin(0)" iocell 1 6
 set_io "RX_Pin(0)" iocell 12 6
 set_io "TX_Pin(0)" iocell 12 7
+set_io "SDA_1(0)" iocell 12 1
+set_io "SCL_1(0)" iocell 12 0
+set_io "\ADC_SAR_1:ExtVref(0)\" iocell 0 4
+set_io "\ADC_SAR_2:ExtVref(0)\" iocell 0 2
+set_io "Analog_Pin_1(0)" iocell 15 4
+set_io "Analog_Pin_2(0)" iocell 3 7
 set_location "Net_40" 0 1 0 3
 set_location "\UART:BUART:counter_load_not\" 0 0 1 1
 set_location "\UART:BUART:tx_status_0\" 1 0 0 1
@@ -29,6 +35,12 @@ set_location "\UART:BUART:sTX:TxSts\" 1 0 4
 set_location "\UART:BUART:sRX:RxShifter:u0\" 1 1 2
 set_location "\UART:BUART:sRX:RxBitCounter\" 1 1 7
 set_location "\UART:BUART:sRX:RxSts\" 0 1 4
+set_location "\I2C_OLED:I2C_IRQ\" interrupt -1 -1 15
+set_location "\I2C_OLED:I2C_FF\" i2ccell -1 -1 0
+set_location "\ADC_SAR_1:IRQ\" interrupt -1 -1 0
+set_location "\ADC_SAR_1:ADC_SAR\" sarcell -1 -1 0
+set_location "\ADC_SAR_2:IRQ\" interrupt -1 -1 1
+set_location "\ADC_SAR_2:ADC_SAR\" sarcell -1 -1 1
 set_location "\UART:BUART:txn\" 0 0 0 0
 set_location "\UART:BUART:tx_state_1\" 0 0 0 1
 set_location "\UART:BUART:tx_state_0\" 1 0 0 0

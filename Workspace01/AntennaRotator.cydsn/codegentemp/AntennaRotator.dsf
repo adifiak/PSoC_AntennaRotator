@@ -14,3 +14,4 @@
 :udbswitch@[UDB=(0,1)][side=top]:102,53_f
 :udbswitch@[UDB=(0,1)][side=top]:102,90_f
 :udbswitch@[UDB=(0,1)][side=top]:102,92_f
+Stub-:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v20+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v22==>:interrupt_idmux_15.in_0
