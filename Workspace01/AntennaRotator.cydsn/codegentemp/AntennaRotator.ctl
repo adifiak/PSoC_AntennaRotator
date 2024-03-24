@@ -1,6 +1,6 @@
 -- ======================================================================
 -- AntennaRotator.ctl generated from AntennaRotator
--- 03/23/2024 at 23:28
+-- 03/24/2024 at 23:55
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 

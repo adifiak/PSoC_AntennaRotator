@@ -132,34 +132,58 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_SLAVE.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_MASTER.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_PVT.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_theACLK.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_ExtVref_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_ExtVref.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_ExtVref.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_theACLK.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_ExtVref_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_ExtVref.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_2_ExtVref.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_X_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Degree_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Degree_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Degree_X_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_Dir_Pin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_Dir_Pin.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_Dir_Pin.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_Step_Pin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_Step_Pin.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_Step_Pin.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Desired_Quarter_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Desired_Quarter_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Desired_Quarter_X_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Desired_Degree_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Desired_Degree_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Desired_Degree_X_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Motor_Enable.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Motor_Enable.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Motor_Enable_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_theACLK.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_theACLK.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_ExtVref_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_ExtVref.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_ExtVref.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_ADC_Int.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_ADC_Int.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_Int.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_Int.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\Export\ARM_GCC_Generic">

@@ -1,5 +1,5 @@
 # AntennaRotator
-# 2024-03-23 22:28:21Z
+# 2024-03-24 22:55:40Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -16,9 +16,7 @@ set_io "RX_Pin(0)" iocell 12 6
 set_io "TX_Pin(0)" iocell 12 7
 set_io "SDA_1(0)" iocell 12 1
 set_io "SCL_1(0)" iocell 12 0
-set_io "\ADC_SAR_1:ExtVref(0)\" iocell 0 4
-set_io "\ADC_SAR_2:ExtVref(0)\" iocell 0 2
-set_io "Analog_Pin_1(0)" iocell 15 4
-set_io "Analog_Pin_2(0)" iocell 3 7
-set_location "\ADC_SAR_1:ADC_SAR\" sarcell -1 -1 0
-set_location "\ADC_SAR_2:ADC_SAR\" sarcell -1 -1 1
+set_io "Analog_Pin_2(0)" iocell 0 1
+set_io "Analog_Pin_X(0)" iocell 15 4
+set_io "\ADC_SAR_X:ExtVref(0)\" iocell 0 4
+set_location "\ADC_SAR_X:ADC_SAR\" sarcell -1 -1 0

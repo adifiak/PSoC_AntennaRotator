@@ -10,7 +10,9 @@
  * ========================================
 */
 
+
+
 void initHorizon();
-void renderHorizon();
+void renderHorizon(int x_des, int x_act, int y_des, int y_act);
 
 /* [] END OF FILE */

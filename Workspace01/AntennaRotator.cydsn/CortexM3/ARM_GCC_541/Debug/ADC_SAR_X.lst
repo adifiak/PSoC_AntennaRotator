@@ -1,0 +1,3723 @@
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"ADC_SAR_X.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.ADC_SAR_X_CalcGain,"ax",%progbits
+  20              		.align	2
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ADC_SAR_X_CalcGain, %function
+  24              	ADC_SAR_X_CalcGain:
+  25              	.LFB10:
+  26              		.file 1 "Generated_Source\\PSoC5\\ADC_SAR_X.c"
+   1:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/ADC_SAR_X.c **** * File Name: ADC_SAR_X.c
+   3:Generated_Source\PSoC5/ADC_SAR_X.c **** * Version 3.10
+   4:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+   5:Generated_Source\PSoC5/ADC_SAR_X.c **** * Description:
+   6:Generated_Source\PSoC5/ADC_SAR_X.c **** *  This file provides the source code to the API for the Successive
+   7:Generated_Source\PSoC5/ADC_SAR_X.c **** *  approximation ADC Component.
+   8:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+   9:Generated_Source\PSoC5/ADC_SAR_X.c **** * Note:
+  10:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  11:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/ADC_SAR_X.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/ADC_SAR_X.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC5/ADC_SAR_X.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC5/ADC_SAR_X.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  18:Generated_Source\PSoC5/ADC_SAR_X.c **** #include "CyLib.h"
+  19:Generated_Source\PSoC5/ADC_SAR_X.c **** #include "ADC_SAR_X.h"
+  20:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  21:Generated_Source\PSoC5/ADC_SAR_X.c **** #if(ADC_SAR_X_DEFAULT_INTERNAL_CLK)
+  22:Generated_Source\PSoC5/ADC_SAR_X.c ****     #include "ADC_SAR_X_theACLK.h"
+  23:Generated_Source\PSoC5/ADC_SAR_X.c **** #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+  24:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  25:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  26:Generated_Source\PSoC5/ADC_SAR_X.c **** /***************************************
+  27:Generated_Source\PSoC5/ADC_SAR_X.c **** * Forward function references
+  28:Generated_Source\PSoC5/ADC_SAR_X.c **** ***************************************/
+  29:Generated_Source\PSoC5/ADC_SAR_X.c **** static void ADC_SAR_X_CalcGain(uint8 resolution);
+  30:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  31:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 2
+
+
+  32:Generated_Source\PSoC5/ADC_SAR_X.c **** /***************************************
+  33:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global data allocation
+  34:Generated_Source\PSoC5/ADC_SAR_X.c **** ***************************************/
+  35:Generated_Source\PSoC5/ADC_SAR_X.c **** uint8 ADC_SAR_X_initVar = 0u;
+  36:Generated_Source\PSoC5/ADC_SAR_X.c **** volatile int16 ADC_SAR_X_offset;
+  37:Generated_Source\PSoC5/ADC_SAR_X.c **** volatile int16 ADC_SAR_X_countsPerVolt;     /* Obsolete Gain compensation */
+  38:Generated_Source\PSoC5/ADC_SAR_X.c **** volatile int32 ADC_SAR_X_countsPer10Volt;   /* Gain compensation */
+  39:Generated_Source\PSoC5/ADC_SAR_X.c **** volatile int16 ADC_SAR_X_shift;
+  40:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  41:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  42:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+  43:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_Start
+  44:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+  45:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  46:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+  47:Generated_Source\PSoC5/ADC_SAR_X.c **** *  This is the preferred method to begin component operation.
+  48:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Start() sets the initVar variable, calls the
+  49:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Init() function, and then calls the
+  50:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Enable() function.
+  51:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  52:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+  53:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+  54:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  55:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+  56:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+  57:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  58:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global variables:
+  59:Generated_Source\PSoC5/ADC_SAR_X.c **** *  The ADC_SAR_X_initVar variable is used to indicate when/if initial
+  60:Generated_Source\PSoC5/ADC_SAR_X.c **** *  configuration of this component has happened. The variable is initialized to
+  61:Generated_Source\PSoC5/ADC_SAR_X.c **** *  zero and set to 1 the first time ADC_Start() is called. This allows for
+  62:Generated_Source\PSoC5/ADC_SAR_X.c **** *  component Re-Start without re-initialization in all subsequent calls to the
+  63:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Start() routine.
+  64:Generated_Source\PSoC5/ADC_SAR_X.c **** *  If re-initialization of the component is required the variable should be set
+  65:Generated_Source\PSoC5/ADC_SAR_X.c **** *  to zero before call of ADC_SAR_X_Start() routine, or the user may call
+  66:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Init() and ADC_SAR_X_Enable() as done in the
+  67:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Start() routine.
+  68:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  69:Generated_Source\PSoC5/ADC_SAR_X.c **** * Side Effect:
+  70:Generated_Source\PSoC5/ADC_SAR_X.c **** *  If the initVar variable is already set, this function only calls the
+  71:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Enable() function.
+  72:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  73:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+  74:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_Start(void)
+  75:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+  76:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  77:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* If not Initialized then initialize all required hardware and software */
+  78:Generated_Source\PSoC5/ADC_SAR_X.c ****     if(ADC_SAR_X_initVar == 0u)
+  79:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+  80:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_Init();
+  81:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_initVar = 1u;
+  82:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+  83:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_Enable();
+  84:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+  85:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  86:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+  87:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+  88:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_Init
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 3
+
+
+  89:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+  90:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  91:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+  92:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Initialize component's parameters to the parameters set by user in the
+  93:Generated_Source\PSoC5/ADC_SAR_X.c **** *  customizer of the component placed onto schematic. Usually called in
+  94:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_Start().
+  95:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  96:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+  97:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+  98:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+  99:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 100:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 101:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 102:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global variables:
+ 103:Generated_Source\PSoC5/ADC_SAR_X.c **** *  The ADC_SAR_X_offset variable is initialized to 0.
+ 104:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 105:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 106:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_Init(void)
+ 107:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 108:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 109:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* This is only valid if there is an internal clock */
+ 110:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_DEFAULT_INTERNAL_CLK)
+ 111:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_theACLK_SetMode(CYCLK_DUTY);
+ 112:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+ 113:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 114:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_IRQ_REMOVE == 0u)
+ 115:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* Start and set interrupt vector */
+ 116:Generated_Source\PSoC5/ADC_SAR_X.c ****         CyIntSetPriority(ADC_SAR_X_INTC_NUMBER, ADC_SAR_X_INTC_PRIOR_NUMBER);
+ 117:Generated_Source\PSoC5/ADC_SAR_X.c ****         (void)CyIntSetVector(ADC_SAR_X_INTC_NUMBER, &ADC_SAR_X_ISR);
+ 118:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif   /* End ADC_SAR_X_IRQ_REMOVE */
+ 119:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 120:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Enable IRQ mode*/
+ 121:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR1_REG |= ADC_SAR_X_SAR_IRQ_MASK_EN | ADC_SAR_X_SAR_IRQ_MODE_EDGE;
+ 122:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 123:Generated_Source\PSoC5/ADC_SAR_X.c ****     /*Set SAR ADC resolution ADC */
+ 124:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SetResolution(ADC_SAR_X_DEFAULT_RESOLUTION);
+ 125:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_offset = 0;
+ 126:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 127:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 128:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 129:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 130:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_Enable
+ 131:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 132:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 133:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 134:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Enables the reference, clock and power for SAR ADC.
+ 135:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 136:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 137:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 138:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 139:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 140:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 141:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 142:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 143:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_Enable(void)
+ 144:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 145:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 tmpReg;
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 4
+
+
+ 146:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 enableInterrupts;
+ 147:Generated_Source\PSoC5/ADC_SAR_X.c ****     enableInterrupts = CyEnterCriticalSection();
+ 148:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 149:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Enable the SAR ADC block in Active Power Mode */
+ 150:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_PWRMGR_SAR_REG |= ADC_SAR_X_ACT_PWR_SAR_EN;
+ 151:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 152:Generated_Source\PSoC5/ADC_SAR_X.c ****      /* Enable the SAR ADC in Standby Power Mode*/
+ 153:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_STBY_PWRMGR_SAR_REG |= ADC_SAR_X_STBY_PWR_SAR_EN;
+ 154:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 155:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* This is only valid if there is an internal clock */
+ 156:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_DEFAULT_INTERNAL_CLK)
+ 157:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_PWRMGR_CLK_REG |= ADC_SAR_X_ACT_PWR_CLK_EN;
+ 158:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_STBY_PWRMGR_CLK_REG |= ADC_SAR_X_STBY_PWR_CLK_EN;
+ 159:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+ 160:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 161:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Enable VCM buffer and Enable Int Ref Amp */
+ 162:Generated_Source\PSoC5/ADC_SAR_X.c ****     tmpReg = ADC_SAR_X_SAR_CSR3_REG;
+ 163:Generated_Source\PSoC5/ADC_SAR_X.c ****     tmpReg |= ADC_SAR_X_SAR_EN_BUF_VCM_EN;
+ 164:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* PD_BUF_VREF is OFF in External reference or Vdda reference mode */
+ 165:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if((ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__EXT_REF) || \
+ 166:Generated_Source\PSoC5/ADC_SAR_X.c ****         (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VNEG_VDDA_DIFF))
+ 167:Generated_Source\PSoC5/ADC_SAR_X.c ****         tmpReg &= (uint8)~ADC_SAR_X_SAR_EN_BUF_VREF_EN;
+ 168:Generated_Source\PSoC5/ADC_SAR_X.c ****     #else /* In INTREF or INTREF Bypassed this buffer is ON */
+ 169:Generated_Source\PSoC5/ADC_SAR_X.c ****         tmpReg |= ADC_SAR_X_SAR_EN_BUF_VREF_EN;
+ 170:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__EXT_REF */
+ 171:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR3_REG = tmpReg;
+ 172:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 173:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Set reference for ADC */
+ 174:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VNEG_VDDA_DIFF)
+ 175:Generated_Source\PSoC5/ADC_SAR_X.c ****         #if(ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__EXT_REF)
+ 176:Generated_Source\PSoC5/ADC_SAR_X.c ****             ADC_SAR_X_SAR_CSR6_REG = ADC_SAR_X_INT_BYPASS_EXT_VREF; /* S2 */
+ 177:Generated_Source\PSoC5/ADC_SAR_X.c ****         #else /* Internal Vdda reference or obsolete bypass mode */
+ 178:Generated_Source\PSoC5/ADC_SAR_X.c ****             ADC_SAR_X_SAR_CSR6_REG = ADC_SAR_X_VDDA_VREF;           /* S7 */
+ 179:Generated_Source\PSoC5/ADC_SAR_X.c ****         #endif /* ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__EXT_REF */
+ 180:Generated_Source\PSoC5/ADC_SAR_X.c ****     #else  /* Reference goes through internal buffer */
+ 181:Generated_Source\PSoC5/ADC_SAR_X.c ****         #if(ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__INT_REF_NOT_BYPASSED)
+ 182:Generated_Source\PSoC5/ADC_SAR_X.c ****             ADC_SAR_X_SAR_CSR6_REG = ADC_SAR_X_INT_VREF;            /* S3 + S4 */
+ 183:Generated_Source\PSoC5/ADC_SAR_X.c ****         #else /* INTREF Bypassed of External */
+ 184:Generated_Source\PSoC5/ADC_SAR_X.c ****             ADC_SAR_X_SAR_CSR6_REG = ADC_SAR_X_INT_BYPASS_EXT_VREF; /* S2 */
+ 185:Generated_Source\PSoC5/ADC_SAR_X.c ****         #endif /* ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__INT_REF_NOT_BYPASSED */
+ 186:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* VNEG_VDDA_DIFF */
+ 187:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 188:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Low non-overlap delay for sampling clock signals (for 1MSPS) */
+ 189:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_HIGH_POWER_PULSE == 0u) /* MinPulseWidth <= 50 ns */
+ 190:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_SAR_CSR5_REG &= (uint8)~ADC_SAR_X_SAR_DLY_INC;
+ 191:Generated_Source\PSoC5/ADC_SAR_X.c ****     #else /* Set High non-overlap delay for sampling clock signals (for <500KSPS)*/
+ 192:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_SAR_CSR5_REG |= ADC_SAR_X_SAR_DLY_INC;
+ 193:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* ADC_SAR_X_HIGH_POWER_PULSE == 0u */
+ 194:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 195:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Increase comparator latch enable delay by 20%, 
+ 196:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Increase comparator bias current by 30% without impacting delaysDelay 
+ 197:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Default for 1MSPS) 
+ 198:Generated_Source\PSoC5/ADC_SAR_X.c ****     */
+ 199:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_HIGH_POWER_PULSE == 0u)    /* MinPulseWidth <= 50 ns */
+ 200:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_SAR_CSR5_REG |= ADC_SAR_X_SAR_SEL_CSEL_DFT_CHAR;
+ 201:Generated_Source\PSoC5/ADC_SAR_X.c ****     #else /* for <500ksps */
+ 202:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_SAR_CSR5_REG &= (uint8)~ADC_SAR_X_SAR_SEL_CSEL_DFT_CHAR;
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 5
+
+
+ 203:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* ADC_SAR_X_HIGH_POWER_PULSE == 0u */
+ 204:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 205:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Set default power and other configurations for control register 0 in multiple lines */
+ 206:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR0_REG = (uint8)((uint8)ADC_SAR_X_DEFAULT_POWER << ADC_SAR_X_SAR_POWER_SHIFT)
+ 207:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* SAR_HIZ_CLEAR:   Should not be used for LP */
+ 208:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if ((CY_PSOC5LP) || (ADC_SAR_X_DEFAULT_REFERENCE != ADC_SAR_X__EXT_REF))
+ 209:Generated_Source\PSoC5/ADC_SAR_X.c ****         | ADC_SAR_X_SAR_HIZ_CLEAR
+ 210:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* SAR_HIZ_CLEAR */
+ 211:Generated_Source\PSoC5/ADC_SAR_X.c ****     /*Set Convertion mode */
+ 212:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_DEFAULT_CONV_MODE != ADC_SAR_X__FREE_RUNNING)      /* If triggered mode */
+ 213:Generated_Source\PSoC5/ADC_SAR_X.c ****         | ADC_SAR_X_SAR_MX_SOF_UDB           /* source: UDB */
+ 214:Generated_Source\PSoC5/ADC_SAR_X.c ****         | ADC_SAR_X_SAR_SOF_MODE_EDGE        /* Set edge-sensitive sof source */
+ 215:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* ADC_SAR_X_DEFAULT_CONV_MODE */
+ 216:Generated_Source\PSoC5/ADC_SAR_X.c ****     ; /* end of multiple line initialization */
+ 217:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 218:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_TR0_REG = ADC_SAR_X_SAR_CAP_TRIM_2;
+ 219:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 220:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Enable clock for SAR ADC*/
+ 221:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CLK_REG |= ADC_SAR_X_SAR_MX_CLK_EN;
+ 222:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 223:Generated_Source\PSoC5/ADC_SAR_X.c ****     CyDelayUs(10u); /* The block is ready to use 10 us after the enable signal is set high. */
+ 224:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 225:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_IRQ_REMOVE == 0u)
+ 226:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* Clear a pending interrupt */
+ 227:Generated_Source\PSoC5/ADC_SAR_X.c ****         CyIntClearPending(ADC_SAR_X_INTC_NUMBER);
+ 228:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif   /* End ADC_SAR_X_IRQ_REMOVE */
+ 229:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 230:Generated_Source\PSoC5/ADC_SAR_X.c ****     CyExitCriticalSection(enableInterrupts);
+ 231:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 232:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 233:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 234:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 235:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_Stop
+ 236:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 237:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 238:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 239:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Stops ADC conversions and puts the ADC into its lowest power mode.
+ 240:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 241:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 242:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 243:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 244:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 245:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 246:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 247:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 248:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_Stop(void)
+ 249:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 250:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 enableInterrupts;
+ 251:Generated_Source\PSoC5/ADC_SAR_X.c ****     enableInterrupts = CyEnterCriticalSection();
+ 252:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 253:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Stop all conversions */
+ 254:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR0_REG &= (uint8)~ADC_SAR_X_SAR_SOF_START_CONV;
+ 255:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Disable the SAR ADC block in Active Power Mode */
+ 256:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_PWRMGR_SAR_REG &= (uint8)~ADC_SAR_X_ACT_PWR_SAR_EN;
+ 257:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Disable the SAR ADC in Standby Power Mode */
+ 258:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_STBY_PWRMGR_SAR_REG &= (uint8)~ADC_SAR_X_STBY_PWR_SAR_EN;
+ 259:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 6
+
+
+ 260:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* This is only valid if there is an internal clock */
+ 261:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(ADC_SAR_X_DEFAULT_INTERNAL_CLK)
+ 262:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_PWRMGR_CLK_REG &= (uint8)~ADC_SAR_X_ACT_PWR_CLK_EN;
+ 263:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_STBY_PWRMGR_CLK_REG &= (uint8)~ADC_SAR_X_STBY_PWR_CLK_EN;
+ 264:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+ 265:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 266:Generated_Source\PSoC5/ADC_SAR_X.c ****     CyExitCriticalSection(enableInterrupts);
+ 267:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 268:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 269:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 270:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 271:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 272:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_SetPower
+ 273:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 274:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 275:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 276:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Sets the operational power of the ADC. You should use the higher power
+ 277:Generated_Source\PSoC5/ADC_SAR_X.c **** *  settings with faster clock speeds.
+ 278:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 279:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 280:Generated_Source\PSoC5/ADC_SAR_X.c **** *  power:  Power setting for ADC
+ 281:Generated_Source\PSoC5/ADC_SAR_X.c **** *  0 ->    Normal
+ 282:Generated_Source\PSoC5/ADC_SAR_X.c **** *  1 ->    Medium power
+ 283:Generated_Source\PSoC5/ADC_SAR_X.c **** *  2 ->    1.25 power
+ 284:Generated_Source\PSoC5/ADC_SAR_X.c **** *  3 ->    Minimum power.
+ 285:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 286:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 287:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 288:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 289:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 290:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_SetPower(uint8 power)
+ 291:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 292:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 tmpReg;
+ 293:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 294:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* mask off invalid power settings */
+ 295:Generated_Source\PSoC5/ADC_SAR_X.c ****     power &= ADC_SAR_X_SAR_API_POWER_MASK;
+ 296:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 297:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Set Power parameter  */
+ 298:Generated_Source\PSoC5/ADC_SAR_X.c ****     tmpReg = ADC_SAR_X_SAR_CSR0_REG & (uint8)~ADC_SAR_X_SAR_POWER_MASK;
+ 299:Generated_Source\PSoC5/ADC_SAR_X.c ****     tmpReg |= (uint8)(power << ADC_SAR_X_SAR_POWER_SHIFT);
+ 300:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR0_REG = tmpReg;
+ 301:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 302:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 303:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 304:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 305:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_SetResolution
+ 306:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 307:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 308:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 309:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Sets the Relution of the SAR.
+ 310:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 311:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 312:Generated_Source\PSoC5/ADC_SAR_X.c **** *  resolution:
+ 313:Generated_Source\PSoC5/ADC_SAR_X.c **** *  12 ->    RES12
+ 314:Generated_Source\PSoC5/ADC_SAR_X.c **** *  10 ->    RES10
+ 315:Generated_Source\PSoC5/ADC_SAR_X.c **** *  8  ->    RES8
+ 316:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 7
+
+
+ 317:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 318:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 319:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 320:Generated_Source\PSoC5/ADC_SAR_X.c **** * Side Effects:
+ 321:Generated_Source\PSoC5/ADC_SAR_X.c **** *  The ADC resolution cannot be changed during a conversion cycle. The
+ 322:Generated_Source\PSoC5/ADC_SAR_X.c **** *  recommended best practice is to stop conversions with
+ 323:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_StopConvert(), change the resolution, then restart the
+ 324:Generated_Source\PSoC5/ADC_SAR_X.c **** *  conversions with ADC_StartConvert().
+ 325:Generated_Source\PSoC5/ADC_SAR_X.c **** *  If you decide not to stop conversions before calling this API, you
+ 326:Generated_Source\PSoC5/ADC_SAR_X.c **** *  should use ADC_IsEndConversion() to wait until conversion is complete
+ 327:Generated_Source\PSoC5/ADC_SAR_X.c **** *  before changing the resolution.
+ 328:Generated_Source\PSoC5/ADC_SAR_X.c **** *  If you call ADC_SetResolution() during a conversion, the resolution will
+ 329:Generated_Source\PSoC5/ADC_SAR_X.c **** *  not be changed until the current conversion is complete. Data will not be
+ 330:Generated_Source\PSoC5/ADC_SAR_X.c **** *  available in the new resolution for another 6 + "New Resolution(in bits)"
+ 331:Generated_Source\PSoC5/ADC_SAR_X.c **** *  clock cycles.
+ 332:Generated_Source\PSoC5/ADC_SAR_X.c **** *  You may need add a delay of this number of clock cycles after
+ 333:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SetResolution() is called before data is valid again.
+ 334:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Affects ADC_CountsTo_Volts(), ADC_CountsTo_mVolts(), and
+ 335:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_CountsTo_uVolts() by calculating the correct conversion between ADC
+ 336:Generated_Source\PSoC5/ADC_SAR_X.c **** *  counts and the applied input voltage. Calculation depends on resolution,
+ 337:Generated_Source\PSoC5/ADC_SAR_X.c **** *  input range, and voltage reference.
+ 338:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 339:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 340:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_SetResolution(uint8 resolution)
+ 341:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 342:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 tmpReg;
+ 343:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 344:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Set SAR ADC resolution and sample width: 18 conversion cycles at 12bits + 1 gap */
+ 345:Generated_Source\PSoC5/ADC_SAR_X.c ****     switch (resolution)
+ 346:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 347:Generated_Source\PSoC5/ADC_SAR_X.c ****         case (uint8)ADC_SAR_X__BITS_12:
+ 348:Generated_Source\PSoC5/ADC_SAR_X.c ****             tmpReg = ADC_SAR_X_SAR_RESOLUTION_12BIT | ADC_SAR_X_SAR_SAMPLE_WIDTH;
+ 349:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 350:Generated_Source\PSoC5/ADC_SAR_X.c ****         case (uint8)ADC_SAR_X__BITS_10:
+ 351:Generated_Source\PSoC5/ADC_SAR_X.c ****             tmpReg = ADC_SAR_X_SAR_RESOLUTION_10BIT | ADC_SAR_X_SAR_SAMPLE_WIDTH;
+ 352:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 353:Generated_Source\PSoC5/ADC_SAR_X.c ****         case (uint8)ADC_SAR_X__BITS_8:
+ 354:Generated_Source\PSoC5/ADC_SAR_X.c ****             tmpReg = ADC_SAR_X_SAR_RESOLUTION_8BIT | ADC_SAR_X_SAR_SAMPLE_WIDTH;
+ 355:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 356:Generated_Source\PSoC5/ADC_SAR_X.c ****         default:
+ 357:Generated_Source\PSoC5/ADC_SAR_X.c ****             tmpReg = ADC_SAR_X_SAR_RESOLUTION_12BIT | ADC_SAR_X_SAR_SAMPLE_WIDTH;
+ 358:Generated_Source\PSoC5/ADC_SAR_X.c ****             /* Halt CPU in debug mode if resolution is out of valid range */
+ 359:Generated_Source\PSoC5/ADC_SAR_X.c ****             CYASSERT(0u != 0u);
+ 360:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 361:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 362:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR2_REG = tmpReg;
+ 363:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 364:Generated_Source\PSoC5/ADC_SAR_X.c ****      /* Calculate gain for convert counts to volts */
+ 365:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_CalcGain(resolution);
+ 366:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 367:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 368:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 369:Generated_Source\PSoC5/ADC_SAR_X.c **** #if(ADC_SAR_X_DEFAULT_CONV_MODE != ADC_SAR_X__HARDWARE_TRIGGER)
+ 370:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 371:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 372:Generated_Source\PSoC5/ADC_SAR_X.c ****     /*******************************************************************************
+ 373:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Function Name: ADC_SAR_X_StartConvert
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 8
+
+
+ 374:Generated_Source\PSoC5/ADC_SAR_X.c ****     ********************************************************************************
+ 375:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 376:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Summary:
+ 377:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Forces the ADC to initiate a conversion. In free-running mode, the ADC runs
+ 378:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  continuously. In software trigger mode, the function also acts as a software
+ 379:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  version of the SOC and every conversion must be triggered by
+ 380:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  ADC_SAR_X_StartConvert(). This function is not available when the
+ 381:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Hardware Trigger sample mode is selected.
+ 382:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 383:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Parameters:
+ 384:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  None.
+ 385:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 386:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Return:
+ 387:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  None.
+ 388:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 389:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Theory:
+ 390:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Forces the ADC to initiate a conversion. In Free Running mode, the ADC will
+ 391:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  run continuously. In a software trigger mode the function also acts as a
+ 392:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  software version of the SOC. Here every conversion has to be triggered by
+ 393:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  the routine. This writes into the SOC bit in SAR_CTRL reg.
+ 394:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 395:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Side Effects:
+ 396:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  In a software trigger mode the function switches source for SOF from the
+ 397:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  external pin to the internal SOF generation. Application should not call
+ 398:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  StartConvert if external source used for SOF.
+ 399:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 400:Generated_Source\PSoC5/ADC_SAR_X.c ****     *******************************************************************************/
+ 401:Generated_Source\PSoC5/ADC_SAR_X.c ****     void ADC_SAR_X_StartConvert(void)
+ 402:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 403:Generated_Source\PSoC5/ADC_SAR_X.c ****         #if(ADC_SAR_X_DEFAULT_CONV_MODE != ADC_SAR_X__FREE_RUNNING)  /* If software triggered mode 
+ 404:Generated_Source\PSoC5/ADC_SAR_X.c ****             ADC_SAR_X_SAR_CSR0_REG &= (uint8)~ADC_SAR_X_SAR_MX_SOF_UDB;   /* source: SOF bit */
+ 405:Generated_Source\PSoC5/ADC_SAR_X.c ****         #endif /* End ADC_SAR_X_DEFAULT_CONV_MODE */
+ 406:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 407:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* Start the conversion */
+ 408:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_SAR_CSR0_REG |= ADC_SAR_X_SAR_SOF_START_CONV;
+ 409:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 410:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 411:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 412:Generated_Source\PSoC5/ADC_SAR_X.c ****     /*******************************************************************************
+ 413:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Function Name: ADC_SAR_X_StopConvert
+ 414:Generated_Source\PSoC5/ADC_SAR_X.c ****     ********************************************************************************
+ 415:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 416:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Summary:
+ 417:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Forces the ADC to stop conversions. If a conversion is currently executing,
+ 418:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  that conversion will complete, but no further conversions will occur. This
+ 419:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  function is not available when the Hardware Trigger sample mode is selected.
+ 420:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 421:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Parameters:
+ 422:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  None.
+ 423:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 424:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Return:
+ 425:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  None.
+ 426:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 427:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Theory:
+ 428:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  Stops ADC conversion in Free Running mode.
+ 429:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 430:Generated_Source\PSoC5/ADC_SAR_X.c ****     * Side Effects:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 9
+
+
+ 431:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  In Software Trigger sample mode, this function sets a software version of the
+ 432:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  SOC to low level and switches the SOC source to hardware SOC input.
+ 433:Generated_Source\PSoC5/ADC_SAR_X.c ****     *
+ 434:Generated_Source\PSoC5/ADC_SAR_X.c ****     *******************************************************************************/
+ 435:Generated_Source\PSoC5/ADC_SAR_X.c ****     void ADC_SAR_X_StopConvert(void)
+ 436:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 437:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* Stop all conversions */
+ 438:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_SAR_CSR0_REG &= (uint8)~ADC_SAR_X_SAR_SOF_START_CONV;
+ 439:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 440:Generated_Source\PSoC5/ADC_SAR_X.c ****         #if(ADC_SAR_X_DEFAULT_CONV_MODE != ADC_SAR_X__FREE_RUNNING)  /* If software triggered mode 
+ 441:Generated_Source\PSoC5/ADC_SAR_X.c ****             /* Return source to UDB for hardware SOF signal */
+ 442:Generated_Source\PSoC5/ADC_SAR_X.c ****             ADC_SAR_X_SAR_CSR0_REG |= ADC_SAR_X_SAR_MX_SOF_UDB;    /* source: UDB */
+ 443:Generated_Source\PSoC5/ADC_SAR_X.c ****         #endif /* End ADC_SAR_X_DEFAULT_CONV_MODE */
+ 444:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 445:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 446:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 447:Generated_Source\PSoC5/ADC_SAR_X.c **** #endif /* End ADC_SAR_X_DEFAULT_CONV_MODE != ADC_SAR_X__HARDWARE_TRIGGER */
+ 448:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 449:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 450:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 451:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_IsEndConversion
+ 452:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 453:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 454:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 455:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Immediately returns the status of the conversion or does not return
+ 456:Generated_Source\PSoC5/ADC_SAR_X.c **** *  (blocking) until the conversion completes, depending on the retMode
+ 457:Generated_Source\PSoC5/ADC_SAR_X.c **** *  parameter.
+ 458:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 459:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 460:Generated_Source\PSoC5/ADC_SAR_X.c **** *  retMode:  Check conversion return mode.
+ 461:Generated_Source\PSoC5/ADC_SAR_X.c **** *   ADC_SAR_X_RETURN_STATUS: Immediately returns the status. If the
+ 462:Generated_Source\PSoC5/ADC_SAR_X.c **** *     value returned is zero, the conversion is not complete, and this function
+ 463:Generated_Source\PSoC5/ADC_SAR_X.c **** *     should be retried until a nonzero result is returned.
+ 464:Generated_Source\PSoC5/ADC_SAR_X.c **** *   ADC_SAR_X_WAIT_FOR_RESULT: Does not return a result until the ADC
+ 465:Generated_Source\PSoC5/ADC_SAR_X.c **** *     conversion is complete.
+ 466:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 467:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 468:Generated_Source\PSoC5/ADC_SAR_X.c **** *  (uint8)  0 =>  The ADC is still calculating the last result.
+ 469:Generated_Source\PSoC5/ADC_SAR_X.c **** *           1 =>  The last conversion is complete.
+ 470:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 471:Generated_Source\PSoC5/ADC_SAR_X.c **** * Side Effects:
+ 472:Generated_Source\PSoC5/ADC_SAR_X.c **** *  This function reads the end of conversion status, which is cleared on read.
+ 473:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 474:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 475:Generated_Source\PSoC5/ADC_SAR_X.c **** uint8 ADC_SAR_X_IsEndConversion(uint8 retMode)
+ 476:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 477:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 status;
+ 478:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 479:Generated_Source\PSoC5/ADC_SAR_X.c ****     do
+ 480:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 481:Generated_Source\PSoC5/ADC_SAR_X.c ****         status = ADC_SAR_X_SAR_CSR1_REG & ADC_SAR_X_SAR_EOF_1;
+ 482:Generated_Source\PSoC5/ADC_SAR_X.c ****     } while ((status != ADC_SAR_X_SAR_EOF_1) && (retMode == ADC_SAR_X_WAIT_FOR_RESULT));
+ 483:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* If convertion complete, wait until EOF bit released */
+ 484:Generated_Source\PSoC5/ADC_SAR_X.c ****     if(status == ADC_SAR_X_SAR_EOF_1)
+ 485:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 486:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* wait one ADC clock to let the EOC status bit release */
+ 487:Generated_Source\PSoC5/ADC_SAR_X.c ****         CyDelayUs(1u);
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 10
+
+
+ 488:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* Do the unconditional read operation of the CSR1 register to make sure the EOC bit has be
+ 489:Generated_Source\PSoC5/ADC_SAR_X.c ****         CY_GET_REG8(ADC_SAR_X_SAR_CSR1_PTR);
+ 490:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 491:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 492:Generated_Source\PSoC5/ADC_SAR_X.c ****     return(status);
+ 493:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 494:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 495:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 496:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 497:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_GetResult8
+ 498:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 499:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 500:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 501:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Returns the result of an 8-bit conversion. If the resolution is set greater
+ 502:Generated_Source\PSoC5/ADC_SAR_X.c **** *  than 8 bits, the function returns the LSB of the result.
+ 503:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_IsEndConversion() should be called to verify that the data
+ 504:Generated_Source\PSoC5/ADC_SAR_X.c **** *   sample is ready.
+ 505:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 506:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 507:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 508:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 509:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 510:Generated_Source\PSoC5/ADC_SAR_X.c **** *  The LSB of the last ADC conversion.
+ 511:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 512:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 513:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_shift - used to convert the ADC counts to the 2s
+ 514:Generated_Source\PSoC5/ADC_SAR_X.c **** *  compliment form.
+ 515:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 516:Generated_Source\PSoC5/ADC_SAR_X.c **** * Side Effects:
+ 517:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Converts the ADC counts to the 2s complement form.
+ 518:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 519:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 520:Generated_Source\PSoC5/ADC_SAR_X.c **** int8 ADC_SAR_X_GetResult8( void )
+ 521:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 522:Generated_Source\PSoC5/ADC_SAR_X.c ****     return( (int8)ADC_SAR_X_SAR_WRK0_REG - (int8)ADC_SAR_X_shift);
+ 523:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 524:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 525:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 526:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 527:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_GetResult16
+ 528:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 529:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 530:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 531:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Returns a 16-bit result for a conversion with a result that has a resolution
+ 532:Generated_Source\PSoC5/ADC_SAR_X.c **** *  of 8 to 12 bits.
+ 533:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_IsEndConversion() should be called to verify that the data
+ 534:Generated_Source\PSoC5/ADC_SAR_X.c **** *   sample is ready
+ 535:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 536:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 537:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 538:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 539:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 540:Generated_Source\PSoC5/ADC_SAR_X.c **** *  The 16-bit result of the last ADC conversion
+ 541:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 542:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 543:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_shift - used to convert the ADC counts to the 2s
+ 544:Generated_Source\PSoC5/ADC_SAR_X.c **** *  compliment form.
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 11
+
+
+ 545:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 546:Generated_Source\PSoC5/ADC_SAR_X.c **** * Side Effects:
+ 547:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Converts the ADC counts to the 2s complement form.
+ 548:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 549:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 550:Generated_Source\PSoC5/ADC_SAR_X.c **** int16 ADC_SAR_X_GetResult16( void )
+ 551:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 552:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint16 res;
+ 553:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 554:Generated_Source\PSoC5/ADC_SAR_X.c ****     res = CY_GET_REG16(ADC_SAR_X_SAR_WRK_PTR);
+ 555:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 556:Generated_Source\PSoC5/ADC_SAR_X.c ****     return( (int16)res - ADC_SAR_X_shift );
+ 557:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 558:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 559:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 560:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 561:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_SetOffset
+ 562:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 563:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 564:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 565:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Sets the ADC offset, which is used by ADC_SAR_X_CountsTo_Volts(),
+ 566:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_CountsTo_mVolts(), and ADC_SAR_X_CountsTo_uVolts()
+ 567:Generated_Source\PSoC5/ADC_SAR_X.c **** *  to subtract the offset from the given reading before calculating the voltage
+ 568:Generated_Source\PSoC5/ADC_SAR_X.c **** *  conversion.
+ 569:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 570:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 571:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int16: This value is measured when the inputs are shorted or connected to
+ 572:Generated_Source\PSoC5/ADC_SAR_X.c ****    the same input voltage.
+ 573:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 574:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 575:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 576:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 577:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 578:Generated_Source\PSoC5/ADC_SAR_X.c **** *  The ADC_SAR_X_offset variable modified. This variable is used for
+ 579:Generated_Source\PSoC5/ADC_SAR_X.c **** *  offset calibration purpose.
+ 580:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Affects the ADC_SAR_X_CountsTo_Volts,
+ 581:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_CountsTo_mVolts, ADC_SAR_X_CountsTo_uVolts functions
+ 582:Generated_Source\PSoC5/ADC_SAR_X.c **** *  by subtracting the given offset.
+ 583:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 584:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 585:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_SetOffset(int16 offset)
+ 586:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 587:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_offset = offset;
+ 588:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 589:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 590:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 591:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 592:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_CalcGain
+ 593:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 594:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 595:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 596:Generated_Source\PSoC5/ADC_SAR_X.c **** *  This function calculates the ADC gain in counts per 10 volt.
+ 597:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 598:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 599:Generated_Source\PSoC5/ADC_SAR_X.c **** *  uint8: resolution
+ 600:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 601:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 12
+
+
+ 602:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 603:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 604:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 605:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_shift variable initialized. This variable is used to
+ 606:Generated_Source\PSoC5/ADC_SAR_X.c **** *  convert the ADC counts to the 2s compliment form.
+ 607:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_countsPer10Volt variable initialized. This variable is used
+ 608:Generated_Source\PSoC5/ADC_SAR_X.c **** *  for gain calibration purpose.
+ 609:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 610:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 611:Generated_Source\PSoC5/ADC_SAR_X.c **** static void ADC_SAR_X_CalcGain( uint8 resolution )
+ 612:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+  27              		.loc 1 612 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+ 613:Generated_Source\PSoC5/ADC_SAR_X.c ****     int32 counts;
+ 614:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+ 615:Generated_Source\PSoC5/ADC_SAR_X.c ****          (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDDA) || \
+ 616:Generated_Source\PSoC5/ADC_SAR_X.c ****          (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDAC)) )
+ 617:Generated_Source\PSoC5/ADC_SAR_X.c ****         uint16 diff_zero;
+ 618:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_RANGE */
+ 619:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 620:Generated_Source\PSoC5/ADC_SAR_X.c ****     switch (resolution)
+  36              		.loc 1 620 0
+  37 0002 0A28     		cmp	r0, #10
+  38 0004 0FD0     		beq	.L7
+  39 0006 0C28     		cmp	r0, #12
+  40 0008 02D0     		beq	.L4
+  41 000a 0828     		cmp	r0, #8
+  42 000c 06D1     		bne	.L8
+  43 000e 02E0     		b	.L5
+  44              	.L4:
+ 621:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 622:Generated_Source\PSoC5/ADC_SAR_X.c ****         case (uint8)ADC_SAR_X__BITS_12:
+ 623:Generated_Source\PSoC5/ADC_SAR_X.c ****             counts = (int32)ADC_SAR_X_SAR_WRK_MAX_12BIT;
+  45              		.loc 1 623 0
+  46 0010 4FF48052 		mov	r2, #4096
+  47 0014 09E0     		b	.L3
+  48              	.L5:
+  49              	.LVL1:
+ 624:Generated_Source\PSoC5/ADC_SAR_X.c ****             #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+ 625:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDDA) || \
+ 626:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDAC)) )
+ 627:Generated_Source\PSoC5/ADC_SAR_X.c ****                 diff_zero = ADC_SAR_X_SAR_DIFF_SHIFT;
+ 628:Generated_Source\PSoC5/ADC_SAR_X.c ****             #endif /* End ADC_SAR_X_DEFAULT_RANGE */
+ 629:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 630:Generated_Source\PSoC5/ADC_SAR_X.c ****         case (uint8)ADC_SAR_X__BITS_10:
+ 631:Generated_Source\PSoC5/ADC_SAR_X.c ****             counts = (int32)ADC_SAR_X_SAR_WRK_MAX_10BIT;
+ 632:Generated_Source\PSoC5/ADC_SAR_X.c ****             #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+ 633:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDDA) || \
+ 634:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDAC)) )
+ 635:Generated_Source\PSoC5/ADC_SAR_X.c ****                 diff_zero = ADC_SAR_X_SAR_DIFF_SHIFT >> 2u;
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 13
+
+
+ 636:Generated_Source\PSoC5/ADC_SAR_X.c ****             #endif /* End ADC_SAR_X_DEFAULT_RANGE */
+ 637:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 638:Generated_Source\PSoC5/ADC_SAR_X.c ****         case (uint8)ADC_SAR_X__BITS_8:
+ 639:Generated_Source\PSoC5/ADC_SAR_X.c ****             counts = (int32)ADC_SAR_X_SAR_WRK_MAX_8BIT;
+  50              		.loc 1 639 0
+  51 0016 4FF48072 		mov	r2, #256
+ 640:Generated_Source\PSoC5/ADC_SAR_X.c ****             #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+ 641:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDDA) || \
+ 642:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDAC)) )
+ 643:Generated_Source\PSoC5/ADC_SAR_X.c ****                 diff_zero = ADC_SAR_X_SAR_DIFF_SHIFT >> 4u;
+ 644:Generated_Source\PSoC5/ADC_SAR_X.c ****             #endif /* End ADC_SAR_X_DEFAULT_RANGE */
+ 645:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+  52              		.loc 1 645 0
+  53 001a 06E0     		b	.L3
+  54              	.LVL2:
+  55              	.L8:
+ 646:Generated_Source\PSoC5/ADC_SAR_X.c ****         default: /* Halt CPU in debug mode if resolution is out of valid range */
+ 647:Generated_Source\PSoC5/ADC_SAR_X.c ****             counts = 0;
+ 648:Generated_Source\PSoC5/ADC_SAR_X.c ****             #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+ 649:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDDA) || \
+ 650:Generated_Source\PSoC5/ADC_SAR_X.c ****                  (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDAC)) )
+ 651:Generated_Source\PSoC5/ADC_SAR_X.c ****                 diff_zero = 0u;
+ 652:Generated_Source\PSoC5/ADC_SAR_X.c ****             #endif /* End ADC_SAR_X_DEFAULT_RANGE */
+ 653:Generated_Source\PSoC5/ADC_SAR_X.c ****             CYASSERT(0u != 0u);
+  56              		.loc 1 653 0
+  57 001c 0020     		movs	r0, #0
+  58              	.LVL3:
+  59 001e FFF7FEFF 		bl	CyHalt
+  60              	.LVL4:
+ 647:Generated_Source\PSoC5/ADC_SAR_X.c ****             #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+  61              		.loc 1 647 0
+  62 0022 0022     		movs	r2, #0
+  63 0024 01E0     		b	.L3
+  64              	.LVL5:
+  65              	.L7:
+ 631:Generated_Source\PSoC5/ADC_SAR_X.c ****             #if(!((ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+  66              		.loc 1 631 0
+  67 0026 4FF48062 		mov	r2, #1024
+  68              	.LVL6:
+  69              	.L3:
+ 654:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 655:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 656:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_countsPerVolt = 0; /* Clear obsolete variable */
+  70              		.loc 1 656 0
+  71 002a 0021     		movs	r1, #0
+  72 002c 084B     		ldr	r3, .L10
+  73 002e 1980     		strh	r1, [r3]	@ movhi
+ 657:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Calculate gain in counts per 10 volts with rounding */
+ 658:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_countsPer10Volt = (((counts * ADC_SAR_X_10MV_COUNTS) +
+  74              		.loc 1 658 0
+  75 0030 42F21073 		movw	r3, #10000
+  76 0034 03FB02F3 		mul	r3, r3, r2
+ 659:Generated_Source\PSoC5/ADC_SAR_X.c ****                         ADC_SAR_X_DEFAULT_REF_VOLTAGE_MV) / (ADC_SAR_X_DEFAULT_REF_VOLTAGE_MV * 2))
+  77              		.loc 1 659 0
+  78 0038 13F58063 		adds	r3, r3, #1024
+  79 003c 01D5     		bpl	.L6
+  80 003e 03F2FF73 		addw	r3, r3, #2047
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 14
+
+
+  81              	.L6:
+  82 0042 DB12     		asrs	r3, r3, #11
+ 658:Generated_Source\PSoC5/ADC_SAR_X.c ****                         ADC_SAR_X_DEFAULT_REF_VOLTAGE_MV) / (ADC_SAR_X_DEFAULT_REF_VOLTAGE_MV * 2))
+  83              		.loc 1 658 0
+  84 0044 034A     		ldr	r2, .L10+4
+  85              	.LVL7:
+  86 0046 1360     		str	r3, [r2]
+ 660:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 661:Generated_Source\PSoC5/ADC_SAR_X.c ****     #if( (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSS_TO_VREF) || \
+ 662:Generated_Source\PSoC5/ADC_SAR_X.c ****          (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDDA) || \
+ 663:Generated_Source\PSoC5/ADC_SAR_X.c ****          (ADC_SAR_X_DEFAULT_RANGE == ADC_SAR_X__VSSA_TO_VDAC) )
+ 664:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_shift = 0;
+  87              		.loc 1 664 0
+  88 0048 0022     		movs	r2, #0
+  89 004a 034B     		ldr	r3, .L10+8
+  90 004c 1A80     		strh	r2, [r3]	@ movhi
+  91 004e 08BD     		pop	{r3, pc}
+  92              	.L11:
+  93              		.align	2
+  94              	.L10:
+  95 0050 00000000 		.word	ADC_SAR_X_countsPerVolt
+  96 0054 00000000 		.word	ADC_SAR_X_countsPer10Volt
+  97 0058 00000000 		.word	ADC_SAR_X_shift
+  98              		.cfi_endproc
+  99              	.LFE10:
+ 100              		.size	ADC_SAR_X_CalcGain, .-ADC_SAR_X_CalcGain
+ 101              		.section	.text.ADC_SAR_X_Enable,"ax",%progbits
+ 102              		.align	2
+ 103              		.global	ADC_SAR_X_Enable
+ 104              		.thumb
+ 105              		.thumb_func
+ 106              		.type	ADC_SAR_X_Enable, %function
+ 107              	ADC_SAR_X_Enable:
+ 108              	.LFB2:
+ 144:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 tmpReg;
+ 109              		.loc 1 144 0
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113 0000 38B5     		push	{r3, r4, r5, lr}
+ 114              		.cfi_def_cfa_offset 16
+ 115              		.cfi_offset 3, -16
+ 116              		.cfi_offset 4, -12
+ 117              		.cfi_offset 5, -8
+ 118              		.cfi_offset 14, -4
+ 147:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 119              		.loc 1 147 0
+ 120 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 121              	.LVL8:
+ 122 0006 0446     		mov	r4, r0
+ 123              	.LVL9:
+ 150:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 124              		.loc 1 150 0
+ 125 0008 1F4A     		ldr	r2, .L14
+ 126 000a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 127 000c 43F00103 		orr	r3, r3, #1
+ 128 0010 1370     		strb	r3, [r2]
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 15
+
+
+ 153:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 129              		.loc 1 153 0
+ 130 0012 1032     		adds	r2, r2, #16
+ 131 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 132 0016 43F00103 		orr	r3, r3, #1
+ 133 001a 1370     		strb	r3, [r2]
+ 157:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_STBY_PWRMGR_CLK_REG |= ADC_SAR_X_STBY_PWR_CLK_EN;
+ 134              		.loc 1 157 0
+ 135 001c 1A3A     		subs	r2, r2, #26
+ 136 001e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 137 0020 43F00103 		orr	r3, r3, #1
+ 138 0024 1370     		strb	r3, [r2]
+ 158:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+ 139              		.loc 1 158 0
+ 140 0026 1032     		adds	r2, r2, #16
+ 141 0028 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 142 002a 43F00103 		orr	r3, r3, #1
+ 143 002e 1370     		strb	r3, [r2]
+ 162:Generated_Source\PSoC5/ADC_SAR_X.c ****     tmpReg |= ADC_SAR_X_SAR_EN_BUF_VCM_EN;
+ 144              		.loc 1 162 0
+ 145 0030 02F5AA52 		add	r2, r2, #5440
+ 146 0034 1232     		adds	r2, r2, #18
+ 147 0036 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 148              	.LVL10:
+ 149 0038 03F0FE03 		and	r3, r3, #254
+ 150              	.LVL11:
+ 167:Generated_Source\PSoC5/ADC_SAR_X.c ****     #else /* In INTREF or INTREF Bypassed this buffer is ON */
+ 151              		.loc 1 167 0
+ 152 003c 43F00203 		orr	r3, r3, #2
+ 153              	.LVL12:
+ 171:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 154              		.loc 1 171 0
+ 155 0040 1370     		strb	r3, [r2]
+ 184:Generated_Source\PSoC5/ADC_SAR_X.c ****         #endif /* ADC_SAR_X_DEFAULT_REFERENCE == ADC_SAR_X__INT_REF_NOT_BYPASSED */
+ 156              		.loc 1 184 0
+ 157 0042 0425     		movs	r5, #4
+ 158 0044 114B     		ldr	r3, .L14+4
+ 159              	.LVL13:
+ 160 0046 1D70     		strb	r5, [r3]
+ 161              	.LVL14:
+ 192:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* ADC_SAR_X_HIGH_POWER_PULSE == 0u */
+ 162              		.loc 1 192 0
+ 163 0048 013B     		subs	r3, r3, #1
+ 164 004a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 165 004c 42F04002 		orr	r2, r2, #64
+ 166 0050 1A70     		strb	r2, [r3]
+ 202:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* ADC_SAR_X_HIGH_POWER_PULSE == 0u */
+ 167              		.loc 1 202 0
+ 168 0052 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 169 0054 02F0FC02 		and	r2, r2, #252
+ 170 0058 1A70     		strb	r2, [r3]
+ 206:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* SAR_HIZ_CLEAR:   Should not be used for LP */
+ 171              		.loc 1 206 0
+ 172 005a CE22     		movs	r2, #206
+ 173 005c 053B     		subs	r3, r3, #5
+ 174 005e 1A70     		strb	r2, [r3]
+ 218:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 16
+
+
+ 175              		.loc 1 218 0
+ 176 0060 0222     		movs	r2, #2
+ 177 0062 A3F59753 		sub	r3, r3, #4832
+ 178 0066 0C3B     		subs	r3, r3, #12
+ 179 0068 1A70     		strb	r2, [r3]
+ 221:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 180              		.loc 1 221 0
+ 181 006a 094A     		ldr	r2, .L14+8
+ 182 006c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 183 006e 43F00803 		orr	r3, r3, #8
+ 184 0072 1370     		strb	r3, [r2]
+ 223:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 185              		.loc 1 223 0
+ 186 0074 0A20     		movs	r0, #10
+ 187 0076 FFF7FEFF 		bl	CyDelayUs
+ 188              	.LVL15:
+ 227:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif   /* End ADC_SAR_X_IRQ_REMOVE */
+ 189              		.loc 1 227 0
+ 190 007a 064B     		ldr	r3, .L14+12
+ 191 007c 1D60     		str	r5, [r3]
+ 230:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 192              		.loc 1 230 0
+ 193 007e 2046     		mov	r0, r4
+ 194 0080 FFF7FEFF 		bl	CyExitCriticalSection
+ 195              	.LVL16:
+ 196 0084 38BD     		pop	{r3, r4, r5, pc}
+ 197              	.LVL17:
+ 198              	.L15:
+ 199 0086 00BF     		.align	2
+ 200              	.L14:
+ 201 0088 AB430040 		.word	1073759147
+ 202 008c 06590040 		.word	1073764614
+ 203 0090 275B0040 		.word	1073765159
+ 204 0094 80E200E0 		.word	-536812928
+ 205              		.cfi_endproc
+ 206              	.LFE2:
+ 207              		.size	ADC_SAR_X_Enable, .-ADC_SAR_X_Enable
+ 208              		.section	.text.ADC_SAR_X_Stop,"ax",%progbits
+ 209              		.align	2
+ 210              		.global	ADC_SAR_X_Stop
+ 211              		.thumb
+ 212              		.thumb_func
+ 213              		.type	ADC_SAR_X_Stop, %function
+ 214              	ADC_SAR_X_Stop:
+ 215              	.LFB3:
+ 249:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 enableInterrupts;
+ 216              		.loc 1 249 0
+ 217              		.cfi_startproc
+ 218              		@ args = 0, pretend = 0, frame = 0
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220 0000 08B5     		push	{r3, lr}
+ 221              		.cfi_def_cfa_offset 8
+ 222              		.cfi_offset 3, -8
+ 223              		.cfi_offset 14, -4
+ 251:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 224              		.loc 1 251 0
+ 225 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 17
+
+
+ 226              	.LVL18:
+ 254:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Disable the SAR ADC block in Active Power Mode */
+ 227              		.loc 1 254 0
+ 228 0006 0F4A     		ldr	r2, .L18
+ 229 0008 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 230 000a 03F0FE03 		and	r3, r3, #254
+ 231 000e 1370     		strb	r3, [r2]
+ 256:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Disable the SAR ADC in Standby Power Mode */
+ 232              		.loc 1 256 0
+ 233 0010 A2F5AA52 		sub	r2, r2, #5440
+ 234 0014 153A     		subs	r2, r2, #21
+ 235 0016 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 236 0018 03F0FE03 		and	r3, r3, #254
+ 237 001c 1370     		strb	r3, [r2]
+ 258:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 238              		.loc 1 258 0
+ 239 001e 1032     		adds	r2, r2, #16
+ 240 0020 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 241 0022 03F0FE03 		and	r3, r3, #254
+ 242 0026 1370     		strb	r3, [r2]
+ 262:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_STBY_PWRMGR_CLK_REG &= (uint8)~ADC_SAR_X_STBY_PWR_CLK_EN;
+ 243              		.loc 1 262 0
+ 244 0028 1A3A     		subs	r2, r2, #26
+ 245 002a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 246 002c 03F0FE03 		and	r3, r3, #254
+ 247 0030 1370     		strb	r3, [r2]
+ 263:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+ 248              		.loc 1 263 0
+ 249 0032 1032     		adds	r2, r2, #16
+ 250 0034 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 251 0036 03F0FE03 		and	r3, r3, #254
+ 252 003a 1370     		strb	r3, [r2]
+ 266:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 253              		.loc 1 266 0
+ 254 003c FFF7FEFF 		bl	CyExitCriticalSection
+ 255              	.LVL19:
+ 256 0040 08BD     		pop	{r3, pc}
+ 257              	.L19:
+ 258 0042 00BF     		.align	2
+ 259              	.L18:
+ 260 0044 00590040 		.word	1073764608
+ 261              		.cfi_endproc
+ 262              	.LFE3:
+ 263              		.size	ADC_SAR_X_Stop, .-ADC_SAR_X_Stop
+ 264              		.section	.text.ADC_SAR_X_SetPower,"ax",%progbits
+ 265              		.align	2
+ 266              		.global	ADC_SAR_X_SetPower
+ 267              		.thumb
+ 268              		.thumb_func
+ 269              		.type	ADC_SAR_X_SetPower, %function
+ 270              	ADC_SAR_X_SetPower:
+ 271              	.LFB4:
+ 291:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 tmpReg;
+ 272              		.loc 1 291 0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 0
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 18
+
+
+ 276              		@ link register save eliminated.
+ 277              	.LVL20:
+ 298:Generated_Source\PSoC5/ADC_SAR_X.c ****     tmpReg |= (uint8)(power << ADC_SAR_X_SAR_POWER_SHIFT);
+ 278              		.loc 1 298 0
+ 279 0000 044A     		ldr	r2, .L21
+ 280 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 281 0004 03F03F03 		and	r3, r3, #63
+ 282              	.LVL21:
+ 299:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_SAR_CSR0_REG = tmpReg;
+ 283              		.loc 1 299 0
+ 284 0008 43EA8010 		orr	r0, r3, r0, lsl #6
+ 285              	.LVL22:
+ 286 000c C0B2     		uxtb	r0, r0
+ 287              	.LVL23:
+ 300:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 288              		.loc 1 300 0
+ 289 000e 1070     		strb	r0, [r2]
+ 290 0010 7047     		bx	lr
+ 291              	.L22:
+ 292 0012 00BF     		.align	2
+ 293              	.L21:
+ 294 0014 00590040 		.word	1073764608
+ 295              		.cfi_endproc
+ 296              	.LFE4:
+ 297              		.size	ADC_SAR_X_SetPower, .-ADC_SAR_X_SetPower
+ 298              		.section	.text.ADC_SAR_X_SetResolution,"ax",%progbits
+ 299              		.align	2
+ 300              		.global	ADC_SAR_X_SetResolution
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.type	ADC_SAR_X_SetResolution, %function
+ 304              	ADC_SAR_X_SetResolution:
+ 305              	.LFB5:
+ 341:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 tmpReg;
+ 306              		.loc 1 341 0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310              	.LVL24:
+ 311 0000 10B5     		push	{r4, lr}
+ 312              		.cfi_def_cfa_offset 8
+ 313              		.cfi_offset 4, -8
+ 314              		.cfi_offset 14, -4
+ 315 0002 0446     		mov	r4, r0
+ 345:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 316              		.loc 1 345 0
+ 317 0004 0A28     		cmp	r0, #10
+ 318 0006 0DD0     		beq	.L28
+ 319 0008 0C28     		cmp	r0, #12
+ 320 000a 02D0     		beq	.L26
+ 321 000c 0828     		cmp	r0, #8
+ 322 000e 04D1     		bne	.L29
+ 323 0010 01E0     		b	.L27
+ 324              	.L26:
+ 348:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 325              		.loc 1 348 0
+ 326 0012 C422     		movs	r2, #196
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 19
+
+
+ 327 0014 07E0     		b	.L25
+ 328              	.L27:
+ 329              	.LVL25:
+ 354:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 330              		.loc 1 354 0
+ 331 0016 4422     		movs	r2, #68
+ 355:Generated_Source\PSoC5/ADC_SAR_X.c ****         default:
+ 332              		.loc 1 355 0
+ 333 0018 05E0     		b	.L25
+ 334              	.LVL26:
+ 335              	.L29:
+ 359:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 336              		.loc 1 359 0
+ 337 001a 0020     		movs	r0, #0
+ 338              	.LVL27:
+ 339 001c FFF7FEFF 		bl	CyHalt
+ 340              	.LVL28:
+ 357:Generated_Source\PSoC5/ADC_SAR_X.c ****             /* Halt CPU in debug mode if resolution is out of valid range */
+ 341              		.loc 1 357 0
+ 342 0020 C422     		movs	r2, #196
+ 343 0022 00E0     		b	.L25
+ 344              	.LVL29:
+ 345              	.L28:
+ 351:Generated_Source\PSoC5/ADC_SAR_X.c ****             break;
+ 346              		.loc 1 351 0
+ 347 0024 8422     		movs	r2, #132
+ 348              	.LVL30:
+ 349              	.L25:
+ 362:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 350              		.loc 1 362 0
+ 351 0026 034B     		ldr	r3, .L31
+ 352 0028 1A70     		strb	r2, [r3]
+ 365:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 353              		.loc 1 365 0
+ 354 002a 2046     		mov	r0, r4
+ 355 002c FFF7FEFF 		bl	ADC_SAR_X_CalcGain
+ 356              	.LVL31:
+ 357 0030 10BD     		pop	{r4, pc}
+ 358              	.L32:
+ 359 0032 00BF     		.align	2
+ 360              	.L31:
+ 361 0034 02590040 		.word	1073764610
+ 362              		.cfi_endproc
+ 363              	.LFE5:
+ 364              		.size	ADC_SAR_X_SetResolution, .-ADC_SAR_X_SetResolution
+ 365              		.section	.text.ADC_SAR_X_Init,"ax",%progbits
+ 366              		.align	2
+ 367              		.global	ADC_SAR_X_Init
+ 368              		.thumb
+ 369              		.thumb_func
+ 370              		.type	ADC_SAR_X_Init, %function
+ 371              	ADC_SAR_X_Init:
+ 372              	.LFB1:
+ 107:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 373              		.loc 1 107 0
+ 374              		.cfi_startproc
+ 375              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 20
+
+
+ 376              		@ frame_needed = 0, uses_anonymous_args = 0
+ 377 0000 08B5     		push	{r3, lr}
+ 378              		.cfi_def_cfa_offset 8
+ 379              		.cfi_offset 3, -8
+ 380              		.cfi_offset 14, -4
+ 111:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_INTERNAL_CLK */
+ 381              		.loc 1 111 0
+ 382 0002 1020     		movs	r0, #16
+ 383 0004 FFF7FEFF 		bl	ADC_SAR_X_theACLK_SetModeRegister
+ 384              	.LVL32:
+ 116:Generated_Source\PSoC5/ADC_SAR_X.c ****         (void)CyIntSetVector(ADC_SAR_X_INTC_NUMBER, &ADC_SAR_X_ISR);
+ 385              		.loc 1 116 0
+ 386 0008 0721     		movs	r1, #7
+ 387 000a 0220     		movs	r0, #2
+ 388 000c FFF7FEFF 		bl	CyIntSetPriority
+ 389              	.LVL33:
+ 117:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif   /* End ADC_SAR_X_IRQ_REMOVE */
+ 390              		.loc 1 117 0
+ 391 0010 0749     		ldr	r1, .L35
+ 392 0012 0220     		movs	r0, #2
+ 393 0014 FFF7FEFF 		bl	CyIntSetVector
+ 394              	.LVL34:
+ 121:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 395              		.loc 1 121 0
+ 396 0018 064A     		ldr	r2, .L35+4
+ 397 001a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 398 001c 43F00603 		orr	r3, r3, #6
+ 399 0020 1370     		strb	r3, [r2]
+ 124:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_offset = 0;
+ 400              		.loc 1 124 0
+ 401 0022 0C20     		movs	r0, #12
+ 402 0024 FFF7FEFF 		bl	ADC_SAR_X_SetResolution
+ 403              	.LVL35:
+ 125:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 404              		.loc 1 125 0
+ 405 0028 0022     		movs	r2, #0
+ 406 002a 034B     		ldr	r3, .L35+8
+ 407 002c 1A80     		strh	r2, [r3]	@ movhi
+ 408 002e 08BD     		pop	{r3, pc}
+ 409              	.L36:
+ 410              		.align	2
+ 411              	.L35:
+ 412 0030 00000000 		.word	ADC_SAR_X_ISR
+ 413 0034 01590040 		.word	1073764609
+ 414 0038 00000000 		.word	ADC_SAR_X_offset
+ 415              		.cfi_endproc
+ 416              	.LFE1:
+ 417              		.size	ADC_SAR_X_Init, .-ADC_SAR_X_Init
+ 418              		.section	.text.ADC_SAR_X_Start,"ax",%progbits
+ 419              		.align	2
+ 420              		.global	ADC_SAR_X_Start
+ 421              		.thumb
+ 422              		.thumb_func
+ 423              		.type	ADC_SAR_X_Start, %function
+ 424              	ADC_SAR_X_Start:
+ 425              	.LFB0:
+  75:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 21
+
+
+ 426              		.loc 1 75 0
+ 427              		.cfi_startproc
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430 0000 08B5     		push	{r3, lr}
+ 431              		.cfi_def_cfa_offset 8
+ 432              		.cfi_offset 3, -8
+ 433              		.cfi_offset 14, -4
+  78:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 434              		.loc 1 78 0
+ 435 0002 054B     		ldr	r3, .L40
+ 436 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 437 0006 23B9     		cbnz	r3, .L38
+  80:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_initVar = 1u;
+ 438              		.loc 1 80 0
+ 439 0008 FFF7FEFF 		bl	ADC_SAR_X_Init
+ 440              	.LVL36:
+  81:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 441              		.loc 1 81 0
+ 442 000c 0122     		movs	r2, #1
+ 443 000e 024B     		ldr	r3, .L40
+ 444 0010 1A70     		strb	r2, [r3]
+ 445              	.L38:
+  83:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 446              		.loc 1 83 0
+ 447 0012 FFF7FEFF 		bl	ADC_SAR_X_Enable
+ 448              	.LVL37:
+ 449 0016 08BD     		pop	{r3, pc}
+ 450              	.L41:
+ 451              		.align	2
+ 452              	.L40:
+ 453 0018 00000000 		.word	.LANCHOR0
+ 454              		.cfi_endproc
+ 455              	.LFE0:
+ 456              		.size	ADC_SAR_X_Start, .-ADC_SAR_X_Start
+ 457              		.section	.text.ADC_SAR_X_IsEndConversion,"ax",%progbits
+ 458              		.align	2
+ 459              		.global	ADC_SAR_X_IsEndConversion
+ 460              		.thumb
+ 461              		.thumb_func
+ 462              		.type	ADC_SAR_X_IsEndConversion, %function
+ 463              	ADC_SAR_X_IsEndConversion:
+ 464              	.LFB6:
+ 476:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint8 status;
+ 465              		.loc 1 476 0
+ 466              		.cfi_startproc
+ 467              		@ args = 0, pretend = 0, frame = 0
+ 468              		@ frame_needed = 0, uses_anonymous_args = 0
+ 469              	.LVL38:
+ 470 0000 10B5     		push	{r4, lr}
+ 471              		.cfi_def_cfa_offset 8
+ 472              		.cfi_offset 4, -8
+ 473              		.cfi_offset 14, -4
+ 474              	.L44:
+ 481:Generated_Source\PSoC5/ADC_SAR_X.c ****     } while ((status != ADC_SAR_X_SAR_EOF_1) && (retMode == ADC_SAR_X_WAIT_FOR_RESULT));
+ 475              		.loc 1 481 0 discriminator 2
+ 476 0002 074B     		ldr	r3, .L47
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 22
+
+
+ 477 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 478              	.LVL39:
+ 482:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* If convertion complete, wait until EOF bit released */
+ 479              		.loc 1 482 0 discriminator 2
+ 480 0006 13F00104 		ands	r4, r3, #1
+ 481 000a 01D1     		bne	.L43
+ 482:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* If convertion complete, wait until EOF bit released */
+ 482              		.loc 1 482 0 is_stmt 0 discriminator 1
+ 483 000c 0028     		cmp	r0, #0
+ 484 000e F8D0     		beq	.L44
+ 485              	.L43:
+ 484:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 486              		.loc 1 484 0 is_stmt 1
+ 487 0010 24B1     		cbz	r4, .L45
+ 487:Generated_Source\PSoC5/ADC_SAR_X.c ****         /* Do the unconditional read operation of the CSR1 register to make sure the EOC bit has be
+ 488              		.loc 1 487 0
+ 489 0012 0120     		movs	r0, #1
+ 490              	.LVL40:
+ 491 0014 FFF7FEFF 		bl	CyDelayUs
+ 492              	.LVL41:
+ 489:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 493              		.loc 1 489 0
+ 494 0018 014B     		ldr	r3, .L47
+ 495 001a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 496              	.L45:
+ 493:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 497              		.loc 1 493 0
+ 498 001c 2046     		mov	r0, r4
+ 499 001e 10BD     		pop	{r4, pc}
+ 500              	.L48:
+ 501              		.align	2
+ 502              	.L47:
+ 503 0020 01590040 		.word	1073764609
+ 504              		.cfi_endproc
+ 505              	.LFE6:
+ 506              		.size	ADC_SAR_X_IsEndConversion, .-ADC_SAR_X_IsEndConversion
+ 507              		.section	.text.ADC_SAR_X_GetResult8,"ax",%progbits
+ 508              		.align	2
+ 509              		.global	ADC_SAR_X_GetResult8
+ 510              		.thumb
+ 511              		.thumb_func
+ 512              		.type	ADC_SAR_X_GetResult8, %function
+ 513              	ADC_SAR_X_GetResult8:
+ 514              	.LFB7:
+ 521:Generated_Source\PSoC5/ADC_SAR_X.c ****     return( (int8)ADC_SAR_X_SAR_WRK0_REG - (int8)ADC_SAR_X_shift);
+ 515              		.loc 1 521 0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		@ link register save eliminated.
+ 522:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 520              		.loc 1 522 0
+ 521 0000 034B     		ldr	r3, .L50
+ 522 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 523 0004 034A     		ldr	r2, .L50+4
+ 524 0006 1088     		ldrh	r0, [r2]
+ 525 0008 00B2     		sxth	r0, r0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 23
+
+
+ 526 000a 181A     		subs	r0, r3, r0
+ 523:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 527              		.loc 1 523 0
+ 528 000c 40B2     		sxtb	r0, r0
+ 529 000e 7047     		bx	lr
+ 530              	.L51:
+ 531              		.align	2
+ 532              	.L50:
+ 533 0010 A05B0040 		.word	1073765280
+ 534 0014 00000000 		.word	ADC_SAR_X_shift
+ 535              		.cfi_endproc
+ 536              	.LFE7:
+ 537              		.size	ADC_SAR_X_GetResult8, .-ADC_SAR_X_GetResult8
+ 538              		.section	.text.ADC_SAR_X_GetResult16,"ax",%progbits
+ 539              		.align	2
+ 540              		.global	ADC_SAR_X_GetResult16
+ 541              		.thumb
+ 542              		.thumb_func
+ 543              		.type	ADC_SAR_X_GetResult16, %function
+ 544              	ADC_SAR_X_GetResult16:
+ 545              	.LFB8:
+ 551:Generated_Source\PSoC5/ADC_SAR_X.c ****     uint16 res;
+ 546              		.loc 1 551 0
+ 547              		.cfi_startproc
+ 548              		@ args = 0, pretend = 0, frame = 0
+ 549              		@ frame_needed = 0, uses_anonymous_args = 0
+ 550              		@ link register save eliminated.
+ 554:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 551              		.loc 1 554 0
+ 552 0000 034B     		ldr	r3, .L53
+ 553 0002 1888     		ldrh	r0, [r3]
+ 554 0004 80B2     		uxth	r0, r0
+ 555              	.LVL42:
+ 556:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 556              		.loc 1 556 0
+ 557 0006 034B     		ldr	r3, .L53+4
+ 558 0008 1B88     		ldrh	r3, [r3]
+ 559 000a C01A     		subs	r0, r0, r3
+ 560              	.LVL43:
+ 557:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 561              		.loc 1 557 0
+ 562 000c 00B2     		sxth	r0, r0
+ 563 000e 7047     		bx	lr
+ 564              	.L54:
+ 565              		.align	2
+ 566              	.L53:
+ 567 0010 A05B0040 		.word	1073765280
+ 568 0014 00000000 		.word	ADC_SAR_X_shift
+ 569              		.cfi_endproc
+ 570              	.LFE8:
+ 571              		.size	ADC_SAR_X_GetResult16, .-ADC_SAR_X_GetResult16
+ 572              		.section	.text.ADC_SAR_X_SetOffset,"ax",%progbits
+ 573              		.align	2
+ 574              		.global	ADC_SAR_X_SetOffset
+ 575              		.thumb
+ 576              		.thumb_func
+ 577              		.type	ADC_SAR_X_SetOffset, %function
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 24
+
+
+ 578              	ADC_SAR_X_SetOffset:
+ 579              	.LFB9:
+ 586:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_offset = offset;
+ 580              		.loc 1 586 0
+ 581              		.cfi_startproc
+ 582              		@ args = 0, pretend = 0, frame = 0
+ 583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 584              		@ link register save eliminated.
+ 585              	.LVL44:
+ 587:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 586              		.loc 1 587 0
+ 587 0000 014B     		ldr	r3, .L56
+ 588 0002 1880     		strh	r0, [r3]	@ movhi
+ 589 0004 7047     		bx	lr
+ 590              	.L57:
+ 591 0006 00BF     		.align	2
+ 592              	.L56:
+ 593 0008 00000000 		.word	ADC_SAR_X_offset
+ 594              		.cfi_endproc
+ 595              	.LFE9:
+ 596              		.size	ADC_SAR_X_SetOffset, .-ADC_SAR_X_SetOffset
+ 597              		.section	.text.ADC_SAR_X_SetGain,"ax",%progbits
+ 598              		.align	2
+ 599              		.global	ADC_SAR_X_SetGain
+ 600              		.thumb
+ 601              		.thumb_func
+ 602              		.type	ADC_SAR_X_SetGain, %function
+ 603              	ADC_SAR_X_SetGain:
+ 604              	.LFB11:
+ 665:Generated_Source\PSoC5/ADC_SAR_X.c ****     #else
+ 666:Generated_Source\PSoC5/ADC_SAR_X.c ****         ADC_SAR_X_shift = diff_zero;
+ 667:Generated_Source\PSoC5/ADC_SAR_X.c ****     #endif /* End ADC_SAR_X_DEFAULT_RANGE */
+ 668:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 669:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 670:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 671:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 672:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_SetGain
+ 673:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 674:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 675:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 676:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Sets the ADC gain in counts per volt for the voltage conversion functions
+ 677:Generated_Source\PSoC5/ADC_SAR_X.c **** *  that follow. This value is set by default by the reference and input range
+ 678:Generated_Source\PSoC5/ADC_SAR_X.c **** *  settings. It should only be used to further calibrate the ADC with a known
+ 679:Generated_Source\PSoC5/ADC_SAR_X.c **** *  input or if the ADC is using an external reference.
+ 680:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 681:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 682:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int16 adcGain counts per volt
+ 683:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 684:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 685:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 686:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 687:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 688:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_countsPer10Volt variable modified. This variable is used
+ 689:Generated_Source\PSoC5/ADC_SAR_X.c **** *  for gain calibration purpose.
+ 690:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 691:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 692:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_SetGain(int16 adcGain)
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 25
+
+
+ 693:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 605              		.loc 1 693 0
+ 606              		.cfi_startproc
+ 607              		@ args = 0, pretend = 0, frame = 0
+ 608              		@ frame_needed = 0, uses_anonymous_args = 0
+ 609              		@ link register save eliminated.
+ 610              	.LVL45:
+ 694:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_countsPer10Volt = (int32)adcGain * 10;
+ 611              		.loc 1 694 0
+ 612 0000 00EB8000 		add	r0, r0, r0, lsl #2
+ 613              	.LVL46:
+ 614 0004 4300     		lsls	r3, r0, #1
+ 615 0006 014A     		ldr	r2, .L59
+ 616 0008 1360     		str	r3, [r2]
+ 617 000a 7047     		bx	lr
+ 618              	.L60:
+ 619              		.align	2
+ 620              	.L59:
+ 621 000c 00000000 		.word	ADC_SAR_X_countsPer10Volt
+ 622              		.cfi_endproc
+ 623              	.LFE11:
+ 624              		.size	ADC_SAR_X_SetGain, .-ADC_SAR_X_SetGain
+ 625              		.section	.text.ADC_SAR_X_SetScaledGain,"ax",%progbits
+ 626              		.align	2
+ 627              		.global	ADC_SAR_X_SetScaledGain
+ 628              		.thumb
+ 629              		.thumb_func
+ 630              		.type	ADC_SAR_X_SetScaledGain, %function
+ 631              	ADC_SAR_X_SetScaledGain:
+ 632              	.LFB12:
+ 695:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 696:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 697:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 698:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 699:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_SetScaledGain
+ 700:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 701:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 702:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 703:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Sets the ADC gain in counts per 10 volt for the voltage conversion functions
+ 704:Generated_Source\PSoC5/ADC_SAR_X.c **** *  that follow. This value is set by default by the reference and input range
+ 705:Generated_Source\PSoC5/ADC_SAR_X.c **** *  settings. It should only be used to further calibrate the ADC with a known
+ 706:Generated_Source\PSoC5/ADC_SAR_X.c **** *  input or if the ADC is using an external reference.
+ 707:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 708:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 709:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int32 adcGain  counts per 10 volt
+ 710:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 711:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 712:Generated_Source\PSoC5/ADC_SAR_X.c **** *  None.
+ 713:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 714:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 715:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_countsPer10Volt variable modified. This variable is used
+ 716:Generated_Source\PSoC5/ADC_SAR_X.c **** *  for gain calibration purpose.
+ 717:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 718:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 719:Generated_Source\PSoC5/ADC_SAR_X.c **** void ADC_SAR_X_SetScaledGain(int32 adcGain)
+ 720:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 633              		.loc 1 720 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 26
+
+
+ 634              		.cfi_startproc
+ 635              		@ args = 0, pretend = 0, frame = 0
+ 636              		@ frame_needed = 0, uses_anonymous_args = 0
+ 637              		@ link register save eliminated.
+ 638              	.LVL47:
+ 721:Generated_Source\PSoC5/ADC_SAR_X.c ****     ADC_SAR_X_countsPer10Volt = adcGain;
+ 639              		.loc 1 721 0
+ 640 0000 014B     		ldr	r3, .L62
+ 641 0002 1860     		str	r0, [r3]
+ 642 0004 7047     		bx	lr
+ 643              	.L63:
+ 644 0006 00BF     		.align	2
+ 645              	.L62:
+ 646 0008 00000000 		.word	ADC_SAR_X_countsPer10Volt
+ 647              		.cfi_endproc
+ 648              	.LFE12:
+ 649              		.size	ADC_SAR_X_SetScaledGain, .-ADC_SAR_X_SetScaledGain
+ 650              		.section	.text.ADC_SAR_X_CountsTo_mVolts,"ax",%progbits
+ 651              		.align	2
+ 652              		.global	ADC_SAR_X_CountsTo_mVolts
+ 653              		.thumb
+ 654              		.thumb_func
+ 655              		.type	ADC_SAR_X_CountsTo_mVolts, %function
+ 656              	ADC_SAR_X_CountsTo_mVolts:
+ 657              	.LFB13:
+ 722:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 723:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 724:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 725:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 726:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_CountsTo_mVolts
+ 727:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 728:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 729:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 730:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Converts the ADC output to millivolts as a 16-bit integer.
+ 731:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 732:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 733:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int16 adcCounts:  Result from the ADC conversion
+ 734:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 735:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 736:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int16 Result in mVolts
+ 737:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 738:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 739:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_offset variable used.
+ 740:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_countsPer10Volt variable used.
+ 741:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 742:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 743:Generated_Source\PSoC5/ADC_SAR_X.c **** int16 ADC_SAR_X_CountsTo_mVolts(int16 adcCounts)
+ 744:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 658              		.loc 1 744 0
+ 659              		.cfi_startproc
+ 660              		@ args = 0, pretend = 0, frame = 0
+ 661              		@ frame_needed = 0, uses_anonymous_args = 0
+ 662              		@ link register save eliminated.
+ 663              	.LVL48:
+ 664 0000 10B4     		push	{r4}
+ 665              		.cfi_def_cfa_offset 4
+ 666              		.cfi_offset 4, -4
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 27
+
+
+ 745:Generated_Source\PSoC5/ADC_SAR_X.c ****     int16 mVolts;
+ 746:Generated_Source\PSoC5/ADC_SAR_X.c ****     int32 countsPer10Volt;
+ 747:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 748:Generated_Source\PSoC5/ADC_SAR_X.c ****     if(ADC_SAR_X_countsPerVolt != 0)
+ 667              		.loc 1 748 0
+ 668 0002 124B     		ldr	r3, .L70
+ 669 0004 1B88     		ldrh	r3, [r3]
+ 670 0006 1BB2     		sxth	r3, r3
+ 671 0008 33B1     		cbz	r3, .L65
+ 749:Generated_Source\PSoC5/ADC_SAR_X.c ****     {   /* Support obsolete method */
+ 750:Generated_Source\PSoC5/ADC_SAR_X.c ****         countsPer10Volt = (int32)ADC_SAR_X_countsPerVolt * 10;
+ 672              		.loc 1 750 0
+ 673 000a 104B     		ldr	r3, .L70
+ 674 000c 1B88     		ldrh	r3, [r3]
+ 675 000e 1BB2     		sxth	r3, r3
+ 676 0010 03EB8303 		add	r3, r3, r3, lsl #2
+ 677 0014 5C00     		lsls	r4, r3, #1
+ 678              	.LVL49:
+ 679 0016 01E0     		b	.L66
+ 680              	.LVL50:
+ 681              	.L65:
+ 751:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 752:Generated_Source\PSoC5/ADC_SAR_X.c ****     else
+ 753:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 754:Generated_Source\PSoC5/ADC_SAR_X.c ****         countsPer10Volt = ADC_SAR_X_countsPer10Volt;
+ 682              		.loc 1 754 0
+ 683 0018 0D4B     		ldr	r3, .L70+4
+ 684 001a 1C68     		ldr	r4, [r3]
+ 685              	.LVL51:
+ 686              	.L66:
+ 755:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 756:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 757:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Subtract ADC offset */
+ 758:Generated_Source\PSoC5/ADC_SAR_X.c ****     adcCounts -= ADC_SAR_X_offset;
+ 687              		.loc 1 758 0
+ 688 001c 0D4B     		ldr	r3, .L70+8
+ 689 001e 1988     		ldrh	r1, [r3]
+ 690 0020 411A     		subs	r1, r0, r1
+ 691 0022 09B2     		sxth	r1, r1
+ 692              	.LVL52:
+ 759:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Convert to millivolts with rounding */
+ 760:Generated_Source\PSoC5/ADC_SAR_X.c ****     mVolts = (int16)( (( (int32)adcCounts * ADC_SAR_X_10MV_COUNTS ) + ( (adcCounts > 0) ?
+ 693              		.loc 1 760 0
+ 694 0024 42F21073 		movw	r3, #10000
+ 695 0028 03FB01F2 		mul	r2, r3, r1
+ 761:Generated_Source\PSoC5/ADC_SAR_X.c ****                        (countsPer10Volt / 2) : (-(countsPer10Volt / 2)) )) / countsPer10Volt);
+ 696              		.loc 1 761 0
+ 697 002c 0029     		cmp	r1, #0
+ 698 002e 03DD     		ble	.L67
+ 699              		.loc 1 761 0 is_stmt 0 discriminator 1
+ 700 0030 04EBD470 		add	r0, r4, r4, lsr #31
+ 701 0034 4010     		asrs	r0, r0, #1
+ 702 0036 03E0     		b	.L68
+ 703              	.L67:
+ 704              		.loc 1 761 0 discriminator 2
+ 705 0038 04EBD470 		add	r0, r4, r4, lsr #31
+ 706 003c 4010     		asrs	r0, r0, #1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 28
+
+
+ 707 003e 4042     		negs	r0, r0
+ 708              	.L68:
+ 760:Generated_Source\PSoC5/ADC_SAR_X.c ****                        (countsPer10Volt / 2) : (-(countsPer10Volt / 2)) )) / countsPer10Volt);
+ 709              		.loc 1 760 0 is_stmt 1
+ 710 0040 8318     		adds	r3, r0, r2
+ 711              		.loc 1 761 0
+ 712 0042 93FBF4F0 		sdiv	r0, r3, r4
+ 713              	.LVL53:
+ 762:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 763:Generated_Source\PSoC5/ADC_SAR_X.c ****     return( mVolts );
+ 764:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 714              		.loc 1 764 0
+ 715 0046 00B2     		sxth	r0, r0
+ 716 0048 10BC     		pop	{r4}
+ 717              		.cfi_restore 4
+ 718              		.cfi_def_cfa_offset 0
+ 719              	.LVL54:
+ 720 004a 7047     		bx	lr
+ 721              	.L71:
+ 722              		.align	2
+ 723              	.L70:
+ 724 004c 00000000 		.word	ADC_SAR_X_countsPerVolt
+ 725 0050 00000000 		.word	ADC_SAR_X_countsPer10Volt
+ 726 0054 00000000 		.word	ADC_SAR_X_offset
+ 727              		.cfi_endproc
+ 728              	.LFE13:
+ 729              		.size	ADC_SAR_X_CountsTo_mVolts, .-ADC_SAR_X_CountsTo_mVolts
+ 730              		.global	__aeabi_ldivmod
+ 731              		.section	.text.ADC_SAR_X_CountsTo_uVolts,"ax",%progbits
+ 732              		.align	2
+ 733              		.global	ADC_SAR_X_CountsTo_uVolts
+ 734              		.thumb
+ 735              		.thumb_func
+ 736              		.type	ADC_SAR_X_CountsTo_uVolts, %function
+ 737              	ADC_SAR_X_CountsTo_uVolts:
+ 738              	.LFB14:
+ 765:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 766:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 767:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 768:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_CountsTo_uVolts
+ 769:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 770:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 771:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 772:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Converts the ADC output to microvolts as a 32-bit integer.
+ 773:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 774:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 775:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int16 adcCounts: Result from the ADC conversion
+ 776:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 777:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 778:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int32 Result in micro Volts
+ 779:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 780:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 781:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_offset variable used.
+ 782:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_countsPer10Volt used to convert ADC counts to uVolts.
+ 783:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 784:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 785:Generated_Source\PSoC5/ADC_SAR_X.c **** int32 ADC_SAR_X_CountsTo_uVolts(int16 adcCounts)
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 29
+
+
+ 786:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ 739              		.loc 1 786 0
+ 740              		.cfi_startproc
+ 741              		@ args = 0, pretend = 0, frame = 0
+ 742              		@ frame_needed = 0, uses_anonymous_args = 0
+ 743              	.LVL55:
+ 744 0000 38B5     		push	{r3, r4, r5, lr}
+ 745              		.cfi_def_cfa_offset 16
+ 746              		.cfi_offset 3, -16
+ 747              		.cfi_offset 4, -12
+ 748              		.cfi_offset 5, -8
+ 749              		.cfi_offset 14, -4
+ 787:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 788:Generated_Source\PSoC5/ADC_SAR_X.c ****     int64 uVolts;
+ 789:Generated_Source\PSoC5/ADC_SAR_X.c ****     int32 countsPer10Volt;
+ 790:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 791:Generated_Source\PSoC5/ADC_SAR_X.c ****     if(ADC_SAR_X_countsPerVolt != 0)
+ 750              		.loc 1 791 0
+ 751 0002 0D4B     		ldr	r3, .L76
+ 752 0004 1B88     		ldrh	r3, [r3]
+ 753 0006 1BB2     		sxth	r3, r3
+ 754 0008 33B1     		cbz	r3, .L73
+ 792:Generated_Source\PSoC5/ADC_SAR_X.c ****     {   /* Support obsolete method */
+ 793:Generated_Source\PSoC5/ADC_SAR_X.c ****         countsPer10Volt = (int32)ADC_SAR_X_countsPerVolt * 10;
+ 755              		.loc 1 793 0
+ 756 000a 0B4B     		ldr	r3, .L76
+ 757 000c 1B88     		ldrh	r3, [r3]
+ 758 000e 1BB2     		sxth	r3, r3
+ 759 0010 03EB8303 		add	r3, r3, r3, lsl #2
+ 760 0014 5A00     		lsls	r2, r3, #1
+ 761              	.LVL56:
+ 762 0016 01E0     		b	.L74
+ 763              	.LVL57:
+ 764              	.L73:
+ 794:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 795:Generated_Source\PSoC5/ADC_SAR_X.c ****     else
+ 796:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 797:Generated_Source\PSoC5/ADC_SAR_X.c ****         countsPer10Volt = ADC_SAR_X_countsPer10Volt;
+ 765              		.loc 1 797 0
+ 766 0018 084B     		ldr	r3, .L76+4
+ 767 001a 1A68     		ldr	r2, [r3]
+ 768              	.LVL58:
+ 769              	.L74:
+ 798:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 799:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 800:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Subtract ADC offset */
+ 801:Generated_Source\PSoC5/ADC_SAR_X.c ****     adcCounts -= ADC_SAR_X_offset;
+ 770              		.loc 1 801 0
+ 771 001c 084B     		ldr	r3, .L76+8
+ 772 001e 1C88     		ldrh	r4, [r3]
+ 773 0020 041B     		subs	r4, r0, r4
+ 774              	.LVL59:
+ 802:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* To convert adcCounts to microVolts it is required to be multiplied
+ 803:Generated_Source\PSoC5/ADC_SAR_X.c ****     *  on 10 million and later divide on gain in counts per 10V.
+ 804:Generated_Source\PSoC5/ADC_SAR_X.c ****     */
+ 805:Generated_Source\PSoC5/ADC_SAR_X.c ****     uVolts = (( (int64)adcCounts * ADC_SAR_X_10UV_COUNTS ) / countsPer10Volt);
+ 775              		.loc 1 805 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 30
+
+
+ 776 0022 24B2     		sxth	r4, r4
+ 777 0024 E517     		asrs	r5, r4, #31
+ 778 0026 074B     		ldr	r3, .L76+12
+ 779 0028 A4FB0301 		umull	r0, r1, r4, r3
+ 780 002c 03FB0511 		mla	r1, r3, r5, r1
+ 781 0030 D317     		asrs	r3, r2, #31
+ 782 0032 FFF7FEFF 		bl	__aeabi_ldivmod
+ 783              	.LVL60:
+ 806:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 807:Generated_Source\PSoC5/ADC_SAR_X.c ****     return((int32) uVolts );
+ 808:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 784              		.loc 1 808 0
+ 785 0036 38BD     		pop	{r3, r4, r5, pc}
+ 786              	.LVL61:
+ 787              	.L77:
+ 788              		.align	2
+ 789              	.L76:
+ 790 0038 00000000 		.word	ADC_SAR_X_countsPerVolt
+ 791 003c 00000000 		.word	ADC_SAR_X_countsPer10Volt
+ 792 0040 00000000 		.word	ADC_SAR_X_offset
+ 793 0044 80969800 		.word	10000000
+ 794              		.cfi_endproc
+ 795              	.LFE14:
+ 796              		.size	ADC_SAR_X_CountsTo_uVolts, .-ADC_SAR_X_CountsTo_uVolts
+ 797              		.global	__aeabi_i2f
+ 798              		.global	__aeabi_fmul
+ 799              		.global	__aeabi_fdiv
+ 800              		.section	.text.ADC_SAR_X_CountsTo_Volts,"ax",%progbits
+ 801              		.align	2
+ 802              		.global	ADC_SAR_X_CountsTo_Volts
+ 803              		.thumb
+ 804              		.thumb_func
+ 805              		.type	ADC_SAR_X_CountsTo_Volts, %function
+ 806              	ADC_SAR_X_CountsTo_Volts:
+ 807              	.LFB15:
+ 809:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 810:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 811:Generated_Source\PSoC5/ADC_SAR_X.c **** /*******************************************************************************
+ 812:Generated_Source\PSoC5/ADC_SAR_X.c **** * Function Name: ADC_SAR_X_CountsTo_Volts
+ 813:Generated_Source\PSoC5/ADC_SAR_X.c **** ********************************************************************************
+ 814:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 815:Generated_Source\PSoC5/ADC_SAR_X.c **** * Summary:
+ 816:Generated_Source\PSoC5/ADC_SAR_X.c **** *  Converts the ADC output to volts as a floating-point number.
+ 817:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 818:Generated_Source\PSoC5/ADC_SAR_X.c **** * Parameters:
+ 819:Generated_Source\PSoC5/ADC_SAR_X.c **** *  int16 adcCounts: Result from the ADC conversion
+ 820:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 821:Generated_Source\PSoC5/ADC_SAR_X.c **** * Return:
+ 822:Generated_Source\PSoC5/ADC_SAR_X.c **** *  float Result in Volts
+ 823:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 824:Generated_Source\PSoC5/ADC_SAR_X.c **** * Global Variables:
+ 825:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_offset variable used.
+ 826:Generated_Source\PSoC5/ADC_SAR_X.c **** *  ADC_SAR_X_countsPer10Volt used to convert ADC counts to Volts.
+ 827:Generated_Source\PSoC5/ADC_SAR_X.c **** *
+ 828:Generated_Source\PSoC5/ADC_SAR_X.c **** *******************************************************************************/
+ 829:Generated_Source\PSoC5/ADC_SAR_X.c **** float32 ADC_SAR_X_CountsTo_Volts(int16 adcCounts)
+ 830:Generated_Source\PSoC5/ADC_SAR_X.c **** {
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 31
+
+
+ 808              		.loc 1 830 0
+ 809              		.cfi_startproc
+ 810              		@ args = 0, pretend = 0, frame = 0
+ 811              		@ frame_needed = 0, uses_anonymous_args = 0
+ 812              	.LVL62:
+ 813 0000 38B5     		push	{r3, r4, r5, lr}
+ 814              		.cfi_def_cfa_offset 16
+ 815              		.cfi_offset 3, -16
+ 816              		.cfi_offset 4, -12
+ 817              		.cfi_offset 5, -8
+ 818              		.cfi_offset 14, -4
+ 831:Generated_Source\PSoC5/ADC_SAR_X.c ****     float32 volts;
+ 832:Generated_Source\PSoC5/ADC_SAR_X.c ****     int32 countsPer10Volt;
+ 833:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 834:Generated_Source\PSoC5/ADC_SAR_X.c ****     if(ADC_SAR_X_countsPerVolt != 0)
+ 819              		.loc 1 834 0
+ 820 0002 0F4B     		ldr	r3, .L82
+ 821 0004 1B88     		ldrh	r3, [r3]
+ 822 0006 1BB2     		sxth	r3, r3
+ 823 0008 33B1     		cbz	r3, .L79
+ 835:Generated_Source\PSoC5/ADC_SAR_X.c ****     {   /* Support obsolete method */
+ 836:Generated_Source\PSoC5/ADC_SAR_X.c ****         countsPer10Volt = (int32)ADC_SAR_X_countsPerVolt * 10;
+ 824              		.loc 1 836 0
+ 825 000a 0D4B     		ldr	r3, .L82
+ 826 000c 1B88     		ldrh	r3, [r3]
+ 827 000e 1BB2     		sxth	r3, r3
+ 828 0010 03EB8303 		add	r3, r3, r3, lsl #2
+ 829 0014 5C00     		lsls	r4, r3, #1
+ 830              	.LVL63:
+ 831 0016 01E0     		b	.L80
+ 832              	.LVL64:
+ 833              	.L79:
+ 837:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 838:Generated_Source\PSoC5/ADC_SAR_X.c ****     else
+ 839:Generated_Source\PSoC5/ADC_SAR_X.c ****     {
+ 840:Generated_Source\PSoC5/ADC_SAR_X.c ****         countsPer10Volt = ADC_SAR_X_countsPer10Volt;
+ 834              		.loc 1 840 0
+ 835 0018 0A4B     		ldr	r3, .L82+4
+ 836 001a 1C68     		ldr	r4, [r3]
+ 837              	.LVL65:
+ 838              	.L80:
+ 841:Generated_Source\PSoC5/ADC_SAR_X.c ****     }
+ 842:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 843:Generated_Source\PSoC5/ADC_SAR_X.c ****     /* Subtract ADC offset */
+ 844:Generated_Source\PSoC5/ADC_SAR_X.c ****     adcCounts -= ADC_SAR_X_offset;
+ 839              		.loc 1 844 0
+ 840 001c 0A4B     		ldr	r3, .L82+8
+ 841 001e 1B88     		ldrh	r3, [r3]
+ 842 0020 C01A     		subs	r0, r0, r3
+ 843              	.LVL66:
+ 845:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 846:Generated_Source\PSoC5/ADC_SAR_X.c ****     volts = ((float32)adcCounts * ADC_SAR_X_10V_COUNTS) / (float32)countsPer10Volt;
+ 844              		.loc 1 846 0
+ 845 0022 00B2     		sxth	r0, r0
+ 846 0024 FFF7FEFF 		bl	__aeabi_i2f
+ 847              	.LVL67:
+ 848 0028 0849     		ldr	r1, .L82+12
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 32
+
+
+ 849 002a FFF7FEFF 		bl	__aeabi_fmul
+ 850              	.LVL68:
+ 851 002e 0546     		mov	r5, r0
+ 852 0030 2046     		mov	r0, r4
+ 853 0032 FFF7FEFF 		bl	__aeabi_i2f
+ 854              	.LVL69:
+ 855 0036 0146     		mov	r1, r0
+ 856 0038 2846     		mov	r0, r5
+ 857 003a FFF7FEFF 		bl	__aeabi_fdiv
+ 858              	.LVL70:
+ 847:Generated_Source\PSoC5/ADC_SAR_X.c **** 
+ 848:Generated_Source\PSoC5/ADC_SAR_X.c ****     return( volts );
+ 849:Generated_Source\PSoC5/ADC_SAR_X.c **** }
+ 859              		.loc 1 849 0
+ 860 003e 38BD     		pop	{r3, r4, r5, pc}
+ 861              	.LVL71:
+ 862              	.L83:
+ 863              		.align	2
+ 864              	.L82:
+ 865 0040 00000000 		.word	ADC_SAR_X_countsPerVolt
+ 866 0044 00000000 		.word	ADC_SAR_X_countsPer10Volt
+ 867 0048 00000000 		.word	ADC_SAR_X_offset
+ 868 004c 00002041 		.word	1092616192
+ 869              		.cfi_endproc
+ 870              	.LFE15:
+ 871              		.size	ADC_SAR_X_CountsTo_Volts, .-ADC_SAR_X_CountsTo_Volts
+ 872              		.comm	ADC_SAR_X_shift,2,2
+ 873              		.comm	ADC_SAR_X_countsPer10Volt,4,4
+ 874              		.comm	ADC_SAR_X_countsPerVolt,2,2
+ 875              		.comm	ADC_SAR_X_offset,2,2
+ 876              		.global	ADC_SAR_X_initVar
+ 877              		.bss
+ 878              		.set	.LANCHOR0,. + 0
+ 879              		.type	ADC_SAR_X_initVar, %object
+ 880              		.size	ADC_SAR_X_initVar, 1
+ 881              	ADC_SAR_X_initVar:
+ 882 0000 00       		.space	1
+ 883              		.text
+ 884              	.Letext0:
+ 885              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 886              		.file 3 "Generated_Source\\PSoC5\\CyLib.h"
+ 887              		.file 4 "Generated_Source\\PSoC5\\ADC_SAR_X_theACLK.h"
+ 888              		.section	.debug_info,"",%progbits
+ 889              	.Ldebug_info0:
+ 890 0000 98050000 		.4byte	0x598
+ 891 0004 0400     		.2byte	0x4
+ 892 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 893 000a 04       		.byte	0x4
+ 894 000b 01       		.uleb128 0x1
+ 895 000c D9020000 		.4byte	.LASF64
+ 896 0010 0C       		.byte	0xc
+ 897 0011 B6020000 		.4byte	.LASF65
+ 898 0015 63000000 		.4byte	.LASF66
+ 899 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 900 001d 00000000 		.4byte	0
+ 901 0021 00000000 		.4byte	.Ldebug_line0
+ 902 0025 02       		.uleb128 0x2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 33
+
+
+ 903 0026 04       		.byte	0x4
+ 904 0027 05       		.byte	0x5
+ 905 0028 696E7400 		.ascii	"int\000"
+ 906 002c 03       		.uleb128 0x3
+ 907 002d 04       		.byte	0x4
+ 908 002e 07       		.byte	0x7
+ 909 002f 4B010000 		.4byte	.LASF0
+ 910 0033 03       		.uleb128 0x3
+ 911 0034 08       		.byte	0x8
+ 912 0035 05       		.byte	0x5
+ 913 0036 43000000 		.4byte	.LASF1
+ 914 003a 03       		.uleb128 0x3
+ 915 003b 08       		.byte	0x8
+ 916 003c 04       		.byte	0x4
+ 917 003d F6010000 		.4byte	.LASF2
+ 918 0041 03       		.uleb128 0x3
+ 919 0042 01       		.byte	0x1
+ 920 0043 06       		.byte	0x6
+ 921 0044 51000000 		.4byte	.LASF3
+ 922 0048 03       		.uleb128 0x3
+ 923 0049 01       		.byte	0x1
+ 924 004a 08       		.byte	0x8
+ 925 004b 8A020000 		.4byte	.LASF4
+ 926 004f 03       		.uleb128 0x3
+ 927 0050 02       		.byte	0x2
+ 928 0051 05       		.byte	0x5
+ 929 0052 98020000 		.4byte	.LASF5
+ 930 0056 03       		.uleb128 0x3
+ 931 0057 02       		.byte	0x2
+ 932 0058 07       		.byte	0x7
+ 933 0059 9D010000 		.4byte	.LASF6
+ 934 005d 03       		.uleb128 0x3
+ 935 005e 04       		.byte	0x4
+ 936 005f 05       		.byte	0x5
+ 937 0060 B7000000 		.4byte	.LASF7
+ 938 0064 03       		.uleb128 0x3
+ 939 0065 04       		.byte	0x4
+ 940 0066 07       		.byte	0x7
+ 941 0067 5F010000 		.4byte	.LASF8
+ 942 006b 03       		.uleb128 0x3
+ 943 006c 08       		.byte	0x8
+ 944 006d 07       		.byte	0x7
+ 945 006e 2C000000 		.4byte	.LASF9
+ 946 0072 03       		.uleb128 0x3
+ 947 0073 04       		.byte	0x4
+ 948 0074 07       		.byte	0x7
+ 949 0075 ED010000 		.4byte	.LASF10
+ 950 0079 03       		.uleb128 0x3
+ 951 007a 01       		.byte	0x1
+ 952 007b 08       		.byte	0x8
+ 953 007c 9C030000 		.4byte	.LASF11
+ 954 0080 04       		.uleb128 0x4
+ 955 0081 E0000000 		.4byte	.LASF12
+ 956 0085 02       		.byte	0x2
+ 957 0086 E801     		.2byte	0x1e8
+ 958 0088 48000000 		.4byte	0x48
+ 959 008c 04       		.uleb128 0x4
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 34
+
+
+ 960 008d 00000000 		.4byte	.LASF13
+ 961 0091 02       		.byte	0x2
+ 962 0092 E901     		.2byte	0x1e9
+ 963 0094 56000000 		.4byte	0x56
+ 964 0098 04       		.uleb128 0x4
+ 965 0099 F7000000 		.4byte	.LASF14
+ 966 009d 02       		.byte	0x2
+ 967 009e EA01     		.2byte	0x1ea
+ 968 00a0 64000000 		.4byte	0x64
+ 969 00a4 04       		.uleb128 0x4
+ 970 00a5 B0010000 		.4byte	.LASF15
+ 971 00a9 02       		.byte	0x2
+ 972 00aa EB01     		.2byte	0x1eb
+ 973 00ac 41000000 		.4byte	0x41
+ 974 00b0 04       		.uleb128 0x4
+ 975 00b1 31040000 		.4byte	.LASF16
+ 976 00b5 02       		.byte	0x2
+ 977 00b6 EC01     		.2byte	0x1ec
+ 978 00b8 4F000000 		.4byte	0x4f
+ 979 00bc 04       		.uleb128 0x4
+ 980 00bd 5D000000 		.4byte	.LASF17
+ 981 00c1 02       		.byte	0x2
+ 982 00c2 ED01     		.2byte	0x1ed
+ 983 00c4 5D000000 		.4byte	0x5d
+ 984 00c8 04       		.uleb128 0x4
+ 985 00c9 E5010000 		.4byte	.LASF18
+ 986 00cd 02       		.byte	0x2
+ 987 00ce EE01     		.2byte	0x1ee
+ 988 00d0 D4000000 		.4byte	0xd4
+ 989 00d4 03       		.uleb128 0x3
+ 990 00d5 04       		.byte	0x4
+ 991 00d6 04       		.byte	0x4
+ 992 00d7 43020000 		.4byte	.LASF19
+ 993 00db 03       		.uleb128 0x3
+ 994 00dc 08       		.byte	0x8
+ 995 00dd 04       		.byte	0x4
+ 996 00de F0000000 		.4byte	.LASF20
+ 997 00e2 04       		.uleb128 0x4
+ 998 00e3 2C020000 		.4byte	.LASF21
+ 999 00e7 02       		.byte	0x2
+ 1000 00e8 F301     		.2byte	0x1f3
+ 1001 00ea 33000000 		.4byte	0x33
+ 1002 00ee 04       		.uleb128 0x4
+ 1003 00ef 65020000 		.4byte	.LASF22
+ 1004 00f3 02       		.byte	0x2
+ 1005 00f4 9202     		.2byte	0x292
+ 1006 00f6 FA000000 		.4byte	0xfa
+ 1007 00fa 05       		.uleb128 0x5
+ 1008 00fb 80000000 		.4byte	0x80
+ 1009 00ff 04       		.uleb128 0x4
+ 1010 0100 DA000000 		.4byte	.LASF23
+ 1011 0104 02       		.byte	0x2
+ 1012 0105 9302     		.2byte	0x293
+ 1013 0107 0B010000 		.4byte	0x10b
+ 1014 010b 05       		.uleb128 0x5
+ 1015 010c 8C000000 		.4byte	0x8c
+ 1016 0110 04       		.uleb128 0x4
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 35
+
+
+ 1017 0111 DF010000 		.4byte	.LASF24
+ 1018 0115 02       		.byte	0x2
+ 1019 0116 9402     		.2byte	0x294
+ 1020 0118 1C010000 		.4byte	0x11c
+ 1021 011c 05       		.uleb128 0x5
+ 1022 011d 98000000 		.4byte	0x98
+ 1023 0121 06       		.uleb128 0x6
+ 1024 0122 1D010000 		.4byte	.LASF67
+ 1025 0126 01       		.byte	0x1
+ 1026 0127 6302     		.2byte	0x263
+ 1027 0129 00000000 		.4byte	.LFB10
+ 1028 012d 5C000000 		.4byte	.LFE10-.LFB10
+ 1029 0131 01       		.uleb128 0x1
+ 1030 0132 9C       		.byte	0x9c
+ 1031 0133 67010000 		.4byte	0x167
+ 1032 0137 07       		.uleb128 0x7
+ 1033 0138 7F030000 		.4byte	.LASF31
+ 1034 013c 01       		.byte	0x1
+ 1035 013d 6302     		.2byte	0x263
+ 1036 013f 80000000 		.4byte	0x80
+ 1037 0143 00000000 		.4byte	.LLST0
+ 1038 0147 08       		.uleb128 0x8
+ 1039 0148 25000000 		.4byte	.LASF25
+ 1040 014c 01       		.byte	0x1
+ 1041 014d 6502     		.2byte	0x265
+ 1042 014f BC000000 		.4byte	0xbc
+ 1043 0153 3A000000 		.4byte	.LLST1
+ 1044 0157 09       		.uleb128 0x9
+ 1045 0158 22000000 		.4byte	.LVL4
+ 1046 015c 4E050000 		.4byte	0x54e
+ 1047 0160 0A       		.uleb128 0xa
+ 1048 0161 01       		.uleb128 0x1
+ 1049 0162 50       		.byte	0x50
+ 1050 0163 01       		.uleb128 0x1
+ 1051 0164 30       		.byte	0x30
+ 1052 0165 00       		.byte	0
+ 1053 0166 00       		.byte	0
+ 1054 0167 0B       		.uleb128 0xb
+ 1055 0168 B5010000 		.4byte	.LASF28
+ 1056 016c 01       		.byte	0x1
+ 1057 016d 8F       		.byte	0x8f
+ 1058 016e 00000000 		.4byte	.LFB2
+ 1059 0172 98000000 		.4byte	.LFE2-.LFB2
+ 1060 0176 01       		.uleb128 0x1
+ 1061 0177 9C       		.byte	0x9c
+ 1062 0178 C7010000 		.4byte	0x1c7
+ 1063 017c 0C       		.uleb128 0xc
+ 1064 017d 5F040000 		.4byte	.LASF26
+ 1065 0181 01       		.byte	0x1
+ 1066 0182 91       		.byte	0x91
+ 1067 0183 80000000 		.4byte	0x80
+ 1068 0187 67000000 		.4byte	.LLST2
+ 1069 018b 0C       		.uleb128 0xc
+ 1070 018c 08040000 		.4byte	.LASF27
+ 1071 0190 01       		.byte	0x1
+ 1072 0191 92       		.byte	0x92
+ 1073 0192 80000000 		.4byte	0x80
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 36
+
+
+ 1074 0196 95000000 		.4byte	.LLST3
+ 1075 019a 0D       		.uleb128 0xd
+ 1076 019b 06000000 		.4byte	.LVL8
+ 1077 019f 59050000 		.4byte	0x559
+ 1078 01a3 0E       		.uleb128 0xe
+ 1079 01a4 7A000000 		.4byte	.LVL15
+ 1080 01a8 64050000 		.4byte	0x564
+ 1081 01ac B6010000 		.4byte	0x1b6
+ 1082 01b0 0A       		.uleb128 0xa
+ 1083 01b1 01       		.uleb128 0x1
+ 1084 01b2 50       		.byte	0x50
+ 1085 01b3 01       		.uleb128 0x1
+ 1086 01b4 3A       		.byte	0x3a
+ 1087 01b5 00       		.byte	0
+ 1088 01b6 09       		.uleb128 0x9
+ 1089 01b7 84000000 		.4byte	.LVL16
+ 1090 01bb 6F050000 		.4byte	0x56f
+ 1091 01bf 0A       		.uleb128 0xa
+ 1092 01c0 01       		.uleb128 0x1
+ 1093 01c1 50       		.byte	0x50
+ 1094 01c2 02       		.uleb128 0x2
+ 1095 01c3 74       		.byte	0x74
+ 1096 01c4 00       		.sleb128 0
+ 1097 01c5 00       		.byte	0
+ 1098 01c6 00       		.byte	0
+ 1099 01c7 0B       		.uleb128 0xb
+ 1100 01c8 8E010000 		.4byte	.LASF29
+ 1101 01cc 01       		.byte	0x1
+ 1102 01cd F8       		.byte	0xf8
+ 1103 01ce 00000000 		.4byte	.LFB3
+ 1104 01d2 48000000 		.4byte	.LFE3-.LFB3
+ 1105 01d6 01       		.uleb128 0x1
+ 1106 01d7 9C       		.byte	0x9c
+ 1107 01d8 FE010000 		.4byte	0x1fe
+ 1108 01dc 0C       		.uleb128 0xc
+ 1109 01dd 08040000 		.4byte	.LASF27
+ 1110 01e1 01       		.byte	0x1
+ 1111 01e2 FA       		.byte	0xfa
+ 1112 01e3 80000000 		.4byte	0x80
+ 1113 01e7 A8000000 		.4byte	.LLST4
+ 1114 01eb 0D       		.uleb128 0xd
+ 1115 01ec 06000000 		.4byte	.LVL18
+ 1116 01f0 59050000 		.4byte	0x559
+ 1117 01f4 0D       		.uleb128 0xd
+ 1118 01f5 40000000 		.4byte	.LVL19
+ 1119 01f9 6F050000 		.4byte	0x56f
+ 1120 01fd 00       		.byte	0
+ 1121 01fe 0F       		.uleb128 0xf
+ 1122 01ff 30010000 		.4byte	.LASF30
+ 1123 0203 01       		.byte	0x1
+ 1124 0204 2201     		.2byte	0x122
+ 1125 0206 00000000 		.4byte	.LFB4
+ 1126 020a 18000000 		.4byte	.LFE4-.LFB4
+ 1127 020e 01       		.uleb128 0x1
+ 1128 020f 9C       		.byte	0x9c
+ 1129 0210 35020000 		.4byte	0x235
+ 1130 0214 07       		.uleb128 0x7
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 37
+
+
+ 1131 0215 5F020000 		.4byte	.LASF32
+ 1132 0219 01       		.byte	0x1
+ 1133 021a 2201     		.2byte	0x122
+ 1134 021c 80000000 		.4byte	0x80
+ 1135 0220 BB000000 		.4byte	.LLST5
+ 1136 0224 08       		.uleb128 0x8
+ 1137 0225 5F040000 		.4byte	.LASF26
+ 1138 0229 01       		.byte	0x1
+ 1139 022a 2401     		.2byte	0x124
+ 1140 022c 80000000 		.4byte	0x80
+ 1141 0230 ED000000 		.4byte	.LLST6
+ 1142 0234 00       		.byte	0
+ 1143 0235 0F       		.uleb128 0xf
+ 1144 0236 A1030000 		.4byte	.LASF33
+ 1145 023a 01       		.byte	0x1
+ 1146 023b 5401     		.2byte	0x154
+ 1147 023d 00000000 		.4byte	.LFB5
+ 1148 0241 38000000 		.4byte	.LFE5-.LFB5
+ 1149 0245 01       		.uleb128 0x1
+ 1150 0246 9C       		.byte	0x9c
+ 1151 0247 8F020000 		.4byte	0x28f
+ 1152 024b 07       		.uleb128 0x7
+ 1153 024c 7F030000 		.4byte	.LASF31
+ 1154 0250 01       		.byte	0x1
+ 1155 0251 5401     		.2byte	0x154
+ 1156 0253 80000000 		.4byte	0x80
+ 1157 0257 0B010000 		.4byte	.LLST7
+ 1158 025b 08       		.uleb128 0x8
+ 1159 025c 5F040000 		.4byte	.LASF26
+ 1160 0260 01       		.byte	0x1
+ 1161 0261 5601     		.2byte	0x156
+ 1162 0263 80000000 		.4byte	0x80
+ 1163 0267 45010000 		.4byte	.LLST8
+ 1164 026b 0E       		.uleb128 0xe
+ 1165 026c 20000000 		.4byte	.LVL28
+ 1166 0270 4E050000 		.4byte	0x54e
+ 1167 0274 7E020000 		.4byte	0x27e
+ 1168 0278 0A       		.uleb128 0xa
+ 1169 0279 01       		.uleb128 0x1
+ 1170 027a 50       		.byte	0x50
+ 1171 027b 01       		.uleb128 0x1
+ 1172 027c 30       		.byte	0x30
+ 1173 027d 00       		.byte	0
+ 1174 027e 09       		.uleb128 0x9
+ 1175 027f 30000000 		.4byte	.LVL31
+ 1176 0283 21010000 		.4byte	0x121
+ 1177 0287 0A       		.uleb128 0xa
+ 1178 0288 01       		.uleb128 0x1
+ 1179 0289 50       		.byte	0x50
+ 1180 028a 02       		.uleb128 0x2
+ 1181 028b 74       		.byte	0x74
+ 1182 028c 00       		.sleb128 0
+ 1183 028d 00       		.byte	0
+ 1184 028e 00       		.byte	0
+ 1185 028f 0B       		.uleb128 0xb
+ 1186 0290 B9030000 		.4byte	.LASF34
+ 1187 0294 01       		.byte	0x1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 38
+
+
+ 1188 0295 6A       		.byte	0x6a
+ 1189 0296 00000000 		.4byte	.LFB1
+ 1190 029a 3C000000 		.4byte	.LFE1-.LFB1
+ 1191 029e 01       		.uleb128 0x1
+ 1192 029f 9C       		.byte	0x9c
+ 1193 02a0 F2020000 		.4byte	0x2f2
+ 1194 02a4 0E       		.uleb128 0xe
+ 1195 02a5 08000000 		.4byte	.LVL32
+ 1196 02a9 7A050000 		.4byte	0x57a
+ 1197 02ad B7020000 		.4byte	0x2b7
+ 1198 02b1 0A       		.uleb128 0xa
+ 1199 02b2 01       		.uleb128 0x1
+ 1200 02b3 50       		.byte	0x50
+ 1201 02b4 01       		.uleb128 0x1
+ 1202 02b5 40       		.byte	0x40
+ 1203 02b6 00       		.byte	0
+ 1204 02b7 0E       		.uleb128 0xe
+ 1205 02b8 10000000 		.4byte	.LVL33
+ 1206 02bc 85050000 		.4byte	0x585
+ 1207 02c0 CF020000 		.4byte	0x2cf
+ 1208 02c4 0A       		.uleb128 0xa
+ 1209 02c5 01       		.uleb128 0x1
+ 1210 02c6 50       		.byte	0x50
+ 1211 02c7 01       		.uleb128 0x1
+ 1212 02c8 32       		.byte	0x32
+ 1213 02c9 0A       		.uleb128 0xa
+ 1214 02ca 01       		.uleb128 0x1
+ 1215 02cb 51       		.byte	0x51
+ 1216 02cc 01       		.uleb128 0x1
+ 1217 02cd 37       		.byte	0x37
+ 1218 02ce 00       		.byte	0
+ 1219 02cf 0E       		.uleb128 0xe
+ 1220 02d0 18000000 		.4byte	.LVL34
+ 1221 02d4 90050000 		.4byte	0x590
+ 1222 02d8 E2020000 		.4byte	0x2e2
+ 1223 02dc 0A       		.uleb128 0xa
+ 1224 02dd 01       		.uleb128 0x1
+ 1225 02de 50       		.byte	0x50
+ 1226 02df 01       		.uleb128 0x1
+ 1227 02e0 32       		.byte	0x32
+ 1228 02e1 00       		.byte	0
+ 1229 02e2 09       		.uleb128 0x9
+ 1230 02e3 28000000 		.4byte	.LVL35
+ 1231 02e7 35020000 		.4byte	0x235
+ 1232 02eb 0A       		.uleb128 0xa
+ 1233 02ec 01       		.uleb128 0x1
+ 1234 02ed 50       		.byte	0x50
+ 1235 02ee 01       		.uleb128 0x1
+ 1236 02ef 3C       		.byte	0x3c
+ 1237 02f0 00       		.byte	0
+ 1238 02f1 00       		.byte	0
+ 1239 02f2 0B       		.uleb128 0xb
+ 1240 02f3 1C020000 		.4byte	.LASF35
+ 1241 02f7 01       		.byte	0x1
+ 1242 02f8 4A       		.byte	0x4a
+ 1243 02f9 00000000 		.4byte	.LFB0
+ 1244 02fd 1C000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 39
+
+
+ 1245 0301 01       		.uleb128 0x1
+ 1246 0302 9C       		.byte	0x9c
+ 1247 0303 1A030000 		.4byte	0x31a
+ 1248 0307 0D       		.uleb128 0xd
+ 1249 0308 0C000000 		.4byte	.LVL36
+ 1250 030c 8F020000 		.4byte	0x28f
+ 1251 0310 0D       		.uleb128 0xd
+ 1252 0311 16000000 		.4byte	.LVL37
+ 1253 0315 67010000 		.4byte	0x167
+ 1254 0319 00       		.byte	0
+ 1255 031a 10       		.uleb128 0x10
+ 1256 031b C0000000 		.4byte	.LASF38
+ 1257 031f 01       		.byte	0x1
+ 1258 0320 DB01     		.2byte	0x1db
+ 1259 0322 80000000 		.4byte	0x80
+ 1260 0326 00000000 		.4byte	.LFB6
+ 1261 032a 24000000 		.4byte	.LFE6-.LFB6
+ 1262 032e 01       		.uleb128 0x1
+ 1263 032f 9C       		.byte	0x9c
+ 1264 0330 64030000 		.4byte	0x364
+ 1265 0334 07       		.uleb128 0x7
+ 1266 0335 43010000 		.4byte	.LASF36
+ 1267 0339 01       		.byte	0x1
+ 1268 033a DB01     		.2byte	0x1db
+ 1269 033c 80000000 		.4byte	0x80
+ 1270 0340 72010000 		.4byte	.LLST9
+ 1271 0344 08       		.uleb128 0x8
+ 1272 0345 19040000 		.4byte	.LASF37
+ 1273 0349 01       		.byte	0x1
+ 1274 034a DD01     		.2byte	0x1dd
+ 1275 034c 80000000 		.4byte	0x80
+ 1276 0350 93010000 		.4byte	.LLST10
+ 1277 0354 09       		.uleb128 0x9
+ 1278 0355 18000000 		.4byte	.LVL41
+ 1279 0359 64050000 		.4byte	0x564
+ 1280 035d 0A       		.uleb128 0xa
+ 1281 035e 01       		.uleb128 0x1
+ 1282 035f 50       		.byte	0x50
+ 1283 0360 01       		.uleb128 0x1
+ 1284 0361 31       		.byte	0x31
+ 1285 0362 00       		.byte	0
+ 1286 0363 00       		.byte	0
+ 1287 0364 11       		.uleb128 0x11
+ 1288 0365 D9030000 		.4byte	.LASF68
+ 1289 0369 01       		.byte	0x1
+ 1290 036a 0802     		.2byte	0x208
+ 1291 036c A4000000 		.4byte	0xa4
+ 1292 0370 00000000 		.4byte	.LFB7
+ 1293 0374 18000000 		.4byte	.LFE7-.LFB7
+ 1294 0378 01       		.uleb128 0x1
+ 1295 0379 9C       		.byte	0x9c
+ 1296 037a 10       		.uleb128 0x10
+ 1297 037b 49020000 		.4byte	.LASF39
+ 1298 037f 01       		.byte	0x1
+ 1299 0380 2602     		.2byte	0x226
+ 1300 0382 B0000000 		.4byte	0xb0
+ 1301 0386 00000000 		.4byte	.LFB8
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 40
+
+
+ 1302 038a 18000000 		.4byte	.LFE8-.LFB8
+ 1303 038e 01       		.uleb128 0x1
+ 1304 038f 9C       		.byte	0x9c
+ 1305 0390 A5030000 		.4byte	0x3a5
+ 1306 0394 12       		.uleb128 0x12
+ 1307 0395 72657300 		.ascii	"res\000"
+ 1308 0399 01       		.byte	0x1
+ 1309 039a 2802     		.2byte	0x228
+ 1310 039c 8C000000 		.4byte	0x8c
+ 1311 03a0 AA010000 		.4byte	.LLST11
+ 1312 03a4 00       		.byte	0
+ 1313 03a5 0F       		.uleb128 0xf
+ 1314 03a6 A2020000 		.4byte	.LASF40
+ 1315 03aa 01       		.byte	0x1
+ 1316 03ab 4902     		.2byte	0x249
+ 1317 03ad 00000000 		.4byte	.LFB9
+ 1318 03b1 0C000000 		.4byte	.LFE9-.LFB9
+ 1319 03b5 01       		.uleb128 0x1
+ 1320 03b6 9C       		.byte	0x9c
+ 1321 03b7 CA030000 		.4byte	0x3ca
+ 1322 03bb 13       		.uleb128 0x13
+ 1323 03bc C8030000 		.4byte	.LASF41
+ 1324 03c0 01       		.byte	0x1
+ 1325 03c1 4902     		.2byte	0x249
+ 1326 03c3 B0000000 		.4byte	0xb0
+ 1327 03c7 01       		.uleb128 0x1
+ 1328 03c8 50       		.byte	0x50
+ 1329 03c9 00       		.byte	0
+ 1330 03ca 0F       		.uleb128 0xf
+ 1331 03cb 8A030000 		.4byte	.LASF42
+ 1332 03cf 01       		.byte	0x1
+ 1333 03d0 B402     		.2byte	0x2b4
+ 1334 03d2 00000000 		.4byte	.LFB11
+ 1335 03d6 10000000 		.4byte	.LFE11-.LFB11
+ 1336 03da 01       		.uleb128 0x1
+ 1337 03db 9C       		.byte	0x9c
+ 1338 03dc F1030000 		.4byte	0x3f1
+ 1339 03e0 07       		.uleb128 0x7
+ 1340 03e1 07000000 		.4byte	.LASF43
+ 1341 03e5 01       		.byte	0x1
+ 1342 03e6 B402     		.2byte	0x2b4
+ 1343 03e8 B0000000 		.4byte	0xb0
+ 1344 03ec BD010000 		.4byte	.LLST12
+ 1345 03f0 00       		.byte	0
+ 1346 03f1 0F       		.uleb128 0xf
+ 1347 03f2 37040000 		.4byte	.LASF44
+ 1348 03f6 01       		.byte	0x1
+ 1349 03f7 CF02     		.2byte	0x2cf
+ 1350 03f9 00000000 		.4byte	.LFB12
+ 1351 03fd 0C000000 		.4byte	.LFE12-.LFB12
+ 1352 0401 01       		.uleb128 0x1
+ 1353 0402 9C       		.byte	0x9c
+ 1354 0403 16040000 		.4byte	0x416
+ 1355 0407 13       		.uleb128 0x13
+ 1356 0408 07000000 		.4byte	.LASF43
+ 1357 040c 01       		.byte	0x1
+ 1358 040d CF02     		.2byte	0x2cf
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 41
+
+
+ 1359 040f BC000000 		.4byte	0xbc
+ 1360 0413 01       		.uleb128 0x1
+ 1361 0414 50       		.byte	0x50
+ 1362 0415 00       		.byte	0
+ 1363 0416 10       		.uleb128 0x10
+ 1364 0417 66040000 		.4byte	.LASF45
+ 1365 041b 01       		.byte	0x1
+ 1366 041c E702     		.2byte	0x2e7
+ 1367 041e B0000000 		.4byte	0xb0
+ 1368 0422 00000000 		.4byte	.LFB13
+ 1369 0426 58000000 		.4byte	.LFE13-.LFB13
+ 1370 042a 01       		.uleb128 0x1
+ 1371 042b 9C       		.byte	0x9c
+ 1372 042c 5F040000 		.4byte	0x45f
+ 1373 0430 07       		.uleb128 0x7
+ 1374 0431 CF030000 		.4byte	.LASF46
+ 1375 0435 01       		.byte	0x1
+ 1376 0436 E702     		.2byte	0x2e7
+ 1377 0438 B0000000 		.4byte	0xb0
+ 1378 043c DE010000 		.4byte	.LLST13
+ 1379 0440 14       		.uleb128 0x14
+ 1380 0441 D8010000 		.4byte	.LASF47
+ 1381 0445 01       		.byte	0x1
+ 1382 0446 E902     		.2byte	0x2e9
+ 1383 0448 B0000000 		.4byte	0xb0
+ 1384 044c 01       		.uleb128 0x1
+ 1385 044d 50       		.byte	0x50
+ 1386 044e 08       		.uleb128 0x8
+ 1387 044f FE000000 		.4byte	.LASF48
+ 1388 0453 01       		.byte	0x1
+ 1389 0454 EA02     		.2byte	0x2ea
+ 1390 0456 BC000000 		.4byte	0xbc
+ 1391 045a FC010000 		.4byte	.LLST14
+ 1392 045e 00       		.byte	0
+ 1393 045f 15       		.uleb128 0x15
+ 1394 0460 EE030000 		.4byte	.LASF49
+ 1395 0464 01       		.byte	0x1
+ 1396 0465 1103     		.2byte	0x311
+ 1397 0467 BC000000 		.4byte	0xbc
+ 1398 046b 00000000 		.4byte	.LFB14
+ 1399 046f 48000000 		.4byte	.LFE14-.LFB14
+ 1400 0473 01       		.uleb128 0x1
+ 1401 0474 9C       		.byte	0x9c
+ 1402 0475 A6040000 		.4byte	0x4a6
+ 1403 0479 07       		.uleb128 0x7
+ 1404 047a CF030000 		.4byte	.LASF46
+ 1405 047e 01       		.byte	0x1
+ 1406 047f 1103     		.2byte	0x311
+ 1407 0481 B0000000 		.4byte	0xb0
+ 1408 0485 1A020000 		.4byte	.LLST15
+ 1409 0489 16       		.uleb128 0x16
+ 1410 048a 58010000 		.4byte	.LASF69
+ 1411 048e 01       		.byte	0x1
+ 1412 048f 1403     		.2byte	0x314
+ 1413 0491 E2000000 		.4byte	0xe2
+ 1414 0495 08       		.uleb128 0x8
+ 1415 0496 FE000000 		.4byte	.LASF48
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 42
+
+
+ 1416 049a 01       		.byte	0x1
+ 1417 049b 1503     		.2byte	0x315
+ 1418 049d BC000000 		.4byte	0xbc
+ 1419 04a1 38020000 		.4byte	.LLST16
+ 1420 04a5 00       		.byte	0
+ 1421 04a6 15       		.uleb128 0x15
+ 1422 04a7 71020000 		.4byte	.LASF50
+ 1423 04ab 01       		.byte	0x1
+ 1424 04ac 3D03     		.2byte	0x33d
+ 1425 04ae C8000000 		.4byte	0xc8
+ 1426 04b2 00000000 		.4byte	.LFB15
+ 1427 04b6 50000000 		.4byte	.LFE15-.LFB15
+ 1428 04ba 01       		.uleb128 0x1
+ 1429 04bb 9C       		.byte	0x9c
+ 1430 04bc EF040000 		.4byte	0x4ef
+ 1431 04c0 07       		.uleb128 0x7
+ 1432 04c1 CF030000 		.4byte	.LASF46
+ 1433 04c5 01       		.byte	0x1
+ 1434 04c6 3D03     		.2byte	0x33d
+ 1435 04c8 B0000000 		.4byte	0xb0
+ 1436 04cc 56020000 		.4byte	.LLST17
+ 1437 04d0 14       		.uleb128 0x14
+ 1438 04d1 71010000 		.4byte	.LASF51
+ 1439 04d5 01       		.byte	0x1
+ 1440 04d6 3F03     		.2byte	0x33f
+ 1441 04d8 C8000000 		.4byte	0xc8
+ 1442 04dc 01       		.uleb128 0x1
+ 1443 04dd 50       		.byte	0x50
+ 1444 04de 08       		.uleb128 0x8
+ 1445 04df FE000000 		.4byte	.LASF48
+ 1446 04e3 01       		.byte	0x1
+ 1447 04e4 4003     		.2byte	0x340
+ 1448 04e6 BC000000 		.4byte	0xbc
+ 1449 04ea 74020000 		.4byte	.LLST18
+ 1450 04ee 00       		.byte	0
+ 1451 04ef 17       		.uleb128 0x17
+ 1452 04f0 C6010000 		.4byte	.LASF52
+ 1453 04f4 01       		.byte	0x1
+ 1454 04f5 23       		.byte	0x23
+ 1455 04f6 80000000 		.4byte	0x80
+ 1456 04fa 05       		.uleb128 0x5
+ 1457 04fb 03       		.byte	0x3
+ 1458 04fc 00000000 		.4byte	ADC_SAR_X_initVar
+ 1459 0500 17       		.uleb128 0x17
+ 1460 0501 20040000 		.4byte	.LASF53
+ 1461 0505 01       		.byte	0x1
+ 1462 0506 24       		.byte	0x24
+ 1463 0507 11050000 		.4byte	0x511
+ 1464 050b 05       		.uleb128 0x5
+ 1465 050c 03       		.byte	0x3
+ 1466 050d 00000000 		.4byte	ADC_SAR_X_offset
+ 1467 0511 05       		.uleb128 0x5
+ 1468 0512 B0000000 		.4byte	0xb0
+ 1469 0516 17       		.uleb128 0x17
+ 1470 0517 67030000 		.4byte	.LASF54
+ 1471 051b 01       		.byte	0x1
+ 1472 051c 25       		.byte	0x25
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 43
+
+
+ 1473 051d 11050000 		.4byte	0x511
+ 1474 0521 05       		.uleb128 0x5
+ 1475 0522 03       		.byte	0x3
+ 1476 0523 00000000 		.4byte	ADC_SAR_X_countsPerVolt
+ 1477 0527 17       		.uleb128 0x17
+ 1478 0528 02020000 		.4byte	.LASF55
+ 1479 052c 01       		.byte	0x1
+ 1480 052d 26       		.byte	0x26
+ 1481 052e 38050000 		.4byte	0x538
+ 1482 0532 05       		.uleb128 0x5
+ 1483 0533 03       		.byte	0x3
+ 1484 0534 00000000 		.4byte	ADC_SAR_X_countsPer10Volt
+ 1485 0538 05       		.uleb128 0x5
+ 1486 0539 BC000000 		.4byte	0xbc
+ 1487 053d 17       		.uleb128 0x17
+ 1488 053e 4F040000 		.4byte	.LASF56
+ 1489 0542 01       		.byte	0x1
+ 1490 0543 27       		.byte	0x27
+ 1491 0544 11050000 		.4byte	0x511
+ 1492 0548 05       		.uleb128 0x5
+ 1493 0549 03       		.byte	0x3
+ 1494 054a 00000000 		.4byte	ADC_SAR_X_shift
+ 1495 054e 18       		.uleb128 0x18
+ 1496 054f 6A020000 		.4byte	.LASF57
+ 1497 0553 6A020000 		.4byte	.LASF57
+ 1498 0557 03       		.byte	0x3
+ 1499 0558 7F       		.byte	0x7f
+ 1500 0559 18       		.uleb128 0x18
+ 1501 055a 77010000 		.4byte	.LASF58
+ 1502 055e 77010000 		.4byte	.LASF58
+ 1503 0562 03       		.byte	0x3
+ 1504 0563 7D       		.byte	0x7d
+ 1505 0564 18       		.uleb128 0x18
+ 1506 0565 E6000000 		.4byte	.LASF59
+ 1507 0569 E6000000 		.4byte	.LASF59
+ 1508 056d 03       		.byte	0x3
+ 1509 056e 77       		.byte	0x77
+ 1510 056f 18       		.uleb128 0x18
+ 1511 0570 0F000000 		.4byte	.LASF60
+ 1512 0574 0F000000 		.4byte	.LASF60
+ 1513 0578 03       		.byte	0x3
+ 1514 0579 7E       		.byte	0x7e
+ 1515 057a 18       		.uleb128 0x18
+ 1516 057b 80040000 		.4byte	.LASF61
+ 1517 057f 80040000 		.4byte	.LASF61
+ 1518 0583 04       		.byte	0x4
+ 1519 0584 32       		.byte	0x32
+ 1520 0585 18       		.uleb128 0x18
+ 1521 0586 32020000 		.4byte	.LASF62
+ 1522 058a 32020000 		.4byte	.LASF62
+ 1523 058e 03       		.byte	0x3
+ 1524 058f 8B       		.byte	0x8b
+ 1525 0590 18       		.uleb128 0x18
+ 1526 0591 0E010000 		.4byte	.LASF63
+ 1527 0595 0E010000 		.4byte	.LASF63
+ 1528 0599 03       		.byte	0x3
+ 1529 059a 88       		.byte	0x88
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 44
+
+
+ 1530 059b 00       		.byte	0
+ 1531              		.section	.debug_abbrev,"",%progbits
+ 1532              	.Ldebug_abbrev0:
+ 1533 0000 01       		.uleb128 0x1
+ 1534 0001 11       		.uleb128 0x11
+ 1535 0002 01       		.byte	0x1
+ 1536 0003 25       		.uleb128 0x25
+ 1537 0004 0E       		.uleb128 0xe
+ 1538 0005 13       		.uleb128 0x13
+ 1539 0006 0B       		.uleb128 0xb
+ 1540 0007 03       		.uleb128 0x3
+ 1541 0008 0E       		.uleb128 0xe
+ 1542 0009 1B       		.uleb128 0x1b
+ 1543 000a 0E       		.uleb128 0xe
+ 1544 000b 55       		.uleb128 0x55
+ 1545 000c 17       		.uleb128 0x17
+ 1546 000d 11       		.uleb128 0x11
+ 1547 000e 01       		.uleb128 0x1
+ 1548 000f 10       		.uleb128 0x10
+ 1549 0010 17       		.uleb128 0x17
+ 1550 0011 00       		.byte	0
+ 1551 0012 00       		.byte	0
+ 1552 0013 02       		.uleb128 0x2
+ 1553 0014 24       		.uleb128 0x24
+ 1554 0015 00       		.byte	0
+ 1555 0016 0B       		.uleb128 0xb
+ 1556 0017 0B       		.uleb128 0xb
+ 1557 0018 3E       		.uleb128 0x3e
+ 1558 0019 0B       		.uleb128 0xb
+ 1559 001a 03       		.uleb128 0x3
+ 1560 001b 08       		.uleb128 0x8
+ 1561 001c 00       		.byte	0
+ 1562 001d 00       		.byte	0
+ 1563 001e 03       		.uleb128 0x3
+ 1564 001f 24       		.uleb128 0x24
+ 1565 0020 00       		.byte	0
+ 1566 0021 0B       		.uleb128 0xb
+ 1567 0022 0B       		.uleb128 0xb
+ 1568 0023 3E       		.uleb128 0x3e
+ 1569 0024 0B       		.uleb128 0xb
+ 1570 0025 03       		.uleb128 0x3
+ 1571 0026 0E       		.uleb128 0xe
+ 1572 0027 00       		.byte	0
+ 1573 0028 00       		.byte	0
+ 1574 0029 04       		.uleb128 0x4
+ 1575 002a 16       		.uleb128 0x16
+ 1576 002b 00       		.byte	0
+ 1577 002c 03       		.uleb128 0x3
+ 1578 002d 0E       		.uleb128 0xe
+ 1579 002e 3A       		.uleb128 0x3a
+ 1580 002f 0B       		.uleb128 0xb
+ 1581 0030 3B       		.uleb128 0x3b
+ 1582 0031 05       		.uleb128 0x5
+ 1583 0032 49       		.uleb128 0x49
+ 1584 0033 13       		.uleb128 0x13
+ 1585 0034 00       		.byte	0
+ 1586 0035 00       		.byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 45
+
+
+ 1587 0036 05       		.uleb128 0x5
+ 1588 0037 35       		.uleb128 0x35
+ 1589 0038 00       		.byte	0
+ 1590 0039 49       		.uleb128 0x49
+ 1591 003a 13       		.uleb128 0x13
+ 1592 003b 00       		.byte	0
+ 1593 003c 00       		.byte	0
+ 1594 003d 06       		.uleb128 0x6
+ 1595 003e 2E       		.uleb128 0x2e
+ 1596 003f 01       		.byte	0x1
+ 1597 0040 03       		.uleb128 0x3
+ 1598 0041 0E       		.uleb128 0xe
+ 1599 0042 3A       		.uleb128 0x3a
+ 1600 0043 0B       		.uleb128 0xb
+ 1601 0044 3B       		.uleb128 0x3b
+ 1602 0045 05       		.uleb128 0x5
+ 1603 0046 27       		.uleb128 0x27
+ 1604 0047 19       		.uleb128 0x19
+ 1605 0048 11       		.uleb128 0x11
+ 1606 0049 01       		.uleb128 0x1
+ 1607 004a 12       		.uleb128 0x12
+ 1608 004b 06       		.uleb128 0x6
+ 1609 004c 40       		.uleb128 0x40
+ 1610 004d 18       		.uleb128 0x18
+ 1611 004e 9742     		.uleb128 0x2117
+ 1612 0050 19       		.uleb128 0x19
+ 1613 0051 01       		.uleb128 0x1
+ 1614 0052 13       		.uleb128 0x13
+ 1615 0053 00       		.byte	0
+ 1616 0054 00       		.byte	0
+ 1617 0055 07       		.uleb128 0x7
+ 1618 0056 05       		.uleb128 0x5
+ 1619 0057 00       		.byte	0
+ 1620 0058 03       		.uleb128 0x3
+ 1621 0059 0E       		.uleb128 0xe
+ 1622 005a 3A       		.uleb128 0x3a
+ 1623 005b 0B       		.uleb128 0xb
+ 1624 005c 3B       		.uleb128 0x3b
+ 1625 005d 05       		.uleb128 0x5
+ 1626 005e 49       		.uleb128 0x49
+ 1627 005f 13       		.uleb128 0x13
+ 1628 0060 02       		.uleb128 0x2
+ 1629 0061 17       		.uleb128 0x17
+ 1630 0062 00       		.byte	0
+ 1631 0063 00       		.byte	0
+ 1632 0064 08       		.uleb128 0x8
+ 1633 0065 34       		.uleb128 0x34
+ 1634 0066 00       		.byte	0
+ 1635 0067 03       		.uleb128 0x3
+ 1636 0068 0E       		.uleb128 0xe
+ 1637 0069 3A       		.uleb128 0x3a
+ 1638 006a 0B       		.uleb128 0xb
+ 1639 006b 3B       		.uleb128 0x3b
+ 1640 006c 05       		.uleb128 0x5
+ 1641 006d 49       		.uleb128 0x49
+ 1642 006e 13       		.uleb128 0x13
+ 1643 006f 02       		.uleb128 0x2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 46
+
+
+ 1644 0070 17       		.uleb128 0x17
+ 1645 0071 00       		.byte	0
+ 1646 0072 00       		.byte	0
+ 1647 0073 09       		.uleb128 0x9
+ 1648 0074 898201   		.uleb128 0x4109
+ 1649 0077 01       		.byte	0x1
+ 1650 0078 11       		.uleb128 0x11
+ 1651 0079 01       		.uleb128 0x1
+ 1652 007a 31       		.uleb128 0x31
+ 1653 007b 13       		.uleb128 0x13
+ 1654 007c 00       		.byte	0
+ 1655 007d 00       		.byte	0
+ 1656 007e 0A       		.uleb128 0xa
+ 1657 007f 8A8201   		.uleb128 0x410a
+ 1658 0082 00       		.byte	0
+ 1659 0083 02       		.uleb128 0x2
+ 1660 0084 18       		.uleb128 0x18
+ 1661 0085 9142     		.uleb128 0x2111
+ 1662 0087 18       		.uleb128 0x18
+ 1663 0088 00       		.byte	0
+ 1664 0089 00       		.byte	0
+ 1665 008a 0B       		.uleb128 0xb
+ 1666 008b 2E       		.uleb128 0x2e
+ 1667 008c 01       		.byte	0x1
+ 1668 008d 3F       		.uleb128 0x3f
+ 1669 008e 19       		.uleb128 0x19
+ 1670 008f 03       		.uleb128 0x3
+ 1671 0090 0E       		.uleb128 0xe
+ 1672 0091 3A       		.uleb128 0x3a
+ 1673 0092 0B       		.uleb128 0xb
+ 1674 0093 3B       		.uleb128 0x3b
+ 1675 0094 0B       		.uleb128 0xb
+ 1676 0095 27       		.uleb128 0x27
+ 1677 0096 19       		.uleb128 0x19
+ 1678 0097 11       		.uleb128 0x11
+ 1679 0098 01       		.uleb128 0x1
+ 1680 0099 12       		.uleb128 0x12
+ 1681 009a 06       		.uleb128 0x6
+ 1682 009b 40       		.uleb128 0x40
+ 1683 009c 18       		.uleb128 0x18
+ 1684 009d 9742     		.uleb128 0x2117
+ 1685 009f 19       		.uleb128 0x19
+ 1686 00a0 01       		.uleb128 0x1
+ 1687 00a1 13       		.uleb128 0x13
+ 1688 00a2 00       		.byte	0
+ 1689 00a3 00       		.byte	0
+ 1690 00a4 0C       		.uleb128 0xc
+ 1691 00a5 34       		.uleb128 0x34
+ 1692 00a6 00       		.byte	0
+ 1693 00a7 03       		.uleb128 0x3
+ 1694 00a8 0E       		.uleb128 0xe
+ 1695 00a9 3A       		.uleb128 0x3a
+ 1696 00aa 0B       		.uleb128 0xb
+ 1697 00ab 3B       		.uleb128 0x3b
+ 1698 00ac 0B       		.uleb128 0xb
+ 1699 00ad 49       		.uleb128 0x49
+ 1700 00ae 13       		.uleb128 0x13
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 47
+
+
+ 1701 00af 02       		.uleb128 0x2
+ 1702 00b0 17       		.uleb128 0x17
+ 1703 00b1 00       		.byte	0
+ 1704 00b2 00       		.byte	0
+ 1705 00b3 0D       		.uleb128 0xd
+ 1706 00b4 898201   		.uleb128 0x4109
+ 1707 00b7 00       		.byte	0
+ 1708 00b8 11       		.uleb128 0x11
+ 1709 00b9 01       		.uleb128 0x1
+ 1710 00ba 31       		.uleb128 0x31
+ 1711 00bb 13       		.uleb128 0x13
+ 1712 00bc 00       		.byte	0
+ 1713 00bd 00       		.byte	0
+ 1714 00be 0E       		.uleb128 0xe
+ 1715 00bf 898201   		.uleb128 0x4109
+ 1716 00c2 01       		.byte	0x1
+ 1717 00c3 11       		.uleb128 0x11
+ 1718 00c4 01       		.uleb128 0x1
+ 1719 00c5 31       		.uleb128 0x31
+ 1720 00c6 13       		.uleb128 0x13
+ 1721 00c7 01       		.uleb128 0x1
+ 1722 00c8 13       		.uleb128 0x13
+ 1723 00c9 00       		.byte	0
+ 1724 00ca 00       		.byte	0
+ 1725 00cb 0F       		.uleb128 0xf
+ 1726 00cc 2E       		.uleb128 0x2e
+ 1727 00cd 01       		.byte	0x1
+ 1728 00ce 3F       		.uleb128 0x3f
+ 1729 00cf 19       		.uleb128 0x19
+ 1730 00d0 03       		.uleb128 0x3
+ 1731 00d1 0E       		.uleb128 0xe
+ 1732 00d2 3A       		.uleb128 0x3a
+ 1733 00d3 0B       		.uleb128 0xb
+ 1734 00d4 3B       		.uleb128 0x3b
+ 1735 00d5 05       		.uleb128 0x5
+ 1736 00d6 27       		.uleb128 0x27
+ 1737 00d7 19       		.uleb128 0x19
+ 1738 00d8 11       		.uleb128 0x11
+ 1739 00d9 01       		.uleb128 0x1
+ 1740 00da 12       		.uleb128 0x12
+ 1741 00db 06       		.uleb128 0x6
+ 1742 00dc 40       		.uleb128 0x40
+ 1743 00dd 18       		.uleb128 0x18
+ 1744 00de 9742     		.uleb128 0x2117
+ 1745 00e0 19       		.uleb128 0x19
+ 1746 00e1 01       		.uleb128 0x1
+ 1747 00e2 13       		.uleb128 0x13
+ 1748 00e3 00       		.byte	0
+ 1749 00e4 00       		.byte	0
+ 1750 00e5 10       		.uleb128 0x10
+ 1751 00e6 2E       		.uleb128 0x2e
+ 1752 00e7 01       		.byte	0x1
+ 1753 00e8 3F       		.uleb128 0x3f
+ 1754 00e9 19       		.uleb128 0x19
+ 1755 00ea 03       		.uleb128 0x3
+ 1756 00eb 0E       		.uleb128 0xe
+ 1757 00ec 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 48
+
+
+ 1758 00ed 0B       		.uleb128 0xb
+ 1759 00ee 3B       		.uleb128 0x3b
+ 1760 00ef 05       		.uleb128 0x5
+ 1761 00f0 27       		.uleb128 0x27
+ 1762 00f1 19       		.uleb128 0x19
+ 1763 00f2 49       		.uleb128 0x49
+ 1764 00f3 13       		.uleb128 0x13
+ 1765 00f4 11       		.uleb128 0x11
+ 1766 00f5 01       		.uleb128 0x1
+ 1767 00f6 12       		.uleb128 0x12
+ 1768 00f7 06       		.uleb128 0x6
+ 1769 00f8 40       		.uleb128 0x40
+ 1770 00f9 18       		.uleb128 0x18
+ 1771 00fa 9742     		.uleb128 0x2117
+ 1772 00fc 19       		.uleb128 0x19
+ 1773 00fd 01       		.uleb128 0x1
+ 1774 00fe 13       		.uleb128 0x13
+ 1775 00ff 00       		.byte	0
+ 1776 0100 00       		.byte	0
+ 1777 0101 11       		.uleb128 0x11
+ 1778 0102 2E       		.uleb128 0x2e
+ 1779 0103 00       		.byte	0
+ 1780 0104 3F       		.uleb128 0x3f
+ 1781 0105 19       		.uleb128 0x19
+ 1782 0106 03       		.uleb128 0x3
+ 1783 0107 0E       		.uleb128 0xe
+ 1784 0108 3A       		.uleb128 0x3a
+ 1785 0109 0B       		.uleb128 0xb
+ 1786 010a 3B       		.uleb128 0x3b
+ 1787 010b 05       		.uleb128 0x5
+ 1788 010c 27       		.uleb128 0x27
+ 1789 010d 19       		.uleb128 0x19
+ 1790 010e 49       		.uleb128 0x49
+ 1791 010f 13       		.uleb128 0x13
+ 1792 0110 11       		.uleb128 0x11
+ 1793 0111 01       		.uleb128 0x1
+ 1794 0112 12       		.uleb128 0x12
+ 1795 0113 06       		.uleb128 0x6
+ 1796 0114 40       		.uleb128 0x40
+ 1797 0115 18       		.uleb128 0x18
+ 1798 0116 9742     		.uleb128 0x2117
+ 1799 0118 19       		.uleb128 0x19
+ 1800 0119 00       		.byte	0
+ 1801 011a 00       		.byte	0
+ 1802 011b 12       		.uleb128 0x12
+ 1803 011c 34       		.uleb128 0x34
+ 1804 011d 00       		.byte	0
+ 1805 011e 03       		.uleb128 0x3
+ 1806 011f 08       		.uleb128 0x8
+ 1807 0120 3A       		.uleb128 0x3a
+ 1808 0121 0B       		.uleb128 0xb
+ 1809 0122 3B       		.uleb128 0x3b
+ 1810 0123 05       		.uleb128 0x5
+ 1811 0124 49       		.uleb128 0x49
+ 1812 0125 13       		.uleb128 0x13
+ 1813 0126 02       		.uleb128 0x2
+ 1814 0127 17       		.uleb128 0x17
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 49
+
+
+ 1815 0128 00       		.byte	0
+ 1816 0129 00       		.byte	0
+ 1817 012a 13       		.uleb128 0x13
+ 1818 012b 05       		.uleb128 0x5
+ 1819 012c 00       		.byte	0
+ 1820 012d 03       		.uleb128 0x3
+ 1821 012e 0E       		.uleb128 0xe
+ 1822 012f 3A       		.uleb128 0x3a
+ 1823 0130 0B       		.uleb128 0xb
+ 1824 0131 3B       		.uleb128 0x3b
+ 1825 0132 05       		.uleb128 0x5
+ 1826 0133 49       		.uleb128 0x49
+ 1827 0134 13       		.uleb128 0x13
+ 1828 0135 02       		.uleb128 0x2
+ 1829 0136 18       		.uleb128 0x18
+ 1830 0137 00       		.byte	0
+ 1831 0138 00       		.byte	0
+ 1832 0139 14       		.uleb128 0x14
+ 1833 013a 34       		.uleb128 0x34
+ 1834 013b 00       		.byte	0
+ 1835 013c 03       		.uleb128 0x3
+ 1836 013d 0E       		.uleb128 0xe
+ 1837 013e 3A       		.uleb128 0x3a
+ 1838 013f 0B       		.uleb128 0xb
+ 1839 0140 3B       		.uleb128 0x3b
+ 1840 0141 05       		.uleb128 0x5
+ 1841 0142 49       		.uleb128 0x49
+ 1842 0143 13       		.uleb128 0x13
+ 1843 0144 02       		.uleb128 0x2
+ 1844 0145 18       		.uleb128 0x18
+ 1845 0146 00       		.byte	0
+ 1846 0147 00       		.byte	0
+ 1847 0148 15       		.uleb128 0x15
+ 1848 0149 2E       		.uleb128 0x2e
+ 1849 014a 01       		.byte	0x1
+ 1850 014b 3F       		.uleb128 0x3f
+ 1851 014c 19       		.uleb128 0x19
+ 1852 014d 03       		.uleb128 0x3
+ 1853 014e 0E       		.uleb128 0xe
+ 1854 014f 3A       		.uleb128 0x3a
+ 1855 0150 0B       		.uleb128 0xb
+ 1856 0151 3B       		.uleb128 0x3b
+ 1857 0152 05       		.uleb128 0x5
+ 1858 0153 27       		.uleb128 0x27
+ 1859 0154 19       		.uleb128 0x19
+ 1860 0155 49       		.uleb128 0x49
+ 1861 0156 13       		.uleb128 0x13
+ 1862 0157 11       		.uleb128 0x11
+ 1863 0158 01       		.uleb128 0x1
+ 1864 0159 12       		.uleb128 0x12
+ 1865 015a 06       		.uleb128 0x6
+ 1866 015b 40       		.uleb128 0x40
+ 1867 015c 18       		.uleb128 0x18
+ 1868 015d 9642     		.uleb128 0x2116
+ 1869 015f 19       		.uleb128 0x19
+ 1870 0160 01       		.uleb128 0x1
+ 1871 0161 13       		.uleb128 0x13
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 50
+
+
+ 1872 0162 00       		.byte	0
+ 1873 0163 00       		.byte	0
+ 1874 0164 16       		.uleb128 0x16
+ 1875 0165 34       		.uleb128 0x34
+ 1876 0166 00       		.byte	0
+ 1877 0167 03       		.uleb128 0x3
+ 1878 0168 0E       		.uleb128 0xe
+ 1879 0169 3A       		.uleb128 0x3a
+ 1880 016a 0B       		.uleb128 0xb
+ 1881 016b 3B       		.uleb128 0x3b
+ 1882 016c 05       		.uleb128 0x5
+ 1883 016d 49       		.uleb128 0x49
+ 1884 016e 13       		.uleb128 0x13
+ 1885 016f 00       		.byte	0
+ 1886 0170 00       		.byte	0
+ 1887 0171 17       		.uleb128 0x17
+ 1888 0172 34       		.uleb128 0x34
+ 1889 0173 00       		.byte	0
+ 1890 0174 03       		.uleb128 0x3
+ 1891 0175 0E       		.uleb128 0xe
+ 1892 0176 3A       		.uleb128 0x3a
+ 1893 0177 0B       		.uleb128 0xb
+ 1894 0178 3B       		.uleb128 0x3b
+ 1895 0179 0B       		.uleb128 0xb
+ 1896 017a 49       		.uleb128 0x49
+ 1897 017b 13       		.uleb128 0x13
+ 1898 017c 3F       		.uleb128 0x3f
+ 1899 017d 19       		.uleb128 0x19
+ 1900 017e 02       		.uleb128 0x2
+ 1901 017f 18       		.uleb128 0x18
+ 1902 0180 00       		.byte	0
+ 1903 0181 00       		.byte	0
+ 1904 0182 18       		.uleb128 0x18
+ 1905 0183 2E       		.uleb128 0x2e
+ 1906 0184 00       		.byte	0
+ 1907 0185 3F       		.uleb128 0x3f
+ 1908 0186 19       		.uleb128 0x19
+ 1909 0187 3C       		.uleb128 0x3c
+ 1910 0188 19       		.uleb128 0x19
+ 1911 0189 6E       		.uleb128 0x6e
+ 1912 018a 0E       		.uleb128 0xe
+ 1913 018b 03       		.uleb128 0x3
+ 1914 018c 0E       		.uleb128 0xe
+ 1915 018d 3A       		.uleb128 0x3a
+ 1916 018e 0B       		.uleb128 0xb
+ 1917 018f 3B       		.uleb128 0x3b
+ 1918 0190 0B       		.uleb128 0xb
+ 1919 0191 00       		.byte	0
+ 1920 0192 00       		.byte	0
+ 1921 0193 00       		.byte	0
+ 1922              		.section	.debug_loc,"",%progbits
+ 1923              	.Ldebug_loc0:
+ 1924              	.LLST0:
+ 1925 0000 00000000 		.4byte	.LVL0
+ 1926 0004 1E000000 		.4byte	.LVL3
+ 1927 0008 0100     		.2byte	0x1
+ 1928 000a 50       		.byte	0x50
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 51
+
+
+ 1929 000b 1E000000 		.4byte	.LVL3
+ 1930 000f 26000000 		.4byte	.LVL5
+ 1931 0013 0400     		.2byte	0x4
+ 1932 0015 F3       		.byte	0xf3
+ 1933 0016 01       		.uleb128 0x1
+ 1934 0017 50       		.byte	0x50
+ 1935 0018 9F       		.byte	0x9f
+ 1936 0019 26000000 		.4byte	.LVL5
+ 1937 001d 2A000000 		.4byte	.LVL6
+ 1938 0021 0100     		.2byte	0x1
+ 1939 0023 50       		.byte	0x50
+ 1940 0024 2A000000 		.4byte	.LVL6
+ 1941 0028 5C000000 		.4byte	.LFE10
+ 1942 002c 0400     		.2byte	0x4
+ 1943 002e F3       		.byte	0xf3
+ 1944 002f 01       		.uleb128 0x1
+ 1945 0030 50       		.byte	0x50
+ 1946 0031 9F       		.byte	0x9f
+ 1947 0032 00000000 		.4byte	0
+ 1948 0036 00000000 		.4byte	0
+ 1949              	.LLST1:
+ 1950 003a 16000000 		.4byte	.LVL1
+ 1951 003e 1C000000 		.4byte	.LVL2
+ 1952 0042 0400     		.2byte	0x4
+ 1953 0044 0A       		.byte	0xa
+ 1954 0045 0001     		.2byte	0x100
+ 1955 0047 9F       		.byte	0x9f
+ 1956 0048 1C000000 		.4byte	.LVL2
+ 1957 004c 26000000 		.4byte	.LVL5
+ 1958 0050 0200     		.2byte	0x2
+ 1959 0052 30       		.byte	0x30
+ 1960 0053 9F       		.byte	0x9f
+ 1961 0054 2A000000 		.4byte	.LVL6
+ 1962 0058 46000000 		.4byte	.LVL7
+ 1963 005c 0100     		.2byte	0x1
+ 1964 005e 52       		.byte	0x52
+ 1965 005f 00000000 		.4byte	0
+ 1966 0063 00000000 		.4byte	0
+ 1967              	.LLST2:
+ 1968 0067 38000000 		.4byte	.LVL10
+ 1969 006b 3C000000 		.4byte	.LVL11
+ 1970 006f 0500     		.2byte	0x5
+ 1971 0071 73       		.byte	0x73
+ 1972 0072 00       		.sleb128 0
+ 1973 0073 32       		.byte	0x32
+ 1974 0074 21       		.byte	0x21
+ 1975 0075 9F       		.byte	0x9f
+ 1976 0076 40000000 		.4byte	.LVL12
+ 1977 007a 46000000 		.4byte	.LVL13
+ 1978 007e 0100     		.2byte	0x1
+ 1979 0080 53       		.byte	0x53
+ 1980 0081 46000000 		.4byte	.LVL13
+ 1981 0085 48000000 		.4byte	.LVL14
+ 1982 0089 0200     		.2byte	0x2
+ 1983 008b 72       		.byte	0x72
+ 1984 008c 00       		.sleb128 0
+ 1985 008d 00000000 		.4byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 52
+
+
+ 1986 0091 00000000 		.4byte	0
+ 1987              	.LLST3:
+ 1988 0095 08000000 		.4byte	.LVL9
+ 1989 0099 86000000 		.4byte	.LVL17
+ 1990 009d 0100     		.2byte	0x1
+ 1991 009f 54       		.byte	0x54
+ 1992 00a0 00000000 		.4byte	0
+ 1993 00a4 00000000 		.4byte	0
+ 1994              	.LLST4:
+ 1995 00a8 06000000 		.4byte	.LVL18
+ 1996 00ac 3F000000 		.4byte	.LVL19-1
+ 1997 00b0 0100     		.2byte	0x1
+ 1998 00b2 50       		.byte	0x50
+ 1999 00b3 00000000 		.4byte	0
+ 2000 00b7 00000000 		.4byte	0
+ 2001              	.LLST5:
+ 2002 00bb 00000000 		.4byte	.LVL20
+ 2003 00bf 00000000 		.4byte	.LVL20
+ 2004 00c3 0100     		.2byte	0x1
+ 2005 00c5 50       		.byte	0x50
+ 2006 00c6 00000000 		.4byte	.LVL20
+ 2007 00ca 0C000000 		.4byte	.LVL22
+ 2008 00ce 0500     		.2byte	0x5
+ 2009 00d0 70       		.byte	0x70
+ 2010 00d1 00       		.sleb128 0
+ 2011 00d2 33       		.byte	0x33
+ 2012 00d3 1A       		.byte	0x1a
+ 2013 00d4 9F       		.byte	0x9f
+ 2014 00d5 0C000000 		.4byte	.LVL22
+ 2015 00d9 18000000 		.4byte	.LFE4
+ 2016 00dd 0600     		.2byte	0x6
+ 2017 00df F3       		.byte	0xf3
+ 2018 00e0 01       		.uleb128 0x1
+ 2019 00e1 50       		.byte	0x50
+ 2020 00e2 33       		.byte	0x33
+ 2021 00e3 1A       		.byte	0x1a
+ 2022 00e4 9F       		.byte	0x9f
+ 2023 00e5 00000000 		.4byte	0
+ 2024 00e9 00000000 		.4byte	0
+ 2025              	.LLST6:
+ 2026 00ed 08000000 		.4byte	.LVL21
+ 2027 00f1 0E000000 		.4byte	.LVL23
+ 2028 00f5 0100     		.2byte	0x1
+ 2029 00f7 53       		.byte	0x53
+ 2030 00f8 0E000000 		.4byte	.LVL23
+ 2031 00fc 18000000 		.4byte	.LFE4
+ 2032 0100 0100     		.2byte	0x1
+ 2033 0102 50       		.byte	0x50
+ 2034 0103 00000000 		.4byte	0
+ 2035 0107 00000000 		.4byte	0
+ 2036              	.LLST7:
+ 2037 010b 00000000 		.4byte	.LVL24
+ 2038 010f 1C000000 		.4byte	.LVL27
+ 2039 0113 0100     		.2byte	0x1
+ 2040 0115 50       		.byte	0x50
+ 2041 0116 1C000000 		.4byte	.LVL27
+ 2042 011a 24000000 		.4byte	.LVL29
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 53
+
+
+ 2043 011e 0400     		.2byte	0x4
+ 2044 0120 F3       		.byte	0xf3
+ 2045 0121 01       		.uleb128 0x1
+ 2046 0122 50       		.byte	0x50
+ 2047 0123 9F       		.byte	0x9f
+ 2048 0124 24000000 		.4byte	.LVL29
+ 2049 0128 26000000 		.4byte	.LVL30
+ 2050 012c 0100     		.2byte	0x1
+ 2051 012e 50       		.byte	0x50
+ 2052 012f 26000000 		.4byte	.LVL30
+ 2053 0133 38000000 		.4byte	.LFE5
+ 2054 0137 0400     		.2byte	0x4
+ 2055 0139 F3       		.byte	0xf3
+ 2056 013a 01       		.uleb128 0x1
+ 2057 013b 50       		.byte	0x50
+ 2058 013c 9F       		.byte	0x9f
+ 2059 013d 00000000 		.4byte	0
+ 2060 0141 00000000 		.4byte	0
+ 2061              	.LLST8:
+ 2062 0145 16000000 		.4byte	.LVL25
+ 2063 0149 1A000000 		.4byte	.LVL26
+ 2064 014d 0300     		.2byte	0x3
+ 2065 014f 08       		.byte	0x8
+ 2066 0150 44       		.byte	0x44
+ 2067 0151 9F       		.byte	0x9f
+ 2068 0152 1A000000 		.4byte	.LVL26
+ 2069 0156 24000000 		.4byte	.LVL29
+ 2070 015a 0300     		.2byte	0x3
+ 2071 015c 09       		.byte	0x9
+ 2072 015d C4       		.byte	0xc4
+ 2073 015e 9F       		.byte	0x9f
+ 2074 015f 26000000 		.4byte	.LVL30
+ 2075 0163 2F000000 		.4byte	.LVL31-1
+ 2076 0167 0100     		.2byte	0x1
+ 2077 0169 52       		.byte	0x52
+ 2078 016a 00000000 		.4byte	0
+ 2079 016e 00000000 		.4byte	0
+ 2080              	.LLST9:
+ 2081 0172 00000000 		.4byte	.LVL38
+ 2082 0176 14000000 		.4byte	.LVL40
+ 2083 017a 0100     		.2byte	0x1
+ 2084 017c 50       		.byte	0x50
+ 2085 017d 14000000 		.4byte	.LVL40
+ 2086 0181 24000000 		.4byte	.LFE6
+ 2087 0185 0400     		.2byte	0x4
+ 2088 0187 F3       		.byte	0xf3
+ 2089 0188 01       		.uleb128 0x1
+ 2090 0189 50       		.byte	0x50
+ 2091 018a 9F       		.byte	0x9f
+ 2092 018b 00000000 		.4byte	0
+ 2093 018f 00000000 		.4byte	0
+ 2094              	.LLST10:
+ 2095 0193 06000000 		.4byte	.LVL39
+ 2096 0197 17000000 		.4byte	.LVL41-1
+ 2097 019b 0500     		.2byte	0x5
+ 2098 019d 73       		.byte	0x73
+ 2099 019e 00       		.sleb128 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 54
+
+
+ 2100 019f 31       		.byte	0x31
+ 2101 01a0 1A       		.byte	0x1a
+ 2102 01a1 9F       		.byte	0x9f
+ 2103 01a2 00000000 		.4byte	0
+ 2104 01a6 00000000 		.4byte	0
+ 2105              	.LLST11:
+ 2106 01aa 06000000 		.4byte	.LVL42
+ 2107 01ae 0C000000 		.4byte	.LVL43
+ 2108 01b2 0100     		.2byte	0x1
+ 2109 01b4 50       		.byte	0x50
+ 2110 01b5 00000000 		.4byte	0
+ 2111 01b9 00000000 		.4byte	0
+ 2112              	.LLST12:
+ 2113 01bd 00000000 		.4byte	.LVL45
+ 2114 01c1 04000000 		.4byte	.LVL46
+ 2115 01c5 0100     		.2byte	0x1
+ 2116 01c7 50       		.byte	0x50
+ 2117 01c8 04000000 		.4byte	.LVL46
+ 2118 01cc 10000000 		.4byte	.LFE11
+ 2119 01d0 0400     		.2byte	0x4
+ 2120 01d2 F3       		.byte	0xf3
+ 2121 01d3 01       		.uleb128 0x1
+ 2122 01d4 50       		.byte	0x50
+ 2123 01d5 9F       		.byte	0x9f
+ 2124 01d6 00000000 		.4byte	0
+ 2125 01da 00000000 		.4byte	0
+ 2126              	.LLST13:
+ 2127 01de 00000000 		.4byte	.LVL48
+ 2128 01e2 24000000 		.4byte	.LVL52
+ 2129 01e6 0100     		.2byte	0x1
+ 2130 01e8 50       		.byte	0x50
+ 2131 01e9 24000000 		.4byte	.LVL52
+ 2132 01ed 58000000 		.4byte	.LFE13
+ 2133 01f1 0100     		.2byte	0x1
+ 2134 01f3 51       		.byte	0x51
+ 2135 01f4 00000000 		.4byte	0
+ 2136 01f8 00000000 		.4byte	0
+ 2137              	.LLST14:
+ 2138 01fc 16000000 		.4byte	.LVL49
+ 2139 0200 18000000 		.4byte	.LVL50
+ 2140 0204 0100     		.2byte	0x1
+ 2141 0206 54       		.byte	0x54
+ 2142 0207 1C000000 		.4byte	.LVL51
+ 2143 020b 4A000000 		.4byte	.LVL54
+ 2144 020f 0100     		.2byte	0x1
+ 2145 0211 54       		.byte	0x54
+ 2146 0212 00000000 		.4byte	0
+ 2147 0216 00000000 		.4byte	0
+ 2148              	.LLST15:
+ 2149 021a 00000000 		.4byte	.LVL55
+ 2150 021e 22000000 		.4byte	.LVL59
+ 2151 0222 0100     		.2byte	0x1
+ 2152 0224 50       		.byte	0x50
+ 2153 0225 22000000 		.4byte	.LVL59
+ 2154 0229 38000000 		.4byte	.LVL61
+ 2155 022d 0100     		.2byte	0x1
+ 2156 022f 54       		.byte	0x54
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 55
+
+
+ 2157 0230 00000000 		.4byte	0
+ 2158 0234 00000000 		.4byte	0
+ 2159              	.LLST16:
+ 2160 0238 16000000 		.4byte	.LVL56
+ 2161 023c 18000000 		.4byte	.LVL57
+ 2162 0240 0100     		.2byte	0x1
+ 2163 0242 52       		.byte	0x52
+ 2164 0243 1C000000 		.4byte	.LVL58
+ 2165 0247 35000000 		.4byte	.LVL60-1
+ 2166 024b 0100     		.2byte	0x1
+ 2167 024d 52       		.byte	0x52
+ 2168 024e 00000000 		.4byte	0
+ 2169 0252 00000000 		.4byte	0
+ 2170              	.LLST17:
+ 2171 0256 00000000 		.4byte	.LVL62
+ 2172 025a 22000000 		.4byte	.LVL66
+ 2173 025e 0100     		.2byte	0x1
+ 2174 0260 50       		.byte	0x50
+ 2175 0261 22000000 		.4byte	.LVL66
+ 2176 0265 27000000 		.4byte	.LVL67-1
+ 2177 0269 0100     		.2byte	0x1
+ 2178 026b 50       		.byte	0x50
+ 2179 026c 00000000 		.4byte	0
+ 2180 0270 00000000 		.4byte	0
+ 2181              	.LLST18:
+ 2182 0274 16000000 		.4byte	.LVL63
+ 2183 0278 18000000 		.4byte	.LVL64
+ 2184 027c 0100     		.2byte	0x1
+ 2185 027e 54       		.byte	0x54
+ 2186 027f 1C000000 		.4byte	.LVL65
+ 2187 0283 40000000 		.4byte	.LVL71
+ 2188 0287 0100     		.2byte	0x1
+ 2189 0289 54       		.byte	0x54
+ 2190 028a 00000000 		.4byte	0
+ 2191 028e 00000000 		.4byte	0
+ 2192              		.section	.debug_aranges,"",%progbits
+ 2193 0000 94000000 		.4byte	0x94
+ 2194 0004 0200     		.2byte	0x2
+ 2195 0006 00000000 		.4byte	.Ldebug_info0
+ 2196 000a 04       		.byte	0x4
+ 2197 000b 00       		.byte	0
+ 2198 000c 0000     		.2byte	0
+ 2199 000e 0000     		.2byte	0
+ 2200 0010 00000000 		.4byte	.LFB10
+ 2201 0014 5C000000 		.4byte	.LFE10-.LFB10
+ 2202 0018 00000000 		.4byte	.LFB2
+ 2203 001c 98000000 		.4byte	.LFE2-.LFB2
+ 2204 0020 00000000 		.4byte	.LFB3
+ 2205 0024 48000000 		.4byte	.LFE3-.LFB3
+ 2206 0028 00000000 		.4byte	.LFB4
+ 2207 002c 18000000 		.4byte	.LFE4-.LFB4
+ 2208 0030 00000000 		.4byte	.LFB5
+ 2209 0034 38000000 		.4byte	.LFE5-.LFB5
+ 2210 0038 00000000 		.4byte	.LFB1
+ 2211 003c 3C000000 		.4byte	.LFE1-.LFB1
+ 2212 0040 00000000 		.4byte	.LFB0
+ 2213 0044 1C000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 56
+
+
+ 2214 0048 00000000 		.4byte	.LFB6
+ 2215 004c 24000000 		.4byte	.LFE6-.LFB6
+ 2216 0050 00000000 		.4byte	.LFB7
+ 2217 0054 18000000 		.4byte	.LFE7-.LFB7
+ 2218 0058 00000000 		.4byte	.LFB8
+ 2219 005c 18000000 		.4byte	.LFE8-.LFB8
+ 2220 0060 00000000 		.4byte	.LFB9
+ 2221 0064 0C000000 		.4byte	.LFE9-.LFB9
+ 2222 0068 00000000 		.4byte	.LFB11
+ 2223 006c 10000000 		.4byte	.LFE11-.LFB11
+ 2224 0070 00000000 		.4byte	.LFB12
+ 2225 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 2226 0078 00000000 		.4byte	.LFB13
+ 2227 007c 58000000 		.4byte	.LFE13-.LFB13
+ 2228 0080 00000000 		.4byte	.LFB14
+ 2229 0084 48000000 		.4byte	.LFE14-.LFB14
+ 2230 0088 00000000 		.4byte	.LFB15
+ 2231 008c 50000000 		.4byte	.LFE15-.LFB15
+ 2232 0090 00000000 		.4byte	0
+ 2233 0094 00000000 		.4byte	0
+ 2234              		.section	.debug_ranges,"",%progbits
+ 2235              	.Ldebug_ranges0:
+ 2236 0000 00000000 		.4byte	.LFB10
+ 2237 0004 5C000000 		.4byte	.LFE10
+ 2238 0008 00000000 		.4byte	.LFB2
+ 2239 000c 98000000 		.4byte	.LFE2
+ 2240 0010 00000000 		.4byte	.LFB3
+ 2241 0014 48000000 		.4byte	.LFE3
+ 2242 0018 00000000 		.4byte	.LFB4
+ 2243 001c 18000000 		.4byte	.LFE4
+ 2244 0020 00000000 		.4byte	.LFB5
+ 2245 0024 38000000 		.4byte	.LFE5
+ 2246 0028 00000000 		.4byte	.LFB1
+ 2247 002c 3C000000 		.4byte	.LFE1
+ 2248 0030 00000000 		.4byte	.LFB0
+ 2249 0034 1C000000 		.4byte	.LFE0
+ 2250 0038 00000000 		.4byte	.LFB6
+ 2251 003c 24000000 		.4byte	.LFE6
+ 2252 0040 00000000 		.4byte	.LFB7
+ 2253 0044 18000000 		.4byte	.LFE7
+ 2254 0048 00000000 		.4byte	.LFB8
+ 2255 004c 18000000 		.4byte	.LFE8
+ 2256 0050 00000000 		.4byte	.LFB9
+ 2257 0054 0C000000 		.4byte	.LFE9
+ 2258 0058 00000000 		.4byte	.LFB11
+ 2259 005c 10000000 		.4byte	.LFE11
+ 2260 0060 00000000 		.4byte	.LFB12
+ 2261 0064 0C000000 		.4byte	.LFE12
+ 2262 0068 00000000 		.4byte	.LFB13
+ 2263 006c 58000000 		.4byte	.LFE13
+ 2264 0070 00000000 		.4byte	.LFB14
+ 2265 0074 48000000 		.4byte	.LFE14
+ 2266 0078 00000000 		.4byte	.LFB15
+ 2267 007c 50000000 		.4byte	.LFE15
+ 2268 0080 00000000 		.4byte	0
+ 2269 0084 00000000 		.4byte	0
+ 2270              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 57
+
+
+ 2271              	.Ldebug_line0:
+ 2272 0000 F8010000 		.section	.debug_str,"MS",%progbits,1
+ 2272      02006800 
+ 2272      00000201 
+ 2272      FB0E0D00 
+ 2272      01010101 
+ 2273              	.LASF13:
+ 2274 0000 75696E74 		.ascii	"uint16\000"
+ 2274      313600
+ 2275              	.LASF43:
+ 2276 0007 61646347 		.ascii	"adcGain\000"
+ 2276      61696E00 
+ 2277              	.LASF60:
+ 2278 000f 43794578 		.ascii	"CyExitCriticalSection\000"
+ 2278      69744372 
+ 2278      69746963 
+ 2278      616C5365 
+ 2278      6374696F 
+ 2279              	.LASF25:
+ 2280 0025 636F756E 		.ascii	"counts\000"
+ 2280      747300
+ 2281              	.LASF9:
+ 2282 002c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2282      206C6F6E 
+ 2282      6720756E 
+ 2282      7369676E 
+ 2282      65642069 
+ 2283              	.LASF1:
+ 2284 0043 6C6F6E67 		.ascii	"long long int\000"
+ 2284      206C6F6E 
+ 2284      6720696E 
+ 2284      7400
+ 2285              	.LASF3:
+ 2286 0051 7369676E 		.ascii	"signed char\000"
+ 2286      65642063 
+ 2286      68617200 
+ 2287              	.LASF17:
+ 2288 005d 696E7433 		.ascii	"int32\000"
+ 2288      3200
+ 2289              	.LASF66:
+ 2290 0063 433A5C55 		.ascii	"C:\\Users\\Dell\\Documents\\GitHub\\PSoC_AntennaRot"
+ 2290      73657273 
+ 2290      5C44656C 
+ 2290      6C5C446F 
+ 2290      63756D65 
+ 2291 0091 61746F72 		.ascii	"ator\\Workspace01\\AntennaRotator.cydsn\000"
+ 2291      5C576F72 
+ 2291      6B737061 
+ 2291      63653031 
+ 2291      5C416E74 
+ 2292              	.LASF7:
+ 2293 00b7 6C6F6E67 		.ascii	"long int\000"
+ 2293      20696E74 
+ 2293      00
+ 2294              	.LASF38:
+ 2295 00c0 4144435F 		.ascii	"ADC_SAR_X_IsEndConversion\000"
+ 2295      5341525F 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 58
+
+
+ 2295      585F4973 
+ 2295      456E6443 
+ 2295      6F6E7665 
+ 2296              	.LASF23:
+ 2297 00da 72656731 		.ascii	"reg16\000"
+ 2297      3600
+ 2298              	.LASF12:
+ 2299 00e0 75696E74 		.ascii	"uint8\000"
+ 2299      3800
+ 2300              	.LASF59:
+ 2301 00e6 43794465 		.ascii	"CyDelayUs\000"
+ 2301      6C617955 
+ 2301      7300
+ 2302              	.LASF20:
+ 2303 00f0 646F7562 		.ascii	"double\000"
+ 2303      6C6500
+ 2304              	.LASF14:
+ 2305 00f7 75696E74 		.ascii	"uint32\000"
+ 2305      333200
+ 2306              	.LASF48:
+ 2307 00fe 636F756E 		.ascii	"countsPer10Volt\000"
+ 2307      74735065 
+ 2307      72313056 
+ 2307      6F6C7400 
+ 2308              	.LASF63:
+ 2309 010e 4379496E 		.ascii	"CyIntSetVector\000"
+ 2309      74536574 
+ 2309      56656374 
+ 2309      6F7200
+ 2310              	.LASF67:
+ 2311 011d 4144435F 		.ascii	"ADC_SAR_X_CalcGain\000"
+ 2311      5341525F 
+ 2311      585F4361 
+ 2311      6C634761 
+ 2311      696E00
+ 2312              	.LASF30:
+ 2313 0130 4144435F 		.ascii	"ADC_SAR_X_SetPower\000"
+ 2313      5341525F 
+ 2313      585F5365 
+ 2313      74506F77 
+ 2313      657200
+ 2314              	.LASF36:
+ 2315 0143 7265744D 		.ascii	"retMode\000"
+ 2315      6F646500 
+ 2316              	.LASF0:
+ 2317 014b 756E7369 		.ascii	"unsigned int\000"
+ 2317      676E6564 
+ 2317      20696E74 
+ 2317      00
+ 2318              	.LASF69:
+ 2319 0158 75566F6C 		.ascii	"uVolts\000"
+ 2319      747300
+ 2320              	.LASF8:
+ 2321 015f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2321      20756E73 
+ 2321      69676E65 
+ 2321      6420696E 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 59
+
+
+ 2321      7400
+ 2322              	.LASF51:
+ 2323 0171 766F6C74 		.ascii	"volts\000"
+ 2323      7300
+ 2324              	.LASF58:
+ 2325 0177 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 2325      74657243 
+ 2325      72697469 
+ 2325      63616C53 
+ 2325      65637469 
+ 2326              	.LASF29:
+ 2327 018e 4144435F 		.ascii	"ADC_SAR_X_Stop\000"
+ 2327      5341525F 
+ 2327      585F5374 
+ 2327      6F7000
+ 2328              	.LASF6:
+ 2329 019d 73686F72 		.ascii	"short unsigned int\000"
+ 2329      7420756E 
+ 2329      7369676E 
+ 2329      65642069 
+ 2329      6E7400
+ 2330              	.LASF15:
+ 2331 01b0 696E7438 		.ascii	"int8\000"
+ 2331      00
+ 2332              	.LASF28:
+ 2333 01b5 4144435F 		.ascii	"ADC_SAR_X_Enable\000"
+ 2333      5341525F 
+ 2333      585F456E 
+ 2333      61626C65 
+ 2333      00
+ 2334              	.LASF52:
+ 2335 01c6 4144435F 		.ascii	"ADC_SAR_X_initVar\000"
+ 2335      5341525F 
+ 2335      585F696E 
+ 2335      69745661 
+ 2335      7200
+ 2336              	.LASF47:
+ 2337 01d8 6D566F6C 		.ascii	"mVolts\000"
+ 2337      747300
+ 2338              	.LASF24:
+ 2339 01df 72656733 		.ascii	"reg32\000"
+ 2339      3200
+ 2340              	.LASF18:
+ 2341 01e5 666C6F61 		.ascii	"float32\000"
+ 2341      74333200 
+ 2342              	.LASF10:
+ 2343 01ed 73697A65 		.ascii	"sizetype\000"
+ 2343      74797065 
+ 2343      00
+ 2344              	.LASF2:
+ 2345 01f6 6C6F6E67 		.ascii	"long double\000"
+ 2345      20646F75 
+ 2345      626C6500 
+ 2346              	.LASF55:
+ 2347 0202 4144435F 		.ascii	"ADC_SAR_X_countsPer10Volt\000"
+ 2347      5341525F 
+ 2347      585F636F 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 60
+
+
+ 2347      756E7473 
+ 2347      50657231 
+ 2348              	.LASF35:
+ 2349 021c 4144435F 		.ascii	"ADC_SAR_X_Start\000"
+ 2349      5341525F 
+ 2349      585F5374 
+ 2349      61727400 
+ 2350              	.LASF21:
+ 2351 022c 696E7436 		.ascii	"int64\000"
+ 2351      3400
+ 2352              	.LASF62:
+ 2353 0232 4379496E 		.ascii	"CyIntSetPriority\000"
+ 2353      74536574 
+ 2353      5072696F 
+ 2353      72697479 
+ 2353      00
+ 2354              	.LASF19:
+ 2355 0243 666C6F61 		.ascii	"float\000"
+ 2355      7400
+ 2356              	.LASF39:
+ 2357 0249 4144435F 		.ascii	"ADC_SAR_X_GetResult16\000"
+ 2357      5341525F 
+ 2357      585F4765 
+ 2357      74526573 
+ 2357      756C7431 
+ 2358              	.LASF32:
+ 2359 025f 706F7765 		.ascii	"power\000"
+ 2359      7200
+ 2360              	.LASF22:
+ 2361 0265 72656738 		.ascii	"reg8\000"
+ 2361      00
+ 2362              	.LASF57:
+ 2363 026a 43794861 		.ascii	"CyHalt\000"
+ 2363      6C7400
+ 2364              	.LASF50:
+ 2365 0271 4144435F 		.ascii	"ADC_SAR_X_CountsTo_Volts\000"
+ 2365      5341525F 
+ 2365      585F436F 
+ 2365      756E7473 
+ 2365      546F5F56 
+ 2366              	.LASF4:
+ 2367 028a 756E7369 		.ascii	"unsigned char\000"
+ 2367      676E6564 
+ 2367      20636861 
+ 2367      7200
+ 2368              	.LASF5:
+ 2369 0298 73686F72 		.ascii	"short int\000"
+ 2369      7420696E 
+ 2369      7400
+ 2370              	.LASF40:
+ 2371 02a2 4144435F 		.ascii	"ADC_SAR_X_SetOffset\000"
+ 2371      5341525F 
+ 2371      585F5365 
+ 2371      744F6666 
+ 2371      73657400 
+ 2372              	.LASF65:
+ 2373 02b6 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_SAR_X.c\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 61
+
+
+ 2373      72617465 
+ 2373      645F536F 
+ 2373      75726365 
+ 2373      5C50536F 
+ 2374              	.LASF64:
+ 2375 02d9 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2375      43313120 
+ 2375      352E342E 
+ 2375      31203230 
+ 2375      31363036 
+ 2376 030c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2376      20726576 
+ 2376      6973696F 
+ 2376      6E203233 
+ 2376      37373135 
+ 2377 033f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2377      66756E63 
+ 2377      74696F6E 
+ 2377      2D736563 
+ 2377      74696F6E 
+ 2378              	.LASF54:
+ 2379 0367 4144435F 		.ascii	"ADC_SAR_X_countsPerVolt\000"
+ 2379      5341525F 
+ 2379      585F636F 
+ 2379      756E7473 
+ 2379      50657256 
+ 2380              	.LASF31:
+ 2381 037f 7265736F 		.ascii	"resolution\000"
+ 2381      6C757469 
+ 2381      6F6E00
+ 2382              	.LASF42:
+ 2383 038a 4144435F 		.ascii	"ADC_SAR_X_SetGain\000"
+ 2383      5341525F 
+ 2383      585F5365 
+ 2383      74476169 
+ 2383      6E00
+ 2384              	.LASF11:
+ 2385 039c 63686172 		.ascii	"char\000"
+ 2385      00
+ 2386              	.LASF33:
+ 2387 03a1 4144435F 		.ascii	"ADC_SAR_X_SetResolution\000"
+ 2387      5341525F 
+ 2387      585F5365 
+ 2387      74526573 
+ 2387      6F6C7574 
+ 2388              	.LASF34:
+ 2389 03b9 4144435F 		.ascii	"ADC_SAR_X_Init\000"
+ 2389      5341525F 
+ 2389      585F496E 
+ 2389      697400
+ 2390              	.LASF41:
+ 2391 03c8 6F666673 		.ascii	"offset\000"
+ 2391      657400
+ 2392              	.LASF46:
+ 2393 03cf 61646343 		.ascii	"adcCounts\000"
+ 2393      6F756E74 
+ 2393      7300
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 62
+
+
+ 2394              	.LASF68:
+ 2395 03d9 4144435F 		.ascii	"ADC_SAR_X_GetResult8\000"
+ 2395      5341525F 
+ 2395      585F4765 
+ 2395      74526573 
+ 2395      756C7438 
+ 2396              	.LASF49:
+ 2397 03ee 4144435F 		.ascii	"ADC_SAR_X_CountsTo_uVolts\000"
+ 2397      5341525F 
+ 2397      585F436F 
+ 2397      756E7473 
+ 2397      546F5F75 
+ 2398              	.LASF27:
+ 2399 0408 656E6162 		.ascii	"enableInterrupts\000"
+ 2399      6C65496E 
+ 2399      74657272 
+ 2399      75707473 
+ 2399      00
+ 2400              	.LASF37:
+ 2401 0419 73746174 		.ascii	"status\000"
+ 2401      757300
+ 2402              	.LASF53:
+ 2403 0420 4144435F 		.ascii	"ADC_SAR_X_offset\000"
+ 2403      5341525F 
+ 2403      585F6F66 
+ 2403      66736574 
+ 2403      00
+ 2404              	.LASF16:
+ 2405 0431 696E7431 		.ascii	"int16\000"
+ 2405      3600
+ 2406              	.LASF44:
+ 2407 0437 4144435F 		.ascii	"ADC_SAR_X_SetScaledGain\000"
+ 2407      5341525F 
+ 2407      585F5365 
+ 2407      74536361 
+ 2407      6C656447 
+ 2408              	.LASF56:
+ 2409 044f 4144435F 		.ascii	"ADC_SAR_X_shift\000"
+ 2409      5341525F 
+ 2409      585F7368 
+ 2409      69667400 
+ 2410              	.LASF26:
+ 2411 045f 746D7052 		.ascii	"tmpReg\000"
+ 2411      656700
+ 2412              	.LASF45:
+ 2413 0466 4144435F 		.ascii	"ADC_SAR_X_CountsTo_mVolts\000"
+ 2413      5341525F 
+ 2413      585F436F 
+ 2413      756E7473 
+ 2413      546F5F6D 
+ 2414              	.LASF61:
+ 2415 0480 4144435F 		.ascii	"ADC_SAR_X_theACLK_SetModeRegister\000"
+ 2415      5341525F 
+ 2415      585F7468 
+ 2415      6541434C 
+ 2415      4B5F5365 
+ 2416              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccWrsJ8h.s 			page 63
+
+

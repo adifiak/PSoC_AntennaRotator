@@ -29,6 +29,20 @@ void ResetInput(enum READ_STATE* readState, struct INPUT_BUFFER* cmd, struct INP
 bool AddArgumentDigit(char c, struct INPUT_BUFFER* arg);
 bool AddCommandChar(char c, struct INPUT_BUFFER* cmd);
 
+bool refresh_display = false;
+
+int x_des = 0;
+int y_des = 0;
+int x_act = 0;
+int y_act = 0;
+
+CY_ISR( X_ADC_Handler ){
+    x_act = ADC_SAR_X_GetResult16();
+}
+
+CY_ISR( DISPLAY_REFRESH_Handler ){
+    refresh_display = true;
+}
 
 int main(void)
 {
@@ -44,23 +58,29 @@ int main(void)
     
     UART_Start();
     I2C_OLED_Start();
-    ADC_SAR_1_Start();
-    ADC_SAR_1_StartConvert();
+    ADC_SAR_X_Start();
+    PWM_1_Start();
+    Display_Refresh_Timer_Start();
+    
+    LED_Pin_Write(1);
+    
+    X_ADC_Int_StartEx(X_ADC_Handler);
+    Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
   
+    
+    
     initHorizon();
-    renderHorizon();
+    renderHorizon(x_des, x_act, y_des, y_act);
     UART_PutString("Hello World!\n");
     
     ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
     
     for(;;)
     {
-        if(ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS)){
-            int res = ADC_SAR_1_GetResult16();
-            char str[8];
-            sprintf(str, "%d\r\n", res);
-            UART_PutString(str);
-            ADC_SAR_1_StartConvert();
+        //Refresh display
+        if(refresh_display){
+            refresh_display = false;
+            renderHorizon(x_des, x_act, y_des, y_act);
         }
         //Input processing
         char inChar = UART_GetChar();
