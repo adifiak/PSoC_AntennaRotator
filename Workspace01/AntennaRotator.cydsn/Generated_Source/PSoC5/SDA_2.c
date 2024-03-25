@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Analog_Pin_X.c  
+* File Name: SDA_2.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "Analog_Pin_X.h"
+#include "SDA_2.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 Analog_Pin_X__PORT == 15 && ((Analog_Pin_X__MASK & 0xC0) != 0))
+	 SDA_2__PORT == 15 && ((SDA_2__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: Analog_Pin_X_Write
+* Function Name: SDA_2_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet Analog_Pin_X_SUT.c usage_Analog_Pin_X_Write
+*  \snippet SDA_2_SUT.c usage_SDA_2_Write
 *******************************************************************************/
-void Analog_Pin_X_Write(uint8 value)
+void SDA_2_Write(uint8 value)
 {
-    uint8 staticBits = (Analog_Pin_X_DR & (uint8)(~Analog_Pin_X_MASK));
-    Analog_Pin_X_DR = staticBits | ((uint8)(value << Analog_Pin_X_SHIFT) & Analog_Pin_X_MASK);
+    uint8 staticBits = (SDA_2_DR & (uint8)(~SDA_2_MASK));
+    SDA_2_DR = staticBits | ((uint8)(value << SDA_2_SHIFT) & SDA_2_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: Analog_Pin_X_SetDriveMode
+* Function Name: SDA_2_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void Analog_Pin_X_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet Analog_Pin_X_SUT.c usage_Analog_Pin_X_SetDriveMode
+*  \snippet SDA_2_SUT.c usage_SDA_2_SetDriveMode
 *******************************************************************************/
-void Analog_Pin_X_SetDriveMode(uint8 mode)
+void SDA_2_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(Analog_Pin_X_0, mode);
+	CyPins_SetPinDriveMode(SDA_2_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: Analog_Pin_X_Read
+* Function Name: SDA_2_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void Analog_Pin_X_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet Analog_Pin_X_SUT.c usage_Analog_Pin_X_Read  
+*  \snippet SDA_2_SUT.c usage_SDA_2_Read  
 *******************************************************************************/
-uint8 Analog_Pin_X_Read(void)
+uint8 SDA_2_Read(void)
 {
-    return (Analog_Pin_X_PS & Analog_Pin_X_MASK) >> Analog_Pin_X_SHIFT;
+    return (SDA_2_PS & SDA_2_MASK) >> SDA_2_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: Analog_Pin_X_ReadDataReg
+* Function Name: SDA_2_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 Analog_Pin_X_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred Analog_Pin_X_Read() API because the 
-* Analog_Pin_X_ReadDataReg() reads the data register instead of the status 
+* preferred SDA_2_Read() API because the 
+* SDA_2_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 Analog_Pin_X_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet Analog_Pin_X_SUT.c usage_Analog_Pin_X_ReadDataReg 
+*  \snippet SDA_2_SUT.c usage_SDA_2_ReadDataReg 
 *******************************************************************************/
-uint8 Analog_Pin_X_ReadDataReg(void)
+uint8 SDA_2_ReadDataReg(void)
 {
-    return (Analog_Pin_X_DR & Analog_Pin_X_MASK) >> Analog_Pin_X_SHIFT;
+    return (SDA_2_DR & SDA_2_MASK) >> SDA_2_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(Analog_Pin_X_INTSTAT) 
+#if defined(SDA_2_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: Analog_Pin_X_SetInterruptMode
+    * Function Name: SDA_2_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 Analog_Pin_X_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use Analog_Pin_X_INTR_ALL to configure the
+    *  component. Or you may use SDA_2_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - Analog_Pin_X_0_INTR       (First pin in the list)
-    *  - Analog_Pin_X_1_INTR       (Second pin in the list)
+    *  - SDA_2_0_INTR       (First pin in the list)
+    *  - SDA_2_1_INTR       (Second pin in the list)
     *  - ...
-    *  - Analog_Pin_X_INTR_ALL     (All pins in Pins component)
+    *  - SDA_2_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 Analog_Pin_X_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet Analog_Pin_X_SUT.c usage_Analog_Pin_X_SetInterruptMode
+    *  \snippet SDA_2_SUT.c usage_SDA_2_SetInterruptMode
     *******************************************************************************/
-    void Analog_Pin_X_SetInterruptMode(uint16 position, uint16 mode)
+    void SDA_2_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & Analog_Pin_X_0_INTR) != 0u) 
+		if((position & SDA_2_0_INTR) != 0u) 
 		{ 
-			 Analog_Pin_X_0_INTTYPE_REG = (uint8)mode; 
+			 SDA_2_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: Analog_Pin_X_ClearInterrupt
+    * Function Name: SDA_2_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 Analog_Pin_X_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet Analog_Pin_X_SUT.c usage_Analog_Pin_X_ClearInterrupt
+    *  \snippet SDA_2_SUT.c usage_SDA_2_ClearInterrupt
     *******************************************************************************/
-    uint8 Analog_Pin_X_ClearInterrupt(void)
+    uint8 SDA_2_ClearInterrupt(void)
     {
-        return (Analog_Pin_X_INTSTAT & Analog_Pin_X_MASK) >> Analog_Pin_X_SHIFT;
+        return (SDA_2_INTSTAT & SDA_2_MASK) >> SDA_2_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

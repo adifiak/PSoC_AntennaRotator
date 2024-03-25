@@ -14,6 +14,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "RotatorHorizon.h"	
+#include "util.h"
+
+#define AS5600_FROM_ANGULAR(x) (((float)(1 << 12) / 360.0f) * x)
+#define AS5600_TO_ANGULAR(x) (x / ((float)(1 << 12) / 360.0f))
 
 typedef enum READ_STATE{
     CMD, ARG1, ARG2, ARG3
@@ -36,10 +40,6 @@ int y_des = 0;
 int x_act = 0;
 int y_act = 0;
 
-CY_ISR( X_ADC_Handler ){
-    x_act = ADC_SAR_X_GetResult16();
-}
-
 CY_ISR( DISPLAY_REFRESH_Handler ){
     refresh_display = true;
 }
@@ -58,13 +58,12 @@ int main(void)
     
     UART_Start();
     I2C_OLED_Start();
-    ADC_SAR_X_Start();
     PWM_1_Start();
     Display_Refresh_Timer_Start();
+    I2C_1_Start();
     
     LED_Pin_Write(1);
     
-    X_ADC_Int_StartEx(X_ADC_Handler);
     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
   
     
@@ -75,6 +74,36 @@ int main(void)
     
     ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
     
+    uint8 dev_addr = 0x36;
+    uint8 reg_addr = 0x0E;
+    uint8 buf[2];
+    int tmp;
+    float ang;
+    
+    for(;;){
+        I2C_1_MasterClearStatus();
+        uint8 status = I2C_1_MasterSendStart(0x36, 0);
+        if(I2C_1_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
+        {
+            /* Read array of 5 bytes */
+                I2C_1_MasterWriteByte(0x0E);
+                I2C_1_MasterSendRestart(0x36, 1);
+                buf[0] = I2C_1_MasterReadByte(I2C_1_ACK_DATA);
+                //I2C_1_MasterWriteByte(0x0F);
+                buf[1] = I2C_1_MasterReadByte(I2C_1_NAK_DATA);
+            
+        }
+        I2C_1_MasterSendStop(); /* Send Stop */
+        
+        tmp = ((buf[0])<<8) + (buf[1]);
+        ang = AS5600_TO_ANGULAR(tmp);
+        char str[32];
+        sprintf(str, "D:%d F:%f\r\n", tmp, ang);
+
+        UART_PutString(str);
+        CyDelay(500);
+    }
+
     for(;;)
     {
         //Refresh display

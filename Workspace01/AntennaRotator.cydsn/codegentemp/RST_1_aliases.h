@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Analog_Pin_X.h  
+* File Name: RST_1.h  
 * Version 2.20
 *
 * Description:
@@ -15,8 +15,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_Analog_Pin_X_ALIASES_H) /* Pins Analog_Pin_X_ALIASES_H */
-#define CY_PINS_Analog_Pin_X_ALIASES_H
+#if !defined(CY_PINS_RST_1_ALIASES_H) /* Pins RST_1_ALIASES_H */
+#define CY_PINS_RST_1_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,12 +25,12 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define Analog_Pin_X_0			(Analog_Pin_X__0__PC)
-#define Analog_Pin_X_0_INTR	((uint16)((uint16)0x0001u << Analog_Pin_X__0__SHIFT))
+#define RST_1_0			(RST_1__0__PC)
+#define RST_1_0_INTR	((uint16)((uint16)0x0001u << RST_1__0__SHIFT))
 
-#define Analog_Pin_X_INTR_ALL	 ((uint16)(Analog_Pin_X_0_INTR))
+#define RST_1_INTR_ALL	 ((uint16)(RST_1_0_INTR))
 
-#endif /* End Pins Analog_Pin_X_ALIASES_H */
+#endif /* End Pins RST_1_ALIASES_H */
 
 
 /* [] END OF FILE */

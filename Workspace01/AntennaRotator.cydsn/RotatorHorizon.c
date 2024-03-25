@@ -25,7 +25,7 @@ void initHorizon(){
 void renderHorizon(int x_des, int x_act, int y_des, int y_act){
     char str[32];
     display_clear();    
-    display_update(); 
+    //display_update(); 
         
     gfx_setTextSize(1);
     gfx_setTextColor(WHITE);
@@ -48,7 +48,7 @@ void renderHorizon(int x_des, int x_act, int y_des, int y_act){
     gfx_drawPixel(11, 11, WHITE);
     gfx_drawPixel(12, 12, BLACK);
     gfx_drawPixel(13, 13, BLACK);*/
-    display_update(); 
+    //display_update(); 
 }
 
 /* [] END OF FILE */

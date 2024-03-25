@@ -43,6 +43,7 @@
           <File BuildType="BUILD" Toolchain="">font.h</File>
           <File BuildType="BUILD" Toolchain="">ssd1306.h</File>
           <File BuildType="BUILD" Toolchain="">RotatorHorizon.h</File>
+          <File BuildType="BUILD" Toolchain="">util.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\Generated_Source\PSoC5">
@@ -135,13 +136,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_X_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_X.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_X.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X_PM.c</File>
@@ -168,15 +162,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Motor_Enable.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Motor_Enable.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Motor_Enable_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_theACLK.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_ExtVref_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_ExtVref.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_X_ExtVref.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_ADC_Int.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\X_ADC_Int.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\timer_clock.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer.c</File>
@@ -184,6 +169,25 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_Int.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_Int.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RST_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RST_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RST_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_BOOT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_SLAVE.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_MASTER.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_PVT.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\Export\ARM_GCC_Generic">
