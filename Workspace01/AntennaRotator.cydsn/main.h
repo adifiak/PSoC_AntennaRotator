@@ -9,10 +9,18 @@
  *
  * ========================================
 */
+#ifndef MAIN_H
+#define MAIN_H
+    
+#define AS5600_FROM_ANGULAR(x) (uint16)(((float)(1 << 12) / 360.0f) * x)
+#define AS5600_TO_ANGULAR(x) (x / ((float)(1 << 12) / 360.0f))
 
-#include "main.h"
+typedef struct ROTATOR_STATE{
+    int x_des;
+    int y_des;
+    int x_act;
+    int y_act;
+}ROTATOR_STATE;
 
-void initHorizon();
-void renderHorizon(ROTATOR_STATE* rotator_state);
-
+#endif /*MAIN_H*/
 /* [] END OF FILE */

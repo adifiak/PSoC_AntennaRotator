@@ -14,10 +14,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "RotatorHorizon.h"	
+#include "main.h"
 #include "util.h"
-
-#define AS5600_FROM_ANGULAR(x) (((float)(1 << 12) / 360.0f) * x)
-#define AS5600_TO_ANGULAR(x) (x / ((float)(1 << 12) / 360.0f))
 
 typedef enum READ_STATE{
     CMD, ARG1, ARG2, ARG3
@@ -28,17 +26,17 @@ typedef struct INPUT_BUFFER{
     int cnt;
 }INPUT_BUFFER;
 
+
+
 bool ProcessCommand(struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3);
 void ResetInput(enum READ_STATE* readState, struct INPUT_BUFFER* cmd, struct INPUT_BUFFER* arg1, struct INPUT_BUFFER* arg2, struct INPUT_BUFFER* arg3);
 bool AddArgumentDigit(char c, struct INPUT_BUFFER* arg);
 bool AddCommandChar(char c, struct INPUT_BUFFER* cmd);
+void refreshRotation(ROTATOR_STATE* rotator_state);
 
 bool refresh_display = false;
 
-int x_des = 0;
-int y_des = 0;
-int x_act = 0;
-int y_act = 0;
+
 
 CY_ISR( DISPLAY_REFRESH_Handler ){
     refresh_display = true;
@@ -56,60 +54,35 @@ int main(void)
     struct INPUT_BUFFER arg2;
     struct INPUT_BUFFER arg3;
     
+    struct ROTATOR_STATE rotator_state;
+    
+    rotator_state.x_des = 0;
+    rotator_state.x_act = 0;
+    rotator_state.y_des = 0;
+    rotator_state.y_act = 0;
+    
+    
+    ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
+    
     UART_Start();
     I2C_OLED_Start();
     PWM_1_Start();
     Display_Refresh_Timer_Start();
     I2C_1_Start();
     
-    LED_Pin_Write(1);
+    refreshRotation(&rotator_state);
+    
+    initHorizon();
+    renderHorizon(&rotator_state);
     
     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
   
-    
-    
-    initHorizon();
-    renderHorizon(x_des, x_act, y_des, y_act);
-    UART_PutString("Hello World!\n");
-    
-    ResetInput(&readState, &cmd, &arg1, &arg2, &arg3);
-    
-    uint8 dev_addr = 0x36;
-    uint8 reg_addr = 0x0E;
-    uint8 buf[2];
-    int tmp;
-    float ang;
-    
-    for(;;){
-        I2C_1_MasterClearStatus();
-        uint8 status = I2C_1_MasterSendStart(0x36, 0);
-        if(I2C_1_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
-        {
-            /* Read array of 5 bytes */
-                I2C_1_MasterWriteByte(0x0E);
-                I2C_1_MasterSendRestart(0x36, 1);
-                buf[0] = I2C_1_MasterReadByte(I2C_1_ACK_DATA);
-                //I2C_1_MasterWriteByte(0x0F);
-                buf[1] = I2C_1_MasterReadByte(I2C_1_NAK_DATA);
-            
-        }
-        I2C_1_MasterSendStop(); /* Send Stop */
-        
-        tmp = ((buf[0])<<8) + (buf[1]);
-        ang = AS5600_TO_ANGULAR(tmp);
-        char str[32];
-        sprintf(str, "D:%d F:%f\r\n", tmp, ang);
-
-        UART_PutString(str);
-        CyDelay(500);
-    }
-
     for(;;)
     {
         //Refresh display
         if(refresh_display){
             refresh_display = false;
-            renderHorizon(x_des, x_act, y_des, y_act);
+            renderHorizon(&rotator_state);
         }
         //Input processing
         char inChar = UART_GetChar();
@@ -243,6 +216,29 @@ bool AddCommandChar(char c, struct INPUT_BUFFER* cmd){
             return false;
     }
     return true;
+}
+
+void refreshRotation(ROTATOR_STATE* rotator_state){
+    uint8 dev_addr = 0x36;
+    uint8 reg_addr = 0x0E;
+    uint8 buf[2];
+    
+    //X  
+    I2C_1_MasterClearStatus();
+    uint8 status = I2C_1_MasterSendStart(0x36, 0);
+    if(I2C_1_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
+    {
+            /* Read array of 5 bytes */
+                I2C_1_MasterWriteByte(0x0E);
+                I2C_1_MasterSendRestart(0x36, 1);
+                buf[0] = I2C_1_MasterReadByte(I2C_1_ACK_DATA);
+                //I2C_1_MasterWriteByte(0x0F);
+                buf[1] = I2C_1_MasterReadByte(I2C_1_NAK_DATA);
+                
+                rotator_state->x_act = ((buf[0])<<8) + (buf[1]);
+    }
+    I2C_1_MasterSendStop(); /* Send Stop */
+    
 }
 
 /* [] END OF FILE */

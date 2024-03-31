@@ -231,7 +231,7 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>Control_Reg_Actual_Degree_X</name>
+      <name>Control_Reg_Desired_Quarter_X</name>
       <description>No description available</description>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
@@ -241,9 +241,9 @@
       </addressBlock>
       <registers>
         <register>
-          <name>Control_Reg_Actual_Degree_X_CONTROL_REG</name>
+          <name>Control_Reg_Desired_Quarter_X_CONTROL_REG</name>
           <description>No description available</description>
-          <addressOffset>0x40006578</addressOffset>
+          <addressOffset>0x40006476</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -265,27 +265,6 @@
           <name>Control_Reg_Desired_Degree_X_CONTROL_REG</name>
           <description>No description available</description>
           <addressOffset>0x40006477</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-      </registers>
-    </peripheral>
-    <peripheral>
-      <name>Control_Reg_Desired_Quarter_X</name>
-      <description>No description available</description>
-      <baseAddress>0x0</baseAddress>
-      <addressBlock>
-        <offset>0</offset>
-        <size>0x0</size>
-        <usage>registers</usage>
-      </addressBlock>
-      <registers>
-        <register>
-          <name>Control_Reg_Desired_Quarter_X_CONTROL_REG</name>
-          <description>No description available</description>
-          <addressOffset>0x40006476</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -802,6 +781,27 @@
           <name>Motor_Enable_CONTROL_REG</name>
           <description>No description available</description>
           <addressOffset>0x40006575</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>Control_Reg_Actual_Degree_X</name>
+      <description>No description available</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>Control_Reg_Actual_Degree_X_CONTROL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x40006578</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>

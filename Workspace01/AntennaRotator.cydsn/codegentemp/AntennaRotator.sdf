@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2024-03-25T23:12:15Z")
+ (DATE "2024-03-26T08:29:11Z")
  (DESIGN "AntennaRotator")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")
@@ -545,7 +545,6 @@
     (INTERCONNECT SDA_1\(0\)_PAD SDA_1\(0\).pad_in (0.000:0.000:0.000))
     (INTERCONNECT SCL_1\(0\).pad_out SCL_1\(0\)_PAD (0.000:0.000:0.000))
     (INTERCONNECT SCL_1\(0\)_PAD SCL_1\(0\).pad_in (0.000:0.000:0.000))
-    (INTERCONNECT Analog_Pin_2\(0\)_PAD Analog_Pin_2\(0\).pad_in (0.000:0.000:0.000))
     (INTERCONNECT SCL_2\(0\).pad_out SCL_2\(0\)_PAD (0.000:0.000:0.000))
     (INTERCONNECT SCL_2\(0\)_PAD SCL_2\(0\).pad_in (0.000:0.000:0.000))
     (INTERCONNECT X_Dir_Pin\(0\).pad_out X_Dir_Pin\(0\)_PAD (0.000:0.000:0.000))

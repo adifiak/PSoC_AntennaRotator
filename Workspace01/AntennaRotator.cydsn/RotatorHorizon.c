@@ -22,10 +22,9 @@ void initHorizon(){
     display_update(); 
 }
 
-void renderHorizon(int x_des, int x_act, int y_des, int y_act){
+void renderHorizon(ROTATOR_STATE* rotator_state){
     char str[32];
     display_clear();    
-    //display_update(); 
         
     gfx_setTextSize(1);
     gfx_setTextColor(WHITE);
@@ -35,20 +34,14 @@ void renderHorizon(int x_des, int x_act, int y_des, int y_act){
     gfx_setTextSize(1);
     gfx_setTextColor(WHITE);
     gfx_setCursor(0,0);
-    sprintf(str, "X : %3d : %3d", x_des, x_act);
+    sprintf(str, "X : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state->x_des), AS5600_TO_ANGULAR(rotator_state->x_act));
     gfx_println(str); 
     gfx_setTextColor(WHITE);
-    sprintf(str, "Y : %3d : %3d", y_des, y_act);
+    sprintf(str, "Y : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state->y_des), AS5600_TO_ANGULAR(rotator_state->y_act));
     gfx_setCursor(0,8);
     gfx_println(str); 
     display_update();
     
-    // drawing a pixel
-    /*gfx_drawPixel(10, 10, WHITE);
-    gfx_drawPixel(11, 11, WHITE);
-    gfx_drawPixel(12, 12, BLACK);
-    gfx_drawPixel(13, 13, BLACK);*/
-    //display_update(); 
 }
 
 /* [] END OF FILE */

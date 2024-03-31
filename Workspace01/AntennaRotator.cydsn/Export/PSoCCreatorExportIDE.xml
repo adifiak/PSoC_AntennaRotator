@@ -44,6 +44,7 @@
           <File BuildType="BUILD" Toolchain="">ssd1306.h</File>
           <File BuildType="BUILD" Toolchain="">RotatorHorizon.h</File>
           <File BuildType="BUILD" Toolchain="">util.h</File>
+          <File BuildType="BUILD" Toolchain="">main.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\Generated_Source\PSoC5">
@@ -133,9 +134,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_SLAVE.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_MASTER.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_PVT.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Analog_Pin_2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_Actual_Quarter_X_PM.c</File>

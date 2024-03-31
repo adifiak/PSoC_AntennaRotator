@@ -52,9 +52,6 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_SLAVE.c" value="SOURCE_C;CortexM3;;;;I2C_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_MASTER.c" value="SOURCE_C;CortexM3;;;;I2C_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_PVT.h" value="HEADER;;;;;I2C_OLED" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Analog_Pin_2_aliases.h" value="HEADER;;;;;Analog_Pin_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Analog_Pin_2.c" value="SOURCE_C;CortexM3;;;;Analog_Pin_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Analog_Pin_2.h" value="HEADER;;;;;Analog_Pin_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2_aliases.h" value="HEADER;;;;;SCL_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2.c" value="SOURCE_C;CortexM3;;;;SCL_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2.h" value="HEADER;;;;;SCL_2" />

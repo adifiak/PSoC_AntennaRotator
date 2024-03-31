@@ -324,12 +324,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-SDA_2(0)/in_clock                                           iocell14            0      0  RISE       1
+SDA_2(0)/in_clock                                           iocell13            0      0  RISE       1
 
 Data path
 pin name                          model name   delay     AT  slack  edge  Fanout
 --------------------------------  -----------  -----  -----  -----  ----  ------
-SDA_2(0)/fb                       iocell14      2667   2667  29934  RISE       1
+SDA_2(0)/fb                       iocell13      2667   2667  29934  RISE       1
 \I2C_1:bI2C_UDB:status_1\/main_6  macrocell58   5556   8223  29934  RISE       1
 
 Capture Clock Path
@@ -590,12 +590,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-SDA_2(0)/in_clock                                           iocell14            0      0  RISE       1
+SDA_2(0)/in_clock                                           iocell13            0      0  RISE       1
 
 Data path
 pin name                          model name   delay     AT  slack  edge  Fanout
 --------------------------------  -----------  -----  -----  -----  ----  ------
-SDA_2(0)/fb                       iocell14      2667   2667  29934  RISE       1
+SDA_2(0)/fb                       iocell13      2667   2667  29934  RISE       1
 \I2C_1:bI2C_UDB:status_1\/main_6  macrocell58   5556   8223  29934  RISE       1
 
 Capture Clock Path
@@ -750,12 +750,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-SDA_2(0)/in_clock                                           iocell14            0      0  RISE       1
+SDA_2(0)/in_clock                                           iocell13            0      0  RISE       1
 
 Data path
 pin name                            model name   delay     AT  slack  edge  Fanout
 ----------------------------------  -----------  -----  -----  -----  ----  ------
-SDA_2(0)/fb                         iocell14      2667   2667  29934  RISE       1
+SDA_2(0)/fb                         iocell13      2667   2667  29934  RISE       1
 \I2C_1:bI2C_UDB:sda_in_reg\/main_0  macrocell50   4648   7315  30842  RISE       1
 
 Capture Clock Path
@@ -910,12 +910,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-SCL_2(0)/in_clock                                           iocell11            0      0  RISE       1
+SCL_2(0)/in_clock                                           iocell10            0      0  RISE       1
 
 Data path
 pin name                            model name   delay     AT  slack  edge  Fanout
 ----------------------------------  -----------  -----  -----  -----  ----  ------
-SCL_2(0)/fb                         iocell11      2035   2035  31431  RISE       1
+SCL_2(0)/fb                         iocell10      2035   2035  31431  RISE       1
 \I2C_1:bI2C_UDB:scl_in_reg\/main_0  macrocell60   4690   6725  31431  RISE       1
 
 Capture Clock Path
@@ -950,12 +950,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-SCL_2(0)/in_clock                                           iocell11            0      0  RISE       1
+SCL_2(0)/in_clock                                           iocell10            0      0  RISE       1
 
 Data path
 pin name                            model name   delay     AT  slack  edge  Fanout
 ----------------------------------  -----------  -----  -----  -----  ----  ------
-SCL_2(0)/fb                         iocell11      2035   2035  31431  RISE       1
+SCL_2(0)/fb                         iocell10      2035   2035  31431  RISE       1
 \I2C_1:bI2C_UDB:clk_eq_reg\/main_0  macrocell70   4690   6725  31431  RISE       1
 
 Capture Clock Path
@@ -990,12 +990,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-RST_1(0)/in_clock                                           iocell15            0      0  RISE       1
+RST_1(0)/in_clock                                           iocell14            0      0  RISE       1
 
 Data path
 pin name                         model name   delay     AT  slack  edge  Fanout
 -------------------------------  -----------  -----  -----  -----  ----  ------
-RST_1(0)/fb                      iocell15      1661   1661  31891  RISE       1
+RST_1(0)/fb                      iocell14      1661   1661  31891  RISE       1
 \I2C_1:bI2C_UDB:m_reset\/main_0  macrocell73   4605   6266  31891  RISE       1
 
 Capture Clock Path

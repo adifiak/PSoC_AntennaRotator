@@ -36,8 +36,6 @@
 #include "SCL_1.h"
 #include "I2C_OLED.h"
 #include "I2C_OLED_PVT.h"
-#include "Analog_Pin_2_aliases.h"
-#include "Analog_Pin_2.h"
 #include "SCL_2_aliases.h"
 #include "SCL_2.h"
 #include "Clock_2.h"
