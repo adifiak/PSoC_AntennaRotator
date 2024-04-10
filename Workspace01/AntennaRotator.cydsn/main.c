@@ -17,6 +17,8 @@
 #include "main.h"
 #include "util.h"
 
+#define STEPPING_TRESHOLD 64
+
 typedef enum READ_STATE{
     CMD, ARG1, ARG2, ARG3
 }READ_STATE;
@@ -35,11 +37,24 @@ bool AddCommandChar(char c, struct INPUT_BUFFER* cmd);
 void refreshRotation(ROTATOR_STATE* rotator_state);
 
 bool refresh_display = false;
+bool refresh_rotation = false;
 
-
+struct ROTATOR_STATE rotator_state;
 
 CY_ISR( DISPLAY_REFRESH_Handler ){
     refresh_display = true;
+}
+
+CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
+    X_Dir_Pin_Write(rotator_state.x_act < rotator_state.x_des);
+    if(abs(rotator_state.x_act - rotator_state.x_des) > STEPPING_TRESHOLD) {
+        X_Step_Pin_Write(1);
+    }
+}
+
+CY_ISR( MOTOR_CONTROLL_FALLING_EDGE_Handler ){
+    X_Step_Pin_Write(0);
+    refresh_rotation = true;
 }
 
 int main(void)
@@ -54,9 +69,9 @@ int main(void)
     struct INPUT_BUFFER arg2;
     struct INPUT_BUFFER arg3;
     
-    struct ROTATOR_STATE rotator_state;
     
-    rotator_state.x_des = 0;
+    
+    rotator_state.x_des = AS5600_FROM_ANGULAR(180);
     rotator_state.x_act = 0;
     rotator_state.y_des = 0;
     rotator_state.y_act = 0;
@@ -76,9 +91,18 @@ int main(void)
     renderHorizon(&rotator_state);
     
     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
+    MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
+    MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
+    
+    Motor_Enable_Write(1);
   
     for(;;)
     {
+        //Refresh rotation data
+        if(refresh_rotation){
+            refresh_rotation = false;
+            refreshRotation(&rotator_state);
+        }
         //Refresh display
         if(refresh_display){
             refresh_display = false;
@@ -219,8 +243,8 @@ bool AddCommandChar(char c, struct INPUT_BUFFER* cmd){
 }
 
 void refreshRotation(ROTATOR_STATE* rotator_state){
-    uint8 dev_addr = 0x36;
-    uint8 reg_addr = 0x0E;
+    //uint8 dev_addr = 0x36;
+    //uint8 reg_addr = 0x0E;
     uint8 buf[2];
     
     //X  

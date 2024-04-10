@@ -2,7 +2,7 @@
 --	Conversion of AntennaRotator.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Mar 26 09:29:05 2024
+--	Tue Apr 02 11:53:56 2024
 --
 
 USE cypress.cypress.all;
@@ -438,142 +438,19 @@ SIGNAL Net_1795 : bit;
 TERMINAL tmpSIOVREF__SCL_2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__SCL_2_net_0 : bit;
 SIGNAL Net_1796 : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:clk\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:rst\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_bus_7\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Actual_Quarter_X:control_bus_7\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_7\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_bus_6\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Actual_Quarter_X:control_bus_6\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_6\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_bus_5\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Actual_Quarter_X:control_bus_5\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_5\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_bus_4\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Actual_Quarter_X:control_bus_4\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_4\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_bus_3\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Actual_Quarter_X:control_bus_3\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_3\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_bus_2\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Actual_Quarter_X:control_bus_2\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_2\ : bit;
-SIGNAL Net_718_1 : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_1\ : bit;
-SIGNAL Net_718_0 : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_out_0\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_7\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_6\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_5\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_4\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_3\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_2\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_1\ : bit;
-SIGNAL \Control_Reg_Actual_Quarter_X:control_0\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:clk\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:rst\ : bit;
-SIGNAL Net_715_7 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_7\ : bit;
-SIGNAL Net_715_6 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_6\ : bit;
-SIGNAL Net_715_5 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_5\ : bit;
-SIGNAL Net_715_4 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_4\ : bit;
-SIGNAL Net_715_3 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_3\ : bit;
-SIGNAL Net_715_2 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_2\ : bit;
-SIGNAL Net_715_1 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_1\ : bit;
-SIGNAL Net_715_0 : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_out_0\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_7\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_6\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_5\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_4\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_3\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_2\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_1\ : bit;
-SIGNAL \Control_Reg_Actual_Degree_X:control_0\ : bit;
 SIGNAL tmpOE__X_Dir_Pin_net_0 : bit;
-SIGNAL Net_491 : bit;
 SIGNAL tmpFB_0__X_Dir_Pin_net_0 : bit;
 SIGNAL tmpIO_0__X_Dir_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__X_Dir_Pin_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__X_Dir_Pin_net_0 : bit;
 SIGNAL tmpOE__X_Step_Pin_net_0 : bit;
-SIGNAL Net_476 : bit;
 SIGNAL tmpFB_0__X_Step_Pin_net_0 : bit;
 SIGNAL tmpIO_0__X_Step_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__X_Step_Pin_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__X_Step_Pin_net_0 : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:clk\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:rst\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_bus_7\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Desired_Quarter_X:control_bus_7\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_7\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_bus_6\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Desired_Quarter_X:control_bus_6\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_6\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_bus_5\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Desired_Quarter_X:control_bus_5\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_5\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_bus_4\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Desired_Quarter_X:control_bus_4\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_4\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_bus_3\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Desired_Quarter_X:control_bus_3\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_3\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_bus_2\ : bit;
-ATTRIBUTE port_state_att of \Control_Reg_Desired_Quarter_X:control_bus_2\:SIGNAL IS 2;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_2\ : bit;
-SIGNAL Net_368_1 : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_1\ : bit;
-SIGNAL Net_368_0 : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_out_0\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_7\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_6\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_5\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_4\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_3\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_2\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_1\ : bit;
-SIGNAL \Control_Reg_Desired_Quarter_X:control_0\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:clk\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:rst\ : bit;
-SIGNAL Net_716_7 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_7\ : bit;
-SIGNAL Net_716_6 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_6\ : bit;
-SIGNAL Net_716_5 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_5\ : bit;
-SIGNAL Net_716_4 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_4\ : bit;
-SIGNAL Net_716_3 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_3\ : bit;
-SIGNAL Net_716_2 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_2\ : bit;
-SIGNAL Net_716_1 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_1\ : bit;
-SIGNAL Net_716_0 : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_out_0\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_7\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_6\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_5\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_4\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_3\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_2\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_1\ : bit;
-SIGNAL \Control_Reg_Desired_Degree_X:control_0\ : bit;
-SIGNAL \mux_1:tmp__mux_1_reg\ : bit;
-SIGNAL Net_356 : bit;
-SIGNAL Net_490 : bit;
-SIGNAL Net_360 : bit;
-SIGNAL Net_358 : bit;
-SIGNAL Net_489 : bit;
-SIGNAL cmp_vv_vv_MODGEN_8 : bit;
-SIGNAL cmp_vv_vv_MODGEN_9 : bit;
+SIGNAL Net_1850 : bit;
+SIGNAL Net_1840 : bit;
+SIGNAL Net_1798 : bit;
 SIGNAL \PWM_1:PWMUDB:km_run\ : bit;
 SIGNAL \PWM_1:PWMUDB:min_kill_reg\ : bit;
 SIGNAL Net_447 : bit;
@@ -620,9 +497,9 @@ SIGNAL \PWM_1:PWMUDB:final_kill\ : bit;
 SIGNAL \PWM_1:PWMUDB:km_tc\ : bit;
 SIGNAL \PWM_1:PWMUDB:db_tc\ : bit;
 SIGNAL \PWM_1:PWMUDB:dith_count_1\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_1\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_1\ : bit;
 SIGNAL \PWM_1:PWMUDB:dith_count_0\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_0\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_0\ : bit;
 SIGNAL \PWM_1:PWMUDB:dith_count_1\\R\ : bit;
 SIGNAL \PWM_1:PWMUDB:dith_count_1\\S\ : bit;
 SIGNAL \PWM_1:PWMUDB:dith_count_0\\R\ : bit;
@@ -822,65 +699,65 @@ SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:b_3\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:b_2\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:b_1\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:b_0\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_31\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_31\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_31\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_30\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_30\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_30\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_29\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_29\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_29\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_28\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_28\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_28\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_27\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_27\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_27\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_26\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_26\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_26\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_25\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_25\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_25\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_24\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_24\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_24\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_23\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_23\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_23\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_22\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_22\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_22\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_21\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_21\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_21\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_20\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_20\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_20\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_19\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_19\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_19\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_18\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_18\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_18\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_17\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_17\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_17\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_16\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_16\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_16\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_15\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_15\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_15\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_14\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_14\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_14\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_13\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_13\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_13\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_12\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_12\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_12\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_11\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_11\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_11\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_10\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_10\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_10\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_9\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_9\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_9\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_8\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_8\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_8\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_7\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_7\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_7\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_6\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_6\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_6\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_5\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_5\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_5\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_4\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_4\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_4\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_3\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_3\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_3\ : bit;
-SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_10_2\ : bit;
+SIGNAL \PWM_1:PWMUDB:add_vi_vv_MODGEN_8_2\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_2\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_1\ : bit;
 SIGNAL \PWM_1:PWMUDB:MODULE_8:g2:a0:s_0\ : bit;
@@ -926,19 +803,11 @@ SIGNAL Net_1838 : bit;
 SIGNAL \PWM_1:Net_113\ : bit;
 SIGNAL \PWM_1:Net_107\ : bit;
 SIGNAL \PWM_1:Net_114\ : bit;
-SIGNAL cmp_vv_vv_MODGEN_11 : bit;
-SIGNAL cmp_vv_vv_MODGEN_12 : bit;
 SIGNAL tmpOE__SDA_2_net_0 : bit;
 SIGNAL tmpFB_0__SDA_2_net_0 : bit;
 SIGNAL Net_1794 : bit;
 TERMINAL tmpSIOVREF__SDA_2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__SDA_2_net_0 : bit;
-SIGNAL Net_734 : bit;
-SIGNAL tmpOE__RST_1_net_0 : bit;
-SIGNAL Net_1798 : bit;
-SIGNAL tmpIO_0__RST_1_net_0 : bit;
-TERMINAL tmpSIOVREF__RST_1_net_0 : bit;
-SIGNAL tmpINTERRUPT_0__RST_1_net_0 : bit;
 SIGNAL \Motor_Enable:clk\ : bit;
 SIGNAL \Motor_Enable:rst\ : bit;
 SIGNAL Net_732 : bit;
@@ -1270,300 +1139,6 @@ SIGNAL Net_1801 : bit;
 SIGNAL \I2C_1:Net_975\ : bit;
 SIGNAL Net_1803 : bit;
 SIGNAL Net_1805 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_6\ : bit;
-SIGNAL MODIN6_7 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_5\ : bit;
-SIGNAL MODIN6_6 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_4\ : bit;
-SIGNAL MODIN6_5 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_3\ : bit;
-SIGNAL MODIN6_4 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_2\ : bit;
-SIGNAL MODIN6_3 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_1\ : bit;
-SIGNAL MODIN6_2 : bit;
-SIGNAL \MODULE_9:g1:a0:newa_0\ : bit;
-SIGNAL MODIN6_1 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_6\ : bit;
-SIGNAL MODIN7_7 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_5\ : bit;
-SIGNAL MODIN7_6 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_4\ : bit;
-SIGNAL MODIN7_5 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_3\ : bit;
-SIGNAL MODIN7_4 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_2\ : bit;
-SIGNAL MODIN7_3 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_1\ : bit;
-SIGNAL MODIN7_2 : bit;
-SIGNAL \MODULE_9:g1:a0:newb_0\ : bit;
-SIGNAL MODIN7_1 : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:dataa_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:datab_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:a_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:b_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:xnor_array_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:aeqb_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_5\ : bit;
-ATTRIBUTE soft of \MODULE_9:g1:a0:gx:u0:eq_5\:SIGNAL IS '1';
-SIGNAL \MODULE_9:g1:a0:gx:u0:eq_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:eqi_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:aeqb_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:albi_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:agbi_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_6\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lti_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gti_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:albi_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:agbi_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_3\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_4\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_5\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lti_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gti_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:albi_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:agbi_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_1\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lt_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gt_2\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:lti_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:gti_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:albi_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:gx:u0:agbi_0\ : bit;
-SIGNAL \MODULE_9:g1:a0:xeq\ : bit;
-SIGNAL \MODULE_9:g1:a0:xneq\ : bit;
-SIGNAL \MODULE_9:g1:a0:xlt\ : bit;
-SIGNAL \MODULE_9:g1:a0:xlte\ : bit;
-SIGNAL \MODULE_9:g1:a0:xgt\ : bit;
-SIGNAL \MODULE_9:g1:a0:xgte\ : bit;
-SIGNAL \MODULE_9:lt\ : bit;
-ATTRIBUTE port_state_att of \MODULE_9:lt\:SIGNAL IS 2;
-SIGNAL \MODULE_9:eq\ : bit;
-ATTRIBUTE port_state_att of \MODULE_9:eq\:SIGNAL IS 2;
-SIGNAL \MODULE_9:gt\ : bit;
-ATTRIBUTE port_state_att of \MODULE_9:gt\:SIGNAL IS 2;
-SIGNAL \MODULE_9:gte\ : bit;
-ATTRIBUTE port_state_att of \MODULE_9:gte\:SIGNAL IS 2;
-SIGNAL \MODULE_9:lte\ : bit;
-ATTRIBUTE port_state_att of \MODULE_9:lte\:SIGNAL IS 2;
-SIGNAL \MODULE_10:g1:a0:newa_7\ : bit;
-SIGNAL MODIN8_7 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_6\ : bit;
-SIGNAL MODIN8_6 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_5\ : bit;
-SIGNAL MODIN8_5 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_4\ : bit;
-SIGNAL MODIN8_4 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_3\ : bit;
-SIGNAL MODIN8_3 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_2\ : bit;
-SIGNAL MODIN8_2 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_1\ : bit;
-SIGNAL MODIN8_1 : bit;
-SIGNAL \MODULE_10:g1:a0:newa_0\ : bit;
-SIGNAL MODIN8_0 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_7\ : bit;
-SIGNAL MODIN9_7 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_6\ : bit;
-SIGNAL MODIN9_6 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_5\ : bit;
-SIGNAL MODIN9_5 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_4\ : bit;
-SIGNAL MODIN9_4 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_3\ : bit;
-SIGNAL MODIN9_3 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_2\ : bit;
-SIGNAL MODIN9_2 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_1\ : bit;
-SIGNAL MODIN9_1 : bit;
-SIGNAL \MODULE_10:g1:a0:newb_0\ : bit;
-SIGNAL MODIN9_0 : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:dataa_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:datab_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:a_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:b_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:xnor_array_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:aeqb_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eq_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:eqi_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:aeqb_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:albi_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:agbi_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_6\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_7\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lti_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gti_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:albi_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:agbi_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_3\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_4\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_5\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lti_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gti_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:albi_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:agbi_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_1\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lt_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gt_2\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:lti_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:gti_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:albi_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:gx:u0:agbi_0\ : bit;
-SIGNAL \MODULE_10:g1:a0:xeq\ : bit;
-SIGNAL \MODULE_10:g1:a0:xneq\ : bit;
-SIGNAL \MODULE_10:g1:a0:xlt\ : bit;
-SIGNAL \MODULE_10:g1:a0:xlte\ : bit;
-SIGNAL \MODULE_10:g1:a0:xgt\ : bit;
-SIGNAL \MODULE_10:g1:a0:xgte\ : bit;
-SIGNAL \MODULE_10:lt\ : bit;
-ATTRIBUTE port_state_att of \MODULE_10:lt\:SIGNAL IS 2;
-SIGNAL \MODULE_10:eq\ : bit;
-ATTRIBUTE port_state_att of \MODULE_10:eq\:SIGNAL IS 2;
-SIGNAL \MODULE_10:gt\ : bit;
-ATTRIBUTE port_state_att of \MODULE_10:gt\:SIGNAL IS 2;
-SIGNAL \MODULE_10:gte\ : bit;
-ATTRIBUTE port_state_att of \MODULE_10:gte\:SIGNAL IS 2;
-SIGNAL \MODULE_10:neq\ : bit;
-ATTRIBUTE port_state_att of \MODULE_10:neq\:SIGNAL IS 2;
-SIGNAL \MODULE_11:g1:a0:newa_1\ : bit;
-SIGNAL MODIN10_1 : bit;
-SIGNAL \MODULE_11:g1:a0:newa_0\ : bit;
-SIGNAL MODIN10_0 : bit;
-SIGNAL \MODULE_11:g1:a0:newb_1\ : bit;
-SIGNAL MODIN11_1 : bit;
-SIGNAL \MODULE_11:g1:a0:newb_0\ : bit;
-SIGNAL MODIN11_0 : bit;
-SIGNAL \MODULE_11:g1:a0:dataa_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:dataa_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:datab_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:datab_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:a_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:a_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:b_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:b_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:xnor_array_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:xnor_array_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:aeqb_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:eq_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:eq_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:eqi_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:aeqb_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:albi_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:agbi_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:lt_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:gt_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:lt_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:gt_1\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:lti_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:gti_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:albi_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:gx:u0:agbi_0\ : bit;
-SIGNAL \MODULE_11:g1:a0:xeq\ : bit;
-SIGNAL \MODULE_11:g1:a0:xneq\ : bit;
-SIGNAL \MODULE_11:g1:a0:xlt\ : bit;
-SIGNAL \MODULE_11:g1:a0:xlte\ : bit;
-SIGNAL \MODULE_11:g1:a0:xgt\ : bit;
-SIGNAL \MODULE_11:g1:a0:xgte\ : bit;
-SIGNAL \MODULE_11:lt\ : bit;
-ATTRIBUTE port_state_att of \MODULE_11:lt\:SIGNAL IS 2;
-SIGNAL \MODULE_11:eq\ : bit;
-ATTRIBUTE port_state_att of \MODULE_11:eq\:SIGNAL IS 2;
-SIGNAL \MODULE_11:gt\ : bit;
-ATTRIBUTE port_state_att of \MODULE_11:gt\:SIGNAL IS 2;
-SIGNAL \MODULE_11:gte\ : bit;
-ATTRIBUTE port_state_att of \MODULE_11:gte\:SIGNAL IS 2;
 SIGNAL \UART:BUART:reset_reg\\D\ : bit;
 SIGNAL \UART:BUART:txn\\D\ : bit;
 SIGNAL \UART:BUART:tx_state_1\\D\ : bit;
@@ -1749,21 +1324,8 @@ Net_43D <= ((not \UART:BUART:reset_reg\ and \UART:BUART:tx_state_2\)
 
 \UART:BUART:rx_address_detected\\D\ <= ((not \UART:BUART:reset_reg\ and \UART:BUART:rx_address_detected\));
 
-Net_491 <= ((not Net_368_1 and not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and not \MODULE_10:g1:a0:gx:u0:gti_0\)
-	OR (not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and not \MODULE_10:g1:a0:gx:u0:gti_0\ and Net_718_1)
-	OR (not Net_368_1 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and not \MODULE_10:g1:a0:gx:u0:gti_0\ and Net_718_0)
-	OR (not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and not \MODULE_10:g1:a0:gx:u0:gti_0\ and Net_718_1 and Net_718_0)
-	OR (not Net_368_1 and not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and \MODULE_10:g1:a0:gx:u0:lti_1\)
-	OR (not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and Net_718_1 and \MODULE_10:g1:a0:gx:u0:lti_1\)
-	OR (not Net_368_1 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and Net_718_0 and \MODULE_10:g1:a0:gx:u0:lti_1\)
-	OR (not \MODULE_10:g1:a0:gx:u0:gti_2\ and not \MODULE_10:g1:a0:gx:u0:gti_1\ and Net_718_1 and Net_718_0 and \MODULE_10:g1:a0:gx:u0:lti_1\)
-	OR (not Net_368_1 and not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and \MODULE_10:g1:a0:gx:u0:lti_2\)
-	OR (not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and Net_718_1 and \MODULE_10:g1:a0:gx:u0:lti_2\)
-	OR (not Net_368_1 and not \MODULE_10:g1:a0:gx:u0:gti_2\ and Net_718_0 and \MODULE_10:g1:a0:gx:u0:lti_2\)
-	OR (not \MODULE_10:g1:a0:gx:u0:gti_2\ and Net_718_1 and Net_718_0 and \MODULE_10:g1:a0:gx:u0:lti_2\)
-	OR (not Net_368_1 and not Net_368_0 and Net_718_0)
-	OR (not Net_368_0 and Net_718_1 and Net_718_0)
-	OR (not Net_368_1 and Net_718_1));
+Net_1850 <= (not Net_732
+	OR not Net_467);
 
 \PWM_1:PWMUDB:sc_kill_tmp\\D\ <= (not \PWM_1:PWMUDB:tc_i\);
 
@@ -1780,13 +1342,7 @@ Net_491 <= ((not Net_368_1 and not Net_368_0 and not \MODULE_10:g1:a0:gx:u0:gti_
 
 \PWM_1:PWMUDB:pwm_i\ <= ((\PWM_1:PWMUDB:runmode_enable\ and \PWM_1:PWMUDB:cmp1_less\));
 
-Net_476 <= ((not Net_716_7 and Net_715_7 and Net_467 and Net_732)
-	OR (not Net_715_7 and Net_716_7 and Net_467 and Net_732)
-	OR (not Net_368_0 and Net_718_0 and Net_467 and Net_732)
-	OR (not Net_718_0 and Net_368_0 and Net_467 and Net_732)
-	OR (not Net_368_1 and Net_718_1 and Net_467 and Net_732)
-	OR (not Net_718_1 and Net_368_1 and Net_467 and Net_732)
-	OR (not \MODULE_9:g1:a0:gx:u0:eq_5\ and Net_467 and Net_732));
+Net_1840 <= ((Net_467 and Net_732));
 
 \I2C_1:bI2C_UDB:status_5\ <= ((not \I2C_1:bI2C_UDB:sda_in_last2_reg\ and \I2C_1:bI2C_UDB:scl_in_reg\ and \I2C_1:bI2C_UDB:scl_in_last_reg\ and \I2C_1:bI2C_UDB:scl_in_last2_reg\ and \I2C_1:bI2C_UDB:sda_in_last_reg\));
 
@@ -1947,148 +1503,9 @@ Net_476 <= ((not Net_716_7 and Net_715_7 and Net_467 and Net_732)
 	OR (not \I2C_1:bI2C_UDB:m_state_4\ and \I2C_1:bI2C_UDB:clkgen_tc\ and \I2C_1:bI2C_UDB:m_state_3\));
 
 \I2C_1:bI2C_UDB:slave_rst_reg\\D\ <= ((not \I2C_1:bI2C_UDB:sda_in_last_reg\ and \I2C_1:bI2C_UDB:scl_in_reg\ and \I2C_1:bI2C_UDB:scl_in_last_reg\ and \I2C_1:bI2C_UDB:scl_in_last2_reg\ and \I2C_1:bI2C_UDB:sda_in_last2_reg\)
-	OR not \I2C_1:bI2C_UDB:control_0\
-	OR Net_1798);
+	OR not \I2C_1:bI2C_UDB:control_0\);
 
-\I2C_1:bI2C_UDB:master_rst_reg\\D\ <= (not \I2C_1:bI2C_UDB:control_1\
-	OR Net_1798);
-
-\MODULE_9:g1:a0:gx:u0:eq_5\ <= ((not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_3 and not Net_716_2 and not Net_716_1)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_5 and not Net_716_4 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_716_6)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_4 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_5 and Net_716_5)
-	OR (not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_4 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_716_6 and Net_716_5)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_4 and Net_716_4)
-	OR (not Net_715_5 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_5 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_4 and Net_716_6 and Net_716_4)
-	OR (not Net_715_6 and not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_5 and Net_715_4 and Net_716_5 and Net_716_4)
-	OR (not Net_715_3 and not Net_715_2 and not Net_715_1 and not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_4 and Net_716_6 and Net_716_5 and Net_716_4)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_2 and not Net_716_1 and Net_715_3 and Net_716_3)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_2 and not Net_715_1 and not Net_716_5 and not Net_716_4 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_3 and Net_716_6 and Net_716_3)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_4 and not Net_716_2 and not Net_716_1 and Net_715_5 and Net_715_3 and Net_716_5 and Net_716_3)
-	OR (not Net_715_4 and not Net_715_2 and not Net_715_1 and not Net_716_4 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_3 and Net_716_6 and Net_716_5 and Net_716_3)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_2 and not Net_716_1 and Net_715_4 and Net_715_3 and Net_716_4 and Net_716_3)
-	OR (not Net_715_5 and not Net_715_2 and not Net_715_1 and not Net_716_5 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_4 and Net_715_3 and Net_716_6 and Net_716_4 and Net_716_3)
-	OR (not Net_715_6 and not Net_715_2 and not Net_715_1 and not Net_716_6 and not Net_716_2 and not Net_716_1 and Net_715_5 and Net_715_4 and Net_715_3 and Net_716_5 and Net_716_4 and Net_716_3)
-	OR (not Net_715_2 and not Net_715_1 and not Net_716_2 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_4 and Net_715_3 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_3)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_3 and not Net_716_1 and Net_715_2 and Net_716_2)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_715_1 and not Net_716_5 and not Net_716_4 and not Net_716_3 and not Net_716_1 and Net_715_6 and Net_715_2 and Net_716_6 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_3 and not Net_715_1 and not Net_716_6 and not Net_716_4 and not Net_716_3 and not Net_716_1 and Net_715_5 and Net_715_2 and Net_716_5 and Net_716_2)
-	OR (not Net_715_4 and not Net_715_3 and not Net_715_1 and not Net_716_4 and not Net_716_3 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_2 and Net_716_6 and Net_716_5 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_3 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_3 and not Net_716_1 and Net_715_4 and Net_715_2 and Net_716_4 and Net_716_2)
-	OR (not Net_715_5 and not Net_715_3 and not Net_715_1 and not Net_716_5 and not Net_716_3 and not Net_716_1 and Net_715_6 and Net_715_4 and Net_715_2 and Net_716_6 and Net_716_4 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_3 and not Net_715_1 and not Net_716_6 and not Net_716_3 and not Net_716_1 and Net_715_5 and Net_715_4 and Net_715_2 and Net_716_5 and Net_716_4 and Net_716_2)
-	OR (not Net_715_3 and not Net_715_1 and not Net_716_3 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_4 and Net_715_2 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_1 and Net_715_3 and Net_715_2 and Net_716_3 and Net_716_2)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_1 and not Net_716_5 and not Net_716_4 and not Net_716_1 and Net_715_6 and Net_715_3 and Net_715_2 and Net_716_6 and Net_716_3 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_1 and not Net_716_6 and not Net_716_4 and not Net_716_1 and Net_715_5 and Net_715_3 and Net_715_2 and Net_716_5 and Net_716_3 and Net_716_2)
-	OR (not Net_715_4 and not Net_715_1 and not Net_716_4 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_3 and Net_715_2 and Net_716_6 and Net_716_5 and Net_716_3 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_1 and not Net_716_6 and not Net_716_5 and not Net_716_1 and Net_715_4 and Net_715_3 and Net_715_2 and Net_716_4 and Net_716_3 and Net_716_2)
-	OR (not Net_715_5 and not Net_715_1 and not Net_716_5 and not Net_716_1 and Net_715_6 and Net_715_4 and Net_715_3 and Net_715_2 and Net_716_6 and Net_716_4 and Net_716_3 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_1 and not Net_716_6 and not Net_716_1 and Net_715_5 and Net_715_4 and Net_715_3 and Net_715_2 and Net_716_5 and Net_716_4 and Net_716_3 and Net_716_2)
-	OR (not Net_715_1 and not Net_716_1 and Net_715_6 and Net_715_5 and Net_715_4 and Net_715_3 and Net_715_2 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_3 and Net_716_2)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_3 and not Net_716_2 and Net_715_1 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_716_5 and not Net_716_4 and not Net_716_3 and not Net_716_2 and Net_715_6 and Net_715_1 and Net_716_6 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_716_6 and not Net_716_4 and not Net_716_3 and not Net_716_2 and Net_715_5 and Net_715_1 and Net_716_5 and Net_716_1)
-	OR (not Net_715_4 and not Net_715_3 and not Net_715_2 and not Net_716_4 and not Net_716_3 and not Net_716_2 and Net_715_6 and Net_715_5 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_3 and not Net_715_2 and not Net_716_6 and not Net_716_5 and not Net_716_3 and not Net_716_2 and Net_715_4 and Net_715_1 and Net_716_4 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_3 and not Net_715_2 and not Net_716_5 and not Net_716_3 and not Net_716_2 and Net_715_6 and Net_715_4 and Net_715_1 and Net_716_6 and Net_716_4 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_3 and not Net_715_2 and not Net_716_6 and not Net_716_3 and not Net_716_2 and Net_715_5 and Net_715_4 and Net_715_1 and Net_716_5 and Net_716_4 and Net_716_1)
-	OR (not Net_715_3 and not Net_715_2 and not Net_716_3 and not Net_716_2 and Net_715_6 and Net_715_5 and Net_715_4 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_2 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_2 and Net_715_3 and Net_715_1 and Net_716_3 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_2 and not Net_716_5 and not Net_716_4 and not Net_716_2 and Net_715_6 and Net_715_3 and Net_715_1 and Net_716_6 and Net_716_3 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_2 and not Net_716_6 and not Net_716_4 and not Net_716_2 and Net_715_5 and Net_715_3 and Net_715_1 and Net_716_5 and Net_716_3 and Net_716_1)
-	OR (not Net_715_4 and not Net_715_2 and not Net_716_4 and not Net_716_2 and Net_715_6 and Net_715_5 and Net_715_3 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_3 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_2 and not Net_716_6 and not Net_716_5 and not Net_716_2 and Net_715_4 and Net_715_3 and Net_715_1 and Net_716_4 and Net_716_3 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_2 and not Net_716_5 and not Net_716_2 and Net_715_6 and Net_715_4 and Net_715_3 and Net_715_1 and Net_716_6 and Net_716_4 and Net_716_3 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_2 and not Net_716_6 and not Net_716_2 and Net_715_5 and Net_715_4 and Net_715_3 and Net_715_1 and Net_716_5 and Net_716_4 and Net_716_3 and Net_716_1)
-	OR (not Net_715_2 and not Net_716_2 and Net_715_6 and Net_715_5 and Net_715_4 and Net_715_3 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_3 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_716_6 and not Net_716_5 and not Net_716_4 and not Net_716_3 and Net_715_2 and Net_715_1 and Net_716_2 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_3 and not Net_716_5 and not Net_716_4 and not Net_716_3 and Net_715_6 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_4 and not Net_715_3 and not Net_716_6 and not Net_716_4 and not Net_716_3 and Net_715_5 and Net_715_2 and Net_715_1 and Net_716_5 and Net_716_2 and Net_716_1)
-	OR (not Net_715_4 and not Net_715_3 and not Net_716_4 and not Net_716_3 and Net_715_6 and Net_715_5 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_3 and not Net_716_6 and not Net_716_5 and not Net_716_3 and Net_715_4 and Net_715_2 and Net_715_1 and Net_716_4 and Net_716_2 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_3 and not Net_716_5 and not Net_716_3 and Net_715_6 and Net_715_4 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_4 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_3 and not Net_716_6 and not Net_716_3 and Net_715_5 and Net_715_4 and Net_715_2 and Net_715_1 and Net_716_5 and Net_716_4 and Net_716_2 and Net_716_1)
-	OR (not Net_715_3 and not Net_716_3 and Net_715_6 and Net_715_5 and Net_715_4 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and not Net_716_6 and not Net_716_5 and not Net_716_4 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_5 and not Net_715_4 and not Net_716_5 and not Net_716_4 and Net_715_6 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_4 and not Net_716_6 and not Net_716_4 and Net_715_5 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_5 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_4 and not Net_716_4 and Net_715_6 and Net_715_5 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_715_5 and not Net_716_6 and not Net_716_5 and Net_715_4 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_4 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_5 and not Net_716_5 and Net_715_6 and Net_715_4 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_4 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_6 and not Net_716_6 and Net_715_5 and Net_715_4 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_5 and Net_716_4 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (Net_715_6 and Net_715_5 and Net_715_4 and Net_715_3 and Net_715_2 and Net_715_1 and Net_716_6 and Net_716_5 and Net_716_4 and Net_716_3 and Net_716_2 and Net_716_1));
-
-\MODULE_9:g1:a0:gx:u0:lt_5\ <= ((not Net_716_6 and not Net_716_5 and not Net_716_4 and Net_715_4)
-	OR (not Net_716_5 and not Net_716_4 and Net_715_6 and Net_715_4)
-	OR (not Net_716_6 and not Net_716_4 and Net_715_5 and Net_715_4)
-	OR (not Net_716_4 and Net_715_6 and Net_715_5 and Net_715_4)
-	OR (not Net_716_6 and not Net_716_5 and Net_715_5)
-	OR (not Net_716_5 and Net_715_6 and Net_715_5)
-	OR (not Net_716_6 and Net_715_6));
-
-\MODULE_9:g1:a0:gx:u0:gt_5\ <= ((not Net_715_4 and Net_716_6 and Net_716_5 and Net_716_4)
-	OR (not Net_715_6 and not Net_715_4 and Net_716_5 and Net_716_4)
-	OR (not Net_715_5 and not Net_715_4 and Net_716_6 and Net_716_4)
-	OR (not Net_715_6 and not Net_715_5 and not Net_715_4 and Net_716_4)
-	OR (not Net_715_5 and Net_716_6 and Net_716_5)
-	OR (not Net_715_6 and not Net_715_5 and Net_716_5)
-	OR (not Net_715_6 and Net_716_6));
-
-\MODULE_9:g1:a0:gx:u0:lt_2\ <= ((not Net_716_3 and not Net_716_2 and not Net_716_1 and Net_715_1)
-	OR (not Net_716_2 and not Net_716_1 and Net_715_3 and Net_715_1)
-	OR (not Net_716_3 and not Net_716_1 and Net_715_2 and Net_715_1)
-	OR (not Net_716_1 and Net_715_3 and Net_715_2 and Net_715_1)
-	OR (not Net_716_3 and not Net_716_2 and Net_715_2)
-	OR (not Net_716_2 and Net_715_3 and Net_715_2)
-	OR (not Net_716_3 and Net_715_3));
-
-\MODULE_9:g1:a0:gx:u0:gt_2\ <= ((not Net_715_1 and Net_716_3 and Net_716_2 and Net_716_1)
-	OR (not Net_715_3 and not Net_715_1 and Net_716_2 and Net_716_1)
-	OR (not Net_715_2 and not Net_715_1 and Net_716_3 and Net_716_1)
-	OR (not Net_715_3 and not Net_715_2 and not Net_715_1 and Net_716_1)
-	OR (not Net_715_2 and Net_716_3 and Net_716_2)
-	OR (not Net_715_3 and not Net_715_2 and Net_716_2)
-	OR (not Net_715_3 and Net_716_3));
-
-\MODULE_10:g1:a0:gx:u0:lt_7\ <= ((not Net_716_7 and not Net_716_6 and Net_715_6)
-	OR (not Net_716_6 and Net_715_7 and Net_715_6)
-	OR (not Net_716_7 and Net_715_7));
-
-\MODULE_10:g1:a0:gx:u0:gt_7\ <= ((not Net_715_6 and Net_716_7 and Net_716_6)
-	OR (not Net_715_7 and not Net_715_6 and Net_716_6)
-	OR (not Net_715_7 and Net_716_7));
-
-\MODULE_10:g1:a0:gx:u0:lt_5\ <= ((not Net_716_5 and not Net_716_4 and not Net_716_3 and Net_715_3)
-	OR (not Net_716_4 and not Net_716_3 and Net_715_5 and Net_715_3)
-	OR (not Net_716_5 and not Net_716_3 and Net_715_4 and Net_715_3)
-	OR (not Net_716_3 and Net_715_5 and Net_715_4 and Net_715_3)
-	OR (not Net_716_5 and not Net_716_4 and Net_715_4)
-	OR (not Net_716_4 and Net_715_5 and Net_715_4)
-	OR (not Net_716_5 and Net_715_5));
-
-\MODULE_10:g1:a0:gx:u0:gt_5\ <= ((not Net_715_3 and Net_716_5 and Net_716_4 and Net_716_3)
-	OR (not Net_715_5 and not Net_715_3 and Net_716_4 and Net_716_3)
-	OR (not Net_715_4 and not Net_715_3 and Net_716_5 and Net_716_3)
-	OR (not Net_715_5 and not Net_715_4 and not Net_715_3 and Net_716_3)
-	OR (not Net_715_4 and Net_716_5 and Net_716_4)
-	OR (not Net_715_5 and not Net_715_4 and Net_716_4)
-	OR (not Net_715_5 and Net_716_5));
-
-\MODULE_10:g1:a0:gx:u0:lt_2\ <= ((not Net_716_2 and not Net_716_1 and not Net_716_0 and Net_715_0)
-	OR (not Net_716_1 and not Net_716_0 and Net_715_2 and Net_715_0)
-	OR (not Net_716_2 and not Net_716_0 and Net_715_1 and Net_715_0)
-	OR (not Net_716_0 and Net_715_2 and Net_715_1 and Net_715_0)
-	OR (not Net_716_2 and not Net_716_1 and Net_715_1)
-	OR (not Net_716_1 and Net_715_2 and Net_715_1)
-	OR (not Net_716_2 and Net_715_2));
-
-\MODULE_10:g1:a0:gx:u0:gt_2\ <= ((not Net_715_0 and Net_716_2 and Net_716_1 and Net_716_0)
-	OR (not Net_715_2 and not Net_715_0 and Net_716_1 and Net_716_0)
-	OR (not Net_715_1 and not Net_715_0 and Net_716_2 and Net_716_0)
-	OR (not Net_715_2 and not Net_715_1 and not Net_715_0 and Net_716_0)
-	OR (not Net_715_1 and Net_716_2 and Net_716_1)
-	OR (not Net_715_2 and not Net_715_1 and Net_716_1)
-	OR (not Net_715_2 and Net_716_2));
+\I2C_1:bI2C_UDB:master_rst_reg\\D\ <= (not \I2C_1:bI2C_UDB:control_1\);
 
 GND_1:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Gnd_v1_0",
@@ -3193,26 +2610,6 @@ Clock_2:cy_clock_v1_0
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_1796,
 		dig_domain_out=>open);
-\Control_Reg_Actual_Quarter_X:Sync:ctrl_reg\:cy_psoc3_control
-	GENERIC MAP(cy_init_value=>"00000000",
-		cy_force_order=>'1',
-		cy_ctrl_mode_1=>"00000000",
-		cy_ctrl_mode_0=>"00000000",
-		cy_ext_reset=>'0')
-	PORT MAP(reset=>zero,
-		clock=>zero,
-		control=>(\Control_Reg_Actual_Quarter_X:control_7\, \Control_Reg_Actual_Quarter_X:control_6\, \Control_Reg_Actual_Quarter_X:control_5\, \Control_Reg_Actual_Quarter_X:control_4\,
-			\Control_Reg_Actual_Quarter_X:control_3\, \Control_Reg_Actual_Quarter_X:control_2\, Net_718_1, Net_718_0));
-\Control_Reg_Actual_Degree_X:Sync:ctrl_reg\:cy_psoc3_control
-	GENERIC MAP(cy_init_value=>"00000000",
-		cy_force_order=>'1',
-		cy_ctrl_mode_1=>"00000000",
-		cy_ctrl_mode_0=>"00000000",
-		cy_ext_reset=>'0')
-	PORT MAP(reset=>zero,
-		clock=>zero,
-		control=>(Net_715_7, Net_715_6, Net_715_5, Net_715_4,
-			Net_715_3, Net_715_2, Net_715_1, Net_715_0));
 X_Dir_Pin:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"0e762d80-6423-43a7-a037-c1d8a998aa88",
 		drive_mode=>"110",
@@ -3230,7 +2627,7 @@ X_Dir_Pin:cy_psoc3_pins_v1_10
 		invert_out_reset=>'0',
 		io_voltage=>"",
 		layout_mode=>"CONTIGUOUS",
-		output_conn=>"1",
+		output_conn=>"0",
 		output_sync=>"0",
 		output_clk_en=>'0',
 		output_mode=>"0",
@@ -3270,7 +2667,7 @@ X_Dir_Pin:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__SW_UP_Pin_net_0),
-		y=>Net_491,
+		y=>(zero),
 		fb=>(tmpFB_0__X_Dir_Pin_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__X_Dir_Pin_net_0),
@@ -3300,7 +2697,7 @@ X_Step_Pin:cy_psoc3_pins_v1_10
 		invert_out_reset=>'0',
 		io_voltage=>"",
 		layout_mode=>"CONTIGUOUS",
-		output_conn=>"1",
+		output_conn=>"0",
 		output_sync=>"0",
 		output_clk_en=>'0',
 		output_mode=>"0",
@@ -3340,7 +2737,7 @@ X_Step_Pin:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__SW_UP_Pin_net_0),
-		y=>Net_476,
+		y=>(zero),
 		fb=>(tmpFB_0__X_Step_Pin_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__X_Step_Pin_net_0),
@@ -3353,26 +2750,10 @@ X_Step_Pin:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__X_Step_Pin_net_0);
-\Control_Reg_Desired_Quarter_X:Sync:ctrl_reg\:cy_psoc3_control
-	GENERIC MAP(cy_init_value=>"00000000",
-		cy_force_order=>'1',
-		cy_ctrl_mode_1=>"00000000",
-		cy_ctrl_mode_0=>"00000000",
-		cy_ext_reset=>'0')
-	PORT MAP(reset=>zero,
-		clock=>zero,
-		control=>(\Control_Reg_Desired_Quarter_X:control_7\, \Control_Reg_Desired_Quarter_X:control_6\, \Control_Reg_Desired_Quarter_X:control_5\, \Control_Reg_Desired_Quarter_X:control_4\,
-			\Control_Reg_Desired_Quarter_X:control_3\, \Control_Reg_Desired_Quarter_X:control_2\, Net_368_1, Net_368_0));
-\Control_Reg_Desired_Degree_X:Sync:ctrl_reg\:cy_psoc3_control
-	GENERIC MAP(cy_init_value=>"00000000",
-		cy_force_order=>'1',
-		cy_ctrl_mode_1=>"00000000",
-		cy_ctrl_mode_0=>"00000000",
-		cy_ext_reset=>'0')
-	PORT MAP(reset=>zero,
-		clock=>zero,
-		control=>(Net_716_7, Net_716_6, Net_716_5, Net_716_4,
-			Net_716_3, Net_716_2, Net_716_1, Net_716_0));
+MotorControlFallingEdge:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_1850);
 \PWM_1:PWMUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
 	PORT MAP(clock_in=>Net_447,
@@ -3572,76 +2953,10 @@ SDA_2:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__SDA_2_net_0);
-RST_1:cy_psoc3_pins_v1_10
-	GENERIC MAP(id=>"0f496b52-ff1d-48b2-9999-9acfed5dce24",
-		drive_mode=>"001",
-		ibuf_enabled=>"1",
-		init_dr_st=>"0",
-		input_sync=>"1",
-		input_clk_en=>'0',
-		input_sync_mode=>"0",
-		intr_mode=>"00",
-		invert_in_clock=>'0',
-		invert_in_clock_en=>'0',
-		invert_in_reset=>'0',
-		invert_out_clock=>'0',
-		invert_out_clock_en=>'0',
-		invert_out_reset=>'0',
-		io_voltage=>"",
-		layout_mode=>"CONTIGUOUS",
-		output_conn=>"0",
-		output_sync=>"0",
-		output_clk_en=>'0',
-		output_mode=>"0",
-		output_reset=>'0',
-		output_clock_mode=>"0",
-		oe_sync=>"0",
-		oe_conn=>"0",
-		oe_reset=>'0',
-		pin_aliases=>"",
-		pin_mode=>"I",
-		por_state=>4,
-		sio_group_cnt=>0,
-		sio_hifreq=>"00000000",
-		sio_hyst=>"1",
-		sio_ibuf=>"00000000",
-		sio_info=>"00",
-		sio_obuf=>"00000000",
-		sio_refsel=>"00000000",
-		sio_vtrip=>"00000000",
-		sio_vohsel=>"00000000",
-		slew_rate=>"0",
-		spanning=>'0',
-		sw_only=>'0',
-		vtrip=>"00",
-		width=>1,
-		port_alias_required=>'0',
-		port_alias_group=>"",
-		use_annotation=>"0",
-		pa_in_clock=>-1,
-		pa_in_clock_en=>-1,
-		pa_in_reset=>-1,
-		pa_out_clock=>-1,
-		pa_out_clock_en=>-1,
-		pa_out_reset=>-1,
-		ovt_needed=>"0",
-		ovt_slew_control=>"00",
-		ovt_hyst_trim=>"0",
-		input_buffer_sel=>"00")
-	PORT MAP(oe=>(tmpOE__SW_UP_Pin_net_0),
-		y=>(zero),
-		fb=>Net_1798,
-		analog=>(open),
-		io=>(tmpIO_0__RST_1_net_0),
-		siovref=>(tmpSIOVREF__RST_1_net_0),
-		annotation=>(open),
-		in_clock=>zero,
-		in_clock_en=>tmpOE__SW_UP_Pin_net_0,
-		in_reset=>zero,
-		out_clock=>zero,
-		out_clock_en=>tmpOE__SW_UP_Pin_net_0,
-		out_reset=>zero,
-		interrupt=>tmpINTERRUPT_0__RST_1_net_0);
+MotorControlRiseingEdge:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_1840);
 \Motor_Enable:Sync:ctrl_reg\:cy_psoc3_control
 	GENERIC MAP(cy_init_value=>"00000000",
 		cy_force_order=>'1',
@@ -3886,36 +3201,6 @@ Display_Refresh_Timer_Int:cy_isr_v1_0
 		oe=>tmpOE__SW_UP_Pin_net_0,
 		y=>Net_1794,
 		yfb=>\I2C_1:Net_1109_1\);
-\MODULE_9:g1:a0:gx:u0:gne(1):c3:u1\:cy_buf
-	PORT MAP(x=>\MODULE_9:g1:a0:gx:u0:lt_5\,
-		y=>\MODULE_9:g1:a0:gx:u0:lti_1\);
-\MODULE_9:g1:a0:gx:u0:gne(1):c3:u2\:cy_buf
-	PORT MAP(x=>\MODULE_9:g1:a0:gx:u0:gt_5\,
-		y=>\MODULE_9:g1:a0:gx:u0:gti_1\);
-\MODULE_9:g1:a0:gx:u0:gne(0):c3:u1\:cy_buf
-	PORT MAP(x=>\MODULE_9:g1:a0:gx:u0:lt_2\,
-		y=>\MODULE_9:g1:a0:gx:u0:lti_0\);
-\MODULE_9:g1:a0:gx:u0:gne(0):c3:u2\:cy_buf
-	PORT MAP(x=>\MODULE_9:g1:a0:gx:u0:gt_2\,
-		y=>\MODULE_9:g1:a0:gx:u0:gti_0\);
-\MODULE_10:g1:a0:gx:u0:gne(2):c4:c6:u1\:cy_buf
-	PORT MAP(x=>\MODULE_10:g1:a0:gx:u0:lt_7\,
-		y=>\MODULE_10:g1:a0:gx:u0:lti_2\);
-\MODULE_10:g1:a0:gx:u0:gne(2):c4:c6:u2\:cy_buf
-	PORT MAP(x=>\MODULE_10:g1:a0:gx:u0:gt_7\,
-		y=>\MODULE_10:g1:a0:gx:u0:gti_2\);
-\MODULE_10:g1:a0:gx:u0:gne(1):c3:u1\:cy_buf
-	PORT MAP(x=>\MODULE_10:g1:a0:gx:u0:lt_5\,
-		y=>\MODULE_10:g1:a0:gx:u0:lti_1\);
-\MODULE_10:g1:a0:gx:u0:gne(1):c3:u2\:cy_buf
-	PORT MAP(x=>\MODULE_10:g1:a0:gx:u0:gt_5\,
-		y=>\MODULE_10:g1:a0:gx:u0:gti_1\);
-\MODULE_10:g1:a0:gx:u0:gne(0):c3:u1\:cy_buf
-	PORT MAP(x=>\MODULE_10:g1:a0:gx:u0:lt_2\,
-		y=>\MODULE_10:g1:a0:gx:u0:lti_0\);
-\MODULE_10:g1:a0:gx:u0:gne(0):c3:u2\:cy_buf
-	PORT MAP(x=>\MODULE_10:g1:a0:gx:u0:gt_2\,
-		y=>\MODULE_10:g1:a0:gx:u0:gti_0\);
 \UART:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\UART:BUART:clock_op\,

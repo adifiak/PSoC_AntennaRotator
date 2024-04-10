@@ -1,6 +1,6 @@
 // ======================================================================
 // AntennaRotator.v generated from TopDesign.cysch
-// 03/26/2024 at 09:29
+// 04/02/2024 at 11:53
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -458,43 +458,30 @@ module I2C_v3_50_1 (
 
 endmodule
 
-// Component: CyControlReg_v1_80
+// Component: not_v1_0
 `ifdef CY_BLK_DIR
 `undef CY_BLK_DIR
 `endif
 
 `ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v"
 `else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v"
 `endif
 
-// Component: mux_v1_10
+// Component: cy_constant_v1_0
 `ifdef CY_BLK_DIR
 `undef CY_BLK_DIR
 `endif
 
 `ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10\mux_v1_10.v"
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
 `else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10\mux_v1_10.v"
-`endif
-
-// Component: DigitalComp_v1_0
-`ifdef CY_BLK_DIR
-`undef CY_BLK_DIR
-`endif
-
-`ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0\DigitalComp_v1_0.v"
-`else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0\DigitalComp_v1_0.v"
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
 `endif
 
 // Component: B_PWM_v3_30
@@ -604,6 +591,19 @@ module PWM_v3_30_2 (
 
 endmodule
 
+// Component: CyControlReg_v1_80
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`endif
+
 // Component: and_v1_0
 `ifdef CY_BLK_DIR
 `undef CY_BLK_DIR
@@ -615,19 +615,6 @@ endmodule
 `else
 `define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\and_v1_0"
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\and_v1_0\and_v1_0.v"
-`endif
-
-// Component: cy_constant_v1_0
-`ifdef CY_BLK_DIR
-`undef CY_BLK_DIR
-`endif
-
-`ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
-`else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
 `endif
 
 // Timer_v2_80(CaptureAlternatingFall=false, CaptureAlternatingRise=false, CaptureCount=2, CaptureCounterEnabled=false, CaptureInputEnabled=true, CaptureMode=1, CONTROL3=1, ControlRegRemoved=0, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG8, CySetRegReplacementString=CY_SET_REG8, DeviceFamily=PSoC5, EnableMode=0, FF16=false, FF8=true, FixedFunction=true, FixedFunctionUsed=1, HWCaptureCounterEnabled=false, InterruptOnCapture=false, InterruptOnFIFOFull=false, InterruptOnTC=false, IntOnCapture=0, IntOnFIFOFull=0, IntOnTC=0, NumberOfCaptures=1, param45=1, Period=255, RegDefReplacementString=reg8, RegSizeReplacementString=uint8, Resolution=8, RstStatusReplacementString=rstSts, RunMode=0, SiliconRevision=0, SoftwareCaptureModeEnabled=false, SoftwareTriggerModeEnabled=false, TriggerInputEnabled=false, TriggerMode=0, UDB16=false, UDB24=false, UDB32=false, UDB8=false, UDBControlReg=false, UsesHWEnable=0, VerilogSectionReplacementString=sT8, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=Timer_v2_80, CY_CONFIG_TITLE=Display_Refresh_Timer, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Display_Refresh_Timer, CY_INSTANCE_SHORT_NAME=Display_Refresh_Timer, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=80, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=Display_Refresh_Timer, )
@@ -871,7 +858,6 @@ module top ;
           wire  Net_722;
           wire  Net_721;
           wire  Net_729;
-          wire  Net_1798;
           wire  Net_1794;
           wire  Net_417;
           wire  Net_1839;
@@ -885,46 +871,7 @@ module top ;
           wire  Net_1831;
           wire  Net_1830;
           wire  Net_1829;
-          wire  Net_689;
-          wire  Net_688;
-          wire  Net_687;
-          wire  Net_686;
-          wire  Net_685;
-          wire  Net_684;
-          wire  Net_683;
-          wire  Net_682;
-          wire  Net_681;
-          wire  Net_680;
-          wire  Net_669;
-          wire  Net_668;
-          wire  Net_667;
-          wire  Net_666;
-          wire  Net_665;
-          wire  Net_664;
-          wire  Net_663;
-          wire  Net_662;
-          wire  Net_661;
-          wire  Net_660;
-          wire  Net_699;
-          wire  Net_698;
-          wire  Net_697;
-          wire  Net_696;
-          wire  Net_695;
-          wire  Net_694;
-          wire  Net_693;
-          wire  Net_692;
-          wire  Net_691;
-          wire  Net_690;
-          wire  Net_679;
-          wire  Net_678;
-          wire  Net_677;
-          wire  Net_676;
-          wire  Net_675;
-          wire  Net_674;
-          wire  Net_673;
-          wire  Net_672;
-          wire  Net_671;
-          wire  Net_670;
+          wire  Net_1798;
           wire  Net_1806;
           wire  Net_1795;
           wire  Net_55;
@@ -962,6 +909,8 @@ module top ;
     electrical  Net_19;
     electrical  Net_24;
     electrical  Net_22;
+          wire  Net_1850;
+          wire  Net_1840;
           wire  Net_1796;
           wire  Net_1207;
           wire  Net_12;
@@ -970,18 +919,6 @@ module top ;
           wire  Net_447;
           wire  Net_467;
           wire  Net_732;
-          wire  Net_491;
-          wire  Net_734;
-          wire [1:0] Net_718;
-          wire [7:0] Net_716;
-          wire  Net_489;
-          wire  Net_490;
-          wire [1:0] Net_368;
-          wire [7:0] Net_715;
-          wire  Net_360;
-          wire  Net_356;
-          wire  Net_358;
-          wire  Net_476;
 
     cy_annotation_universal_v1_0 GND_1 (
         .connect({
@@ -1891,56 +1828,6 @@ module top ;
 		 (.clock_out(Net_1796));
 
 
-    CyControlReg_v1_80 Control_Reg_Actual_Quarter_X (
-        .clock(1'b0),
-        .control_0(Net_671),
-        .control_1(Net_672),
-        .control_2(Net_673),
-        .control_3(Net_674),
-        .control_4(Net_675),
-        .control_5(Net_676),
-        .control_6(Net_677),
-        .control_7(Net_678),
-        .control_bus(Net_718[1:0]),
-        .reset(1'b0));
-    defparam Control_Reg_Actual_Quarter_X.Bit0Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit1Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit2Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit3Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit4Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit5Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit6Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.Bit7Mode = 0;
-    defparam Control_Reg_Actual_Quarter_X.BitValue = 0;
-    defparam Control_Reg_Actual_Quarter_X.BusDisplay = 1;
-    defparam Control_Reg_Actual_Quarter_X.ExtrReset = 0;
-    defparam Control_Reg_Actual_Quarter_X.NumOutputs = 2;
-
-    CyControlReg_v1_80 Control_Reg_Actual_Degree_X (
-        .clock(1'b0),
-        .control_0(Net_691),
-        .control_1(Net_692),
-        .control_2(Net_693),
-        .control_3(Net_694),
-        .control_4(Net_695),
-        .control_5(Net_696),
-        .control_6(Net_697),
-        .control_7(Net_698),
-        .control_bus(Net_715[7:0]),
-        .reset(1'b0));
-    defparam Control_Reg_Actual_Degree_X.Bit0Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit1Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit2Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit3Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit4Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit5Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit6Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.Bit7Mode = 0;
-    defparam Control_Reg_Actual_Degree_X.BitValue = 0;
-    defparam Control_Reg_Actual_Degree_X.BusDisplay = 1;
-    defparam Control_Reg_Actual_Degree_X.ExtrReset = 0;
-    defparam Control_Reg_Actual_Degree_X.NumOutputs = 8;
-
 	wire [0:0] tmpOE__X_Dir_Pin_net;
 	wire [0:0] tmpFB_0__X_Dir_Pin_net;
 	wire [0:0] tmpIO_0__X_Dir_Pin_net;
@@ -1969,7 +1856,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -2002,7 +1889,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		X_Dir_Pin
 		 (.oe(tmpOE__X_Dir_Pin_net),
-		  .y({Net_491}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__X_Dir_Pin_net[0:0]}),
 		  .io({tmpIO_0__X_Dir_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__X_Dir_Pin_net),
@@ -2044,7 +1931,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -2077,7 +1964,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		X_Step_Pin
 		 (.oe(tmpOE__X_Step_Pin_net),
-		  .y({Net_476}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__X_Step_Pin_net[0:0]}),
 		  .io({tmpIO_0__X_Step_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__X_Step_Pin_net),
@@ -2091,77 +1978,17 @@ module top ;
 
 	assign tmpOE__X_Step_Pin_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
-    CyControlReg_v1_80 Control_Reg_Desired_Quarter_X (
-        .clock(1'b0),
-        .control_0(Net_661),
-        .control_1(Net_662),
-        .control_2(Net_663),
-        .control_3(Net_664),
-        .control_4(Net_665),
-        .control_5(Net_666),
-        .control_6(Net_667),
-        .control_7(Net_668),
-        .control_bus(Net_368[1:0]),
-        .reset(1'b0));
-    defparam Control_Reg_Desired_Quarter_X.Bit0Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit1Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit2Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit3Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit4Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit5Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit6Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.Bit7Mode = 0;
-    defparam Control_Reg_Desired_Quarter_X.BitValue = 0;
-    defparam Control_Reg_Desired_Quarter_X.BusDisplay = 1;
-    defparam Control_Reg_Desired_Quarter_X.ExtrReset = 0;
-    defparam Control_Reg_Desired_Quarter_X.NumOutputs = 2;
 
-    CyControlReg_v1_80 Control_Reg_Desired_Degree_X (
-        .clock(1'b0),
-        .control_0(Net_681),
-        .control_1(Net_682),
-        .control_2(Net_683),
-        .control_3(Net_684),
-        .control_4(Net_685),
-        .control_5(Net_686),
-        .control_6(Net_687),
-        .control_7(Net_688),
-        .control_bus(Net_716[7:0]),
-        .reset(1'b0));
-    defparam Control_Reg_Desired_Degree_X.Bit0Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit1Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit2Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit3Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit4Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit5Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit6Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.Bit7Mode = 0;
-    defparam Control_Reg_Desired_Degree_X.BitValue = 0;
-    defparam Control_Reg_Desired_Degree_X.BusDisplay = 1;
-    defparam Control_Reg_Desired_Degree_X.ExtrReset = 0;
-    defparam Control_Reg_Desired_Degree_X.NumOutputs = 8;
-
-    // -- Mux start --
-    if (1)
-    begin : mux_1
-        reg  tmp__mux_1_reg;
-        always @(Net_490 or Net_360 or Net_356)
-        begin
-            case (Net_356)
-                1'b0 :  tmp__mux_1_reg = Net_490;
-                1'b1 :  tmp__mux_1_reg = Net_360;
-            endcase
-        end
-        assign Net_491 = tmp__mux_1_reg;
-    end
-    // -- Mux end --
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		MotorControlFallingEdge
+		 (.int_signal(Net_1850));
 
 
-    assign Net_358 = Net_356 | Net_489;
 
-    assign Net_489 = (Net_716[7:1] !=  Net_715[7:1]);
+    assign Net_1850 = ~Net_1840;
 
-    assign Net_490 = (Net_716[7:0] <= Net_715[7:0]);
+    assign Net_1798 = 1'h0;
 
     PWM_v3_30_2 PWM_1 (
         .capture(1'b0),
@@ -2191,10 +2018,6 @@ module top ;
 		Clock_1
 		 (.clock_out(Net_447));
 
-
-    assign Net_360 = (Net_368[1:0] <= Net_718[1:0]);
-
-    assign Net_356 = (Net_368[1:0] !=  Net_718[1:0]);
 
 	wire [0:0] tmpOE__SDA_2_net;
 	wire [0:0] tmpFB_0__SDA_2_net;
@@ -2271,81 +2094,11 @@ module top ;
 	assign tmpOE__SDA_2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 
-    assign Net_476 = Net_734 & Net_358;
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		MotorControlRiseingEdge
+		 (.int_signal(Net_1840));
 
-	wire [0:0] tmpOE__RST_1_net;
-	wire [0:0] tmpIO_0__RST_1_net;
-	wire [0:0] tmpINTERRUPT_0__RST_1_net;
-	electrical [0:0] tmpSIOVREF__RST_1_net;
-
-	cy_psoc3_pins_v1_10
-		#(.id("0f496b52-ff1d-48b2-9999-9acfed5dce24"),
-		  .drive_mode(3'b001),
-		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b0),
-		  .input_clk_en(0),
-		  .input_sync(1'b1),
-		  .input_sync_mode(1'b0),
-		  .intr_mode(2'b00),
-		  .invert_in_clock(0),
-		  .invert_in_clock_en(0),
-		  .invert_in_reset(0),
-		  .invert_out_clock(0),
-		  .invert_out_clock_en(0),
-		  .invert_out_reset(0),
-		  .io_voltage(""),
-		  .layout_mode("CONTIGUOUS"),
-		  .oe_conn(1'b0),
-		  .oe_reset(0),
-		  .oe_sync(1'b0),
-		  .output_clk_en(0),
-		  .output_clock_mode(1'b0),
-		  .output_conn(1'b0),
-		  .output_mode(1'b0),
-		  .output_reset(0),
-		  .output_sync(1'b0),
-		  .pa_in_clock(-1),
-		  .pa_in_clock_en(-1),
-		  .pa_in_reset(-1),
-		  .pa_out_clock(-1),
-		  .pa_out_clock_en(-1),
-		  .pa_out_reset(-1),
-		  .pin_aliases(""),
-		  .pin_mode("I"),
-		  .por_state(4),
-		  .sio_group_cnt(0),
-		  .sio_hyst(1'b1),
-		  .sio_ibuf(""),
-		  .sio_info(2'b00),
-		  .sio_obuf(""),
-		  .sio_refsel(""),
-		  .sio_vtrip(""),
-		  .sio_hifreq(""),
-		  .sio_vohsel(""),
-		  .slew_rate(1'b0),
-		  .spanning(0),
-		  .use_annotation(1'b0),
-		  .vtrip(2'b00),
-		  .width(1),
-		  .ovt_hyst_trim(1'b0),
-		  .ovt_needed(1'b0),
-		  .ovt_slew_control(2'b00),
-		  .input_buffer_sel(2'b00))
-		RST_1
-		 (.oe(tmpOE__RST_1_net),
-		  .y({1'b0}),
-		  .fb({Net_1798}),
-		  .io({tmpIO_0__RST_1_net[0:0]}),
-		  .siovref(tmpSIOVREF__RST_1_net),
-		  .interrupt({tmpINTERRUPT_0__RST_1_net[0:0]}),
-		  .in_clock({1'b0}),
-		  .in_clock_en({1'b1}),
-		  .in_reset({1'b0}),
-		  .out_clock({1'b0}),
-		  .out_clock_en({1'b1}),
-		  .out_reset({1'b0}));
-
-	assign tmpOE__RST_1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
     CyControlReg_v1_80 Motor_Enable (
         .clock(1'b0),
@@ -2372,7 +2125,7 @@ module top ;
     defparam Motor_Enable.NumOutputs = 1;
 
 
-    assign Net_734 = Net_467 & Net_732;
+    assign Net_1840 = Net_467 & Net_732;
 
     assign Net_1089 = 1'h0;
 

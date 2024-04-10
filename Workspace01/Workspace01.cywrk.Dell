@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\AntennaRotator\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\AntennaRotator\AntennaRotator.cydwr\Pins">
 <ExpandedNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\AntennaRotator</v>
@@ -94,14 +94,6 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Degree_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Degree_X_PM.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Quarter_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Quarter_X_PM.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Degree_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Degree_X_PM.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Quarter_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Quarter_X_PM.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
@@ -131,10 +123,11 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor_Enable.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor_Enable_PM.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\MotorControlFallingEdge.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\MotorControlRiseingEdge.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\RotatorHorizon.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\RST_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_2.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_1.lst</v>
@@ -169,14 +162,6 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Degree_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Degree_X_PM.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Quarter_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Actual_Quarter_X_PM.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Degree_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Degree_X_PM.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Quarter_X.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_Desired_Quarter_X_PM.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
@@ -206,8 +191,16 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor_Enable.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor_Enable_PM.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\MotorControlFallingEdge.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\MotorControlRiseingEdge.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\RotatorHorizon.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_1.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_2.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_1.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_2.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\ssd1306.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -223,25 +216,23 @@
 <v>Workspace01\AntennaRotator\CY8C58LP Family Datasheet</v>
 <v>Workspace01\AntennaRotator\System Reference Guides</v>
 <v>Workspace01\AntennaRotator\System Reference Guides\cy_boot_v6_0</v>
-<v>Workspace01\AntennaRotator\and_v1_0</v>
-<v>Workspace01\AntennaRotator\and_v1_0\and_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\and_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\cy_clock_v2_20</v>
 <v>Workspace01\AntennaRotator\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>Workspace01\AntennaRotator\cy_constant_v1_0.pdf</v>
-<v>Workspace01\AntennaRotator\cy_isr_v1_70.pdf</v>
+<v>Workspace01\AntennaRotator\cy_constant_v1_0</v>
+<v>Workspace01\AntennaRotator\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\cy_isr_v1_70</v>
+<v>Workspace01\AntennaRotator\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
 <v>Workspace01\AntennaRotator\cy_pins_v2_20</v>
 <v>Workspace01\AntennaRotator\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>Workspace01\AntennaRotator\CyControlReg_v1_80</v>
-<v>Workspace01\AntennaRotator\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
-<v>Workspace01\AntennaRotator\DigitalComp_v1_0</v>
-<v>Workspace01\AntennaRotator\DigitalComp_v1_0\DigitalComp_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\CyControlReg_v1_80.pdf</v>
+<v>Workspace01\AntennaRotator\EEPROM_v3_0.pdf</v>
 <v>Workspace01\AntennaRotator\Gnd_v1_0</v>
 <v>Workspace01\AntennaRotator\Gnd_v1_0\Gnd_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\I2C_v3_50</v>
 <v>Workspace01\AntennaRotator\I2C_v3_50\I2C_v3_50.pdf</v>
 <v>Workspace01\AntennaRotator\LED_v1_0.pdf</v>
-<v>Workspace01\AntennaRotator\mux_v1_10.pdf</v>
-<v>Workspace01\AntennaRotator\or_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\not_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\PWM_v3_30.pdf</v>
 <v>Workspace01\AntennaRotator\Resistor_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\SwitchSPST_v1_0</v>
@@ -257,25 +248,23 @@
 <v>Workspace01\AntennaRotator\CY8C58LP Family Datasheet</v>
 <v>Workspace01\AntennaRotator\System Reference Guides</v>
 <v>Workspace01\AntennaRotator\System Reference Guides\cy_boot_v6_0</v>
-<v>Workspace01\AntennaRotator\and_v1_0</v>
-<v>Workspace01\AntennaRotator\and_v1_0\and_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\and_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\cy_clock_v2_20</v>
 <v>Workspace01\AntennaRotator\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>Workspace01\AntennaRotator\cy_constant_v1_0.pdf</v>
-<v>Workspace01\AntennaRotator\cy_isr_v1_70.pdf</v>
+<v>Workspace01\AntennaRotator\cy_constant_v1_0</v>
+<v>Workspace01\AntennaRotator\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\cy_isr_v1_70</v>
+<v>Workspace01\AntennaRotator\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
 <v>Workspace01\AntennaRotator\cy_pins_v2_20</v>
 <v>Workspace01\AntennaRotator\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>Workspace01\AntennaRotator\CyControlReg_v1_80</v>
-<v>Workspace01\AntennaRotator\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
-<v>Workspace01\AntennaRotator\DigitalComp_v1_0</v>
-<v>Workspace01\AntennaRotator\DigitalComp_v1_0\DigitalComp_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\CyControlReg_v1_80.pdf</v>
+<v>Workspace01\AntennaRotator\EEPROM_v3_0.pdf</v>
 <v>Workspace01\AntennaRotator\Gnd_v1_0</v>
 <v>Workspace01\AntennaRotator\Gnd_v1_0\Gnd_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\I2C_v3_50</v>
 <v>Workspace01\AntennaRotator\I2C_v3_50\I2C_v3_50.pdf</v>
 <v>Workspace01\AntennaRotator\LED_v1_0.pdf</v>
-<v>Workspace01\AntennaRotator\mux_v1_10.pdf</v>
-<v>Workspace01\AntennaRotator\or_v1_0.pdf</v>
+<v>Workspace01\AntennaRotator\not_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\PWM_v3_30.pdf</v>
 <v>Workspace01\AntennaRotator\Resistor_v1_0.pdf</v>
 <v>Workspace01\AntennaRotator\SwitchSPST_v1_0</v>
@@ -297,8 +286,7 @@
 <name v=".\AntennaRotator.cydsn\main.c" />
 <name v=".\AntennaRotator.cydsn\RotatorHorizon.h" />
 <name v=".\AntennaRotator.cydsn\RotatorHorizon.c" />
-<name v=".\AntennaRotator.cydsn\ssd1306.h" />
-<name v=".\AntennaRotator.cydsn\ssd1306.c" />
+<name v=".\AntennaRotator.cydsn\main.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -306,7 +294,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 711" SelectedTabbedMdiWindow="c1ab82df-2ba5-4e12-9618-07b63a829a81"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="417adb73-3a14-42b3-be62-db20c2488fa9" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\AntennaRotator.cydwr" Guid="fd2cb371-494b-49bb-a794-b436251f7b14" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\TopDesign\TopDesign.cysch" Guid="932f4ada-ced6-43d7-bced-9e424f7113ca" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.c" Guid="c1ab82df-2ba5-4e12-9618-07b63a829a81" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\RotatorHorizon.h" Guid="8b1db46b-19d3-45fe-b075-302712cc8da6" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\RotatorHorizon.c" Guid="71687775-3da1-4b4e-a2b9-b201992680e3" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\ssd1306.h" Guid="7c015b9f-bac5-4e5c-9fc8-9724efc106ce" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\ssd1306.c" Guid="a13a5833-e4d8-4488-940b-434f5301b694" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 711" SelectedTabbedMdiWindow="932f4ada-ced6-43d7-bced-9e424f7113ca"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="417adb73-3a14-42b3-be62-db20c2488fa9" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\AntennaRotator.cydwr" Guid="fd2cb371-494b-49bb-a794-b436251f7b14" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\TopDesign\TopDesign.cysch" Guid="932f4ada-ced6-43d7-bced-9e424f7113ca" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.c" Guid="c1ab82df-2ba5-4e12-9618-07b63a829a81" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\RotatorHorizon.h" Guid="8b1db46b-19d3-45fe-b075-302712cc8da6" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\RotatorHorizon.c" Guid="71687775-3da1-4b4e-a2b9-b201992680e3" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.h" Guid="29146c79-743c-4377-81c3-4d1c6ae9e192" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

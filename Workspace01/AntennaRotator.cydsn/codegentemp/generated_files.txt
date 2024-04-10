@@ -57,24 +57,14 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2.h" value="HEADER;;;;;SCL_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Clock_2.c" value="SOURCE_C;CortexM3;;;;Clock_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Clock_2.h" value="HEADER;;;;;Clock_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Actual_Quarter_X.h" value="HEADER;;;;;Control_Reg_Actual_Quarter_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Actual_Quarter_X.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Actual_Quarter_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Actual_Quarter_X_PM.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Actual_Quarter_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Actual_Degree_X.h" value="HEADER;;;;;Control_Reg_Actual_Degree_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Actual_Degree_X.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Actual_Degree_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Actual_Degree_X_PM.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Actual_Degree_X" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Dir_Pin_aliases.h" value="HEADER;;;;;X_Dir_Pin" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Dir_Pin.c" value="SOURCE_C;CortexM3;;;;X_Dir_Pin" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Dir_Pin.h" value="HEADER;;;;;X_Dir_Pin" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Step_Pin_aliases.h" value="HEADER;;;;;X_Step_Pin" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Step_Pin.c" value="SOURCE_C;CortexM3;;;;X_Step_Pin" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Step_Pin.h" value="HEADER;;;;;X_Step_Pin" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Desired_Quarter_X.h" value="HEADER;;;;;Control_Reg_Desired_Quarter_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Desired_Quarter_X.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Desired_Quarter_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Desired_Quarter_X_PM.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Desired_Quarter_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Desired_Degree_X.h" value="HEADER;;;;;Control_Reg_Desired_Degree_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Desired_Degree_X.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Desired_Degree_X" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Control_Reg_Desired_Degree_X_PM.c" value="SOURCE_C;CortexM3;;;;Control_Reg_Desired_Degree_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\MotorControlFallingEdge.c" value="SOURCE_C;CortexM3;;;;MotorControlFallingEdge" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\MotorControlFallingEdge.h" value="HEADER;;;;;MotorControlFallingEdge" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\PWM_1.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\PWM_1.h" value="HEADER;;;;;PWM_1" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\PWM_1_PM.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
@@ -83,9 +73,8 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_2_aliases.h" value="HEADER;;;;;SDA_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_2.c" value="SOURCE_C;CortexM3;;;;SDA_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_2.h" value="HEADER;;;;;SDA_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\RST_1_aliases.h" value="HEADER;;;;;RST_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\RST_1.c" value="SOURCE_C;CortexM3;;;;RST_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\RST_1.h" value="HEADER;;;;;RST_1" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\MotorControlRiseingEdge.c" value="SOURCE_C;CortexM3;;;;MotorControlRiseingEdge" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\MotorControlRiseingEdge.h" value="HEADER;;;;;MotorControlRiseingEdge" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Motor_Enable.h" value="HEADER;;;;;Motor_Enable" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Motor_Enable.c" value="SOURCE_C;CortexM3;;;;Motor_Enable" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Motor_Enable_PM.c" value="SOURCE_C;CortexM3;;;;Motor_Enable" />
