@@ -39,12 +39,14 @@
           <File BuildType="BUILD" Toolchain="">main.c</File>
           <File BuildType="BUILD" Toolchain="">ssd1306.c</File>
           <File BuildType="BUILD" Toolchain="">RotatorHorizon.c</File>
+          <File BuildType="BUILD" Toolchain="">cli.c</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
           <File BuildType="BUILD" Toolchain="">font.h</File>
           <File BuildType="BUILD" Toolchain="">ssd1306.h</File>
           <File BuildType="BUILD" Toolchain="">RotatorHorizon.h</File>
           <File BuildType="BUILD" Toolchain="">util.h</File>
           <File BuildType="BUILD" Toolchain="">main.h</File>
+          <File BuildType="BUILD" Toolchain="">cli.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\Generated_Source\PSoC5">
@@ -120,12 +122,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_BOOT.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_IntClock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_IntClock.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_OLED_BOOT.c</File>
@@ -155,26 +151,54 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_Int.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Display_Refresh_Timer_Int.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_BOOT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_SLAVE.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_MASTER.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_1_PVT.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MotorControlFallingEdge.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MotorControlFallingEdge.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MotorControlRiseingEdge.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MotorControlRiseingEdge.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_OLED_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_OLED.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_OLED.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_OLED_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_OLED.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_OLED.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_X_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_X_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X_BOOT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X_SLAVE.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X_MASTER.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_X_PVT.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\EEPROM_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\EEPROM_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_Y_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_Y.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SDA_Y.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_Y_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_Y.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SCL_Y.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Y_Step_Pin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Y_Step_Pin.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Y_Step_Pin.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y_BOOT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y_SLAVE.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y_MASTER.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\I2C_Y_PVT.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Y_Dir_Pin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Y_Dir_Pin.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Y_Dir_Pin.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\Export\ARM_GCC_Generic">

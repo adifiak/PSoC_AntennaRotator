@@ -22,5 +22,9 @@ typedef struct ROTATOR_STATE{
     int y_act;
 }ROTATOR_STATE;
 
+struct ROTATOR_STATE rotator_state;
+
+void refreshRotation(ROTATOR_STATE* rotator_state);
+
 #endif /*MAIN_H*/
 /* [] END OF FILE */

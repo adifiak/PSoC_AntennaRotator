@@ -253,20 +253,24 @@
     <Group key="Pin">
       <Data key="0e762d80-6423-43a7-a037-c1d8a998aa88" value="X_Dir_Pin" />
       <Data key="0f496b52-ff1d-48b2-9999-9acfed5dce24" value="RST_1" />
-      <Data key="02f2cf2c-2c7a-49df-9246-7a3435c21be3" value="SCL_1" />
-      <Data key="4ad084d6-128d-4c4f-904f-fa1591611471" value="SDA_2" />
+      <Data key="02f2cf2c-2c7a-49df-9246-7a3435c21be3" value="SCL_OLED" />
+      <Data key="3a6bad3a-b95f-4586-b52b-67f030a144c8" value="SCL_Y" />
+      <Data key="4ad084d6-128d-4c4f-904f-fa1591611471" value="SDA_X" />
+      <Data key="4c951b4a-28c8-4bb1-83f3-ae3e0be93c05" value="Y_Step_Pin" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="SW_UP_Pin" />
       <Data key="846bb111-eb5e-43f5-aa8a-e20421821871" value="SW_RIGHT_Pin" />
-      <Data key="22863ebe-a37b-476f-b252-6e49a8c00b12" value="SDA_1" />
+      <Data key="22863ebe-a37b-476f-b252-6e49a8c00b12" value="SDA_OLED" />
       <Data key="629858c1-86b4-4ed5-b58a-cf8658b78887/7e0d1a6c-1235-4546-a71b-ea6e528924f8" value="ADC_SAR_2_ExtVref" />
       <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="RX_Pin" />
       <Data key="08591241-eb3b-4a54-ab81-18dbd4e565d2/20681f4c-d171-47ae-a1cb-d832cd711191" value="ADC_DelSig_1_Bypass_P03" />
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="Analog_Pin_1" />
       <Data key="b1a6f8fa-72c8-4eef-a2bf-b202d1927de4" value="SW_LEFT_Pin" />
       <Data key="b2c67f4a-8f7e-4c02-8809-8205540db970/7e0d1a6c-1235-4546-a71b-ea6e528924f8" value="ADC_SAR_1_ExtVref" />
+      <Data key="b9ce06aa-548e-4df0-858b-a29e75ca2578" value="Y_Dir_Pin" />
       <Data key="b39fc620-6e7d-44ae-8451-841bc0435934" value="X_Step_Pin" />
+      <Data key="c890ca44-8fc6-4d2b-956a-9c696b6fd64e" value="SDA_Y" />
       <Data key="c7754651-febf-4d10-a608-b3e9785bc4e2" value="SW_DOWN_Pin" />
-      <Data key="dc017d04-3b40-4c05-8ea8-2775e43107d9" value="SCL_2" />
+      <Data key="dc017d04-3b40-4c05-8ea8-2775e43107d9" value="SCL_X" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="LED_Pin" />
       <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="TX_Pin" />
       <Data key="ef41ef2d-657a-4f48-b74b-848a6a501db2" value="Analog_Pin_2" />
@@ -3358,7 +3362,7 @@
   <Group key="Pin2">
     <Group key="0e762d80-6423-43a7-a037-c1d8a998aa88">
       <Group key="0">
-        <Data key="Port Format" value="0,1" />
+        <Data key="Port Format" value="3,0" />
       </Group>
     </Group>
     <Group key="02f2cf2c-2c7a-49df-9246-7a3435c21be3">
@@ -3366,9 +3370,19 @@
         <Data key="Port Format" value="12,0" />
       </Group>
     </Group>
+    <Group key="3a6bad3a-b95f-4586-b52b-67f030a144c8">
+      <Group key="0">
+        <Data key="Port Format" value="12,4" />
+      </Group>
+    </Group>
     <Group key="4ad084d6-128d-4c4f-904f-fa1591611471">
       <Group key="0">
-        <Data key="Port Format" value="2,5" />
+        <Data key="Port Format" value="12,3" />
+      </Group>
+    </Group>
+    <Group key="4c951b4a-28c8-4bb1-83f3-ae3e0be93c05">
+      <Group key="0">
+        <Data key="Port Format" value="3,3" />
       </Group>
     </Group>
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
@@ -3406,9 +3420,19 @@
         <Data key="Port Format" value="1,2" />
       </Group>
     </Group>
+    <Group key="b9ce06aa-548e-4df0-858b-a29e75ca2578">
+      <Group key="0">
+        <Data key="Port Format" value="3,2" />
+      </Group>
+    </Group>
     <Group key="b39fc620-6e7d-44ae-8451-841bc0435934">
       <Group key="0">
-        <Data key="Port Format" value="0,2" />
+        <Data key="Port Format" value="3,1" />
+      </Group>
+    </Group>
+    <Group key="c890ca44-8fc6-4d2b-956a-9c696b6fd64e">
+      <Group key="0">
+        <Data key="Port Format" value="12,5" />
       </Group>
     </Group>
     <Group key="c7754651-febf-4d10-a608-b3e9785bc4e2">
@@ -3418,7 +3442,7 @@
     </Group>
     <Group key="dc017d04-3b40-4c05-8ea8-2775e43107d9">
       <Group key="0">
-        <Data key="Port Format" value="2,4" />
+        <Data key="Port Format" value="12,2" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">

@@ -38,12 +38,12 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\UART_PM.c" value="SOURCE_C;CortexM3;;;;UART" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\UART_INT.c" value="SOURCE_C;CortexM3;;;;UART" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\UART_BOOT.c" value="SOURCE_C;CortexM3;;;;UART" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_1_aliases.h" value="HEADER;;;;;SDA_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_1.c" value="SOURCE_C;CortexM3;;;;SDA_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_1.h" value="HEADER;;;;;SDA_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_1_aliases.h" value="HEADER;;;;;SCL_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_1.c" value="SOURCE_C;CortexM3;;;;SCL_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_1.h" value="HEADER;;;;;SCL_1" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_OLED_aliases.h" value="HEADER;;;;;SDA_OLED" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_OLED.c" value="SOURCE_C;CortexM3;;;;SDA_OLED" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_OLED.h" value="HEADER;;;;;SDA_OLED" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_OLED_aliases.h" value="HEADER;;;;;SCL_OLED" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_OLED.c" value="SOURCE_C;CortexM3;;;;SCL_OLED" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_OLED.h" value="HEADER;;;;;SCL_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED.c" value="SOURCE_C;CortexM3;;;;I2C_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED.h" value="HEADER;;;;;I2C_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_BOOT.c" value="SOURCE_C;CortexM3;;;;I2C_OLED" />
@@ -52,9 +52,9 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_SLAVE.c" value="SOURCE_C;CortexM3;;;;I2C_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_MASTER.c" value="SOURCE_C;CortexM3;;;;I2C_OLED" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_OLED_PVT.h" value="HEADER;;;;;I2C_OLED" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2_aliases.h" value="HEADER;;;;;SCL_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2.c" value="SOURCE_C;CortexM3;;;;SCL_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_2.h" value="HEADER;;;;;SCL_2" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_X_aliases.h" value="HEADER;;;;;SCL_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_X.c" value="SOURCE_C;CortexM3;;;;SCL_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_X.h" value="HEADER;;;;;SCL_X" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Clock_2.c" value="SOURCE_C;CortexM3;;;;Clock_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Clock_2.h" value="HEADER;;;;;Clock_2" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\X_Dir_Pin_aliases.h" value="HEADER;;;;;X_Dir_Pin" />
@@ -70,9 +70,9 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\PWM_1_PM.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Clock_1.c" value="SOURCE_C;CortexM3;;;;Clock_1" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Clock_1.h" value="HEADER;;;;;Clock_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_2_aliases.h" value="HEADER;;;;;SDA_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_2.c" value="SOURCE_C;CortexM3;;;;SDA_2" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_2.h" value="HEADER;;;;;SDA_2" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_X_aliases.h" value="HEADER;;;;;SDA_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_X.c" value="SOURCE_C;CortexM3;;;;SDA_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_X.h" value="HEADER;;;;;SDA_X" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\MotorControlRiseingEdge.c" value="SOURCE_C;CortexM3;;;;MotorControlRiseingEdge" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\MotorControlRiseingEdge.h" value="HEADER;;;;;MotorControlRiseingEdge" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Motor_Enable.h" value="HEADER;;;;;Motor_Enable" />
@@ -85,14 +85,36 @@
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Display_Refresh_Timer_PM.c" value="SOURCE_C;CortexM3;;;;Display_Refresh_Timer" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Display_Refresh_Timer_Int.c" value="SOURCE_C;CortexM3;;;;Display_Refresh_Timer_Int" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Display_Refresh_Timer_Int.h" value="HEADER;;;;;Display_Refresh_Timer_Int" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1.c" value="SOURCE_C;CortexM3;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1.h" value="HEADER;;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1_BOOT.c" value="SOURCE_C;CortexM3;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1_INT.c" value="SOURCE_C;CortexM3;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1_PM.c" value="SOURCE_C;CortexM3;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1_SLAVE.c" value="SOURCE_C;CortexM3;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1_MASTER.c" value="SOURCE_C;CortexM3;;;;I2C_1" />
-  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_1_PVT.h" value="HEADER;;;;;I2C_1" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X.c" value="SOURCE_C;CortexM3;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X.h" value="HEADER;;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X_BOOT.c" value="SOURCE_C;CortexM3;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X_INT.c" value="SOURCE_C;CortexM3;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X_PM.c" value="SOURCE_C;CortexM3;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X_SLAVE.c" value="SOURCE_C;CortexM3;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X_MASTER.c" value="SOURCE_C;CortexM3;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_X_PVT.h" value="HEADER;;;;;I2C_X" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\EEPROM_1.c" value="SOURCE_C;CortexM3;;;;EEPROM_1" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\EEPROM_1.h" value="HEADER;;;;;EEPROM_1" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_Y_aliases.h" value="HEADER;;;;;SDA_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_Y.c" value="SOURCE_C;CortexM3;;;;SDA_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SDA_Y.h" value="HEADER;;;;;SDA_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_Y_aliases.h" value="HEADER;;;;;SCL_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_Y.c" value="SOURCE_C;CortexM3;;;;SCL_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\SCL_Y.h" value="HEADER;;;;;SCL_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Y_Step_Pin_aliases.h" value="HEADER;;;;;Y_Step_Pin" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Y_Step_Pin.c" value="SOURCE_C;CortexM3;;;;Y_Step_Pin" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Y_Step_Pin.h" value="HEADER;;;;;Y_Step_Pin" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y.c" value="SOURCE_C;CortexM3;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y.h" value="HEADER;;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y_BOOT.c" value="SOURCE_C;CortexM3;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y_INT.c" value="SOURCE_C;CortexM3;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y_PM.c" value="SOURCE_C;CortexM3;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y_SLAVE.c" value="SOURCE_C;CortexM3;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y_MASTER.c" value="SOURCE_C;CortexM3;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\I2C_Y_PVT.h" value="HEADER;;;;;I2C_Y" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Y_Dir_Pin_aliases.h" value="HEADER;;;;;Y_Dir_Pin" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Y_Dir_Pin.c" value="SOURCE_C;CortexM3;;;;Y_Dir_Pin" />
+  <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\Y_Dir_Pin.h" value="HEADER;;;;;Y_Dir_Pin" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
   <file name="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

@@ -1,5 +1,5 @@
 # AntennaRotator
-# 2024-04-02 09:53:57Z
+# 2024-04-13 21:08:56Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -14,9 +14,13 @@ set_io "SW_LEFT_Pin(0)" iocell 1 2
 set_io "SW_RIGHT_Pin(0)" iocell 1 6
 set_io "RX_Pin(0)" iocell 12 6
 set_io "TX_Pin(0)" iocell 12 7
-set_io "SDA_1(0)" iocell 12 1
-set_io "SCL_1(0)" iocell 12 0
-set_io "SCL_2(0)" iocell 2 4
-set_io "X_Dir_Pin(0)" iocell 0 1
-set_io "X_Step_Pin(0)" iocell 0 2
-set_io "SDA_2(0)" iocell 2 5
+set_io "SDA_OLED(0)" iocell 12 1
+set_io "SCL_OLED(0)" iocell 12 0
+set_io "SCL_X(0)" iocell 12 2
+set_io "X_Dir_Pin(0)" iocell 3 0
+set_io "X_Step_Pin(0)" iocell 3 1
+set_io "SDA_X(0)" iocell 12 3
+set_io "SDA_Y(0)" iocell 12 5
+set_io "SCL_Y(0)" iocell 12 4
+set_io "Y_Step_Pin(0)" iocell 3 3
+set_io "Y_Dir_Pin(0)" iocell 3 2
