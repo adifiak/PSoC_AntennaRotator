@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
   28:Generated_Source\PSoC5/I2C_X.c **** 
   29:Generated_Source\PSoC5/I2C_X.c **** /*******************************************************************************
   30:Generated_Source\PSoC5/I2C_X.c **** * Function Name: I2C_X_Init
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 2
 
 
   31:Generated_Source\PSoC5/I2C_X.c **** ********************************************************************************
@@ -85,10 +85,12 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32 0000 10B5     		push	{r4, lr}
-  33              		.cfi_def_cfa_offset 8
-  34              		.cfi_offset 4, -8
-  35              		.cfi_offset 14, -4
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
   51:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_FF_IMPLEMENTED)
   52:Generated_Source\PSoC5/I2C_X.c ****     /* Configure fixed function block */
   53:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_CFG_REG  = I2C_X_DEFAULT_CFG;
@@ -102,34 +104,34 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
   61:Generated_Source\PSoC5/I2C_X.c **** 
   62:Generated_Source\PSoC5/I2C_X.c ****     /* Configure control and interrupt sources */
   63:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_CFG_REG      = I2C_X_DEFAULT_CFG;
-  36              		.loc 1 63 0
-  37 0002 0024     		movs	r4, #0
-  38 0004 134B     		ldr	r3, .L3
-  39 0006 1C70     		strb	r4, [r3]
+  38              		.loc 1 63 0
+  39 0002 0024     		movs	r4, #0
+  40 0004 134B     		ldr	r3, .L3
+  41 0006 1C70     		strb	r4, [r3]
   64:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_INT_MASK_REG = I2C_X_DEFAULT_INT_MASK;
-  40              		.loc 1 64 0
-  41 0008 0122     		movs	r2, #1
-  42 000a 1333     		adds	r3, r3, #19
-  43 000c 1A70     		strb	r2, [r3]
+  42              		.loc 1 64 0
+  43 0008 0122     		movs	r2, #1
+  44 000a 1233     		adds	r3, r3, #18
+  45 000c 1A70     		strb	r2, [r3]
   65:Generated_Source\PSoC5/I2C_X.c **** 
   66:Generated_Source\PSoC5/I2C_X.c ****     /* Enable interrupt generation in status */
   67:Generated_Source\PSoC5/I2C_X.c ****     intState = CyEnterCriticalSection();
-  44              		.loc 1 67 0
-  45 000e FFF7FEFF 		bl	CyEnterCriticalSection
-  46              	.LVL0:
+  46              		.loc 1 67 0
+  47 000e FFF7FEFF 		bl	CyEnterCriticalSection
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 3
+
+
+  48              	.LVL0:
   68:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_INT_ENABLE_REG |= I2C_X_INTR_ENABLE;
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 3
-
-
-  47              		.loc 1 68 0
-  48 0012 114A     		ldr	r2, .L3+4
-  49 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  50 0016 43F01003 		orr	r3, r3, #16
-  51 001a 1370     		strb	r3, [r2]
+  49              		.loc 1 68 0
+  50 0012 114A     		ldr	r2, .L3+4
+  51 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  52 0016 43F01003 		orr	r3, r3, #16
+  53 001a 1370     		strb	r3, [r2]
   69:Generated_Source\PSoC5/I2C_X.c ****     CyExitCriticalSection(intState);
-  52              		.loc 1 69 0
-  53 001c FFF7FEFF 		bl	CyExitCriticalSection
-  54              	.LVL1:
+  54              		.loc 1 69 0
+  55 001c FFF7FEFF 		bl	CyExitCriticalSection
+  56              	.LVL1:
   70:Generated_Source\PSoC5/I2C_X.c **** 
   71:Generated_Source\PSoC5/I2C_X.c ****     /* Configure bit counter */
   72:Generated_Source\PSoC5/I2C_X.c ****     #if (I2C_X_MODE_SLAVE_ENABLED)
@@ -139,15 +141,15 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
   76:Generated_Source\PSoC5/I2C_X.c ****     /* Configure clock generator */
   77:Generated_Source\PSoC5/I2C_X.c ****     #if (I2C_X_MODE_MASTER_ENABLED)
   78:Generated_Source\PSoC5/I2C_X.c ****         I2C_X_MCLK_PRD_REG = I2C_X_DEFAULT_MCLK_PRD;
-  55              		.loc 1 78 0
-  56 0020 0F22     		movs	r2, #15
-  57 0022 0E4B     		ldr	r3, .L3+8
-  58 0024 1A70     		strb	r2, [r3]
+  57              		.loc 1 78 0
+  58 0020 0F22     		movs	r2, #15
+  59 0022 0E4B     		ldr	r3, .L3+8
+  60 0024 1A70     		strb	r2, [r3]
   79:Generated_Source\PSoC5/I2C_X.c ****         I2C_X_MCLK_CMP_REG = I2C_X_DEFAULT_MCLK_CMP;
-  59              		.loc 1 79 0
-  60 0026 0823     		movs	r3, #8
-  61 0028 0D4A     		ldr	r2, .L3+12
-  62 002a 1370     		strb	r3, [r2]
+  61              		.loc 1 79 0
+  62 0026 0822     		movs	r2, #8
+  63 0028 1033     		adds	r3, r3, #16
+  64 002a 1A70     		strb	r2, [r3]
   80:Generated_Source\PSoC5/I2C_X.c ****     #endif /* (I2C_X_MODE_MASTER_ENABLED) */
   81:Generated_Source\PSoC5/I2C_X.c **** #endif /* (I2C_X_FF_IMPLEMENTED) */
   82:Generated_Source\PSoC5/I2C_X.c **** 
@@ -157,33 +159,33 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
   86:Generated_Source\PSoC5/I2C_X.c **** 
   87:Generated_Source\PSoC5/I2C_X.c ****     /* Configure internal interrupt */
   88:Generated_Source\PSoC5/I2C_X.c ****     CyIntDisable    (I2C_X_ISR_NUMBER);
-  63              		.loc 1 88 0
-  64 002c 0D4A     		ldr	r2, .L3+16
-  65 002e 1360     		str	r3, [r2]
+  65              		.loc 1 88 0
+  66 002c 1025     		movs	r5, #16
+  67 002e 0C4B     		ldr	r3, .L3+12
+  68 0030 1D60     		str	r5, [r3]
   89:Generated_Source\PSoC5/I2C_X.c ****     CyIntSetPriority(I2C_X_ISR_NUMBER, I2C_X_ISR_PRIORITY);
-  66              		.loc 1 89 0
-  67 0030 0721     		movs	r1, #7
-  68 0032 0320     		movs	r0, #3
-  69 0034 FFF7FEFF 		bl	CyIntSetPriority
-  70              	.LVL2:
+  69              		.loc 1 89 0
+  70 0032 0721     		movs	r1, #7
+  71 0034 0420     		movs	r0, #4
+  72 0036 FFF7FEFF 		bl	CyIntSetPriority
+  73              	.LVL2:
   90:Generated_Source\PSoC5/I2C_X.c ****     #if (I2C_X_INTERN_I2C_INTR_HANDLER)
   91:Generated_Source\PSoC5/I2C_X.c ****         (void) CyIntSetVector(I2C_X_ISR_NUMBER, &I2C_X_ISR);
-  71              		.loc 1 91 0
-  72 0038 0B49     		ldr	r1, .L3+20
-  73 003a 0320     		movs	r0, #3
-  74 003c FFF7FEFF 		bl	CyIntSetVector
-  75              	.LVL3:
+  74              		.loc 1 91 0
+  75 003a 0A49     		ldr	r1, .L3+16
+  76 003c 0420     		movs	r0, #4
+  77 003e FFF7FEFF 		bl	CyIntSetVector
+  78              	.LVL3:
   92:Generated_Source\PSoC5/I2C_X.c ****     #endif /* (I2C_X_INTERN_I2C_INTR_HANDLER) */
   93:Generated_Source\PSoC5/I2C_X.c **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 4
+
+
   94:Generated_Source\PSoC5/I2C_X.c ****     /* Set FSM to default state */
   95:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_state = I2C_X_SM_IDLE;
-  76              		.loc 1 95 0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 4
-
-
-  77 0040 1022     		movs	r2, #16
-  78 0042 0A4B     		ldr	r3, .L3+24
-  79 0044 1A70     		strb	r2, [r3]
+  79              		.loc 1 95 0
+  80 0042 094B     		ldr	r3, .L3+20
+  81 0044 1D70     		strb	r5, [r3]
   96:Generated_Source\PSoC5/I2C_X.c **** 
   97:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_MODE_SLAVE_ENABLED)
   98:Generated_Source\PSoC5/I2C_X.c ****     /* Clear status and buffers index */
@@ -198,49 +200,48 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  107:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_MODE_MASTER_ENABLED)
  108:Generated_Source\PSoC5/I2C_X.c ****     /* Clear status and buffers index */
  109:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_mstrStatus = 0u;
-  80              		.loc 1 109 0
-  81 0046 0A4B     		ldr	r3, .L3+28
-  82 0048 1C70     		strb	r4, [r3]
+  82              		.loc 1 109 0
+  83 0046 094B     		ldr	r3, .L3+24
+  84 0048 1C70     		strb	r4, [r3]
  110:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_mstrRdBufIndex = 0u;
-  83              		.loc 1 110 0
-  84 004a 0A4B     		ldr	r3, .L3+32
-  85 004c 1C70     		strb	r4, [r3]
+  85              		.loc 1 110 0
+  86 004a 094B     		ldr	r3, .L3+28
+  87 004c 1C70     		strb	r4, [r3]
  111:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_mstrWrBufIndex = 0u;
-  86              		.loc 1 111 0
-  87 004e 0A4B     		ldr	r3, .L3+36
-  88 0050 1C70     		strb	r4, [r3]
-  89 0052 10BD     		pop	{r4, pc}
-  90              	.L4:
-  91              		.align	2
-  92              	.L3:
-  93 0054 73640040 		.word	1073767539
-  94 0058 96640040 		.word	1073767574
-  95 005c 23640040 		.word	1073767459
-  96 0060 33640040 		.word	1073767475
-  97 0064 80E100E0 		.word	-536813184
-  98 0068 00000000 		.word	I2C_X_ISR
-  99 006c 00000000 		.word	I2C_X_state
- 100 0070 00000000 		.word	I2C_X_mstrStatus
- 101 0074 00000000 		.word	I2C_X_mstrRdBufIndex
- 102 0078 00000000 		.word	I2C_X_mstrWrBufIndex
- 103              		.cfi_endproc
- 104              	.LFE0:
- 105              		.size	I2C_X_Init, .-I2C_X_Init
- 106              		.section	.text.I2C_X_Enable,"ax",%progbits
- 107              		.align	2
- 108              		.global	I2C_X_Enable
- 109              		.thumb
- 110              		.thumb_func
- 111              		.type	I2C_X_Enable, %function
- 112              	I2C_X_Enable:
- 113              	.LFB1:
+  88              		.loc 1 111 0
+  89 004e 094B     		ldr	r3, .L3+32
+  90 0050 1C70     		strb	r4, [r3]
+  91 0052 38BD     		pop	{r3, r4, r5, pc}
+  92              	.L4:
+  93              		.align	2
+  94              	.L3:
+  95 0054 75640040 		.word	1073767541
+  96 0058 97640040 		.word	1073767575
+  97 005c 28640040 		.word	1073767464
+  98 0060 80E100E0 		.word	-536813184
+  99 0064 00000000 		.word	I2C_X_ISR
+ 100 0068 00000000 		.word	I2C_X_state
+ 101 006c 00000000 		.word	I2C_X_mstrStatus
+ 102 0070 00000000 		.word	I2C_X_mstrRdBufIndex
+ 103 0074 00000000 		.word	I2C_X_mstrWrBufIndex
+ 104              		.cfi_endproc
+ 105              	.LFE0:
+ 106              		.size	I2C_X_Init, .-I2C_X_Init
+ 107              		.section	.text.I2C_X_Enable,"ax",%progbits
+ 108              		.align	2
+ 109              		.global	I2C_X_Enable
+ 110              		.thumb
+ 111              		.thumb_func
+ 112              		.type	I2C_X_Enable, %function
+ 113              	I2C_X_Enable:
+ 114              	.LFB1:
  112:Generated_Source\PSoC5/I2C_X.c **** #endif /* (I2C_X_MODE_MASTER_ENABLED) */
  113:Generated_Source\PSoC5/I2C_X.c **** }
  114:Generated_Source\PSoC5/I2C_X.c **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 5
+
+
  115:Generated_Source\PSoC5/I2C_X.c **** 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 5
-
-
  116:Generated_Source\PSoC5/I2C_X.c **** /*******************************************************************************
  117:Generated_Source\PSoC5/I2C_X.c **** * Function Name: I2C_X_Enable
  118:Generated_Source\PSoC5/I2C_X.c **** ********************************************************************************
@@ -260,11 +261,11 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  132:Generated_Source\PSoC5/I2C_X.c **** *******************************************************************************/
  133:Generated_Source\PSoC5/I2C_X.c **** void I2C_X_Enable(void) 
  134:Generated_Source\PSoC5/I2C_X.c **** {
- 114              		.loc 1 134 0
- 115              		.cfi_startproc
- 116              		@ args = 0, pretend = 0, frame = 0
- 117              		@ frame_needed = 0, uses_anonymous_args = 0
- 118              		@ link register save eliminated.
+ 115              		.loc 1 134 0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
  135:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_FF_IMPLEMENTED)
  136:Generated_Source\PSoC5/I2C_X.c ****     uint8 intState;
  137:Generated_Source\PSoC5/I2C_X.c **** 
@@ -283,30 +284,30 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  150:Generated_Source\PSoC5/I2C_X.c **** 
  151:Generated_Source\PSoC5/I2C_X.c ****     /* Enable slave or master bits */
  152:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_CFG_REG |= I2C_X_ENABLE_MS;
- 119              		.loc 1 152 0
- 120 0000 024A     		ldr	r2, .L6
- 121 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 122 0004 43F00203 		orr	r3, r3, #2
- 123 0008 1370     		strb	r3, [r2]
- 124 000a 7047     		bx	lr
- 125              	.L7:
- 126              		.align	2
- 127              	.L6:
- 128 000c 73640040 		.word	1073767539
- 129              		.cfi_endproc
- 130              	.LFE1:
- 131              		.size	I2C_X_Enable, .-I2C_X_Enable
- 132              		.section	.text.I2C_X_Start,"ax",%progbits
- 133              		.align	2
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 6
+ 120              		.loc 1 152 0
+ 121 0000 024A     		ldr	r2, .L6
+ 122 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 123 0004 43F00203 		orr	r3, r3, #2
+ 124 0008 1370     		strb	r3, [r2]
+ 125 000a 7047     		bx	lr
+ 126              	.L7:
+ 127              		.align	2
+ 128              	.L6:
+ 129 000c 75640040 		.word	1073767541
+ 130              		.cfi_endproc
+ 131              	.LFE1:
+ 132              		.size	I2C_X_Enable, .-I2C_X_Enable
+ 133              		.section	.text.I2C_X_Start,"ax",%progbits
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 6
 
 
- 134              		.global	I2C_X_Start
- 135              		.thumb
- 136              		.thumb_func
- 137              		.type	I2C_X_Start, %function
- 138              	I2C_X_Start:
- 139              	.LFB2:
+ 134              		.align	2
+ 135              		.global	I2C_X_Start
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.type	I2C_X_Start, %function
+ 139              	I2C_X_Start:
+ 140              	.LFB2:
  153:Generated_Source\PSoC5/I2C_X.c **** #endif /* (I2C_X_FF_IMPLEMENTED) */
  154:Generated_Source\PSoC5/I2C_X.c **** 
  155:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_TIMEOUT_ENABLED)
@@ -345,61 +346,61 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  188:Generated_Source\PSoC5/I2C_X.c **** *******************************************************************************/
  189:Generated_Source\PSoC5/I2C_X.c **** void I2C_X_Start(void) 
  190:Generated_Source\PSoC5/I2C_X.c **** {
- 140              		.loc 1 190 0
- 141              		.cfi_startproc
- 142              		@ args = 0, pretend = 0, frame = 0
- 143              		@ frame_needed = 0, uses_anonymous_args = 0
- 144 0000 08B5     		push	{r3, lr}
- 145              		.cfi_def_cfa_offset 8
- 146              		.cfi_offset 3, -8
- 147              		.cfi_offset 14, -4
+ 141              		.loc 1 190 0
+ 142              		.cfi_startproc
+ 143              		@ args = 0, pretend = 0, frame = 0
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145 0000 08B5     		push	{r3, lr}
+ 146              		.cfi_def_cfa_offset 8
+ 147              		.cfi_offset 3, -8
+ 148              		.cfi_offset 14, -4
  191:Generated_Source\PSoC5/I2C_X.c ****     if (0u == I2C_X_initVar)
- 148              		.loc 1 191 0
- 149 0002 074B     		ldr	r3, .L11
- 150 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 151 0006 23B9     		cbnz	r3, .L9
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 7
+ 149              		.loc 1 191 0
+ 150 0002 074B     		ldr	r3, .L11
+ 151 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 7
 
 
+ 152 0006 23B9     		cbnz	r3, .L9
  192:Generated_Source\PSoC5/I2C_X.c ****     {
  193:Generated_Source\PSoC5/I2C_X.c ****         I2C_X_Init();
- 152              		.loc 1 193 0
- 153 0008 FFF7FEFF 		bl	I2C_X_Init
- 154              	.LVL4:
+ 153              		.loc 1 193 0
+ 154 0008 FFF7FEFF 		bl	I2C_X_Init
+ 155              	.LVL4:
  194:Generated_Source\PSoC5/I2C_X.c ****         I2C_X_initVar = 1u; /* Component initialized */
- 155              		.loc 1 194 0
- 156 000c 0122     		movs	r2, #1
- 157 000e 044B     		ldr	r3, .L11
- 158 0010 1A70     		strb	r2, [r3]
- 159              	.L9:
+ 156              		.loc 1 194 0
+ 157 000c 0122     		movs	r2, #1
+ 158 000e 044B     		ldr	r3, .L11
+ 159 0010 1A70     		strb	r2, [r3]
+ 160              	.L9:
  195:Generated_Source\PSoC5/I2C_X.c ****     }
  196:Generated_Source\PSoC5/I2C_X.c **** 
  197:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_Enable();
- 160              		.loc 1 197 0
- 161 0012 FFF7FEFF 		bl	I2C_X_Enable
- 162              	.LVL5:
+ 161              		.loc 1 197 0
+ 162 0012 FFF7FEFF 		bl	I2C_X_Enable
+ 163              	.LVL5:
  198:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_EnableInt();
- 163              		.loc 1 198 0
- 164 0016 0822     		movs	r2, #8
- 165 0018 024B     		ldr	r3, .L11+4
- 166 001a 1A60     		str	r2, [r3]
- 167 001c 08BD     		pop	{r3, pc}
- 168              	.L12:
- 169 001e 00BF     		.align	2
- 170              	.L11:
- 171 0020 00000000 		.word	.LANCHOR0
- 172 0024 00E100E0 		.word	-536813312
- 173              		.cfi_endproc
- 174              	.LFE2:
- 175              		.size	I2C_X_Start, .-I2C_X_Start
- 176              		.section	.text.I2C_X_Stop,"ax",%progbits
- 177              		.align	2
- 178              		.global	I2C_X_Stop
- 179              		.thumb
- 180              		.thumb_func
- 181              		.type	I2C_X_Stop, %function
- 182              	I2C_X_Stop:
- 183              	.LFB3:
+ 164              		.loc 1 198 0
+ 165 0016 1022     		movs	r2, #16
+ 166 0018 024B     		ldr	r3, .L11+4
+ 167 001a 1A60     		str	r2, [r3]
+ 168 001c 08BD     		pop	{r3, pc}
+ 169              	.L12:
+ 170 001e 00BF     		.align	2
+ 171              	.L11:
+ 172 0020 00000000 		.word	.LANCHOR0
+ 173 0024 00E100E0 		.word	-536813312
+ 174              		.cfi_endproc
+ 175              	.LFE2:
+ 176              		.size	I2C_X_Start, .-I2C_X_Start
+ 177              		.section	.text.I2C_X_Stop,"ax",%progbits
+ 178              		.align	2
+ 179              		.global	I2C_X_Stop
+ 180              		.thumb
+ 181              		.thumb_func
+ 182              		.type	I2C_X_Stop, %function
+ 183              	I2C_X_Stop:
+ 184              	.LFB3:
  199:Generated_Source\PSoC5/I2C_X.c **** }
  200:Generated_Source\PSoC5/I2C_X.c **** 
  201:Generated_Source\PSoC5/I2C_X.c **** 
@@ -417,22 +418,22 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  213:Generated_Source\PSoC5/I2C_X.c **** * Return:
  214:Generated_Source\PSoC5/I2C_X.c **** *  None.
  215:Generated_Source\PSoC5/I2C_X.c **** *
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 8
+
+
  216:Generated_Source\PSoC5/I2C_X.c **** *******************************************************************************/
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 8
-
-
  217:Generated_Source\PSoC5/I2C_X.c **** void I2C_X_Stop(void) 
  218:Generated_Source\PSoC5/I2C_X.c **** {
- 184              		.loc 1 218 0
- 185              		.cfi_startproc
- 186              		@ args = 0, pretend = 0, frame = 0
- 187              		@ frame_needed = 0, uses_anonymous_args = 0
- 188              		@ link register save eliminated.
+ 185              		.loc 1 218 0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		@ link register save eliminated.
  219:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_DisableInt();
- 189              		.loc 1 219 0
- 190 0000 0822     		movs	r2, #8
- 191 0002 0A4B     		ldr	r3, .L14
- 192 0004 1A60     		str	r2, [r3]
+ 190              		.loc 1 219 0
+ 191 0000 1023     		movs	r3, #16
+ 192 0002 094A     		ldr	r2, .L14
+ 193 0004 1360     		str	r3, [r2]
  220:Generated_Source\PSoC5/I2C_X.c **** 
  221:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_TIMEOUT_ENABLED)
  222:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_TimeoutStop();
@@ -475,14 +476,14 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  259:Generated_Source\PSoC5/I2C_X.c **** 
  260:Generated_Source\PSoC5/I2C_X.c ****     /* Disable slave or master bits */
  261:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_CFG_REG &= (uint8) ~I2C_X_ENABLE_MS;
- 193              		.loc 1 261 0
- 194 0006 0A49     		ldr	r1, .L14+4
- 195 0008 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 9
+ 194              		.loc 1 261 0
+ 195 0006 0949     		ldr	r1, .L14+4
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 9
 
 
- 196 000a 03F0FD03 		and	r3, r3, #253
- 197 000e 0B70     		strb	r3, [r1]
+ 196 0008 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 197 000a 02F0FD02 		and	r2, r2, #253
+ 198 000e 0A70     		strb	r2, [r1]
  262:Generated_Source\PSoC5/I2C_X.c **** 
  263:Generated_Source\PSoC5/I2C_X.c **** #if (I2C_X_MODE_SLAVE_ENABLED)
  264:Generated_Source\PSoC5/I2C_X.c ****     {
@@ -495,38 +496,37 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  271:Generated_Source\PSoC5/I2C_X.c **** 
  272:Generated_Source\PSoC5/I2C_X.c ****     /* Clear interrupt source register */
  273:Generated_Source\PSoC5/I2C_X.c ****     (void) I2C_X_CSR_REG;
- 198              		.loc 1 273 0
- 199 0010 084B     		ldr	r3, .L14+8
- 200 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 199              		.loc 1 273 0
+ 200 0010 074A     		ldr	r2, .L14+8
+ 201 0012 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
  274:Generated_Source\PSoC5/I2C_X.c **** #endif /* (I2C_X_FF_IMPLEMENTED) */
  275:Generated_Source\PSoC5/I2C_X.c **** 
  276:Generated_Source\PSoC5/I2C_X.c ****     /* Disable interrupt on stop (enabled by write transaction) */
  277:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_DISABLE_INT_ON_STOP;
- 201              		.loc 1 277 0
- 202 0014 1331     		adds	r1, r1, #19
- 203 0016 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
- 204 0018 03F0DF03 		and	r3, r3, #223
- 205 001c 0B70     		strb	r3, [r1]
+ 202              		.loc 1 277 0
+ 203 0014 1231     		adds	r1, r1, #18
+ 204 0016 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 205 0018 02F0DF02 		and	r2, r2, #223
+ 206 001c 0A70     		strb	r2, [r1]
  278:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_ClearPendingInt();
- 206              		.loc 1 278 0
- 207 001e 064B     		ldr	r3, .L14+12
- 208 0020 1A60     		str	r2, [r3]
+ 207              		.loc 1 278 0
+ 208 001e 054A     		ldr	r2, .L14+12
+ 209 0020 1360     		str	r3, [r2]
  279:Generated_Source\PSoC5/I2C_X.c **** 
  280:Generated_Source\PSoC5/I2C_X.c ****     /* Reset FSM to default state */
  281:Generated_Source\PSoC5/I2C_X.c ****     I2C_X_state = I2C_X_SM_IDLE;
- 209              		.loc 1 281 0
- 210 0022 1022     		movs	r2, #16
- 211 0024 054B     		ldr	r3, .L14+16
- 212 0026 1A70     		strb	r2, [r3]
- 213 0028 7047     		bx	lr
+ 210              		.loc 1 281 0
+ 211 0022 054A     		ldr	r2, .L14+16
+ 212 0024 1370     		strb	r3, [r2]
+ 213 0026 7047     		bx	lr
  214              	.L15:
- 215 002a 00BF     		.align	2
+ 215              		.align	2
  216              	.L14:
- 217 002c 80E100E0 		.word	-536813184
- 218 0030 73640040 		.word	1073767539
- 219 0034 66640040 		.word	1073767526
- 220 0038 80E200E0 		.word	-536812928
- 221 003c 00000000 		.word	I2C_X_state
+ 217 0028 80E100E0 		.word	-536813184
+ 218 002c 75640040 		.word	1073767541
+ 219 0030 67640040 		.word	1073767527
+ 220 0034 80E200E0 		.word	-536812928
+ 221 0038 00000000 		.word	I2C_X_state
  222              		.cfi_endproc
  223              	.LFE3:
  224              		.size	I2C_X_Stop, .-I2C_X_Stop
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  230              		.size	I2C_X_initVar, 1
  231              	I2C_X_initVar:
  232 0000 00       		.space	1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 10
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 10
 
 
  233              		.text
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  287 0060 696E7400 		.ascii	"int\000"
  288 0064 02       		.uleb128 0x2
  289 0065 04       		.byte	0x4
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 11
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 11
 
 
  290 0066 07       		.byte	0x7
@@ -652,13 +652,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  338 00cd 01       		.byte	0x1
  339 00ce 31       		.byte	0x31
  340 00cf 00000000 		.4byte	.LFB0
- 341 00d3 7C000000 		.4byte	.LFE0-.LFB0
+ 341 00d3 78000000 		.4byte	.LFE0-.LFB0
  342 00d7 01       		.uleb128 0x1
  343 00d8 9C       		.byte	0x9c
  344 00d9 26010000 		.4byte	0x126
  345 00dd 07       		.uleb128 0x7
  346 00de C2010000 		.4byte	.LASF34
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 12
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 12
 
 
  347 00e2 01       		.byte	0x1
@@ -672,14 +672,14 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  355 00f6 20000000 		.4byte	.LVL1
  356 00fa BE010000 		.4byte	0x1be
  357 00fe 09       		.uleb128 0x9
- 358 00ff 38000000 		.4byte	.LVL2
+ 358 00ff 3A000000 		.4byte	.LVL2
  359 0103 C9010000 		.4byte	0x1c9
  360 0107 16010000 		.4byte	0x116
  361 010b 0A       		.uleb128 0xa
  362 010c 01       		.uleb128 0x1
  363 010d 50       		.byte	0x50
  364 010e 01       		.uleb128 0x1
- 365 010f 33       		.byte	0x33
+ 365 010f 34       		.byte	0x34
  366 0110 0A       		.uleb128 0xa
  367 0111 01       		.uleb128 0x1
  368 0112 51       		.byte	0x51
@@ -687,13 +687,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  370 0114 37       		.byte	0x37
  371 0115 00       		.byte	0
  372 0116 0B       		.uleb128 0xb
- 373 0117 40000000 		.4byte	.LVL3
+ 373 0117 42000000 		.4byte	.LVL3
  374 011b D4010000 		.4byte	0x1d4
  375 011f 0A       		.uleb128 0xa
  376 0120 01       		.uleb128 0x1
  377 0121 50       		.byte	0x50
  378 0122 01       		.uleb128 0x1
- 379 0123 33       		.byte	0x33
+ 379 0123 34       		.byte	0x34
  380 0124 00       		.byte	0
  381 0125 00       		.byte	0
  382 0126 0C       		.uleb128 0xc
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  401 0151 C8000000 		.4byte	0xc8
  402 0155 08       		.uleb128 0x8
  403 0156 16000000 		.4byte	.LVL5
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 13
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 13
 
 
  404 015a 26010000 		.4byte	0x126
@@ -728,7 +728,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  408 0164 01       		.byte	0x1
  409 0165 D9       		.byte	0xd9
  410 0166 00000000 		.4byte	.LFB3
- 411 016a 40000000 		.4byte	.LFE3-.LFB3
+ 411 016a 3C000000 		.4byte	.LFE3-.LFB3
  412 016e 01       		.uleb128 0x1
  413 016f 9C       		.byte	0x9c
  414 0170 0D       		.uleb128 0xd
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  458 01d2 04       		.byte	0x4
  459 01d3 8B       		.byte	0x8b
  460 01d4 0F       		.uleb128 0xf
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 14
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 14
 
 
  461 01d5 06000000 		.4byte	.LASF30
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  515 002f 0B       		.uleb128 0xb
  516 0030 3B       		.uleb128 0x3b
  517 0031 05       		.uleb128 0x5
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 15
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 15
 
 
  518 0032 49       		.uleb128 0x49
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  572 006b 11       		.uleb128 0x11
  573 006c 01       		.uleb128 0x1
  574 006d 31       		.uleb128 0x31
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 16
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 16
 
 
  575 006e 13       		.uleb128 0x13
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  629 00ac 00       		.byte	0
  630 00ad 0D       		.uleb128 0xd
  631 00ae 34       		.uleb128 0x34
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 17
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 17
 
 
  632 00af 00       		.byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  686 0004 1F000000 		.4byte	.LVL1-1
  687 0008 0100     		.2byte	0x1
  688 000a 50       		.byte	0x50
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 18
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 18
 
 
  689 000b 00000000 		.4byte	0
@@ -1032,25 +1032,25 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  697 000c 0000     		.2byte	0
  698 000e 0000     		.2byte	0
  699 0010 00000000 		.4byte	.LFB0
- 700 0014 7C000000 		.4byte	.LFE0-.LFB0
+ 700 0014 78000000 		.4byte	.LFE0-.LFB0
  701 0018 00000000 		.4byte	.LFB1
  702 001c 10000000 		.4byte	.LFE1-.LFB1
  703 0020 00000000 		.4byte	.LFB2
  704 0024 28000000 		.4byte	.LFE2-.LFB2
  705 0028 00000000 		.4byte	.LFB3
- 706 002c 40000000 		.4byte	.LFE3-.LFB3
+ 706 002c 3C000000 		.4byte	.LFE3-.LFB3
  707 0030 00000000 		.4byte	0
  708 0034 00000000 		.4byte	0
  709              		.section	.debug_ranges,"",%progbits
  710              	.Ldebug_ranges0:
  711 0000 00000000 		.4byte	.LFB0
- 712 0004 7C000000 		.4byte	.LFE0
+ 712 0004 78000000 		.4byte	.LFE0
  713 0008 00000000 		.4byte	.LFB1
  714 000c 10000000 		.4byte	.LFE1
  715 0010 00000000 		.4byte	.LFB2
  716 0014 28000000 		.4byte	.LFE2
  717 0018 00000000 		.4byte	.LFB3
- 718 001c 40000000 		.4byte	.LFE3
+ 718 001c 3C000000 		.4byte	.LFE3
  719 0020 00000000 		.4byte	0
  720 0024 00000000 		.4byte	0
  721              		.section	.debug_line,"",%progbits
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  731 0028 4932435F 		.ascii	"I2C_X_Start\000"
  731      585F5374 
  731      61727400 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 19
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 19
 
 
  732              	.LASF11:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  753 012c 47656E65 		.ascii	"Generated_Source\\PSoC5\\I2C_X.c\000"
  753      72617465 
  753      645F536F 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 20
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 20
 
 
  753      75726365 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 1
  776 020d 4379456E 		.ascii	"CyEnterCriticalSection\000"
  776      74657243 
  776      72697469 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccTVO793.s 			page 21
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccuDefZV.s 			page 21
 
 
  776      63616C53 

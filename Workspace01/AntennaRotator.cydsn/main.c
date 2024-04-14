@@ -17,16 +17,22 @@
 #include "main.h"
 #include "cli.h"
 #include "util.h"
+#include "eeprom.h"
 
 #define STEPPING_TRESHOLD 4
 #define ENCODER_ADDRESS 0x36
 #define ENCODER_POS_REG 0x0E
 
 bool refresh_display = false;
+bool refresh_buttons = false;
 bool refresh_rotation = false;
 
 CY_ISR( DISPLAY_REFRESH_Handler ){
     refresh_display = true;
+}
+
+CY_ISR( BUTTON_REFRESH_Handler ){
+    refresh_buttons = true;
 }
 
 CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
@@ -51,11 +57,16 @@ int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
     
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */      
+    /* Place your initialization/startup code here (e.g. MyInst_Start()) */     
+    
+    /*
     rotator_state.x_des = AS5600_FROM_ANGULAR(245);
     rotator_state.x_act = 0;
     rotator_state.y_des = AS5600_FROM_ANGULAR(180);
     rotator_state.y_act = 0;
+    */
+    
+    EEPROM_1_Start();
     
     CLI_Init();
     
@@ -63,16 +74,30 @@ int main(void)
     I2C_OLED_Start();
     PWM_1_Start();
     Display_Refresh_Timer_Start();
+    Button_Refresh_Timer_Start();
     I2C_X_Start();
     I2C_Y_Start();
-    EEPROM_1_Start();
     
     refreshRotation(&rotator_state);
     
-    initHorizon();
-    renderHorizon(&rotator_state);
+    //Home on restart
+    if(testBit(0, 0x00)){
+        rotator_state.x_des = loadWord(0x01);
+        rotator_state.y_des = loadWord(0x03);
+    } else {
+        rotator_state.x_des = rotator_state.x_act;
+        rotator_state.y_des = rotator_state.y_act;
+    }
+    //Signal on restart
+    if(testBit(1, 0x00)){
+        UART_PutString("System started.");
+    }
+    
+    Horizon_Init();
+    Horizon_Render(&rotator_state);
     
     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
+    Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
     
@@ -88,18 +113,44 @@ int main(void)
         //Refresh display
         if(refresh_display){
             refresh_display = false;
-            renderHorizon(&rotator_state);
+            Horizon_Render(&rotator_state);
+        }
+        //Refresh buttons
+        if(refresh_buttons){
+            refresh_buttons = false;
+            
+            bool up_button = SW_UP_Pin_Read();
+            bool down_button = SW_DOWN_Pin_Read();
+            bool left_button = SW_LEFT_Pin_Read();
+            bool right_button = SW_RIGHT_Pin_Read();
+            
+            //X
+            if(left_button && !right_button){
+                if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
+            }
+            if(!left_button && right_button){
+                if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
+            }
+            
+            //Y
+            if(up_button && !down_button){
+                if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
+            }
+            if(!up_button && down_button){
+                if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
+            }
         }
         //Input processing
         CLI_Update();
+        
+        
+        
         
         LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_Read());
     }
 }
 
 void refreshRotation(ROTATOR_STATE* rotator_state){
-    //uint8 dev_addr = 0x36;
-    //uint8 reg_addr = 0x0E;
     uint8 buf[2];
     uint8 status = 0;
     

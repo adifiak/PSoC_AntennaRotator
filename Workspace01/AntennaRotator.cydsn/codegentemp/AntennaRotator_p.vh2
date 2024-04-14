@@ -1,5 +1,5 @@
 -- Project:   AntennaRotator
--- Generated: 04/13/2024 23:08:56
+-- Generated: 04/14/2024 21:56:20
 -- PSoC Creator  4.4
 
 ENTITY AntennaRotator IS
@@ -55,8 +55,14 @@ ARCHITECTURE __DEFAULT__ OF AntennaRotator IS
     SIGNAL Net_1796_local : bit;
     SIGNAL Net_1840 : bit;
     SIGNAL Net_1850 : bit;
+    SIGNAL Net_1865 : bit;
+    ATTRIBUTE global_signal OF Net_1865 : SIGNAL IS true;
+    SIGNAL Net_1865_local : bit;
+    SIGNAL Net_1872 : bit;
     SIGNAL Net_36 : bit;
+    SIGNAL Net_39 : bit;
     SIGNAL Net_40 : bit;
+    SIGNAL Net_44 : bit;
     SIGNAL Net_447 : bit;
     ATTRIBUTE udbclken_assigned OF Net_447 : SIGNAL IS "True";
     ATTRIBUTE global_signal OF Net_447 : SIGNAL IS true;
@@ -79,6 +85,8 @@ ARCHITECTURE __DEFAULT__ OF AntennaRotator IS
     SIGNAL X_Step_Pin(0)__PA : bit;
     SIGNAL Y_Dir_Pin(0)__PA : bit;
     SIGNAL Y_Step_Pin(0)__PA : bit;
+    SIGNAL \Button_Refresh_Timer:Net_261\ : bit;
+    SIGNAL \Button_Refresh_Timer:Net_57\ : bit;
     SIGNAL \Display_Refresh_Timer:Net_261\ : bit;
     SIGNAL \Display_Refresh_Timer:Net_57\ : bit;
     SIGNAL \I2C_OLED:Net_1109_0\ : bit;
@@ -260,6 +268,7 @@ ARCHITECTURE __DEFAULT__ OF AntennaRotator IS
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     SIGNAL \ClockBlock.clk_bus_glb_ff__sig\ : bit;
     SIGNAL \ClockBlock.dclk_glb_ff_3__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_4__sig\ : bit;
     ATTRIBUTE lib_model OF \I2C_X:bI2C_UDB:m_state_4_split\ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF SW_UP_Pin(0) : LABEL IS "iocell1";
     ATTRIBUTE Location OF SW_UP_Pin(0) : LABEL IS "P2[7]";
@@ -798,8 +807,11 @@ BEGIN
             dclk_2 => Net_447_local,
             dclk_glb_3 => Net_10,
             dclk_3 => Net_10_local,
+            dclk_glb_4 => Net_1865,
+            dclk_4 => Net_1865_local,
             clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
-            dclk_glb_ff_3 => \ClockBlock.dclk_glb_ff_3__sig\);
+            dclk_glb_ff_3 => \ClockBlock.dclk_glb_ff_3__sig\,
+            dclk_glb_ff_4 => \ClockBlock.dclk_glb_ff_4__sig\);
 
     SW_UP_Pin:logicalport
         GENERIC MAP(
@@ -2669,6 +2681,22 @@ BEGIN
             main_2 => \I2C_Y:bI2C_UDB:m_state_3\,
             main_3 => \I2C_Y:bI2C_UDB:cnt_reset\);
 
+    \UART:TXInternalInterrupt\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_44,
+            clock => ClockBlock_BUS_CLK);
+
+    \UART:RXInternalInterrupt\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_39,
+            clock => ClockBlock_BUS_CLK);
+
     __ONE__:macrocell
         GENERIC MAP(
             eqn_main => "1'b0",
@@ -2766,7 +2794,8 @@ BEGIN
             status_3 => \UART:BUART:tx_fifo_notfull\,
             status_2 => \UART:BUART:tx_status_2\,
             status_1 => \UART:BUART:tx_fifo_empty\,
-            status_0 => \UART:BUART:tx_status_0\);
+            status_0 => \UART:BUART:tx_status_0\,
+            interrupt => Net_44);
 
     \UART:BUART:sRX:RxShifter:u0\:datapathcell
         GENERIC MAP(
@@ -2846,7 +2875,8 @@ BEGIN
             status_3 => \UART:BUART:rx_status_3\,
             status_2 => open,
             status_1 => open,
-            status_0 => open);
+            status_0 => open,
+            interrupt => Net_39);
 
     \I2C_OLED:I2C_IRQ\:interrupt
         GENERIC MAP(
@@ -3233,6 +3263,27 @@ BEGIN
             z0_comb => \I2C_Y:bI2C_UDB:clkgen_tc\,
             cl1_comb => \I2C_Y:bI2C_UDB:clkgen_cl1\,
             busclk => ClockBlock_BUS_CLK);
+
+    \Button_Refresh_Timer:TimerHW\:timercell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            clock => \ClockBlock.dclk_glb_ff_4__sig\,
+            kill => open,
+            enable => __ONE__,
+            capture => open,
+            timer_reset => open,
+            tc => Net_1872,
+            cmp => \Button_Refresh_Timer:Net_261\,
+            irq => \Button_Refresh_Timer:Net_57\);
+
+    Button_Refresh_Timer_Int:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_1872,
+            clock => ClockBlock_BUS_CLK);
 
     \UART:BUART:txn\:macrocell
         GENERIC MAP(

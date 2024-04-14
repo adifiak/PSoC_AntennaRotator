@@ -16,13 +16,13 @@
 
 #define DISPLAY_ADDRESS 0x3C // 011110+SA0+RW - 0x3C or 0x3D	
 
-void initHorizon(){
+void Horizon_Init(){
     display_init(DISPLAY_ADDRESS);
     display_clear();    
     display_update(); 
 }
 
-void renderHorizon(ROTATOR_STATE* rotator_state){
+void Horizon_Render(ROTATOR_STATE* rotator_state){
     char str[32];
     display_clear();    
         

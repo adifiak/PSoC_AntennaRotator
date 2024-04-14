@@ -4,3 +4,4 @@ C:\Users\Dell\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4)
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|812f5ac0-82f4-4e1b-9c19-b203318b3535
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|25a4ab10-1819-4030-b603-c41ba4e6f6e1
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|3c9ea513-c859-41af-9f08-0bbd470dbd42
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|3d7a878f-9054-452a-b6d4-cf971abc3a52

@@ -11,6 +11,7 @@
 */
 #include "cli.h"
 #include "main.h"
+#include "eeprom.h"
 
 enum READ_STATE readState = CMD;
 
@@ -77,15 +78,8 @@ bool ProcessCommand(){
         if(!strcmp(cmd.data, "rhom")){
             
             if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint8 tmp1, tmp2;
-                
-                tmp1 = EEPROM_1_ReadByte(0x01);
-                tmp2 = EEPROM_1_ReadByte(0x02);
-                uint16 x = (tmp1<<8) + tmp2;
-                
-                tmp1 = EEPROM_1_ReadByte(0x03);
-                tmp2 = EEPROM_1_ReadByte(0x04);
-                uint16 y = (tmp1<<8) + tmp2;
+                uint16 x = loadWord(0x01);
+                uint16 y = loadWord(0x03);
                 
                 char str[32];
                 sprintf(str, "Home: X=%d Y=%d\r\n", (int)AS5600_TO_ANGULAR(x), (int)AS5600_TO_ANGULAR(y));
@@ -97,11 +91,11 @@ bool ProcessCommand(){
         } else if(!strcmp(cmd.data, "rhor")){
             
             if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint8 tmp;
-                tmp = EEPROM_1_ReadByte(0x00);
+                bool tmp;
+                tmp = testBit(0, 0x00);
                 
                 char str[32];
-                sprintf(str, "Home on restart: %d\r\n", (0 != (tmp & (1 << 0))));
+                sprintf(str, "Home on restart: %d\r\n", tmp);
                 UART_PutString(str);
                 return false;
             }
@@ -130,11 +124,11 @@ bool ProcessCommand(){
         } else if(!strcmp(cmd.data, "rsos")){
             
             if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint8 tmp;
-                tmp = EEPROM_1_ReadByte(0x00);
+                bool tmp;
+                tmp = testBit(1, 0x00);
                 
                 char str[32];
-                sprintf(str, "Signal on restart: %d\r\n", (0 != (tmp & (1 << 1))));
+                sprintf(str, "Signal on restart: %d\r\n", tmp);
                 UART_PutString(str);
                 return false;
             }
@@ -142,20 +136,16 @@ bool ProcessCommand(){
             
         }else if(!strcmp(cmd.data, "whom")){
             
-            if(arg1.cnt > 0 && arg2.cnt > 0 && arg3.cnt == 0){
-                uint16 tmp;
+            if(arg1.cnt > 0 && arg2.cnt > 0 && arg3.cnt == 0){              
+                uint16 x = ParseArgument(&arg1);
+                if(x > 360) {x = 360;}
+                x = AS5600_FROM_ANGULAR(x);
+                saveWord(x, 0x01);
                 
-                tmp = ParseArgument(&arg1);
-                if(tmp > 360) {tmp = 360;}
-                tmp = AS5600_FROM_ANGULAR(tmp);
-                EEPROM_1_WriteByte((tmp >> 8), 0x01);
-                EEPROM_1_WriteByte((tmp & 0x00ff), 0x02);
-                
-                tmp = ParseArgument(&arg2);
-                if(tmp > 360) {tmp = 360;}
-                tmp = AS5600_FROM_ANGULAR(tmp);
-                EEPROM_1_WriteByte((tmp >> 8), 0x03);
-                EEPROM_1_WriteByte((tmp & 0x00ff), 0x04);
+                uint16 y = ParseArgument(&arg2);
+                if(y > 360) {y = 360;}
+                y = AS5600_FROM_ANGULAR(y);
+                saveWord(y, 0x03);
                 
                 return false;
             }
@@ -164,12 +154,7 @@ bool ProcessCommand(){
         } else if(!strcmp(cmd.data, "whor")){
             
             if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint8 tmp = EEPROM_1_ReadByte(0x00);
-                if(ParseArgument(&arg1) > 0){
-                    EEPROM_1_WriteByte(tmp | (1 << 0), 0x00);
-                } else {
-                    EEPROM_1_WriteByte(tmp & ~(1 << 0), 0x00);
-                }
+                setBit((ParseArgument(&arg1) > 0), 0, 0x00);
                 return false;
             }
             return true;
@@ -195,12 +180,7 @@ bool ProcessCommand(){
         } else if(!strcmp(cmd.data, "wsos")){
             
             if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint8 tmp = EEPROM_1_ReadByte(0x00);
-                if(ParseArgument(&arg1) > 0){
-                    EEPROM_1_WriteByte(tmp | (1 << 1), 0x00);
-                } else {
-                    EEPROM_1_WriteByte(tmp & ~(1 << 1), 0x00);
-                }
+                setBit((ParseArgument(&arg1) > 0), 1, 0x00);
                 return false;
             }
             return true;
@@ -210,15 +190,9 @@ bool ProcessCommand(){
         } else if(!strcmp(cmd.data, "mhom")){
             
             if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint8 tmp1, tmp2;
                 
-                tmp1 = EEPROM_1_ReadByte(0x01);
-                tmp2 = EEPROM_1_ReadByte(0x02);
-                uint16 x = (tmp1<<8) + tmp2;
-                
-                tmp1 = EEPROM_1_ReadByte(0x03);
-                tmp2 = EEPROM_1_ReadByte(0x04);
-                uint16 y = (tmp1<<8) + tmp2;
+                uint16 x = loadWord(0x01);
+                uint16 y = loadWord(0x03);
                 
                 rotator_state.x_des = x;
                 rotator_state.y_des = y;

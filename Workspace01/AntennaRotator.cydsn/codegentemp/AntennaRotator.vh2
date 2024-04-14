@@ -2,7 +2,7 @@
 --	Conversion of AntennaRotator.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Sat Apr 13 23:08:55 2024
+--	Sun Apr 14 21:56:19 2024
 --
 
 USE cypress.cypress.all;
@@ -12,45 +12,47 @@ ATTRIBUTE part_name of top_RTL:TYPE IS "cpsoc3";
 END top_RTL;
 --------------------------------------------------------
 ARCHITECTURE R_T_L OF top_RTL IS
-TERMINAL Net_22 : bit;
+TERMINAL Net_1912 : bit;
 SIGNAL tmpOE__SW_UP_Pin_net_0 : bit;
 SIGNAL zero : bit;
 SIGNAL tmpFB_0__SW_UP_Pin_net_0 : bit;
 SIGNAL tmpIO_0__SW_UP_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__SW_UP_Pin_net_0 : bit;
-TERMINAL Net_24 : bit;
+TERMINAL Net_1956 : bit;
 SIGNAL one : bit;
 SIGNAL tmpINTERRUPT_0__SW_UP_Pin_net_0 : bit;
 SIGNAL tmpOE__LED_Pin_net_0 : bit;
 SIGNAL tmpFB_0__LED_Pin_net_0 : bit;
 SIGNAL tmpIO_0__LED_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__LED_Pin_net_0 : bit;
-TERMINAL Net_19 : bit;
+TERMINAL Net_1914 : bit;
 SIGNAL tmpINTERRUPT_0__LED_Pin_net_0 : bit;
-TERMINAL Net_21 : bit;
-TERMINAL Net_25 : bit;
+TERMINAL Net_1913 : bit;
+TERMINAL Net_1955 : bit;
 SIGNAL tmpOE__SW_DOWN_Pin_net_0 : bit;
 SIGNAL tmpFB_0__SW_DOWN_Pin_net_0 : bit;
 SIGNAL tmpIO_0__SW_DOWN_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__SW_DOWN_Pin_net_0 : bit;
-TERMINAL Net_26 : bit;
+TERMINAL Net_1954 : bit;
 SIGNAL tmpINTERRUPT_0__SW_DOWN_Pin_net_0 : bit;
-TERMINAL Net_27 : bit;
+TERMINAL Net_1953 : bit;
 SIGNAL tmpOE__SW_LEFT_Pin_net_0 : bit;
 SIGNAL tmpFB_0__SW_LEFT_Pin_net_0 : bit;
 SIGNAL tmpIO_0__SW_LEFT_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__SW_LEFT_Pin_net_0 : bit;
-TERMINAL Net_28 : bit;
+TERMINAL Net_1952 : bit;
 SIGNAL tmpINTERRUPT_0__SW_LEFT_Pin_net_0 : bit;
-TERMINAL Net_29 : bit;
+TERMINAL Net_1951 : bit;
 SIGNAL tmpOE__SW_RIGHT_Pin_net_0 : bit;
 SIGNAL tmpFB_0__SW_RIGHT_Pin_net_0 : bit;
 SIGNAL tmpIO_0__SW_RIGHT_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__SW_RIGHT_Pin_net_0 : bit;
-TERMINAL Net_30 : bit;
+TERMINAL Net_1950 : bit;
 SIGNAL tmpINTERRUPT_0__SW_RIGHT_Pin_net_0 : bit;
-TERMINAL Net_31 : bit;
+TERMINAL Net_1949 : bit;
+SIGNAL Net_44 : bit;
 SIGNAL \UART:Net_9\ : bit;
+SIGNAL Net_39 : bit;
 SIGNAL \UART:Net_61\ : bit;
 SIGNAL \UART:BUART:clock_op\ : bit;
 SIGNAL \UART:BUART:reset_reg\ : bit;
@@ -66,9 +68,7 @@ SIGNAL \UART:BUART:reset_sr\ : bit;
 SIGNAL \UART:BUART:HalfDuplexSend_last\ : bit;
 SIGNAL Net_40 : bit;
 SIGNAL \UART:BUART:txn\ : bit;
-SIGNAL Net_44 : bit;
 SIGNAL \UART:BUART:tx_interrupt_out\ : bit;
-SIGNAL Net_39 : bit;
 SIGNAL \UART:BUART:rx_interrupt_out\ : bit;
 SIGNAL \UART:BUART:tx_state_1\ : bit;
 SIGNAL \UART:BUART:tx_state_0\ : bit;
@@ -1455,6 +1455,16 @@ SIGNAL tmpFB_0__Y_Dir_Pin_net_0 : bit;
 SIGNAL tmpIO_0__Y_Dir_Pin_net_0 : bit;
 TERMINAL tmpSIOVREF__Y_Dir_Pin_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Y_Dir_Pin_net_0 : bit;
+SIGNAL Net_1865 : bit;
+SIGNAL Net_1867 : bit;
+SIGNAL \Button_Refresh_Timer:Net_260\ : bit;
+SIGNAL \Button_Refresh_Timer:Net_266\ : bit;
+SIGNAL \Button_Refresh_Timer:Net_51\ : bit;
+SIGNAL \Button_Refresh_Timer:Net_261\ : bit;
+SIGNAL \Button_Refresh_Timer:Net_57\ : bit;
+SIGNAL Net_1968 : bit;
+SIGNAL Net_1872 : bit;
+SIGNAL \Button_Refresh_Timer:Net_102\ : bit;
 SIGNAL \UART:BUART:reset_reg\\D\ : bit;
 SIGNAL \UART:BUART:txn\\D\ : bit;
 SIGNAL \UART:BUART:tx_state_1\\D\ : bit;
@@ -1734,8 +1744,8 @@ Net_1840 <= ((Net_467 and Net_732));
 \I2C_X:bI2C_UDB:m_state_0\\D\ <= ((not \I2C_X:bI2C_UDB:control_5\ and not \I2C_X:bI2C_UDB:m_state_2\ and not \I2C_X:bI2C_UDB:m_state_1\ and not \I2C_X:bI2C_UDB:m_state_0\ and not \I2C_X:bI2C_UDB:m_reset\ and not \I2C_X:bI2C_UDB:lost_arb2_reg\ and \I2C_X:bI2C_UDB:control_4\ and \I2C_X:bI2C_UDB:m_state_3\ and \I2C_X:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_X:bI2C_UDB:m_state_4\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:m_state_3\ and \I2C_X:bI2C_UDB:m_state_2\ and \I2C_X:bI2C_UDB:m_state_1\ and \I2C_X:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_X:bI2C_UDB:m_state_3\ and not \I2C_X:bI2C_UDB:m_state_2\ and not \I2C_X:bI2C_UDB:m_state_0\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:control_7\ and \I2C_X:bI2C_UDB:m_state_1\ and \I2C_X:bI2C_UDB:clkgen_tc1_reg\)
-	OR (not \I2C_X:bI2C_UDB:tx_reg_empty\ and not \I2C_X:bI2C_UDB:m_state_3\ and not \I2C_X:bI2C_UDB:m_state_1\ and not \I2C_X:bI2C_UDB:m_state_0\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_X:bI2C_UDB:m_state_3\ and not \I2C_X:bI2C_UDB:m_state_1\ and not \I2C_X:bI2C_UDB:m_state_0\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:m_state_2\ and \I2C_X:bI2C_UDB:clkgen_tc1_reg\)
+	OR (not \I2C_X:bI2C_UDB:tx_reg_empty\ and not \I2C_X:bI2C_UDB:m_state_3\ and not \I2C_X:bI2C_UDB:m_state_1\ and not \I2C_X:bI2C_UDB:m_state_0\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_X:bI2C_UDB:m_state_4\ and not \I2C_X:bI2C_UDB:m_reset\ and not \I2C_X:bI2C_UDB:lost_arb_reg\ and \I2C_X:bI2C_UDB:control_6\ and \I2C_X:bI2C_UDB:m_state_2\ and \I2C_X:bI2C_UDB:m_state_1\ and \I2C_X:bI2C_UDB:m_state_0\)
 	OR (not \I2C_X:bI2C_UDB:m_state_4\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:tx_reg_empty\ and \I2C_X:bI2C_UDB:m_state_2\ and \I2C_X:bI2C_UDB:m_state_1\ and \I2C_X:bI2C_UDB:m_state_0\)
 	OR (not \I2C_X:bI2C_UDB:m_state_2\ and not \I2C_X:bI2C_UDB:m_state_1\ and not \I2C_X:bI2C_UDB:m_reset\ and \I2C_X:bI2C_UDB:m_state_4\ and \I2C_X:bI2C_UDB:m_state_3\ and \I2C_X:bI2C_UDB:m_state_0\)
@@ -1897,8 +1907,8 @@ Net_1840 <= ((Net_467 and Net_732));
 \I2C_Y:bI2C_UDB:m_state_0\\D\ <= ((not \I2C_Y:bI2C_UDB:control_5\ and not \I2C_Y:bI2C_UDB:m_state_2\ and not \I2C_Y:bI2C_UDB:m_state_1\ and not \I2C_Y:bI2C_UDB:m_state_0\ and not \I2C_Y:bI2C_UDB:m_reset\ and not \I2C_Y:bI2C_UDB:lost_arb2_reg\ and \I2C_Y:bI2C_UDB:control_4\ and \I2C_Y:bI2C_UDB:m_state_3\ and \I2C_Y:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Y:bI2C_UDB:m_state_4\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:m_state_3\ and \I2C_Y:bI2C_UDB:m_state_2\ and \I2C_Y:bI2C_UDB:m_state_1\ and \I2C_Y:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Y:bI2C_UDB:m_state_3\ and not \I2C_Y:bI2C_UDB:m_state_2\ and not \I2C_Y:bI2C_UDB:m_state_0\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:control_7\ and \I2C_Y:bI2C_UDB:m_state_1\ and \I2C_Y:bI2C_UDB:clkgen_tc1_reg\)
-	OR (not \I2C_Y:bI2C_UDB:tx_reg_empty\ and not \I2C_Y:bI2C_UDB:m_state_3\ and not \I2C_Y:bI2C_UDB:m_state_1\ and not \I2C_Y:bI2C_UDB:m_state_0\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Y:bI2C_UDB:m_state_3\ and not \I2C_Y:bI2C_UDB:m_state_1\ and not \I2C_Y:bI2C_UDB:m_state_0\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:m_state_2\ and \I2C_Y:bI2C_UDB:clkgen_tc1_reg\)
+	OR (not \I2C_Y:bI2C_UDB:tx_reg_empty\ and not \I2C_Y:bI2C_UDB:m_state_3\ and not \I2C_Y:bI2C_UDB:m_state_1\ and not \I2C_Y:bI2C_UDB:m_state_0\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:clkgen_tc1_reg\)
 	OR (not \I2C_Y:bI2C_UDB:m_state_4\ and not \I2C_Y:bI2C_UDB:m_reset\ and not \I2C_Y:bI2C_UDB:lost_arb_reg\ and \I2C_Y:bI2C_UDB:control_6\ and \I2C_Y:bI2C_UDB:m_state_2\ and \I2C_Y:bI2C_UDB:m_state_1\ and \I2C_Y:bI2C_UDB:m_state_0\)
 	OR (not \I2C_Y:bI2C_UDB:m_state_4\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:tx_reg_empty\ and \I2C_Y:bI2C_UDB:m_state_2\ and \I2C_Y:bI2C_UDB:m_state_1\ and \I2C_Y:bI2C_UDB:m_state_0\)
 	OR (not \I2C_Y:bI2C_UDB:m_state_2\ and not \I2C_Y:bI2C_UDB:m_state_1\ and not \I2C_Y:bI2C_UDB:m_reset\ and \I2C_Y:bI2C_UDB:m_state_4\ and \I2C_Y:bI2C_UDB:m_state_3\ and \I2C_Y:bI2C_UDB:m_state_0\)
@@ -2016,7 +2026,7 @@ GND_1:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Gnd_v1_0",
 		port_names=>"T1",
 		width=>1)
-	PORT MAP(connect=>Net_22);
+	PORT MAP(connect=>Net_1912);
 SW_UP_Pin:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba",
 		drive_mode=>"010",
@@ -2079,7 +2089,7 @@ SW_UP_Pin:cy_psoc3_pins_v1_10
 		analog=>(open),
 		io=>(tmpIO_0__SW_UP_Pin_net_0),
 		siovref=>(tmpSIOVREF__SW_UP_Pin_net_0),
-		annotation=>Net_24,
+		annotation=>Net_1956,
 		in_clock=>zero,
 		in_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		in_reset=>zero,
@@ -2149,7 +2159,7 @@ LED_Pin:cy_psoc3_pins_v1_10
 		analog=>(open),
 		io=>(tmpIO_0__LED_Pin_net_0),
 		siovref=>(tmpSIOVREF__LED_Pin_net_0),
-		annotation=>Net_19,
+		annotation=>Net_1914,
 		in_clock=>zero,
 		in_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		in_reset=>zero,
@@ -2161,22 +2171,22 @@ D_1:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"LED_v1_0",
 		port_names=>"A, K",
 		width=>2)
-	PORT MAP(connect=>(Net_21, Net_22));
+	PORT MAP(connect=>(Net_1913, Net_1912));
 R_1:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Resistor_v1_0",
 		port_names=>"T1, T2",
 		width=>2)
-	PORT MAP(connect=>(Net_19, Net_21));
+	PORT MAP(connect=>(Net_1914, Net_1913));
 GND_2:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Gnd_v1_0",
 		port_names=>"T1",
 		width=>1)
-	PORT MAP(connect=>Net_25);
+	PORT MAP(connect=>Net_1955);
 SW_1:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
 		port_names=>"T1, T2",
 		width=>2)
-	PORT MAP(connect=>(Net_25, Net_24));
+	PORT MAP(connect=>(Net_1955, Net_1956));
 SW_DOWN_Pin:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"c7754651-febf-4d10-a608-b3e9785bc4e2",
 		drive_mode=>"010",
@@ -2239,7 +2249,7 @@ SW_DOWN_Pin:cy_psoc3_pins_v1_10
 		analog=>(open),
 		io=>(tmpIO_0__SW_DOWN_Pin_net_0),
 		siovref=>(tmpSIOVREF__SW_DOWN_Pin_net_0),
-		annotation=>Net_26,
+		annotation=>Net_1954,
 		in_clock=>zero,
 		in_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		in_reset=>zero,
@@ -2251,12 +2261,12 @@ GND_3:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Gnd_v1_0",
 		port_names=>"T1",
 		width=>1)
-	PORT MAP(connect=>Net_27);
+	PORT MAP(connect=>Net_1953);
 SW_2:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
 		port_names=>"T1, T2",
 		width=>2)
-	PORT MAP(connect=>(Net_27, Net_26));
+	PORT MAP(connect=>(Net_1953, Net_1954));
 SW_LEFT_Pin:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"b1a6f8fa-72c8-4eef-a2bf-b202d1927de4",
 		drive_mode=>"010",
@@ -2319,7 +2329,7 @@ SW_LEFT_Pin:cy_psoc3_pins_v1_10
 		analog=>(open),
 		io=>(tmpIO_0__SW_LEFT_Pin_net_0),
 		siovref=>(tmpSIOVREF__SW_LEFT_Pin_net_0),
-		annotation=>Net_28,
+		annotation=>Net_1952,
 		in_clock=>zero,
 		in_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		in_reset=>zero,
@@ -2331,12 +2341,12 @@ GND_4:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Gnd_v1_0",
 		port_names=>"T1",
 		width=>1)
-	PORT MAP(connect=>Net_29);
+	PORT MAP(connect=>Net_1951);
 SW_3:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
 		port_names=>"T1, T2",
 		width=>2)
-	PORT MAP(connect=>(Net_29, Net_28));
+	PORT MAP(connect=>(Net_1951, Net_1952));
 SW_RIGHT_Pin:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"846bb111-eb5e-43f5-aa8a-e20421821871",
 		drive_mode=>"010",
@@ -2399,7 +2409,7 @@ SW_RIGHT_Pin:cy_psoc3_pins_v1_10
 		analog=>(open),
 		io=>(tmpIO_0__SW_RIGHT_Pin_net_0),
 		siovref=>(tmpSIOVREF__SW_RIGHT_Pin_net_0),
-		annotation=>Net_30,
+		annotation=>Net_1950,
 		in_clock=>zero,
 		in_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		in_reset=>zero,
@@ -2411,12 +2421,16 @@ GND_5:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"Gnd_v1_0",
 		port_names=>"T1",
 		width=>1)
-	PORT MAP(connect=>Net_31);
+	PORT MAP(connect=>Net_1949);
 SW_4:cy_annotation_universal_v1_0
 	GENERIC MAP(comp_name=>"SwitchSPST_v1_0",
 		port_names=>"T1, T2",
 		width=>2)
-	PORT MAP(connect=>(Net_31, Net_30));
+	PORT MAP(connect=>(Net_1949, Net_1950));
+\UART:TXInternalInterrupt\:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_44);
 \UART:IntClock\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"b0162966-0060-4af5-82d1-fcb491ad7619/be0a0e37-ad17-42ca-b5a1-1a654d736358",
@@ -2427,6 +2441,10 @@ SW_4:cy_annotation_universal_v1_0
 		is_digital=>'1')
 	PORT MAP(clock_out=>\UART:Net_9\,
 		dig_domain_out=>open);
+\UART:RXInternalInterrupt\:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_39);
 \UART:BUART:ClkSync\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
 	PORT MAP(clock_in=>\UART:Net_9\,
@@ -2613,7 +2631,7 @@ SW_4:cy_annotation_universal_v1_0
 		clock=>\UART:BUART:clock_op\,
 		status=>(zero, zero, zero, \UART:BUART:tx_fifo_notfull\,
 			\UART:BUART:tx_status_2\, \UART:BUART:tx_fifo_empty\, \UART:BUART:tx_status_0\),
-		interrupt=>\UART:BUART:tx_interrupt_out\);
+		interrupt=>Net_44);
 \UART:BUART:sRX:RxShifter:u0\:cy_psoc3_dp
 	GENERIC MAP(cy_dpconfig=>"0000000000000000000000000000000000000000000000000000001001000000000100000000000000010000001100000001000000000000000100100001000011111111000000001111111111111111101000000110001001000001111100000000000000001100",
 		d0_init=>"00000000",
@@ -2721,7 +2739,7 @@ SW_4:cy_annotation_universal_v1_0
 		clock=>\UART:BUART:clock_op\,
 		status=>(zero, \UART:BUART:rx_status_5\, \UART:BUART:rx_status_4\, \UART:BUART:rx_status_3\,
 			\UART:BUART:rx_status_2\, zero, zero),
-		interrupt=>\UART:BUART:rx_interrupt_out\);
+		interrupt=>Net_39);
 RX_Pin:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"1425177d-0d0e-4468-8bcc-e638e5509a9b",
 		drive_mode=>"001",
@@ -4196,6 +4214,30 @@ Y_Dir_Pin:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__SW_UP_Pin_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Y_Dir_Pin_net_0);
+timer_clock_1:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"81a6f118-f517-424b-a637-89bc22975943",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"1000000000000",
+		is_direct=>'0',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_1865,
+		dig_domain_out=>open);
+\Button_Refresh_Timer:TimerHW\:cy_psoc3_timer_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_1865,
+		kill=>zero,
+		enable=>tmpOE__SW_UP_Pin_net_0,
+		capture=>zero,
+		timer_reset=>zero,
+		tc=>Net_1872,
+		compare=>\Button_Refresh_Timer:Net_261\,
+		interrupt=>\Button_Refresh_Timer:Net_57\);
+Button_Refresh_Timer_Int:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_1872);
 \UART:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\UART:BUART:clock_op\,

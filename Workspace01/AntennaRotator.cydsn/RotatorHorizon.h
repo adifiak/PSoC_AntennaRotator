@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-void initHorizon();
-void renderHorizon(ROTATOR_STATE* rotator_state);
+void Horizon_Init();
+void Horizon_Render(ROTATOR_STATE* rotator_state);
 
 /* [] END OF FILE */

@@ -1,6 +1,6 @@
 // ======================================================================
 // AntennaRotator.v generated from TopDesign.cysch
-// 04/13/2024 at 23:08
+// 04/14/2024 at 21:56
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -170,7 +170,7 @@
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_UART_v2_50\B_UART_v2_50.v"
 `endif
 
-// UART_v2_50(Address1=0, Address2=0, BaudRate=115200, BreakBitsRX=13, BreakBitsTX=13, BreakDetect=false, CRCoutputsEn=false, Enable_RX=1, Enable_RXIntInterrupt=0, Enable_TX=1, Enable_TXIntInterrupt=0, EnableHWAddress=0, EnIntRXInterrupt=false, EnIntTXInterrupt=false, FlowControl=0, HalfDuplexEn=false, HwTXEnSignal=true, InternalClock=true, InternalClockToleranceMinus=3.93736842105263, InternalClockTolerancePlus=3.93736842105263, InternalClockUsed=1, InterruptOnAddDetect=0, InterruptOnAddressMatch=0, InterruptOnBreak=0, InterruptOnByteRcvd=1, InterruptOnOverrunError=0, InterruptOnParityError=0, InterruptOnStopError=0, InterruptOnTXComplete=false, InterruptOnTXFifoEmpty=false, InterruptOnTXFifoFull=false, InterruptOnTXFifoNotFull=false, IntOnAddressDetect=false, IntOnAddressMatch=false, IntOnBreak=false, IntOnByteRcvd=true, IntOnOverrunError=false, IntOnParityError=false, IntOnStopError=false, NumDataBits=8, NumStopBits=1, OverSamplingRate=8, ParityType=0, ParityTypeSw=false, RequiredClock=921600, RXAddressMode=0, RXBufferSize=4, RxBuffRegSizeReplacementString=uint8, RXEnable=true, TXBitClkGenDP=true, TXBufferSize=4, TxBuffRegSizeReplacementString=uint8, TXEnable=true, Use23Polling=true, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=UART_v2_50, CY_CONFIG_TITLE=UART, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=UART, CY_INSTANCE_SHORT_NAME=UART, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=50, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=UART, )
+// UART_v2_50(Address1=0, Address2=0, BaudRate=115200, BreakBitsRX=13, BreakBitsTX=13, BreakDetect=false, CRCoutputsEn=false, Enable_RX=1, Enable_RXIntInterrupt=1, Enable_TX=1, Enable_TXIntInterrupt=1, EnableHWAddress=0, EnIntRXInterrupt=true, EnIntTXInterrupt=true, FlowControl=0, HalfDuplexEn=false, HwTXEnSignal=true, InternalClock=true, InternalClockToleranceMinus=3.93736842105263, InternalClockTolerancePlus=3.93736842105263, InternalClockUsed=1, InterruptOnAddDetect=0, InterruptOnAddressMatch=0, InterruptOnBreak=0, InterruptOnByteRcvd=1, InterruptOnOverrunError=0, InterruptOnParityError=0, InterruptOnStopError=0, InterruptOnTXComplete=false, InterruptOnTXFifoEmpty=true, InterruptOnTXFifoFull=false, InterruptOnTXFifoNotFull=false, IntOnAddressDetect=false, IntOnAddressMatch=false, IntOnBreak=false, IntOnByteRcvd=true, IntOnOverrunError=false, IntOnParityError=false, IntOnStopError=false, NumDataBits=8, NumStopBits=1, OverSamplingRate=8, ParityType=0, ParityTypeSw=false, RequiredClock=921600, RXAddressMode=0, RXBufferSize=16, RxBuffRegSizeReplacementString=uint8, RXEnable=true, TXBitClkGenDP=true, TXBufferSize=16, TxBuffRegSizeReplacementString=uint8, TXEnable=true, Use23Polling=true, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=UART_v2_50, CY_CONFIG_TITLE=UART, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=UART, CY_INSTANCE_SHORT_NAME=UART, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=50, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=UART, )
 module UART_v2_50_0 (
     clock,
     cts_n,
@@ -201,8 +201,8 @@ module UART_v2_50_0 (
 
     parameter Address1 = 0;
     parameter Address2 = 0;
-    parameter EnIntRXInterrupt = 0;
-    parameter EnIntTXInterrupt = 0;
+    parameter EnIntRXInterrupt = 1;
+    parameter EnIntTXInterrupt = 1;
     parameter FlowControl = 0;
     parameter HalfDuplexEn = 0;
     parameter HwTXEnSignal = 1;
@@ -217,6 +217,13 @@ module UART_v2_50_0 (
           wire  Net_9;
 
 
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		TXInternalInterrupt
+		 (.int_signal(tx_interrupt));
+
+
+
 	cy_clock_v1_0
 		#(.id("b0162966-0060-4af5-82d1-fcb491ad7619/be0a0e37-ad17-42ca-b5a1-1a654d736358"),
 		  .source_clock_id(""),
@@ -226,6 +233,13 @@ module UART_v2_50_0 (
 		  .is_digital(1))
 		IntClock
 		 (.clock_out(Net_9));
+
+
+
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		RXInternalInterrupt
+		 (.int_signal(rx_interrupt));
 
 
 	// VirtualMux_1 (cy_virtualmux_v1_0)
@@ -971,9 +985,80 @@ module I2C_v3_50_5 (
 
 endmodule
 
+// Timer_v2_80(CaptureAlternatingFall=false, CaptureAlternatingRise=false, CaptureCount=2, CaptureCounterEnabled=false, CaptureInputEnabled=true, CaptureMode=1, CONTROL3=1, ControlRegRemoved=0, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG8, CySetRegReplacementString=CY_SET_REG8, DeviceFamily=PSoC5, EnableMode=0, FF16=false, FF8=true, FixedFunction=true, FixedFunctionUsed=1, HWCaptureCounterEnabled=false, InterruptOnCapture=false, InterruptOnFIFOFull=false, InterruptOnTC=false, IntOnCapture=0, IntOnFIFOFull=0, IntOnTC=0, NumberOfCaptures=1, param45=1, Period=9, RegDefReplacementString=reg8, RegSizeReplacementString=uint8, Resolution=8, RstStatusReplacementString=rstSts, RunMode=0, SiliconRevision=0, SoftwareCaptureModeEnabled=false, SoftwareTriggerModeEnabled=false, TriggerInputEnabled=false, TriggerMode=0, UDB16=false, UDB24=false, UDB32=false, UDB8=false, UDBControlReg=false, UsesHWEnable=0, VerilogSectionReplacementString=sT8, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=Timer_v2_80, CY_CONFIG_TITLE=Button_Refresh_Timer, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Button_Refresh_Timer, CY_INSTANCE_SHORT_NAME=Button_Refresh_Timer, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=80, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=Button_Refresh_Timer, )
+module Timer_v2_80_6 (
+    capture,
+    capture_out,
+    clock,
+    enable,
+    interrupt,
+    reset,
+    tc,
+    trigger);
+    input       capture;
+    output      capture_out;
+    input       clock;
+    input       enable;
+    output      interrupt;
+    input       reset;
+    output      tc;
+    input       trigger;
+
+    parameter CaptureCount = 2;
+    parameter CaptureCounterEnabled = 0;
+    parameter DeviceFamily = "PSoC5";
+    parameter InterruptOnCapture = 0;
+    parameter InterruptOnTC = 0;
+    parameter Resolution = 8;
+    parameter SiliconRevision = "0";
+
+          wire  Net_260;
+          wire  Net_261;
+          wire  Net_266;
+          wire  Net_102;
+          wire  Net_55;
+          wire  Net_57;
+          wire  Net_53;
+          wire  Net_51;
+
+    cy_psoc3_timer_v1_0 TimerHW (
+        .capture(capture),
+        .clock(clock),
+        .compare(Net_261),
+        .enable(Net_266),
+        .interrupt(Net_57),
+        .kill(Net_260),
+        .tc(Net_51),
+        .timer_reset(reset));
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_260));
+
+	// VirtualMux_2 (cy_virtualmux_v1_0)
+	assign interrupt = Net_57;
+
+	// VirtualMux_3 (cy_virtualmux_v1_0)
+	assign tc = Net_51;
+
+    OneTerminal OneTerminal_1 (
+        .o(Net_102));
+
+	// VirtualMux_1 (cy_virtualmux_v1_0)
+	assign Net_266 = Net_102;
+
+
+
+endmodule
+
 // top
 module top ;
 
+          wire  Net_1969;
+          wire  Net_1968;
+          wire  Net_1967;
+          wire  Net_1966;
+          wire  Net_1965;
+          wire  Net_1970;
           wire  Net_1863;
           wire  Net_1862;
           wire  Net_1861;
@@ -1046,17 +1131,20 @@ module top ;
           wire  Net_34;
           wire  Net_33;
           wire  Net_32;
-    electrical  Net_31;
-    electrical  Net_30;
-    electrical  Net_29;
-    electrical  Net_28;
-    electrical  Net_27;
-    electrical  Net_26;
-    electrical  Net_25;
-    electrical  Net_21;
-    electrical  Net_19;
-    electrical  Net_24;
-    electrical  Net_22;
+    electrical  Net_1949;
+    electrical  Net_1950;
+    electrical  Net_1951;
+    electrical  Net_1952;
+    electrical  Net_1953;
+    electrical  Net_1954;
+    electrical  Net_1955;
+    electrical  Net_1913;
+    electrical  Net_1914;
+    electrical  Net_1956;
+    electrical  Net_1912;
+          wire  Net_1865;
+          wire  Net_1867;
+          wire  Net_1872;
           wire  Net_1796;
           wire  Net_1850;
           wire  Net_1840;
@@ -1070,7 +1158,7 @@ module top ;
 
     cy_annotation_universal_v1_0 GND_1 (
         .connect({
-            Net_22
+            Net_1912
         })
     );
     defparam GND_1.comp_name = "Gnd_v1_0";
@@ -1143,7 +1231,7 @@ module top ;
 		  .io({tmpIO_0__SW_UP_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__SW_UP_Pin_net),
 		  .interrupt({tmpINTERRUPT_0__SW_UP_Pin_net[0:0]}),
-		  .annotation({Net_24}),
+		  .annotation({Net_1956}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -1219,7 +1307,7 @@ module top ;
 		  .io({tmpIO_0__LED_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__LED_Pin_net),
 		  .interrupt({tmpINTERRUPT_0__LED_Pin_net[0:0]}),
-		  .annotation({Net_19}),
+		  .annotation({Net_1914}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -1231,8 +1319,8 @@ module top ;
 
     cy_annotation_universal_v1_0 D_1 (
         .connect({
-            Net_21,
-            Net_22
+            Net_1913,
+            Net_1912
         })
     );
     defparam D_1.comp_name = "LED_v1_0";
@@ -1241,8 +1329,8 @@ module top ;
 
     cy_annotation_universal_v1_0 R_1 (
         .connect({
-            Net_19,
-            Net_21
+            Net_1914,
+            Net_1913
         })
     );
     defparam R_1.comp_name = "Resistor_v1_0";
@@ -1251,7 +1339,7 @@ module top ;
 
     cy_annotation_universal_v1_0 GND_2 (
         .connect({
-            Net_25
+            Net_1955
         })
     );
     defparam GND_2.comp_name = "Gnd_v1_0";
@@ -1260,8 +1348,8 @@ module top ;
 
     cy_annotation_universal_v1_0 SW_1 (
         .connect({
-            Net_25,
-            Net_24
+            Net_1955,
+            Net_1956
         })
     );
     defparam SW_1.comp_name = "SwitchSPST_v1_0";
@@ -1334,7 +1422,7 @@ module top ;
 		  .io({tmpIO_0__SW_DOWN_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__SW_DOWN_Pin_net),
 		  .interrupt({tmpINTERRUPT_0__SW_DOWN_Pin_net[0:0]}),
-		  .annotation({Net_26}),
+		  .annotation({Net_1954}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -1346,7 +1434,7 @@ module top ;
 
     cy_annotation_universal_v1_0 GND_3 (
         .connect({
-            Net_27
+            Net_1953
         })
     );
     defparam GND_3.comp_name = "Gnd_v1_0";
@@ -1355,8 +1443,8 @@ module top ;
 
     cy_annotation_universal_v1_0 SW_2 (
         .connect({
-            Net_27,
-            Net_26
+            Net_1953,
+            Net_1954
         })
     );
     defparam SW_2.comp_name = "SwitchSPST_v1_0";
@@ -1429,7 +1517,7 @@ module top ;
 		  .io({tmpIO_0__SW_LEFT_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__SW_LEFT_Pin_net),
 		  .interrupt({tmpINTERRUPT_0__SW_LEFT_Pin_net[0:0]}),
-		  .annotation({Net_28}),
+		  .annotation({Net_1952}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -1441,7 +1529,7 @@ module top ;
 
     cy_annotation_universal_v1_0 GND_4 (
         .connect({
-            Net_29
+            Net_1951
         })
     );
     defparam GND_4.comp_name = "Gnd_v1_0";
@@ -1450,8 +1538,8 @@ module top ;
 
     cy_annotation_universal_v1_0 SW_3 (
         .connect({
-            Net_29,
-            Net_28
+            Net_1951,
+            Net_1952
         })
     );
     defparam SW_3.comp_name = "SwitchSPST_v1_0";
@@ -1524,7 +1612,7 @@ module top ;
 		  .io({tmpIO_0__SW_RIGHT_Pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__SW_RIGHT_Pin_net),
 		  .interrupt({tmpINTERRUPT_0__SW_RIGHT_Pin_net[0:0]}),
-		  .annotation({Net_30}),
+		  .annotation({Net_1950}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -1536,7 +1624,7 @@ module top ;
 
     cy_annotation_universal_v1_0 GND_5 (
         .connect({
-            Net_31
+            Net_1949
         })
     );
     defparam GND_5.comp_name = "Gnd_v1_0";
@@ -1545,8 +1633,8 @@ module top ;
 
     cy_annotation_universal_v1_0 SW_4 (
         .connect({
-            Net_31,
-            Net_30
+            Net_1949,
+            Net_1950
         })
     );
     defparam SW_4.comp_name = "SwitchSPST_v1_0";
@@ -1569,8 +1657,8 @@ module top ;
         .tx_interrupt(Net_44));
     defparam UART.Address1 = 0;
     defparam UART.Address2 = 0;
-    defparam UART.EnIntRXInterrupt = 0;
-    defparam UART.EnIntTXInterrupt = 0;
+    defparam UART.EnIntRXInterrupt = 1;
+    defparam UART.EnIntTXInterrupt = 1;
     defparam UART.FlowControl = 0;
     defparam UART.HalfDuplexEn = 0;
     defparam UART.HwTXEnSignal = 1;
@@ -2641,6 +2729,45 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__Y_Dir_Pin_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+
+	cy_clock_v1_0
+		#(.id("81a6f118-f517-424b-a637-89bc22975943"),
+		  .source_clock_id(""),
+		  .divisor(0),
+		  .period("1000000000000"),
+		  .is_direct(0),
+		  .is_digital(1))
+		timer_clock_1
+		 (.clock_out(Net_1865));
+
+
+    ZeroTerminal ZeroTerminal_2 (
+        .z(Net_1867));
+
+    Timer_v2_80_6 Button_Refresh_Timer (
+        .capture(1'b0),
+        .capture_out(Net_1966),
+        .clock(Net_1865),
+        .enable(1'b1),
+        .interrupt(Net_1968),
+        .reset(Net_1867),
+        .tc(Net_1872),
+        .trigger(1'b1));
+    defparam Button_Refresh_Timer.CaptureCount = 2;
+    defparam Button_Refresh_Timer.CaptureCounterEnabled = 0;
+    defparam Button_Refresh_Timer.DeviceFamily = "PSoC5";
+    defparam Button_Refresh_Timer.InterruptOnCapture = 0;
+    defparam Button_Refresh_Timer.InterruptOnTC = 0;
+    defparam Button_Refresh_Timer.Resolution = 8;
+    defparam Button_Refresh_Timer.SiliconRevision = "0";
+
+
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		Button_Refresh_Timer_Int
+		 (.int_signal(Net_1872));
+
 
 
 
