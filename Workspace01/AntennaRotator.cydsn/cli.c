@@ -12,6 +12,7 @@
 #include "cli.h"
 #include "main.h"
 #include "eeprom.h"
+#include "bsp.h"
 
 enum READ_STATE readState = CMD;
 
@@ -186,7 +187,17 @@ bool ProcessCommand(){
             return true;
             
         } else if(!strcmp(cmd.data, "wpoi")){
-            UART_PutString("Medve feladat 2\r\n");
+            
+            if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
+                uint8 id = ParseArgument(&arg1);
+                if(1 <= id && 16 >= id){
+                    saveToSaveSlot(id);
+                    return false;
+                }
+                UART_PutString("Invalid ID.");
+            }
+            return true;
+            
         } else if(!strcmp(cmd.data, "mhom")){
             
             if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
@@ -207,11 +218,25 @@ bool ProcessCommand(){
             return true;
             
         } else if(!strcmp(cmd.data, "mpoi")){
-            UART_PutString("Medve feladat 2\r\n");
-        } else if(!strcmp(cmd.data, "rpoi")){
-            UART_PutString("Medve feladat 2\r\n");
-        } else {
+            
+            if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
+                uint8 id = ParseArgument(&arg1);
+                if(1 <= id && 16 >= id){
+                    moveToSaveSlot(id);
+                    return false;
+                }
+                UART_PutString("Invalid ID.");
+            }
             return true;
+            
+        } else if(!strcmp(cmd.data, "rpoi")){
+            
+            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
+                listSaveSlot();
+                return false;
+            }
+            return true;
+            
         }
     }
     return true;

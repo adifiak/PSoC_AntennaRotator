@@ -59,17 +59,8 @@ int main(void)
     
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */     
     
-    /*
-    rotator_state.x_des = AS5600_FROM_ANGULAR(245);
-    rotator_state.x_act = 0;
-    rotator_state.y_des = AS5600_FROM_ANGULAR(180);
-    rotator_state.y_act = 0;
-    */
-    
-    EEPROM_1_Start();
-    
-    CLI_Init();
-    
+    //Start internal peripherials
+    EEPROM_1_Start();   
     UART_Start();
     I2C_OLED_Start();
     PWM_1_Start();
@@ -78,7 +69,13 @@ int main(void)
     I2C_X_Start();
     I2C_Y_Start();
     
+    //Get rotator state
     refreshRotation(&rotator_state);
+    
+    //Init external peripherials
+    CLI_Init();
+    Horizon_Init();
+    Horizon_Render(&rotator_state);
     
     //Home on restart
     if(testBit(0, 0x00)){
@@ -88,21 +85,21 @@ int main(void)
         rotator_state.x_des = rotator_state.x_act;
         rotator_state.y_des = rotator_state.y_act;
     }
-    //Signal on restart
-    if(testBit(1, 0x00)){
-        UART_PutString("System started.");
-    }
     
-    Horizon_Init();
-    Horizon_Render(&rotator_state);
-    
+    //Register interrupt service handlers
     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
     
+    //Enable the movement of the motors
     Motor_Enable_Write(1);
-  
+    
+    //Signal on restart
+    if(testBit(1, 0x00)){
+        UART_PutString("System started.");
+    }
+    
     for(;;)
     {
         //Refresh rotation data
@@ -142,9 +139,6 @@ int main(void)
         }
         //Input processing
         CLI_Update();
-        
-        
-        
         
         LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_Read());
     }
