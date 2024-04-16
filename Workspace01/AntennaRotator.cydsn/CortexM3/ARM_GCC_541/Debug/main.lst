@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
   28:main.c        **** bool refresh_rotation = false;
   29:main.c        **** 
   30:main.c        **** CY_ISR( DISPLAY_REFRESH_Handler ){
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 2
 
 
   28              		.loc 1 30 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
   77              	.LFB67:
   36:main.c        **** }
   37:main.c        **** 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 3
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 3
 
 
   38:main.c        **** CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
  124 0042 002B     		cmp	r3, #0
  125 0044 B8BF     		it	lt
  126 0046 5B42     		rsblt	r3, r3, #0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 4
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 4
 
 
  127 0048 042B     		cmp	r3, #4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
  173              	.L15:
  174 0018 00000000 		.word	.LANCHOR0
  175              		.cfi_endproc
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 5
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 5
 
 
  176              	.LFE68:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
   44:util.h        **** 
   45:util.h        ****         case STDERR_HANDLE:
   46:util.h        ****             ret = ch ;
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 6
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 6
 
 
   47:util.h        ****             break ;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
   88:util.h        ****     file = file;
   89:util.h        ****     for (i = 0; i < len; i++)
  200              		.loc 2 89 0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 7
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 7
 
 
  201 0004 0024     		movs	r4, #0
@@ -410,105 +410,99 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
   59:main.c        ****     
   60:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */     
   61:main.c        ****     
-  62:main.c        ****     /*
-  63:main.c        ****     rotator_state.x_des = AS5600_FROM_ANGULAR(245);
-  64:main.c        ****     rotator_state.x_act = 0;
-  65:main.c        ****     rotator_state.y_des = AS5600_FROM_ANGULAR(180);
-  66:main.c        ****     rotator_state.y_act = 0;
-  67:main.c        ****     */
-  68:main.c        ****     
-  69:main.c        ****     EEPROM_1_Start();
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 8
+  62:main.c        ****     //Start internal peripherials
+  63:main.c        ****     EEPROM_1_Start();   
+  64:main.c        ****     UART_Start();
+  65:main.c        ****     I2C_OLED_Start();
+  66:main.c        ****     PWM_1_Start();
+  67:main.c        ****     Display_Refresh_Timer_Start();
+  68:main.c        ****     Button_Refresh_Timer_Start();
+  69:main.c        ****     I2C_X_Start();
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 8
 
 
-  70:main.c        ****     
-  71:main.c        ****     CLI_Init();
-  72:main.c        ****     
-  73:main.c        ****     UART_Start();
-  74:main.c        ****     I2C_OLED_Start();
-  75:main.c        ****     PWM_1_Start();
-  76:main.c        ****     Display_Refresh_Timer_Start();
-  77:main.c        ****     Button_Refresh_Timer_Start();
-  78:main.c        ****     I2C_X_Start();
-  79:main.c        ****     I2C_Y_Start();
-  80:main.c        ****     
-  81:main.c        ****     refreshRotation(&rotator_state);
-  82:main.c        ****     
-  83:main.c        ****     //Home on restart
-  84:main.c        ****     if(testBit(0, 0x00)){
-  85:main.c        ****         rotator_state.x_des = loadWord(0x01);
-  86:main.c        ****         rotator_state.y_des = loadWord(0x03);
-  87:main.c        ****     } else {
-  88:main.c        ****         rotator_state.x_des = rotator_state.x_act;
-  89:main.c        ****         rotator_state.y_des = rotator_state.y_act;
-  90:main.c        ****     }
-  91:main.c        ****     //Signal on restart
-  92:main.c        ****     if(testBit(1, 0x00)){
-  93:main.c        ****         UART_PutString("System started.");
-  94:main.c        ****     }
-  95:main.c        ****     
-  96:main.c        ****     Horizon_Init();
-  97:main.c        ****     Horizon_Render(&rotator_state);
-  98:main.c        ****     
-  99:main.c        ****     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
- 100:main.c        ****     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
- 101:main.c        ****     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
- 102:main.c        ****     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
- 103:main.c        ****     
- 104:main.c        ****     Motor_Enable_Write(1);
- 105:main.c        ****   
- 106:main.c        ****     for(;;)
- 107:main.c        ****     {
- 108:main.c        ****         //Refresh rotation data
- 109:main.c        ****         if(refresh_rotation){
- 110:main.c        ****             refresh_rotation = false;
- 111:main.c        ****             refreshRotation(&rotator_state);
- 112:main.c        ****         }
- 113:main.c        ****         //Refresh display
- 114:main.c        ****         if(refresh_display){
- 115:main.c        ****             refresh_display = false;
- 116:main.c        ****             Horizon_Render(&rotator_state);
- 117:main.c        ****         }
- 118:main.c        ****         //Refresh buttons
- 119:main.c        ****         if(refresh_buttons){
- 120:main.c        ****             refresh_buttons = false;
- 121:main.c        ****             
- 122:main.c        ****             bool up_button = SW_UP_Pin_Read();
- 123:main.c        ****             bool down_button = SW_DOWN_Pin_Read();
- 124:main.c        ****             bool left_button = SW_LEFT_Pin_Read();
- 125:main.c        ****             bool right_button = SW_RIGHT_Pin_Read();
- 126:main.c        ****             
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 9
+  70:main.c        ****     I2C_Y_Start();
+  71:main.c        ****     
+  72:main.c        ****     //Get rotator state
+  73:main.c        ****     refreshRotation(&rotator_state);
+  74:main.c        ****     
+  75:main.c        ****     //Init external peripherials
+  76:main.c        ****     CLI_Init();
+  77:main.c        ****     Horizon_Init();
+  78:main.c        ****     Horizon_Render(&rotator_state);
+  79:main.c        ****     
+  80:main.c        ****     //Home on restart
+  81:main.c        ****     if(testBit(0, 0x00)){
+  82:main.c        ****         rotator_state.x_des = loadWord(0x01);
+  83:main.c        ****         rotator_state.y_des = loadWord(0x03);
+  84:main.c        ****     } else {
+  85:main.c        ****         rotator_state.x_des = rotator_state.x_act;
+  86:main.c        ****         rotator_state.y_des = rotator_state.y_act;
+  87:main.c        ****     }
+  88:main.c        ****     
+  89:main.c        ****     //Register interrupt service handlers
+  90:main.c        ****     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
+  91:main.c        ****     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
+  92:main.c        ****     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
+  93:main.c        ****     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
+  94:main.c        ****     
+  95:main.c        ****     //Enable the movement of the motors
+  96:main.c        ****     Motor_Enable_Write(1);
+  97:main.c        ****     
+  98:main.c        ****     //Signal on restart
+  99:main.c        ****     if(testBit(1, 0x00)){
+ 100:main.c        ****         UART_PutString("System started.\r\n");
+ 101:main.c        ****     }
+ 102:main.c        ****     
+ 103:main.c        ****     for(;;)
+ 104:main.c        ****     {
+ 105:main.c        ****         //Refresh rotation data
+ 106:main.c        ****         if(refresh_rotation){
+ 107:main.c        ****             refresh_rotation = false;
+ 108:main.c        ****             refreshRotation(&rotator_state);
+ 109:main.c        ****         }
+ 110:main.c        ****         //Refresh display
+ 111:main.c        ****         if(refresh_display){
+ 112:main.c        ****             refresh_display = false;
+ 113:main.c        ****             Horizon_Render(&rotator_state);
+ 114:main.c        ****         }
+ 115:main.c        ****         //Refresh buttons
+ 116:main.c        ****         if(refresh_buttons){
+ 117:main.c        ****             refresh_buttons = false;
+ 118:main.c        ****             
+ 119:main.c        ****             bool up_button = SW_UP_Pin_Read();
+ 120:main.c        ****             bool down_button = SW_DOWN_Pin_Read();
+ 121:main.c        ****             bool left_button = SW_LEFT_Pin_Read();
+ 122:main.c        ****             bool right_button = SW_RIGHT_Pin_Read();
+ 123:main.c        ****             
+ 124:main.c        ****             //X
+ 125:main.c        ****             if(left_button && !right_button){
+ 126:main.c        ****                 if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 9
 
 
- 127:main.c        ****             //X
- 128:main.c        ****             if(left_button && !right_button){
- 129:main.c        ****                 if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
+ 127:main.c        ****             }
+ 128:main.c        ****             if(!left_button && right_button){
+ 129:main.c        ****                 if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
  130:main.c        ****             }
- 131:main.c        ****             if(!left_button && right_button){
- 132:main.c        ****                 if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
- 133:main.c        ****             }
- 134:main.c        ****             
- 135:main.c        ****             //Y
- 136:main.c        ****             if(up_button && !down_button){
- 137:main.c        ****                 if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
+ 131:main.c        ****             
+ 132:main.c        ****             //Y
+ 133:main.c        ****             if(up_button && !down_button){
+ 134:main.c        ****                 if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
+ 135:main.c        ****             }
+ 136:main.c        ****             if(!up_button && down_button){
+ 137:main.c        ****                 if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
  138:main.c        ****             }
- 139:main.c        ****             if(!up_button && down_button){
- 140:main.c        ****                 if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
- 141:main.c        ****             }
- 142:main.c        ****         }
- 143:main.c        ****         //Input processing
- 144:main.c        ****         CLI_Update();
- 145:main.c        ****         
- 146:main.c        ****         
- 147:main.c        ****         
- 148:main.c        ****         
- 149:main.c        ****         LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_
- 150:main.c        ****     }
- 151:main.c        **** }
- 152:main.c        **** 
- 153:main.c        **** void refreshRotation(ROTATOR_STATE* rotator_state){
- 235              		.loc 1 153 0
+ 139:main.c        ****         }
+ 140:main.c        ****         //Input processing
+ 141:main.c        ****         CLI_Update();
+ 142:main.c        ****         
+ 143:main.c        ****         LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_
+ 144:main.c        ****     }
+ 145:main.c        **** }
+ 146:main.c        **** 
+ 147:main.c        **** void refreshRotation(ROTATOR_STATE* rotator_state){
+ 235              		.loc 1 147 0
  236              		.cfi_startproc
  237              		@ args = 0, pretend = 0, frame = 0
  238              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -521,114 +515,114 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
  245              		.cfi_offset 14, -4
  246 0002 0446     		mov	r4, r0
  247              	.LVL14:
- 154:main.c        ****     uint8 buf[2];
- 155:main.c        ****     uint8 status = 0;
- 156:main.c        ****     
- 157:main.c        ****     //X
- 158:main.c        ****     I2C_X_MasterClearStatus();
- 248              		.loc 1 158 0
+ 148:main.c        ****     uint8 buf[2];
+ 149:main.c        ****     uint8 status = 0;
+ 150:main.c        ****     
+ 151:main.c        ****     //X
+ 152:main.c        ****     I2C_X_MasterClearStatus();
+ 248              		.loc 1 152 0
  249 0004 FFF7FEFF 		bl	I2C_X_MasterClearStatus
  250              	.LVL15:
- 159:main.c        ****     status = I2C_X_MasterSendStart(ENCODER_ADDRESS, 0);
- 251              		.loc 1 159 0
+ 153:main.c        ****     status = I2C_X_MasterSendStart(ENCODER_ADDRESS, 0);
+ 251              		.loc 1 153 0
  252 0008 0021     		movs	r1, #0
  253 000a 3620     		movs	r0, #54
  254 000c FFF7FEFF 		bl	I2C_X_MasterSendStart
  255              	.LVL16:
- 160:main.c        ****     if(I2C_X_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
- 256              		.loc 1 160 0
+ 154:main.c        ****     if(I2C_X_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
+ 256              		.loc 1 154 0
  257 0010 80B9     		cbnz	r0, .L22
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 10
-
-
- 161:main.c        ****     {
- 162:main.c        ****         /* Read array of 5 bytes */
- 163:main.c        ****         I2C_X_MasterWriteByte(ENCODER_POS_REG);
- 258              		.loc 1 163 0
+ 155:main.c        ****     {
+ 156:main.c        ****         /* Read array of 5 bytes */
+ 157:main.c        ****         I2C_X_MasterWriteByte(ENCODER_POS_REG);
+ 258              		.loc 1 157 0
  259 0012 0E20     		movs	r0, #14
  260              	.LVL17:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 10
+
+
  261 0014 FFF7FEFF 		bl	I2C_X_MasterWriteByte
  262              	.LVL18:
- 164:main.c        ****         I2C_X_MasterSendRestart(ENCODER_ADDRESS, 1);
- 263              		.loc 1 164 0
+ 158:main.c        ****         I2C_X_MasterSendRestart(ENCODER_ADDRESS, 1);
+ 263              		.loc 1 158 0
  264 0018 0121     		movs	r1, #1
  265 001a 3620     		movs	r0, #54
  266 001c FFF7FEFF 		bl	I2C_X_MasterSendRestart
  267              	.LVL19:
- 165:main.c        ****         buf[0] = I2C_X_MasterReadByte(I2C_X_ACK_DATA);
- 268              		.loc 1 165 0
+ 159:main.c        ****         buf[0] = I2C_X_MasterReadByte(I2C_X_ACK_DATA);
+ 268              		.loc 1 159 0
  269 0020 0120     		movs	r0, #1
  270 0022 FFF7FEFF 		bl	I2C_X_MasterReadByte
  271              	.LVL20:
  272 0026 0546     		mov	r5, r0
- 166:main.c        ****         buf[1] = I2C_X_MasterReadByte(I2C_X_NAK_DATA);
- 273              		.loc 1 166 0
+ 160:main.c        ****         buf[1] = I2C_X_MasterReadByte(I2C_X_NAK_DATA);
+ 273              		.loc 1 160 0
  274 0028 0020     		movs	r0, #0
  275 002a FFF7FEFF 		bl	I2C_X_MasterReadByte
  276              	.LVL21:
- 167:main.c        ****                 
- 168:main.c        ****         rotator_state->x_act = ((buf[0])<<8) + (buf[1]);
- 277              		.loc 1 168 0
+ 161:main.c        ****                 
+ 162:main.c        ****         rotator_state->x_act = ((buf[0])<<8) + (buf[1]);
+ 277              		.loc 1 162 0
  278 002e 00EB0520 		add	r0, r0, r5, lsl #8
  279 0032 A060     		str	r0, [r4, #8]
  280              	.L22:
- 169:main.c        ****     }
- 170:main.c        ****     I2C_X_MasterSendStop(); /* Send Stop */
- 281              		.loc 1 170 0
+ 163:main.c        ****     }
+ 164:main.c        ****     I2C_X_MasterSendStop(); /* Send Stop */
+ 281              		.loc 1 164 0
  282 0034 FFF7FEFF 		bl	I2C_X_MasterSendStop
  283              	.LVL22:
- 171:main.c        ****     
- 172:main.c        ****     //Y
- 173:main.c        ****     I2C_Y_MasterClearStatus();
- 284              		.loc 1 173 0
+ 165:main.c        ****     
+ 166:main.c        ****     //Y
+ 167:main.c        ****     I2C_Y_MasterClearStatus();
+ 284              		.loc 1 167 0
  285 0038 FFF7FEFF 		bl	I2C_Y_MasterClearStatus
  286              	.LVL23:
- 174:main.c        ****     status = I2C_Y_MasterSendStart(ENCODER_ADDRESS, 0);
- 287              		.loc 1 174 0
+ 168:main.c        ****     status = I2C_Y_MasterSendStart(ENCODER_ADDRESS, 0);
+ 287              		.loc 1 168 0
  288 003c 0021     		movs	r1, #0
  289 003e 3620     		movs	r0, #54
  290 0040 FFF7FEFF 		bl	I2C_Y_MasterSendStart
  291              	.LVL24:
- 175:main.c        ****     if(I2C_Y_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
- 292              		.loc 1 175 0
+ 169:main.c        ****     if(I2C_Y_MSTR_NO_ERROR == status) /* Check if transfer completed without errors */
+ 292              		.loc 1 169 0
  293 0044 80B9     		cbnz	r0, .L23
- 176:main.c        ****     {
- 177:main.c        ****         /* Read array of 5 bytes */
- 178:main.c        ****         I2C_Y_MasterWriteByte(ENCODER_POS_REG);
- 294              		.loc 1 178 0
+ 170:main.c        ****     {
+ 171:main.c        ****         /* Read array of 5 bytes */
+ 172:main.c        ****         I2C_Y_MasterWriteByte(ENCODER_POS_REG);
+ 294              		.loc 1 172 0
  295 0046 0E20     		movs	r0, #14
  296              	.LVL25:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 11
-
-
  297 0048 FFF7FEFF 		bl	I2C_Y_MasterWriteByte
  298              	.LVL26:
- 179:main.c        ****         I2C_Y_MasterSendRestart(ENCODER_ADDRESS, 1);
- 299              		.loc 1 179 0
+ 173:main.c        ****         I2C_Y_MasterSendRestart(ENCODER_ADDRESS, 1);
+ 299              		.loc 1 173 0
  300 004c 0121     		movs	r1, #1
  301 004e 3620     		movs	r0, #54
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 11
+
+
  302 0050 FFF7FEFF 		bl	I2C_Y_MasterSendRestart
  303              	.LVL27:
- 180:main.c        ****         buf[0] = I2C_Y_MasterReadByte(I2C_X_ACK_DATA);
- 304              		.loc 1 180 0
+ 174:main.c        ****         buf[0] = I2C_Y_MasterReadByte(I2C_X_ACK_DATA);
+ 304              		.loc 1 174 0
  305 0054 0120     		movs	r0, #1
  306 0056 FFF7FEFF 		bl	I2C_Y_MasterReadByte
  307              	.LVL28:
  308 005a 0546     		mov	r5, r0
- 181:main.c        ****         buf[1] = I2C_Y_MasterReadByte(I2C_X_NAK_DATA);
- 309              		.loc 1 181 0
+ 175:main.c        ****         buf[1] = I2C_Y_MasterReadByte(I2C_X_NAK_DATA);
+ 309              		.loc 1 175 0
  310 005c 0020     		movs	r0, #0
  311 005e FFF7FEFF 		bl	I2C_Y_MasterReadByte
  312              	.LVL29:
- 182:main.c        ****                 
- 183:main.c        ****         rotator_state->y_act = ((buf[0])<<8) + (buf[1]);
- 313              		.loc 1 183 0
+ 176:main.c        ****                 
+ 177:main.c        ****         rotator_state->y_act = ((buf[0])<<8) + (buf[1]);
+ 313              		.loc 1 177 0
  314 0062 00EB0520 		add	r0, r0, r5, lsl #8
  315 0066 E060     		str	r0, [r4, #12]
  316              	.L23:
- 184:main.c        ****     }
- 185:main.c        ****     I2C_Y_MasterSendStop(); /* Send Stop */
- 317              		.loc 1 185 0
+ 178:main.c        ****     }
+ 179:main.c        ****     I2C_Y_MasterSendStop(); /* Send Stop */
+ 317              		.loc 1 179 0
  318 0068 FFF7FEFF 		bl	I2C_Y_MasterSendStop
  319              	.LVL30:
  320 006c 38BD     		pop	{r3, r4, r5, pc}
@@ -658,2587 +652,2584 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 1
  342              		.loc 1 58 0
  343              		.syntax unified
  344              	@ 58 "main.c" 1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 12
-
-
  345 0002 62B6     		CPSIE   i
  346              	@ 0 "" 2
-  69:main.c        ****     
- 347              		.loc 1 69 0
+  63:main.c        ****     UART_Start();
+ 347              		.loc 1 63 0
  348              		.thumb
  349              		.syntax unified
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 12
+
+
  350 0004 FFF7FEFF 		bl	EEPROM_1_Start
  351              	.LVL31:
-  71:main.c        ****     
- 352              		.loc 1 71 0
- 353 0008 FFF7FEFF 		bl	CLI_Init
+  64:main.c        ****     I2C_OLED_Start();
+ 352              		.loc 1 64 0
+ 353 0008 FFF7FEFF 		bl	UART_Start
  354              	.LVL32:
-  73:main.c        ****     I2C_OLED_Start();
- 355              		.loc 1 73 0
- 356 000c FFF7FEFF 		bl	UART_Start
+  65:main.c        ****     PWM_1_Start();
+ 355              		.loc 1 65 0
+ 356 000c FFF7FEFF 		bl	I2C_OLED_Start
  357              	.LVL33:
-  74:main.c        ****     PWM_1_Start();
- 358              		.loc 1 74 0
- 359 0010 FFF7FEFF 		bl	I2C_OLED_Start
+  66:main.c        ****     Display_Refresh_Timer_Start();
+ 358              		.loc 1 66 0
+ 359 0010 FFF7FEFF 		bl	PWM_1_Start
  360              	.LVL34:
-  75:main.c        ****     Display_Refresh_Timer_Start();
- 361              		.loc 1 75 0
- 362 0014 FFF7FEFF 		bl	PWM_1_Start
+  67:main.c        ****     Button_Refresh_Timer_Start();
+ 361              		.loc 1 67 0
+ 362 0014 FFF7FEFF 		bl	Display_Refresh_Timer_Start
  363              	.LVL35:
-  76:main.c        ****     Button_Refresh_Timer_Start();
- 364              		.loc 1 76 0
- 365 0018 FFF7FEFF 		bl	Display_Refresh_Timer_Start
+  68:main.c        ****     I2C_X_Start();
+ 364              		.loc 1 68 0
+ 365 0018 FFF7FEFF 		bl	Button_Refresh_Timer_Start
  366              	.LVL36:
-  77:main.c        ****     I2C_X_Start();
- 367              		.loc 1 77 0
- 368 001c FFF7FEFF 		bl	Button_Refresh_Timer_Start
+  69:main.c        ****     I2C_Y_Start();
+ 367              		.loc 1 69 0
+ 368 001c FFF7FEFF 		bl	I2C_X_Start
  369              	.LVL37:
-  78:main.c        ****     I2C_Y_Start();
- 370              		.loc 1 78 0
- 371 0020 FFF7FEFF 		bl	I2C_X_Start
+  70:main.c        ****     
+ 370              		.loc 1 70 0
+ 371 0020 FFF7FEFF 		bl	I2C_Y_Start
  372              	.LVL38:
-  79:main.c        ****     
- 373              		.loc 1 79 0
- 374 0024 FFF7FEFF 		bl	I2C_Y_Start
- 375              	.LVL39:
-  81:main.c        ****     
- 376              		.loc 1 81 0
- 377 0028 4C48     		ldr	r0, .L42
- 378 002a FFF7FEFF 		bl	refreshRotation
- 379              	.LVL40:
-  84:main.c        ****         rotator_state.x_des = loadWord(0x01);
- 380              		.loc 1 84 0
- 381 002e 0021     		movs	r1, #0
- 382 0030 0846     		mov	r0, r1
- 383 0032 FFF7FEFF 		bl	testBit
- 384              	.LVL41:
- 385 0036 48B1     		cbz	r0, .L26
-  85:main.c        ****         rotator_state.y_des = loadWord(0x03);
- 386              		.loc 1 85 0
- 387 0038 0120     		movs	r0, #1
- 388 003a FFF7FEFF 		bl	loadWord
- 389              	.LVL42:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 13
+  73:main.c        ****     
+ 373              		.loc 1 73 0
+ 374 0024 4D4C     		ldr	r4, .L42
+ 375 0026 2046     		mov	r0, r4
+ 376 0028 FFF7FEFF 		bl	refreshRotation
+ 377              	.LVL39:
+  76:main.c        ****     Horizon_Init();
+ 378              		.loc 1 76 0
+ 379 002c FFF7FEFF 		bl	CLI_Init
+ 380              	.LVL40:
+  77:main.c        ****     Horizon_Render(&rotator_state);
+ 381              		.loc 1 77 0
+ 382 0030 FFF7FEFF 		bl	Horizon_Init
+ 383              	.LVL41:
+  78:main.c        ****     
+ 384              		.loc 1 78 0
+ 385 0034 2046     		mov	r0, r4
+ 386 0036 FFF7FEFF 		bl	Horizon_Render
+ 387              	.LVL42:
+  81:main.c        ****         rotator_state.x_des = loadWord(0x01);
+ 388              		.loc 1 81 0
+ 389 003a 0021     		movs	r1, #0
+ 390 003c 0846     		mov	r0, r1
+ 391 003e FFF7FEFF 		bl	testBit
+ 392              	.LVL43:
+ 393 0042 40B1     		cbz	r0, .L26
+  82:main.c        ****         rotator_state.y_des = loadWord(0x03);
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 13
 
 
- 390 003e 474C     		ldr	r4, .L42
- 391 0040 2060     		str	r0, [r4]
-  86:main.c        ****     } else {
- 392              		.loc 1 86 0
- 393 0042 0320     		movs	r0, #3
- 394 0044 FFF7FEFF 		bl	loadWord
- 395              	.LVL43:
- 396 0048 6060     		str	r0, [r4, #4]
- 397 004a 04E0     		b	.L27
- 398              	.L26:
-  88:main.c        ****         rotator_state.y_des = rotator_state.y_act;
- 399              		.loc 1 88 0
- 400 004c 434B     		ldr	r3, .L42
- 401 004e 9A68     		ldr	r2, [r3, #8]
- 402 0050 1A60     		str	r2, [r3]
-  89:main.c        ****     }
- 403              		.loc 1 89 0
- 404 0052 DA68     		ldr	r2, [r3, #12]
- 405 0054 5A60     		str	r2, [r3, #4]
- 406              	.L27:
-  92:main.c        ****         UART_PutString("System started.");
- 407              		.loc 1 92 0
- 408 0056 0021     		movs	r1, #0
- 409 0058 0120     		movs	r0, #1
- 410 005a FFF7FEFF 		bl	testBit
- 411              	.LVL44:
- 412 005e 10B1     		cbz	r0, .L28
-  93:main.c        ****     }
- 413              		.loc 1 93 0
- 414 0060 3F48     		ldr	r0, .L42+4
- 415 0062 FFF7FEFF 		bl	UART_PutString
- 416              	.LVL45:
- 417              	.L28:
-  96:main.c        ****     Horizon_Render(&rotator_state);
- 418              		.loc 1 96 0
- 419 0066 FFF7FEFF 		bl	Horizon_Init
- 420              	.LVL46:
-  97:main.c        ****     
- 421              		.loc 1 97 0
- 422 006a 3C48     		ldr	r0, .L42
- 423 006c FFF7FEFF 		bl	Horizon_Render
- 424              	.LVL47:
-  99:main.c        ****     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
- 425              		.loc 1 99 0
- 426 0070 3C48     		ldr	r0, .L42+8
- 427 0072 FFF7FEFF 		bl	Display_Refresh_Timer_Int_StartEx
- 428              	.LVL48:
- 100:main.c        ****     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
- 429              		.loc 1 100 0
- 430 0076 3C48     		ldr	r0, .L42+12
- 431 0078 FFF7FEFF 		bl	Button_Refresh_Timer_Int_StartEx
- 432              	.LVL49:
- 101:main.c        ****     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
- 433              		.loc 1 101 0
- 434 007c 3B48     		ldr	r0, .L42+16
- 435 007e FFF7FEFF 		bl	MotorControlRiseingEdge_StartEx
- 436              	.LVL50:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 14
+ 394              		.loc 1 82 0
+ 395 0044 0120     		movs	r0, #1
+ 396 0046 FFF7FEFF 		bl	loadWord
+ 397              	.LVL44:
+ 398 004a 2060     		str	r0, [r4]
+  83:main.c        ****     } else {
+ 399              		.loc 1 83 0
+ 400 004c 0320     		movs	r0, #3
+ 401 004e FFF7FEFF 		bl	loadWord
+ 402              	.LVL45:
+ 403 0052 6060     		str	r0, [r4, #4]
+ 404 0054 04E0     		b	.L27
+ 405              	.L26:
+  85:main.c        ****         rotator_state.y_des = rotator_state.y_act;
+ 406              		.loc 1 85 0
+ 407 0056 414B     		ldr	r3, .L42
+ 408 0058 9A68     		ldr	r2, [r3, #8]
+ 409 005a 1A60     		str	r2, [r3]
+  86:main.c        ****     }
+ 410              		.loc 1 86 0
+ 411 005c DA68     		ldr	r2, [r3, #12]
+ 412 005e 5A60     		str	r2, [r3, #4]
+ 413              	.L27:
+  90:main.c        ****     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
+ 414              		.loc 1 90 0
+ 415 0060 3F48     		ldr	r0, .L42+4
+ 416 0062 FFF7FEFF 		bl	Display_Refresh_Timer_Int_StartEx
+ 417              	.LVL46:
+  91:main.c        ****     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
+ 418              		.loc 1 91 0
+ 419 0066 3F48     		ldr	r0, .L42+8
+ 420 0068 FFF7FEFF 		bl	Button_Refresh_Timer_Int_StartEx
+ 421              	.LVL47:
+  92:main.c        ****     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
+ 422              		.loc 1 92 0
+ 423 006c 3E48     		ldr	r0, .L42+12
+ 424 006e FFF7FEFF 		bl	MotorControlRiseingEdge_StartEx
+ 425              	.LVL48:
+  93:main.c        ****     
+ 426              		.loc 1 93 0
+ 427 0072 3E48     		ldr	r0, .L42+16
+ 428 0074 FFF7FEFF 		bl	MotorControlFallingEdge_StartEx
+ 429              	.LVL49:
+  96:main.c        ****     
+ 430              		.loc 1 96 0
+ 431 0078 0120     		movs	r0, #1
+ 432 007a FFF7FEFF 		bl	Motor_Enable_Write
+ 433              	.LVL50:
+  99:main.c        ****         UART_PutString("System started.\r\n");
+ 434              		.loc 1 99 0
+ 435 007e 0021     		movs	r1, #0
+ 436 0080 0120     		movs	r0, #1
+ 437 0082 FFF7FEFF 		bl	testBit
+ 438              	.LVL51:
+ 439 0086 10B1     		cbz	r0, .L36
+ 100:main.c        ****     }
+ 440              		.loc 1 100 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 14
 
 
- 102:main.c        ****     
- 437              		.loc 1 102 0
- 438 0082 3B48     		ldr	r0, .L42+20
- 439 0084 FFF7FEFF 		bl	MotorControlFallingEdge_StartEx
- 440              	.LVL51:
- 104:main.c        ****   
- 441              		.loc 1 104 0
- 442 0088 0120     		movs	r0, #1
- 443 008a FFF7FEFF 		bl	Motor_Enable_Write
- 444              	.LVL52:
- 445              	.L36:
- 109:main.c        ****             refresh_rotation = false;
- 446              		.loc 1 109 0
- 447 008e 394B     		ldr	r3, .L42+24
- 448 0090 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
- 449 0092 2BB1     		cbz	r3, .L29
- 110:main.c        ****             refreshRotation(&rotator_state);
- 450              		.loc 1 110 0
- 451 0094 0022     		movs	r2, #0
- 452 0096 374B     		ldr	r3, .L42+24
- 453 0098 9A70     		strb	r2, [r3, #2]
- 111:main.c        ****         }
- 454              		.loc 1 111 0
- 455 009a 3048     		ldr	r0, .L42
- 456 009c FFF7FEFF 		bl	refreshRotation
- 457              	.LVL53:
- 458              	.L29:
- 114:main.c        ****             refresh_display = false;
- 459              		.loc 1 114 0
- 460 00a0 344B     		ldr	r3, .L42+24
- 461 00a2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 462 00a4 2BB1     		cbz	r3, .L30
- 115:main.c        ****             Horizon_Render(&rotator_state);
- 463              		.loc 1 115 0
- 464 00a6 0022     		movs	r2, #0
- 465 00a8 324B     		ldr	r3, .L42+24
- 466 00aa 1A70     		strb	r2, [r3]
- 116:main.c        ****         }
- 467              		.loc 1 116 0
- 468 00ac 2B48     		ldr	r0, .L42
- 469 00ae FFF7FEFF 		bl	Horizon_Render
- 470              	.LVL54:
- 471              	.L30:
- 119:main.c        ****             refresh_buttons = false;
- 472              		.loc 1 119 0
- 473 00b2 304B     		ldr	r3, .L42+24
- 474 00b4 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
- 475 00b6 002B     		cmp	r3, #0
- 476 00b8 35D0     		beq	.L31
- 477              	.LBB2:
- 120:main.c        ****             
- 478              		.loc 1 120 0
- 479 00ba 0022     		movs	r2, #0
- 480 00bc 2D4B     		ldr	r3, .L42+24
- 481 00be 5A70     		strb	r2, [r3, #1]
- 122:main.c        ****             bool down_button = SW_DOWN_Pin_Read();
- 482              		.loc 1 122 0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 15
+ 441 0088 3948     		ldr	r0, .L42+20
+ 442 008a FFF7FEFF 		bl	UART_PutString
+ 443              	.LVL52:
+ 444              	.L36:
+ 106:main.c        ****             refresh_rotation = false;
+ 445              		.loc 1 106 0
+ 446 008e 394B     		ldr	r3, .L42+24
+ 447 0090 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 448 0092 2BB1     		cbz	r3, .L29
+ 107:main.c        ****             refreshRotation(&rotator_state);
+ 449              		.loc 1 107 0
+ 450 0094 0022     		movs	r2, #0
+ 451 0096 374B     		ldr	r3, .L42+24
+ 452 0098 9A70     		strb	r2, [r3, #2]
+ 108:main.c        ****         }
+ 453              		.loc 1 108 0
+ 454 009a 3048     		ldr	r0, .L42
+ 455 009c FFF7FEFF 		bl	refreshRotation
+ 456              	.LVL53:
+ 457              	.L29:
+ 111:main.c        ****             refresh_display = false;
+ 458              		.loc 1 111 0
+ 459 00a0 344B     		ldr	r3, .L42+24
+ 460 00a2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 461 00a4 2BB1     		cbz	r3, .L30
+ 112:main.c        ****             Horizon_Render(&rotator_state);
+ 462              		.loc 1 112 0
+ 463 00a6 0022     		movs	r2, #0
+ 464 00a8 324B     		ldr	r3, .L42+24
+ 465 00aa 1A70     		strb	r2, [r3]
+ 113:main.c        ****         }
+ 466              		.loc 1 113 0
+ 467 00ac 2B48     		ldr	r0, .L42
+ 468 00ae FFF7FEFF 		bl	Horizon_Render
+ 469              	.LVL54:
+ 470              	.L30:
+ 116:main.c        ****             refresh_buttons = false;
+ 471              		.loc 1 116 0
+ 472 00b2 304B     		ldr	r3, .L42+24
+ 473 00b4 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 474 00b6 002B     		cmp	r3, #0
+ 475 00b8 35D0     		beq	.L31
+ 476              	.LBB2:
+ 117:main.c        ****             
+ 477              		.loc 1 117 0
+ 478 00ba 0022     		movs	r2, #0
+ 479 00bc 2D4B     		ldr	r3, .L42+24
+ 480 00be 5A70     		strb	r2, [r3, #1]
+ 119:main.c        ****             bool down_button = SW_DOWN_Pin_Read();
+ 481              		.loc 1 119 0
+ 482 00c0 FFF7FEFF 		bl	SW_UP_Pin_Read
+ 483              	.LVL55:
+ 484 00c4 0446     		mov	r4, r0
+ 485              	.LVL56:
+ 120:main.c        ****             bool left_button = SW_LEFT_Pin_Read();
+ 486              		.loc 1 120 0
+ 487 00c6 FFF7FEFF 		bl	SW_DOWN_Pin_Read
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 15
 
 
- 483 00c0 FFF7FEFF 		bl	SW_UP_Pin_Read
- 484              	.LVL55:
- 485 00c4 0446     		mov	r4, r0
- 486              	.LVL56:
- 123:main.c        ****             bool left_button = SW_LEFT_Pin_Read();
- 487              		.loc 1 123 0
- 488 00c6 FFF7FEFF 		bl	SW_DOWN_Pin_Read
- 489              	.LVL57:
- 490 00ca 0646     		mov	r6, r0
- 491              	.LVL58:
- 124:main.c        ****             bool right_button = SW_RIGHT_Pin_Read();
- 492              		.loc 1 124 0
- 493 00cc FFF7FEFF 		bl	SW_LEFT_Pin_Read
- 494              	.LVL59:
- 495 00d0 0546     		mov	r5, r0
- 496              	.LVL60:
- 125:main.c        ****             
- 497              		.loc 1 125 0
- 498 00d2 FFF7FEFF 		bl	SW_RIGHT_Pin_Read
- 499              	.LVL61:
- 128:main.c        ****                 if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
- 500              		.loc 1 128 0
- 501 00d6 3DB1     		cbz	r5, .L32
- 128:main.c        ****                 if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
- 502              		.loc 1 128 0 is_stmt 0 discriminator 1
- 503 00d8 30B9     		cbnz	r0, .L32
+ 488              	.LVL57:
+ 489 00ca 0646     		mov	r6, r0
+ 490              	.LVL58:
+ 121:main.c        ****             bool right_button = SW_RIGHT_Pin_Read();
+ 491              		.loc 1 121 0
+ 492 00cc FFF7FEFF 		bl	SW_LEFT_Pin_Read
+ 493              	.LVL59:
+ 494 00d0 0546     		mov	r5, r0
+ 495              	.LVL60:
+ 122:main.c        ****             
+ 496              		.loc 1 122 0
+ 497 00d2 FFF7FEFF 		bl	SW_RIGHT_Pin_Read
+ 498              	.LVL61:
+ 125:main.c        ****                 if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
+ 499              		.loc 1 125 0
+ 500 00d6 3DB1     		cbz	r5, .L32
+ 125:main.c        ****                 if(rotator_state.x_des >= 4) {rotator_state.x_des -= 4;}
+ 501              		.loc 1 125 0 is_stmt 0 discriminator 1
+ 502 00d8 30B9     		cbnz	r0, .L32
+ 126:main.c        ****             }
+ 503              		.loc 1 126 0 is_stmt 1
+ 504 00da 204B     		ldr	r3, .L42
+ 505 00dc 1B68     		ldr	r3, [r3]
+ 506 00de 032B     		cmp	r3, #3
+ 507 00e0 02DD     		ble	.L32
+ 126:main.c        ****             }
+ 508              		.loc 1 126 0 is_stmt 0 discriminator 1
+ 509 00e2 043B     		subs	r3, r3, #4
+ 510 00e4 1D4A     		ldr	r2, .L42
+ 511 00e6 1360     		str	r3, [r2]
+ 512              	.L32:
+ 128:main.c        ****                 if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
+ 513              		.loc 1 128 0 is_stmt 1
+ 514 00e8 4DB9     		cbnz	r5, .L33
+ 128:main.c        ****                 if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
+ 515              		.loc 1 128 0 is_stmt 0 discriminator 1
+ 516 00ea 40B1     		cbz	r0, .L33
  129:main.c        ****             }
- 504              		.loc 1 129 0 is_stmt 1
- 505 00da 204B     		ldr	r3, .L42
- 506 00dc 1B68     		ldr	r3, [r3]
- 507 00de 032B     		cmp	r3, #3
- 508 00e0 02DD     		ble	.L32
+ 517              		.loc 1 129 0 is_stmt 1
+ 518 00ec 1B4B     		ldr	r3, .L42
+ 519 00ee 1B68     		ldr	r3, [r3]
+ 520 00f0 40F6FB72 		movw	r2, #4091
+ 521 00f4 9342     		cmp	r3, r2
+ 522 00f6 02DC     		bgt	.L33
  129:main.c        ****             }
- 509              		.loc 1 129 0 is_stmt 0 discriminator 1
- 510 00e2 043B     		subs	r3, r3, #4
- 511 00e4 1D4A     		ldr	r2, .L42
- 512 00e6 1360     		str	r3, [r2]
- 513              	.L32:
- 131:main.c        ****                 if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
- 514              		.loc 1 131 0 is_stmt 1
- 515 00e8 4DB9     		cbnz	r5, .L33
- 131:main.c        ****                 if(rotator_state.x_des <= 4091) {rotator_state.x_des += 4;}
- 516              		.loc 1 131 0 is_stmt 0 discriminator 1
- 517 00ea 40B1     		cbz	r0, .L33
- 132:main.c        ****             }
- 518              		.loc 1 132 0 is_stmt 1
- 519 00ec 1B4B     		ldr	r3, .L42
- 520 00ee 1B68     		ldr	r3, [r3]
- 521 00f0 40F6FB72 		movw	r2, #4091
- 522 00f4 9342     		cmp	r3, r2
- 523 00f6 02DC     		bgt	.L33
- 132:main.c        ****             }
- 524              		.loc 1 132 0 is_stmt 0 discriminator 1
- 525 00f8 0433     		adds	r3, r3, #4
- 526 00fa 184A     		ldr	r2, .L42
- 527 00fc 1360     		str	r3, [r2]
- 528              	.L33:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 16
+ 523              		.loc 1 129 0 is_stmt 0 discriminator 1
+ 524 00f8 0433     		adds	r3, r3, #4
+ 525 00fa 184A     		ldr	r2, .L42
+ 526 00fc 1360     		str	r3, [r2]
+ 527              	.L33:
+ 133:main.c        ****                 if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
+ 528              		.loc 1 133 0 is_stmt 1
+ 529 00fe 3CB1     		cbz	r4, .L34
+ 133:main.c        ****                 if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
+ 530              		.loc 1 133 0 is_stmt 0 discriminator 1
+ 531 0100 36B9     		cbnz	r6, .L34
+ 134:main.c        ****             }
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 16
 
 
- 136:main.c        ****                 if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
- 529              		.loc 1 136 0 is_stmt 1
- 530 00fe 3CB1     		cbz	r4, .L34
- 136:main.c        ****                 if(rotator_state.y_des >= 4) {rotator_state.y_des -= 4;}
- 531              		.loc 1 136 0 is_stmt 0 discriminator 1
- 532 0100 36B9     		cbnz	r6, .L34
+ 532              		.loc 1 134 0 is_stmt 1
+ 533 0102 164B     		ldr	r3, .L42
+ 534 0104 5B68     		ldr	r3, [r3, #4]
+ 535 0106 032B     		cmp	r3, #3
+ 536 0108 02DD     		ble	.L34
+ 134:main.c        ****             }
+ 537              		.loc 1 134 0 is_stmt 0 discriminator 1
+ 538 010a 043B     		subs	r3, r3, #4
+ 539 010c 134A     		ldr	r2, .L42
+ 540 010e 5360     		str	r3, [r2, #4]
+ 541              	.L34:
+ 136:main.c        ****                 if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
+ 542              		.loc 1 136 0 is_stmt 1
+ 543 0110 4CB9     		cbnz	r4, .L31
+ 136:main.c        ****                 if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
+ 544              		.loc 1 136 0 is_stmt 0 discriminator 1
+ 545 0112 46B1     		cbz	r6, .L31
  137:main.c        ****             }
- 533              		.loc 1 137 0 is_stmt 1
- 534 0102 164B     		ldr	r3, .L42
- 535 0104 5B68     		ldr	r3, [r3, #4]
- 536 0106 032B     		cmp	r3, #3
- 537 0108 02DD     		ble	.L34
+ 546              		.loc 1 137 0 is_stmt 1
+ 547 0114 114B     		ldr	r3, .L42
+ 548 0116 5B68     		ldr	r3, [r3, #4]
+ 549 0118 40F6FB72 		movw	r2, #4091
+ 550 011c 9342     		cmp	r3, r2
+ 551 011e 02DC     		bgt	.L31
  137:main.c        ****             }
- 538              		.loc 1 137 0 is_stmt 0 discriminator 1
- 539 010a 043B     		subs	r3, r3, #4
- 540 010c 134A     		ldr	r2, .L42
- 541 010e 5360     		str	r3, [r2, #4]
- 542              	.L34:
- 139:main.c        ****                 if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
- 543              		.loc 1 139 0 is_stmt 1
- 544 0110 4CB9     		cbnz	r4, .L31
- 139:main.c        ****                 if(rotator_state.y_des <= 4091) {rotator_state.y_des += 4;}
- 545              		.loc 1 139 0 is_stmt 0 discriminator 1
- 546 0112 46B1     		cbz	r6, .L31
- 140:main.c        ****             }
- 547              		.loc 1 140 0 is_stmt 1
- 548 0114 114B     		ldr	r3, .L42
- 549 0116 5B68     		ldr	r3, [r3, #4]
- 550 0118 40F6FB72 		movw	r2, #4091
- 551 011c 9342     		cmp	r3, r2
- 552 011e 02DC     		bgt	.L31
- 140:main.c        ****             }
- 553              		.loc 1 140 0 is_stmt 0 discriminator 1
- 554 0120 0433     		adds	r3, r3, #4
- 555 0122 0E4A     		ldr	r2, .L42
- 556 0124 5360     		str	r3, [r2, #4]
- 557              	.LVL62:
- 558              	.L31:
- 559              	.LBE2:
- 144:main.c        ****         
- 560              		.loc 1 144 0 is_stmt 1
- 561 0126 FFF7FEFF 		bl	CLI_Update
- 562              	.LVL63:
- 149:main.c        ****     }
- 563              		.loc 1 149 0
- 564 012a FFF7FEFF 		bl	SW_UP_Pin_Read
- 565              	.LVL64:
- 566 012e 50B1     		cbz	r0, .L37
- 149:main.c        ****     }
- 567              		.loc 1 149 0 is_stmt 0 discriminator 1
- 568 0130 FFF7FEFF 		bl	SW_DOWN_Pin_Read
- 569              	.LVL65:
- 570 0134 48B1     		cbz	r0, .L38
- 149:main.c        ****     }
- 571              		.loc 1 149 0 discriminator 3
- 572 0136 FFF7FEFF 		bl	SW_LEFT_Pin_Read
- 573              	.LVL66:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 17
-
-
- 574 013a 40B1     		cbz	r0, .L39
- 149:main.c        ****     }
- 575              		.loc 1 149 0 discriminator 5
- 576 013c FFF7FEFF 		bl	SW_RIGHT_Pin_Read
- 577              	.LVL67:
- 578 0140 38B1     		cbz	r0, .L40
- 149:main.c        ****     }
- 579              		.loc 1 149 0
- 580 0142 0120     		movs	r0, #1
- 581 0144 06E0     		b	.L35
- 582              	.L37:
- 583 0146 0020     		movs	r0, #0
- 584 0148 04E0     		b	.L35
- 585              	.L38:
- 586 014a 0020     		movs	r0, #0
- 587 014c 02E0     		b	.L35
- 588              	.L39:
- 589 014e 0020     		movs	r0, #0
- 590 0150 00E0     		b	.L35
- 591              	.L40:
- 592 0152 0020     		movs	r0, #0
- 593              	.L35:
- 149:main.c        ****     }
- 594              		.loc 1 149 0 discriminator 10
- 595 0154 FFF7FEFF 		bl	LED_Pin_Write
- 596              	.LVL68:
- 150:main.c        **** }
- 597              		.loc 1 150 0 is_stmt 1 discriminator 10
- 598 0158 99E7     		b	.L36
- 599              	.L43:
- 600 015a 00BF     		.align	2
- 601              	.L42:
- 602 015c 00000000 		.word	rotator_state
- 603 0160 00000000 		.word	.LC0
- 604 0164 00000000 		.word	DISPLAY_REFRESH_Handler
- 605 0168 00000000 		.word	BUTTON_REFRESH_Handler
- 606 016c 00000000 		.word	MOTOR_CONTROLL_RISEING_EDGE_Handler
- 607 0170 00000000 		.word	MOTOR_CONTROLL_FALLING_EDGE_Handler
- 608 0174 00000000 		.word	.LANCHOR0
- 609              		.cfi_endproc
- 610              	.LFE69:
- 611              		.size	main, .-main
- 612              		.global	refresh_rotation
- 613              		.global	refresh_buttons
- 614              		.global	refresh_display
- 615              		.comm	arg3,12,4
- 616              		.comm	arg2,12,4
- 617              		.comm	arg1,12,4
- 618              		.comm	cmd,12,4
- 619              		.comm	rotator_state,16,4
- 620              		.section	.rodata.str1.4,"aMS",%progbits,1
- 621              		.align	2
- 622              	.LC0:
- 623 0000 53797374 		.ascii	"System started.\000"
- 623      656D2073 
- 623      74617274 
- 623      65642E00 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 18
-
-
- 624              		.bss
- 625              		.set	.LANCHOR0,. + 0
- 626              		.type	refresh_display, %object
- 627              		.size	refresh_display, 1
- 628              	refresh_display:
- 629 0000 00       		.space	1
- 630              		.type	refresh_buttons, %object
- 631              		.size	refresh_buttons, 1
- 632              	refresh_buttons:
- 633 0001 00       		.space	1
- 634              		.type	refresh_rotation, %object
- 635              		.size	refresh_rotation, 1
- 636              	refresh_rotation:
- 637 0002 00       		.space	1
- 638              		.text
- 639              	.Letext0:
- 640              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 641              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 642              		.file 5 "Generated_Source\\PSoC5/cytypes.h"
- 643              		.file 6 "main.h"
- 644              		.file 7 "cli.h"
- 645              		.file 8 "Generated_Source\\PSoC5/core_cm3.h"
- 646              		.file 9 "Generated_Source\\PSoC5/X_Dir_Pin.h"
- 647              		.file 10 "Generated_Source\\PSoC5/Y_Dir_Pin.h"
- 648              		.file 11 "Generated_Source\\PSoC5/X_Step_Pin.h"
- 649              		.file 12 "Generated_Source\\PSoC5/Y_Step_Pin.h"
- 650              		.file 13 "Generated_Source\\PSoC5/UART.h"
- 651              		.file 14 "Generated_Source\\PSoC5/I2C_X.h"
- 652              		.file 15 "Generated_Source\\PSoC5/I2C_Y.h"
- 653              		.file 16 "Generated_Source\\PSoC5/SW_UP_Pin.h"
- 654              		.file 17 "Generated_Source\\PSoC5/SW_DOWN_Pin.h"
- 655              		.file 18 "Generated_Source\\PSoC5/SW_LEFT_Pin.h"
- 656              		.file 19 "Generated_Source\\PSoC5/SW_RIGHT_Pin.h"
- 657              		.file 20 "Generated_Source\\PSoC5/EEPROM_1.h"
- 658              		.file 21 "Generated_Source\\PSoC5/I2C_OLED.h"
- 659              		.file 22 "Generated_Source\\PSoC5/PWM_1.h"
- 660              		.file 23 "Generated_Source\\PSoC5/Display_Refresh_Timer.h"
- 661              		.file 24 "Generated_Source\\PSoC5/Button_Refresh_Timer.h"
- 662              		.file 25 "eeprom.h"
- 663              		.file 26 "RotatorHorizon.h"
- 664              		.file 27 "Generated_Source\\PSoC5/Display_Refresh_Timer_Int.h"
- 665              		.file 28 "Generated_Source\\PSoC5/Button_Refresh_Timer_Int.h"
- 666              		.file 29 "Generated_Source\\PSoC5/MotorControlRiseingEdge.h"
- 667              		.file 30 "Generated_Source\\PSoC5/MotorControlFallingEdge.h"
- 668              		.file 31 "Generated_Source\\PSoC5/Motor_Enable.h"
- 669              		.file 32 "Generated_Source\\PSoC5/LED_Pin.h"
- 670              		.section	.debug_info,"",%progbits
- 671              	.Ldebug_info0:
- 672 0000 3E080000 		.4byte	0x83e
- 673 0004 0400     		.2byte	0x4
- 674 0006 00000000 		.4byte	.Ldebug_abbrev0
- 675 000a 04       		.byte	0x4
- 676 000b 01       		.uleb128 0x1
- 677 000c 5D050000 		.4byte	.LASF86
- 678 0010 0C       		.byte	0xc
- 679 0011 5B040000 		.4byte	.LASF87
- 680 0015 38020000 		.4byte	.LASF88
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 19
-
-
- 681 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 682 001d 00000000 		.4byte	0
- 683 0021 00000000 		.4byte	.Ldebug_line0
- 684 0025 02       		.uleb128 0x2
- 685 0026 01       		.byte	0x1
- 686 0027 06       		.byte	0x6
- 687 0028 2E030000 		.4byte	.LASF0
- 688 002c 02       		.uleb128 0x2
- 689 002d 01       		.byte	0x1
- 690 002e 08       		.byte	0x8
- 691 002f FB020000 		.4byte	.LASF1
- 692 0033 02       		.uleb128 0x2
- 693 0034 02       		.byte	0x2
- 694 0035 05       		.byte	0x5
- 695 0036 6A000000 		.4byte	.LASF2
- 696 003a 02       		.uleb128 0x2
- 697 003b 02       		.byte	0x2
- 698 003c 07       		.byte	0x7
- 699 003d 12040000 		.4byte	.LASF3
- 700 0041 03       		.uleb128 0x3
- 701 0042 E9040000 		.4byte	.LASF9
- 702 0046 03       		.byte	0x3
- 703 0047 3F       		.byte	0x3f
- 704 0048 4C000000 		.4byte	0x4c
- 705 004c 02       		.uleb128 0x2
- 706 004d 04       		.byte	0x4
- 707 004e 05       		.byte	0x5
- 708 004f E1010000 		.4byte	.LASF4
- 709 0053 02       		.uleb128 0x2
- 710 0054 04       		.byte	0x4
- 711 0055 07       		.byte	0x7
- 712 0056 62040000 		.4byte	.LASF5
- 713 005a 02       		.uleb128 0x2
- 714 005b 08       		.byte	0x8
- 715 005c 05       		.byte	0x5
- 716 005d C2010000 		.4byte	.LASF6
- 717 0061 02       		.uleb128 0x2
- 718 0062 08       		.byte	0x8
- 719 0063 07       		.byte	0x7
- 720 0064 3A030000 		.4byte	.LASF7
- 721 0068 04       		.uleb128 0x4
- 722 0069 04       		.byte	0x4
- 723 006a 05       		.byte	0x5
- 724 006b 696E7400 		.ascii	"int\000"
- 725 006f 02       		.uleb128 0x2
- 726 0070 04       		.byte	0x4
- 727 0071 07       		.byte	0x7
- 728 0072 90030000 		.4byte	.LASF8
- 729 0076 03       		.uleb128 0x3
- 730 0077 F5030000 		.4byte	.LASF10
- 731 007b 04       		.byte	0x4
- 732 007c 2C       		.byte	0x2c
- 733 007d 41000000 		.4byte	0x41
- 734 0081 05       		.uleb128 0x5
- 735 0082 25040000 		.4byte	.LASF11
- 736 0086 05       		.byte	0x5
- 737 0087 E801     		.2byte	0x1e8
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 20
-
-
- 738 0089 2C000000 		.4byte	0x2c
- 739 008d 02       		.uleb128 0x2
- 740 008e 04       		.byte	0x4
- 741 008f 04       		.byte	0x4
- 742 0090 A7010000 		.4byte	.LASF12
- 743 0094 02       		.uleb128 0x2
- 744 0095 08       		.byte	0x8
- 745 0096 04       		.byte	0x4
- 746 0097 89040000 		.4byte	.LASF13
- 747 009b 02       		.uleb128 0x2
- 748 009c 01       		.byte	0x1
- 749 009d 08       		.byte	0x8
- 750 009e E0030000 		.4byte	.LASF14
- 751 00a2 02       		.uleb128 0x2
- 752 00a3 08       		.byte	0x8
- 753 00a4 04       		.byte	0x4
- 754 00a5 BD020000 		.4byte	.LASF15
- 755 00a9 02       		.uleb128 0x2
- 756 00aa 04       		.byte	0x4
- 757 00ab 07       		.byte	0x7
- 758 00ac 03050000 		.4byte	.LASF16
- 759 00b0 06       		.uleb128 0x6
- 760 00b1 04       		.byte	0x4
- 761 00b2 9B000000 		.4byte	0x9b
- 762 00b6 07       		.uleb128 0x7
- 763 00b7 A8040000 		.4byte	.LASF21
- 764 00bb 10       		.byte	0x10
- 765 00bc 06       		.byte	0x6
- 766 00bd 12       		.byte	0x12
- 767 00be F3000000 		.4byte	0xf3
- 768 00c2 08       		.uleb128 0x8
- 769 00c3 74000000 		.4byte	.LASF17
- 770 00c7 06       		.byte	0x6
- 771 00c8 13       		.byte	0x13
- 772 00c9 68000000 		.4byte	0x68
- 773 00cd 00       		.byte	0
- 774 00ce 08       		.uleb128 0x8
- 775 00cf B7020000 		.4byte	.LASF18
- 776 00d3 06       		.byte	0x6
- 777 00d4 14       		.byte	0x14
- 778 00d5 68000000 		.4byte	0x68
- 779 00d9 04       		.byte	0x4
- 780 00da 08       		.uleb128 0x8
- 781 00db 40050000 		.4byte	.LASF19
- 782 00df 06       		.byte	0x6
- 783 00e0 15       		.byte	0x15
- 784 00e1 68000000 		.4byte	0x68
- 785 00e5 08       		.byte	0x8
- 786 00e6 08       		.uleb128 0x8
- 787 00e7 61010000 		.4byte	.LASF20
- 788 00eb 06       		.byte	0x6
- 789 00ec 16       		.byte	0x16
- 790 00ed 68000000 		.4byte	0x68
- 791 00f1 0C       		.byte	0xc
- 792 00f2 00       		.byte	0
- 793 00f3 03       		.uleb128 0x3
- 794 00f4 A8040000 		.4byte	.LASF21
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 21
-
-
- 795 00f8 06       		.byte	0x6
- 796 00f9 17       		.byte	0x17
- 797 00fa B6000000 		.4byte	0xb6
- 798 00fe 07       		.uleb128 0x7
- 799 00ff 1C060000 		.4byte	.LASF22
- 800 0103 0C       		.byte	0xc
- 801 0104 07       		.byte	0x7
- 802 0105 18       		.byte	0x18
- 803 0106 23010000 		.4byte	0x123
- 804 010a 08       		.uleb128 0x8
- 805 010b CE030000 		.4byte	.LASF23
- 806 010f 07       		.byte	0x7
- 807 0110 19       		.byte	0x19
- 808 0111 23010000 		.4byte	0x123
- 809 0115 00       		.byte	0
- 810 0116 09       		.uleb128 0x9
- 811 0117 636E7400 		.ascii	"cnt\000"
- 812 011b 07       		.byte	0x7
- 813 011c 1A       		.byte	0x1a
- 814 011d 68000000 		.4byte	0x68
- 815 0121 08       		.byte	0x8
- 816 0122 00       		.byte	0
- 817 0123 0A       		.uleb128 0xa
- 818 0124 9B000000 		.4byte	0x9b
- 819 0128 33010000 		.4byte	0x133
- 820 012c 0B       		.uleb128 0xb
- 821 012d A9000000 		.4byte	0xa9
- 822 0131 04       		.byte	0x4
- 823 0132 00       		.byte	0
- 824 0133 0C       		.uleb128 0xc
- 825 0134 F2000000 		.4byte	.LASF24
- 826 0138 01       		.byte	0x1
- 827 0139 1E       		.byte	0x1e
- 828 013a 00000000 		.4byte	.LFB65
- 829 013e 0C000000 		.4byte	.LFE65-.LFB65
- 830 0142 01       		.uleb128 0x1
- 831 0143 9C       		.byte	0x9c
- 832 0144 0C       		.uleb128 0xc
- 833 0145 9D030000 		.4byte	.LASF25
- 834 0149 01       		.byte	0x1
- 835 014a 22       		.byte	0x22
- 836 014b 00000000 		.4byte	.LFB66
- 837 014f 0C000000 		.4byte	.LFE66-.LFB66
- 838 0153 01       		.uleb128 0x1
- 839 0154 9C       		.byte	0x9c
- 840 0155 0D       		.uleb128 0xd
- 841 0156 67010000 		.4byte	.LASF26
- 842 015a 01       		.byte	0x1
- 843 015b 26       		.byte	0x26
- 844 015c 00000000 		.4byte	.LFB67
- 845 0160 58000000 		.4byte	.LFE67-.LFB67
- 846 0164 01       		.uleb128 0x1
- 847 0165 9C       		.byte	0x9c
- 848 0166 9F010000 		.4byte	0x19f
- 849 016a 0E       		.uleb128 0xe
- 850 016b 14000000 		.4byte	.LVL0
- 851 016f 73060000 		.4byte	0x673
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 22
-
-
- 852 0173 0E       		.uleb128 0xe
- 853 0174 24000000 		.4byte	.LVL1
- 854 0178 7E060000 		.4byte	0x67e
- 855 017c 0F       		.uleb128 0xf
- 856 017d 3A000000 		.4byte	.LVL2
- 857 0181 89060000 		.4byte	0x689
- 858 0185 8F010000 		.4byte	0x18f
- 859 0189 10       		.uleb128 0x10
- 860 018a 01       		.uleb128 0x1
- 861 018b 50       		.byte	0x50
- 862 018c 01       		.uleb128 0x1
- 863 018d 31       		.byte	0x31
- 864 018e 00       		.byte	0
- 865 018f 11       		.uleb128 0x11
- 866 0190 52000000 		.4byte	.LVL3
- 867 0194 94060000 		.4byte	0x694
- 868 0198 10       		.uleb128 0x10
- 869 0199 01       		.uleb128 0x1
- 870 019a 50       		.byte	0x50
- 871 019b 01       		.uleb128 0x1
- 872 019c 31       		.byte	0x31
- 873 019d 00       		.byte	0
- 874 019e 00       		.byte	0
- 875 019f 0D       		.uleb128 0xd
- 876 01a0 EB050000 		.4byte	.LASF27
- 877 01a4 01       		.byte	0x1
- 878 01a5 32       		.byte	0x32
- 879 01a6 00000000 		.4byte	.LFB68
- 880 01aa 1C000000 		.4byte	.LFE68-.LFB68
- 881 01ae 01       		.uleb128 0x1
- 882 01af 9C       		.byte	0x9c
- 883 01b0 D7010000 		.4byte	0x1d7
- 884 01b4 0F       		.uleb128 0xf
- 885 01b5 08000000 		.4byte	.LVL4
- 886 01b9 89060000 		.4byte	0x689
- 887 01bd C7010000 		.4byte	0x1c7
- 888 01c1 10       		.uleb128 0x10
- 889 01c2 01       		.uleb128 0x1
- 890 01c3 50       		.byte	0x50
- 891 01c4 01       		.uleb128 0x1
- 892 01c5 30       		.byte	0x30
- 893 01c6 00       		.byte	0
- 894 01c7 11       		.uleb128 0x11
- 895 01c8 0E000000 		.4byte	.LVL5
- 896 01cc 94060000 		.4byte	0x694
- 897 01d0 10       		.uleb128 0x10
- 898 01d1 01       		.uleb128 0x1
- 899 01d2 50       		.byte	0x50
- 900 01d3 01       		.uleb128 0x1
- 901 01d4 30       		.byte	0x30
- 902 01d5 00       		.byte	0
- 903 01d6 00       		.byte	0
- 904 01d7 12       		.uleb128 0x12
- 905 01d8 9B010000 		.4byte	.LASF89
- 906 01dc 02       		.byte	0x2
- 907 01dd 55       		.byte	0x55
- 908 01de 68000000 		.4byte	0x68
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 23
-
-
- 909 01e2 00000000 		.4byte	.LFB64
- 910 01e6 1C000000 		.4byte	.LFE64-.LFB64
- 911 01ea 01       		.uleb128 0x1
- 912 01eb 9C       		.byte	0x9c
- 913 01ec 34020000 		.4byte	0x234
- 914 01f0 13       		.uleb128 0x13
- 915 01f1 DE000000 		.4byte	.LASF28
- 916 01f5 02       		.byte	0x2
- 917 01f6 55       		.byte	0x55
- 918 01f7 68000000 		.4byte	0x68
- 919 01fb 00000000 		.4byte	.LLST0
- 920 01ff 14       		.uleb128 0x14
- 921 0200 70747200 		.ascii	"ptr\000"
- 922 0204 02       		.byte	0x2
- 923 0205 55       		.byte	0x55
- 924 0206 B0000000 		.4byte	0xb0
- 925 020a 21000000 		.4byte	.LLST1
- 926 020e 14       		.uleb128 0x14
- 927 020f 6C656E00 		.ascii	"len\000"
- 928 0213 02       		.byte	0x2
- 929 0214 55       		.byte	0x55
- 930 0215 68000000 		.4byte	0x68
- 931 0219 4A000000 		.4byte	.LLST2
- 932 021d 15       		.uleb128 0x15
- 933 021e 6900     		.ascii	"i\000"
- 934 0220 02       		.byte	0x2
- 935 0221 57       		.byte	0x57
- 936 0222 68000000 		.4byte	0x68
- 937 0226 68000000 		.4byte	.LLST3
- 938 022a 0E       		.uleb128 0xe
- 939 022b 10000000 		.4byte	.LVL10
- 940 022f 9F060000 		.4byte	0x69f
- 941 0233 00       		.byte	0
- 942 0234 0D       		.uleb128 0xd
- 943 0235 1E030000 		.4byte	.LASF29
- 944 0239 01       		.byte	0x1
- 945 023a 99       		.byte	0x99
- 946 023b 00000000 		.4byte	.LFB70
- 947 023f 6E000000 		.4byte	.LFE70-.LFB70
- 948 0243 01       		.uleb128 0x1
- 949 0244 9C       		.byte	0x9c
- 950 0245 6D030000 		.4byte	0x36d
- 951 0249 13       		.uleb128 0x13
- 952 024a A3000000 		.4byte	.LASF30
- 953 024e 01       		.byte	0x1
- 954 024f 99       		.byte	0x99
- 955 0250 6D030000 		.4byte	0x36d
- 956 0254 87000000 		.4byte	.LLST4
- 957 0258 16       		.uleb128 0x16
- 958 0259 62756600 		.ascii	"buf\000"
- 959 025d 01       		.byte	0x1
- 960 025e 9A       		.byte	0x9a
- 961 025f 73030000 		.4byte	0x373
- 962 0263 17       		.uleb128 0x17
- 963 0264 C7030000 		.4byte	.LASF31
- 964 0268 01       		.byte	0x1
- 965 0269 9B       		.byte	0x9b
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 24
-
-
- 966 026a 81000000 		.4byte	0x81
- 967 026e A5000000 		.4byte	.LLST5
- 968 0272 0E       		.uleb128 0xe
- 969 0273 08000000 		.4byte	.LVL15
- 970 0277 AA060000 		.4byte	0x6aa
- 971 027b 0F       		.uleb128 0xf
- 972 027c 10000000 		.4byte	.LVL16
- 973 0280 B5060000 		.4byte	0x6b5
- 974 0284 94020000 		.4byte	0x294
- 975 0288 10       		.uleb128 0x10
- 976 0289 01       		.uleb128 0x1
- 977 028a 50       		.byte	0x50
- 978 028b 02       		.uleb128 0x2
- 979 028c 08       		.byte	0x8
- 980 028d 36       		.byte	0x36
- 981 028e 10       		.uleb128 0x10
- 982 028f 01       		.uleb128 0x1
- 983 0290 51       		.byte	0x51
- 984 0291 01       		.uleb128 0x1
- 985 0292 30       		.byte	0x30
- 986 0293 00       		.byte	0
- 987 0294 0F       		.uleb128 0xf
- 988 0295 18000000 		.4byte	.LVL18
- 989 0299 C0060000 		.4byte	0x6c0
- 990 029d A7020000 		.4byte	0x2a7
- 991 02a1 10       		.uleb128 0x10
- 992 02a2 01       		.uleb128 0x1
- 993 02a3 50       		.byte	0x50
- 994 02a4 01       		.uleb128 0x1
- 995 02a5 3E       		.byte	0x3e
- 996 02a6 00       		.byte	0
- 997 02a7 0F       		.uleb128 0xf
- 998 02a8 20000000 		.4byte	.LVL19
- 999 02ac CB060000 		.4byte	0x6cb
- 1000 02b0 C0020000 		.4byte	0x2c0
- 1001 02b4 10       		.uleb128 0x10
- 1002 02b5 01       		.uleb128 0x1
- 1003 02b6 50       		.byte	0x50
- 1004 02b7 02       		.uleb128 0x2
- 1005 02b8 08       		.byte	0x8
- 1006 02b9 36       		.byte	0x36
- 1007 02ba 10       		.uleb128 0x10
- 1008 02bb 01       		.uleb128 0x1
- 1009 02bc 51       		.byte	0x51
- 1010 02bd 01       		.uleb128 0x1
- 1011 02be 31       		.byte	0x31
- 1012 02bf 00       		.byte	0
- 1013 02c0 0F       		.uleb128 0xf
- 1014 02c1 26000000 		.4byte	.LVL20
- 1015 02c5 D6060000 		.4byte	0x6d6
- 1016 02c9 D3020000 		.4byte	0x2d3
- 1017 02cd 10       		.uleb128 0x10
- 1018 02ce 01       		.uleb128 0x1
- 1019 02cf 50       		.byte	0x50
- 1020 02d0 01       		.uleb128 0x1
- 1021 02d1 31       		.byte	0x31
- 1022 02d2 00       		.byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 25
-
-
- 1023 02d3 0F       		.uleb128 0xf
- 1024 02d4 2E000000 		.4byte	.LVL21
- 1025 02d8 D6060000 		.4byte	0x6d6
- 1026 02dc E6020000 		.4byte	0x2e6
- 1027 02e0 10       		.uleb128 0x10
- 1028 02e1 01       		.uleb128 0x1
- 1029 02e2 50       		.byte	0x50
- 1030 02e3 01       		.uleb128 0x1
- 1031 02e4 30       		.byte	0x30
- 1032 02e5 00       		.byte	0
- 1033 02e6 0E       		.uleb128 0xe
- 1034 02e7 38000000 		.4byte	.LVL22
- 1035 02eb E1060000 		.4byte	0x6e1
- 1036 02ef 0E       		.uleb128 0xe
- 1037 02f0 3C000000 		.4byte	.LVL23
- 1038 02f4 EC060000 		.4byte	0x6ec
- 1039 02f8 0F       		.uleb128 0xf
- 1040 02f9 44000000 		.4byte	.LVL24
- 1041 02fd F7060000 		.4byte	0x6f7
- 1042 0301 11030000 		.4byte	0x311
- 1043 0305 10       		.uleb128 0x10
- 1044 0306 01       		.uleb128 0x1
- 1045 0307 50       		.byte	0x50
- 1046 0308 02       		.uleb128 0x2
- 1047 0309 08       		.byte	0x8
- 1048 030a 36       		.byte	0x36
- 1049 030b 10       		.uleb128 0x10
- 1050 030c 01       		.uleb128 0x1
- 1051 030d 51       		.byte	0x51
- 1052 030e 01       		.uleb128 0x1
- 1053 030f 30       		.byte	0x30
- 1054 0310 00       		.byte	0
- 1055 0311 0F       		.uleb128 0xf
- 1056 0312 4C000000 		.4byte	.LVL26
- 1057 0316 02070000 		.4byte	0x702
- 1058 031a 24030000 		.4byte	0x324
- 1059 031e 10       		.uleb128 0x10
- 1060 031f 01       		.uleb128 0x1
- 1061 0320 50       		.byte	0x50
- 1062 0321 01       		.uleb128 0x1
- 1063 0322 3E       		.byte	0x3e
- 1064 0323 00       		.byte	0
- 1065 0324 0F       		.uleb128 0xf
- 1066 0325 54000000 		.4byte	.LVL27
- 1067 0329 0D070000 		.4byte	0x70d
- 1068 032d 3D030000 		.4byte	0x33d
- 1069 0331 10       		.uleb128 0x10
- 1070 0332 01       		.uleb128 0x1
- 1071 0333 50       		.byte	0x50
- 1072 0334 02       		.uleb128 0x2
- 1073 0335 08       		.byte	0x8
- 1074 0336 36       		.byte	0x36
- 1075 0337 10       		.uleb128 0x10
- 1076 0338 01       		.uleb128 0x1
- 1077 0339 51       		.byte	0x51
- 1078 033a 01       		.uleb128 0x1
- 1079 033b 31       		.byte	0x31
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 26
-
-
- 1080 033c 00       		.byte	0
- 1081 033d 0F       		.uleb128 0xf
- 1082 033e 5A000000 		.4byte	.LVL28
- 1083 0342 18070000 		.4byte	0x718
- 1084 0346 50030000 		.4byte	0x350
- 1085 034a 10       		.uleb128 0x10
- 1086 034b 01       		.uleb128 0x1
- 1087 034c 50       		.byte	0x50
- 1088 034d 01       		.uleb128 0x1
- 1089 034e 31       		.byte	0x31
- 1090 034f 00       		.byte	0
- 1091 0350 0F       		.uleb128 0xf
- 1092 0351 62000000 		.4byte	.LVL29
- 1093 0355 18070000 		.4byte	0x718
- 1094 0359 63030000 		.4byte	0x363
- 1095 035d 10       		.uleb128 0x10
- 1096 035e 01       		.uleb128 0x1
- 1097 035f 50       		.byte	0x50
- 1098 0360 01       		.uleb128 0x1
- 1099 0361 30       		.byte	0x30
- 1100 0362 00       		.byte	0
- 1101 0363 0E       		.uleb128 0xe
- 1102 0364 6C000000 		.4byte	.LVL30
- 1103 0368 23070000 		.4byte	0x723
- 1104 036c 00       		.byte	0
- 1105 036d 06       		.uleb128 0x6
- 1106 036e 04       		.byte	0x4
- 1107 036f F3000000 		.4byte	0xf3
- 1108 0373 0A       		.uleb128 0xa
- 1109 0374 81000000 		.4byte	0x81
- 1110 0378 83030000 		.4byte	0x383
- 1111 037c 0B       		.uleb128 0xb
- 1112 037d A9000000 		.4byte	0xa9
- 1113 0381 01       		.byte	0x1
- 1114 0382 00       		.byte	0
- 1115 0383 18       		.uleb128 0x18
- 1116 0384 E5030000 		.4byte	.LASF90
- 1117 0388 01       		.byte	0x1
- 1118 0389 38       		.byte	0x38
- 1119 038a 68000000 		.4byte	0x68
- 1120 038e 00000000 		.4byte	.LFB69
- 1121 0392 78010000 		.4byte	.LFE69-.LFB69
- 1122 0396 01       		.uleb128 0x1
- 1123 0397 9C       		.byte	0x9c
- 1124 0398 D3050000 		.4byte	0x5d3
- 1125 039c 19       		.uleb128 0x19
- 1126 039d BA000000 		.4byte	.LBB2
- 1127 03a1 6C000000 		.4byte	.LBE2-.LBB2
- 1128 03a5 0A040000 		.4byte	0x40a
- 1129 03a9 17       		.uleb128 0x17
- 1130 03aa 46050000 		.4byte	.LASF32
- 1131 03ae 01       		.byte	0x1
- 1132 03af 7A       		.byte	0x7a
- 1133 03b0 D3050000 		.4byte	0x5d3
- 1134 03b4 CF000000 		.4byte	.LLST6
- 1135 03b8 17       		.uleb128 0x17
- 1136 03b9 4A010000 		.4byte	.LASF33
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 27
-
-
- 1137 03bd 01       		.byte	0x1
- 1138 03be 7B       		.byte	0x7b
- 1139 03bf D3050000 		.4byte	0x5d3
- 1140 03c3 E8000000 		.4byte	.LLST7
- 1141 03c7 17       		.uleb128 0x17
- 1142 03c8 8C020000 		.4byte	.LASF34
- 1143 03cc 01       		.byte	0x1
- 1144 03cd 7C       		.byte	0x7c
- 1145 03ce D3050000 		.4byte	0x5d3
- 1146 03d2 01010000 		.4byte	.LLST8
- 1147 03d6 17       		.uleb128 0x17
- 1148 03d7 D3030000 		.4byte	.LASF35
- 1149 03db 01       		.byte	0x1
- 1150 03dc 7D       		.byte	0x7d
- 1151 03dd D3050000 		.4byte	0x5d3
- 1152 03e1 1A010000 		.4byte	.LLST9
- 1153 03e5 0E       		.uleb128 0xe
- 1154 03e6 C4000000 		.4byte	.LVL55
- 1155 03ea 2E070000 		.4byte	0x72e
- 1156 03ee 0E       		.uleb128 0xe
- 1157 03ef CA000000 		.4byte	.LVL57
- 1158 03f3 39070000 		.4byte	0x739
- 1159 03f7 0E       		.uleb128 0xe
- 1160 03f8 D0000000 		.4byte	.LVL59
- 1161 03fc 44070000 		.4byte	0x744
- 1162 0400 0E       		.uleb128 0xe
- 1163 0401 D6000000 		.4byte	.LVL61
- 1164 0405 4F070000 		.4byte	0x74f
- 1165 0409 00       		.byte	0
- 1166 040a 0E       		.uleb128 0xe
- 1167 040b 08000000 		.4byte	.LVL31
- 1168 040f 5A070000 		.4byte	0x75a
- 1169 0413 0E       		.uleb128 0xe
- 1170 0414 0C000000 		.4byte	.LVL32
- 1171 0418 65070000 		.4byte	0x765
- 1172 041c 0E       		.uleb128 0xe
- 1173 041d 10000000 		.4byte	.LVL33
- 1174 0421 70070000 		.4byte	0x770
- 1175 0425 0E       		.uleb128 0xe
- 1176 0426 14000000 		.4byte	.LVL34
- 1177 042a 7B070000 		.4byte	0x77b
- 1178 042e 0E       		.uleb128 0xe
- 1179 042f 18000000 		.4byte	.LVL35
- 1180 0433 86070000 		.4byte	0x786
- 1181 0437 0E       		.uleb128 0xe
- 1182 0438 1C000000 		.4byte	.LVL36
- 1183 043c 91070000 		.4byte	0x791
- 1184 0440 0E       		.uleb128 0xe
- 1185 0441 20000000 		.4byte	.LVL37
- 1186 0445 9C070000 		.4byte	0x79c
- 1187 0449 0E       		.uleb128 0xe
- 1188 044a 24000000 		.4byte	.LVL38
- 1189 044e A7070000 		.4byte	0x7a7
- 1190 0452 0E       		.uleb128 0xe
- 1191 0453 28000000 		.4byte	.LVL39
- 1192 0457 B2070000 		.4byte	0x7b2
- 1193 045b 0F       		.uleb128 0xf
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 28
-
-
- 1194 045c 2E000000 		.4byte	.LVL40
- 1195 0460 34020000 		.4byte	0x234
- 1196 0464 72040000 		.4byte	0x472
- 1197 0468 10       		.uleb128 0x10
- 1198 0469 01       		.uleb128 0x1
- 1199 046a 50       		.byte	0x50
- 1200 046b 05       		.uleb128 0x5
- 1201 046c 03       		.byte	0x3
- 1202 046d 00000000 		.4byte	rotator_state
- 1203 0471 00       		.byte	0
- 1204 0472 0F       		.uleb128 0xf
- 1205 0473 36000000 		.4byte	.LVL41
- 1206 0477 BD070000 		.4byte	0x7bd
- 1207 047b 8A040000 		.4byte	0x48a
- 1208 047f 10       		.uleb128 0x10
- 1209 0480 01       		.uleb128 0x1
- 1210 0481 50       		.byte	0x50
- 1211 0482 01       		.uleb128 0x1
- 1212 0483 30       		.byte	0x30
- 1213 0484 10       		.uleb128 0x10
- 1214 0485 01       		.uleb128 0x1
- 1215 0486 51       		.byte	0x51
- 1216 0487 01       		.uleb128 0x1
- 1217 0488 30       		.byte	0x30
- 1218 0489 00       		.byte	0
- 1219 048a 0F       		.uleb128 0xf
- 1220 048b 3E000000 		.4byte	.LVL42
- 1221 048f C8070000 		.4byte	0x7c8
- 1222 0493 9D040000 		.4byte	0x49d
- 1223 0497 10       		.uleb128 0x10
- 1224 0498 01       		.uleb128 0x1
- 1225 0499 50       		.byte	0x50
- 1226 049a 01       		.uleb128 0x1
- 1227 049b 31       		.byte	0x31
- 1228 049c 00       		.byte	0
- 1229 049d 0F       		.uleb128 0xf
- 1230 049e 48000000 		.4byte	.LVL43
- 1231 04a2 C8070000 		.4byte	0x7c8
- 1232 04a6 B0040000 		.4byte	0x4b0
- 1233 04aa 10       		.uleb128 0x10
- 1234 04ab 01       		.uleb128 0x1
- 1235 04ac 50       		.byte	0x50
- 1236 04ad 01       		.uleb128 0x1
- 1237 04ae 33       		.byte	0x33
- 1238 04af 00       		.byte	0
- 1239 04b0 0F       		.uleb128 0xf
- 1240 04b1 5E000000 		.4byte	.LVL44
- 1241 04b5 BD070000 		.4byte	0x7bd
- 1242 04b9 C8040000 		.4byte	0x4c8
- 1243 04bd 10       		.uleb128 0x10
- 1244 04be 01       		.uleb128 0x1
- 1245 04bf 50       		.byte	0x50
- 1246 04c0 01       		.uleb128 0x1
- 1247 04c1 31       		.byte	0x31
- 1248 04c2 10       		.uleb128 0x10
- 1249 04c3 01       		.uleb128 0x1
- 1250 04c4 51       		.byte	0x51
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 29
-
-
- 1251 04c5 01       		.uleb128 0x1
- 1252 04c6 30       		.byte	0x30
- 1253 04c7 00       		.byte	0
- 1254 04c8 0F       		.uleb128 0xf
- 1255 04c9 66000000 		.4byte	.LVL45
- 1256 04cd D3070000 		.4byte	0x7d3
- 1257 04d1 DF040000 		.4byte	0x4df
- 1258 04d5 10       		.uleb128 0x10
- 1259 04d6 01       		.uleb128 0x1
- 1260 04d7 50       		.byte	0x50
- 1261 04d8 05       		.uleb128 0x5
- 1262 04d9 03       		.byte	0x3
- 1263 04da 00000000 		.4byte	.LC0
- 1264 04de 00       		.byte	0
- 1265 04df 0E       		.uleb128 0xe
- 1266 04e0 6A000000 		.4byte	.LVL46
- 1267 04e4 DE070000 		.4byte	0x7de
- 1268 04e8 0F       		.uleb128 0xf
- 1269 04e9 70000000 		.4byte	.LVL47
- 1270 04ed E9070000 		.4byte	0x7e9
- 1271 04f1 FF040000 		.4byte	0x4ff
- 1272 04f5 10       		.uleb128 0x10
- 1273 04f6 01       		.uleb128 0x1
- 1274 04f7 50       		.byte	0x50
- 1275 04f8 05       		.uleb128 0x5
- 1276 04f9 03       		.byte	0x3
- 1277 04fa 00000000 		.4byte	rotator_state
- 1278 04fe 00       		.byte	0
- 1279 04ff 0F       		.uleb128 0xf
- 1280 0500 76000000 		.4byte	.LVL48
- 1281 0504 F4070000 		.4byte	0x7f4
- 1282 0508 16050000 		.4byte	0x516
- 1283 050c 10       		.uleb128 0x10
- 1284 050d 01       		.uleb128 0x1
- 1285 050e 50       		.byte	0x50
- 1286 050f 05       		.uleb128 0x5
- 1287 0510 03       		.byte	0x3
- 1288 0511 00000000 		.4byte	DISPLAY_REFRESH_Handler
- 1289 0515 00       		.byte	0
- 1290 0516 0F       		.uleb128 0xf
- 1291 0517 7C000000 		.4byte	.LVL49
- 1292 051b FF070000 		.4byte	0x7ff
- 1293 051f 2D050000 		.4byte	0x52d
- 1294 0523 10       		.uleb128 0x10
- 1295 0524 01       		.uleb128 0x1
- 1296 0525 50       		.byte	0x50
- 1297 0526 05       		.uleb128 0x5
- 1298 0527 03       		.byte	0x3
- 1299 0528 00000000 		.4byte	BUTTON_REFRESH_Handler
- 1300 052c 00       		.byte	0
- 1301 052d 0F       		.uleb128 0xf
- 1302 052e 82000000 		.4byte	.LVL50
- 1303 0532 0A080000 		.4byte	0x80a
- 1304 0536 44050000 		.4byte	0x544
- 1305 053a 10       		.uleb128 0x10
- 1306 053b 01       		.uleb128 0x1
- 1307 053c 50       		.byte	0x50
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 30
-
-
- 1308 053d 05       		.uleb128 0x5
- 1309 053e 03       		.byte	0x3
- 1310 053f 00000000 		.4byte	MOTOR_CONTROLL_RISEING_EDGE_Handler
- 1311 0543 00       		.byte	0
- 1312 0544 0F       		.uleb128 0xf
- 1313 0545 88000000 		.4byte	.LVL51
- 1314 0549 15080000 		.4byte	0x815
- 1315 054d 5B050000 		.4byte	0x55b
- 1316 0551 10       		.uleb128 0x10
- 1317 0552 01       		.uleb128 0x1
- 1318 0553 50       		.byte	0x50
- 1319 0554 05       		.uleb128 0x5
- 1320 0555 03       		.byte	0x3
- 1321 0556 00000000 		.4byte	MOTOR_CONTROLL_FALLING_EDGE_Handler
- 1322 055a 00       		.byte	0
- 1323 055b 0F       		.uleb128 0xf
- 1324 055c 8E000000 		.4byte	.LVL52
- 1325 0560 20080000 		.4byte	0x820
- 1326 0564 6E050000 		.4byte	0x56e
- 1327 0568 10       		.uleb128 0x10
- 1328 0569 01       		.uleb128 0x1
- 1329 056a 50       		.byte	0x50
- 1330 056b 01       		.uleb128 0x1
- 1331 056c 31       		.byte	0x31
- 1332 056d 00       		.byte	0
- 1333 056e 0F       		.uleb128 0xf
- 1334 056f A0000000 		.4byte	.LVL53
- 1335 0573 34020000 		.4byte	0x234
- 1336 0577 85050000 		.4byte	0x585
- 1337 057b 10       		.uleb128 0x10
- 1338 057c 01       		.uleb128 0x1
- 1339 057d 50       		.byte	0x50
- 1340 057e 05       		.uleb128 0x5
- 1341 057f 03       		.byte	0x3
- 1342 0580 00000000 		.4byte	rotator_state
- 1343 0584 00       		.byte	0
- 1344 0585 0F       		.uleb128 0xf
- 1345 0586 B2000000 		.4byte	.LVL54
- 1346 058a E9070000 		.4byte	0x7e9
- 1347 058e 9C050000 		.4byte	0x59c
- 1348 0592 10       		.uleb128 0x10
- 1349 0593 01       		.uleb128 0x1
- 1350 0594 50       		.byte	0x50
- 1351 0595 05       		.uleb128 0x5
- 1352 0596 03       		.byte	0x3
- 1353 0597 00000000 		.4byte	rotator_state
- 1354 059b 00       		.byte	0
- 1355 059c 0E       		.uleb128 0xe
- 1356 059d 2A010000 		.4byte	.LVL63
- 1357 05a1 2B080000 		.4byte	0x82b
- 1358 05a5 0E       		.uleb128 0xe
- 1359 05a6 2E010000 		.4byte	.LVL64
- 1360 05aa 2E070000 		.4byte	0x72e
- 1361 05ae 0E       		.uleb128 0xe
- 1362 05af 34010000 		.4byte	.LVL65
- 1363 05b3 39070000 		.4byte	0x739
- 1364 05b7 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 31
-
-
- 1365 05b8 3A010000 		.4byte	.LVL66
- 1366 05bc 44070000 		.4byte	0x744
- 1367 05c0 0E       		.uleb128 0xe
- 1368 05c1 40010000 		.4byte	.LVL67
- 1369 05c5 4F070000 		.4byte	0x74f
- 1370 05c9 0E       		.uleb128 0xe
- 1371 05ca 58010000 		.4byte	.LVL68
- 1372 05ce 36080000 		.4byte	0x836
- 1373 05d2 00       		.byte	0
- 1374 05d3 02       		.uleb128 0x2
- 1375 05d4 01       		.byte	0x1
- 1376 05d5 02       		.byte	0x2
- 1377 05d6 2B040000 		.4byte	.LASF36
- 1378 05da 1A       		.uleb128 0x1a
- 1379 05db 50050000 		.4byte	.LASF37
- 1380 05df 08       		.byte	0x8
- 1381 05e0 1207     		.2byte	0x712
- 1382 05e2 E6050000 		.4byte	0x5e6
- 1383 05e6 1B       		.uleb128 0x1b
- 1384 05e7 76000000 		.4byte	0x76
- 1385 05eb 1C       		.uleb128 0x1c
- 1386 05ec A3000000 		.4byte	.LASF30
- 1387 05f0 06       		.byte	0x6
- 1388 05f1 19       		.byte	0x19
- 1389 05f2 B6000000 		.4byte	0xb6
- 1390 05f6 05       		.uleb128 0x5
- 1391 05f7 03       		.byte	0x3
- 1392 05f8 00000000 		.4byte	rotator_state
- 1393 05fc 1D       		.uleb128 0x1d
- 1394 05fd 636D6400 		.ascii	"cmd\000"
- 1395 0601 07       		.byte	0x7
- 1396 0602 1F       		.byte	0x1f
- 1397 0603 FE000000 		.4byte	0xfe
- 1398 0607 05       		.uleb128 0x5
- 1399 0608 03       		.byte	0x3
- 1400 0609 00000000 		.4byte	cmd
- 1401 060d 1C       		.uleb128 0x1c
- 1402 060e A2010000 		.4byte	.LASF38
- 1403 0612 07       		.byte	0x7
- 1404 0613 20       		.byte	0x20
- 1405 0614 FE000000 		.4byte	0xfe
- 1406 0618 05       		.uleb128 0x5
- 1407 0619 03       		.byte	0x3
- 1408 061a 00000000 		.4byte	arg1
- 1409 061e 1C       		.uleb128 0x1c
- 1410 061f 36050000 		.4byte	.LASF39
- 1411 0623 07       		.byte	0x7
- 1412 0624 21       		.byte	0x21
- 1413 0625 FE000000 		.4byte	0xfe
- 1414 0629 05       		.uleb128 0x5
- 1415 062a 03       		.byte	0x3
- 1416 062b 00000000 		.4byte	arg2
- 1417 062f 1C       		.uleb128 0x1c
- 1418 0630 3B050000 		.4byte	.LASF40
- 1419 0634 07       		.byte	0x7
- 1420 0635 22       		.byte	0x22
- 1421 0636 FE000000 		.4byte	0xfe
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 32
-
-
- 1422 063a 05       		.uleb128 0x5
- 1423 063b 03       		.byte	0x3
- 1424 063c 00000000 		.4byte	arg3
- 1425 0640 1C       		.uleb128 0x1c
- 1426 0641 F3040000 		.4byte	.LASF41
- 1427 0645 01       		.byte	0x1
- 1428 0646 1A       		.byte	0x1a
- 1429 0647 D3050000 		.4byte	0x5d3
- 1430 064b 05       		.uleb128 0x5
- 1431 064c 03       		.byte	0x3
- 1432 064d 00000000 		.4byte	refresh_display
- 1433 0651 1C       		.uleb128 0x1c
- 1434 0652 B1000000 		.4byte	.LASF42
- 1435 0656 01       		.byte	0x1
- 1436 0657 1B       		.byte	0x1b
- 1437 0658 D3050000 		.4byte	0x5d3
- 1438 065c 05       		.uleb128 0x5
- 1439 065d 03       		.byte	0x3
- 1440 065e 00000000 		.4byte	refresh_buttons
- 1441 0662 1C       		.uleb128 0x1c
- 1442 0663 D8040000 		.4byte	.LASF43
- 1443 0667 01       		.byte	0x1
- 1444 0668 1C       		.byte	0x1c
- 1445 0669 D3050000 		.4byte	0x5d3
- 1446 066d 05       		.uleb128 0x5
- 1447 066e 03       		.byte	0x3
- 1448 066f 00000000 		.4byte	refresh_rotation
- 1449 0673 1E       		.uleb128 0x1e
- 1450 0674 2F000000 		.4byte	.LASF44
- 1451 0678 2F000000 		.4byte	.LASF44
- 1452 067c 09       		.byte	0x9
- 1453 067d 26       		.byte	0x26
- 1454 067e 1E       		.uleb128 0x1e
- 1455 067f 8B010000 		.4byte	.LASF45
- 1456 0683 8B010000 		.4byte	.LASF45
- 1457 0687 0A       		.byte	0xa
- 1458 0688 26       		.byte	0x26
- 1459 0689 1E       		.uleb128 0x1e
- 1460 068a C1000000 		.4byte	.LASF46
- 1461 068e C1000000 		.4byte	.LASF46
- 1462 0692 0B       		.byte	0xb
- 1463 0693 26       		.byte	0x26
- 1464 0694 1E       		.uleb128 0x1e
- 1465 0695 51030000 		.4byte	.LASF47
- 1466 0699 51030000 		.4byte	.LASF47
- 1467 069d 0C       		.byte	0xc
- 1468 069e 26       		.byte	0x26
- 1469 069f 1E       		.uleb128 0x1e
- 1470 06a0 0F060000 		.4byte	.LASF48
- 1471 06a4 0F060000 		.4byte	.LASF48
- 1472 06a8 0D       		.byte	0xd
- 1473 06a9 8A       		.byte	0x8a
- 1474 06aa 1E       		.uleb128 0x1e
- 1475 06ab 90040000 		.4byte	.LASF49
- 1476 06af 90040000 		.4byte	.LASF49
- 1477 06b3 0E       		.byte	0xe
- 1478 06b4 A4       		.byte	0xa4
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 33
-
-
- 1479 06b5 1E       		.uleb128 0x1e
- 1480 06b6 7A030000 		.4byte	.LASF50
- 1481 06ba 7A030000 		.4byte	.LASF50
- 1482 06be 0E       		.byte	0xe
- 1483 06bf B1       		.byte	0xb1
- 1484 06c0 1E       		.uleb128 0x1e
- 1485 06c1 02020000 		.4byte	.LASF51
- 1486 06c5 02020000 		.4byte	.LASF51
- 1487 06c9 0E       		.byte	0xe
- 1488 06ca B6       		.byte	0xb6
- 1489 06cb 1E       		.uleb128 0x1e
- 1490 06cc 62030000 		.4byte	.LASF52
- 1491 06d0 62030000 		.4byte	.LASF52
- 1492 06d4 0E       		.byte	0xe
- 1493 06d5 B3       		.byte	0xb3
- 1494 06d6 1E       		.uleb128 0x1e
- 1495 06d7 19010000 		.4byte	.LASF53
- 1496 06db 19010000 		.4byte	.LASF53
- 1497 06df 0E       		.byte	0xe
- 1498 06e0 B7       		.byte	0xb7
- 1499 06e1 1E       		.uleb128 0x1e
- 1500 06e2 FD030000 		.4byte	.LASF54
- 1501 06e6 FD030000 		.4byte	.LASF54
- 1502 06ea 0E       		.byte	0xe
- 1503 06eb B5       		.byte	0xb5
- 1504 06ec 1E       		.uleb128 0x1e
- 1505 06ed 0C050000 		.4byte	.LASF55
- 1506 06f1 0C050000 		.4byte	.LASF55
- 1507 06f5 0F       		.byte	0xf
- 1508 06f6 A4       		.byte	0xa4
- 1509 06f7 1E       		.uleb128 0x1e
- 1510 06f8 4B000000 		.4byte	.LASF56
- 1511 06fc 4B000000 		.4byte	.LASF56
- 1512 0700 0F       		.byte	0xf
- 1513 0701 B1       		.byte	0xb1
- 1514 0702 1E       		.uleb128 0x1e
- 1515 0703 A1020000 		.4byte	.LASF57
- 1516 0707 A1020000 		.4byte	.LASF57
- 1517 070b 0F       		.byte	0xf
- 1518 070c B6       		.byte	0xb6
- 1519 070d 1E       		.uleb128 0x1e
- 1520 070e EA010000 		.4byte	.LASF58
- 1521 0712 EA010000 		.4byte	.LASF58
- 1522 0716 0F       		.byte	0xf
- 1523 0717 B3       		.byte	0xb3
- 1524 0718 1E       		.uleb128 0x1e
- 1525 0719 AD010000 		.4byte	.LASF59
- 1526 071d AD010000 		.4byte	.LASF59
- 1527 0721 0F       		.byte	0xf
- 1528 0722 B7       		.byte	0xb7
- 1529 0723 1E       		.uleb128 0x1e
- 1530 0724 74040000 		.4byte	.LASF60
- 1531 0728 74040000 		.4byte	.LASF60
- 1532 072c 0F       		.byte	0xf
- 1533 072d B5       		.byte	0xb5
- 1534 072e 1E       		.uleb128 0x1e
- 1535 072f 31040000 		.4byte	.LASF61
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 34
-
-
- 1536 0733 31040000 		.4byte	.LASF61
- 1537 0737 10       		.byte	0x10
- 1538 0738 29       		.byte	0x29
- 1539 0739 1E       		.uleb128 0x1e
- 1540 073a C9020000 		.4byte	.LASF62
- 1541 073e C9020000 		.4byte	.LASF62
- 1542 0742 11       		.byte	0x11
- 1543 0743 29       		.byte	0x29
- 1544 0744 1E       		.uleb128 0x1e
- 1545 0745 D0010000 		.4byte	.LASF63
- 1546 0749 D0010000 		.4byte	.LASF63
- 1547 074d 12       		.byte	0x12
- 1548 074e 29       		.byte	0x29
- 1549 074f 1E       		.uleb128 0x1e
- 1550 0750 24050000 		.4byte	.LASF64
- 1551 0754 24050000 		.4byte	.LASF64
- 1552 0758 13       		.byte	0x13
- 1553 0759 29       		.byte	0x29
- 1554 075a 1E       		.uleb128 0x1e
- 1555 075b 40040000 		.4byte	.LASF65
- 1556 075f 40040000 		.4byte	.LASF65
- 1557 0763 14       		.byte	0x14
- 1558 0764 1F       		.byte	0x1f
- 1559 0765 1E       		.uleb128 0x1e
- 1560 0766 98020000 		.4byte	.LASF66
- 1561 076a 98020000 		.4byte	.LASF66
- 1562 076e 07       		.byte	0x7
- 1563 076f 24       		.byte	0x24
- 1564 0770 1E       		.uleb128 0x1e
- 1565 0771 EA030000 		.4byte	.LASF67
- 1566 0775 EA030000 		.4byte	.LASF67
- 1567 0779 0D       		.byte	0xd
- 1568 077a 54       		.byte	0x54
- 1569 077b 1E       		.uleb128 0x1e
- 1570 077c E3000000 		.4byte	.LASF68
- 1571 0780 E3000000 		.4byte	.LASF68
- 1572 0784 15       		.byte	0x15
- 1573 0785 93       		.byte	0x93
- 1574 0786 1E       		.uleb128 0x1e
- 1575 0787 3F000000 		.4byte	.LASF69
- 1576 078b 3F000000 		.4byte	.LASF69
- 1577 078f 16       		.byte	0x16
- 1578 0790 92       		.byte	0x92
- 1579 0791 1E       		.uleb128 0x1e
- 1580 0792 2E010000 		.4byte	.LASF70
- 1581 0796 2E010000 		.4byte	.LASF70
- 1582 079a 17       		.byte	0x17
- 1583 079b 5A       		.byte	0x5a
- 1584 079c 1E       		.uleb128 0x1e
- 1585 079d 7A000000 		.4byte	.LASF71
- 1586 07a1 7A000000 		.4byte	.LASF71
- 1587 07a5 18       		.byte	0x18
- 1588 07a6 5A       		.byte	0x5a
- 1589 07a7 1E       		.uleb128 0x1e
- 1590 07a8 D2000000 		.4byte	.LASF72
- 1591 07ac D2000000 		.4byte	.LASF72
- 1592 07b0 0E       		.byte	0xe
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 35
-
-
- 1593 07b1 93       		.byte	0x93
- 1594 07b2 1E       		.uleb128 0x1e
- 1595 07b3 4F040000 		.4byte	.LASF73
- 1596 07b7 4F040000 		.4byte	.LASF73
- 1597 07bb 0F       		.byte	0xf
- 1598 07bc 93       		.byte	0x93
- 1599 07bd 1E       		.uleb128 0x1e
- 1600 07be 09030000 		.4byte	.LASF74
- 1601 07c2 09030000 		.4byte	.LASF74
- 1602 07c6 19       		.byte	0x19
- 1603 07c7 15       		.byte	0x15
- 1604 07c8 1E       		.uleb128 0x1e
- 1605 07c9 61000000 		.4byte	.LASF75
- 1606 07cd 61000000 		.4byte	.LASF75
- 1607 07d1 19       		.byte	0x19
- 1608 07d2 13       		.byte	0x13
- 1609 07d3 1E       		.uleb128 0x1e
- 1610 07d4 0A010000 		.4byte	.LASF76
- 1611 07d8 0A010000 		.4byte	.LASF76
- 1612 07dc 0D       		.byte	0xd
- 1613 07dd 8B       		.byte	0x8b
- 1614 07de 1E       		.uleb128 0x1e
- 1615 07df 11030000 		.4byte	.LASF77
- 1616 07e3 11030000 		.4byte	.LASF77
- 1617 07e7 1A       		.byte	0x1a
- 1618 07e8 0F       		.byte	0xf
- 1619 07e9 1E       		.uleb128 0x1e
- 1620 07ea 20000000 		.4byte	.LASF78
- 1621 07ee 20000000 		.4byte	.LASF78
- 1622 07f2 1A       		.byte	0x1a
- 1623 07f3 10       		.byte	0x10
- 1624 07f4 1E       		.uleb128 0x1e
- 1625 07f5 B6040000 		.4byte	.LASF79
- 1626 07f9 B6040000 		.4byte	.LASF79
- 1627 07fd 1B       		.byte	0x1b
- 1628 07fe 18       		.byte	0x18
- 1629 07ff 1E       		.uleb128 0x1e
- 1630 0800 DA020000 		.4byte	.LASF80
- 1631 0804 DA020000 		.4byte	.LASF80
- 1632 0808 1C       		.byte	0x1c
- 1633 0809 18       		.byte	0x18
- 1634 080a 1E       		.uleb128 0x1e
- 1635 080b 00000000 		.4byte	.LASF81
- 1636 080f 00000000 		.4byte	.LASF81
- 1637 0813 1D       		.byte	0x1d
- 1638 0814 18       		.byte	0x18
- 1639 0815 1E       		.uleb128 0x1e
- 1640 0816 18020000 		.4byte	.LASF82
- 1641 081a 18020000 		.4byte	.LASF82
- 1642 081e 1E       		.byte	0x1e
- 1643 081f 18       		.byte	0x18
- 1644 0820 1E       		.uleb128 0x1e
- 1645 0821 B4030000 		.4byte	.LASF83
- 1646 0825 B4030000 		.4byte	.LASF83
- 1647 0829 1F       		.byte	0x1f
- 1648 082a 2F       		.byte	0x2f
- 1649 082b 1E       		.uleb128 0x1e
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 36
-
-
- 1650 082c 56010000 		.4byte	.LASF84
- 1651 0830 56010000 		.4byte	.LASF84
- 1652 0834 07       		.byte	0x7
- 1653 0835 25       		.byte	0x25
- 1654 0836 1E       		.uleb128 0x1e
- 1655 0837 95000000 		.4byte	.LASF85
- 1656 083b 95000000 		.4byte	.LASF85
- 1657 083f 20       		.byte	0x20
- 1658 0840 26       		.byte	0x26
- 1659 0841 00       		.byte	0
- 1660              		.section	.debug_abbrev,"",%progbits
- 1661              	.Ldebug_abbrev0:
- 1662 0000 01       		.uleb128 0x1
- 1663 0001 11       		.uleb128 0x11
- 1664 0002 01       		.byte	0x1
- 1665 0003 25       		.uleb128 0x25
- 1666 0004 0E       		.uleb128 0xe
- 1667 0005 13       		.uleb128 0x13
- 1668 0006 0B       		.uleb128 0xb
- 1669 0007 03       		.uleb128 0x3
- 1670 0008 0E       		.uleb128 0xe
- 1671 0009 1B       		.uleb128 0x1b
- 1672 000a 0E       		.uleb128 0xe
- 1673 000b 55       		.uleb128 0x55
- 1674 000c 17       		.uleb128 0x17
- 1675 000d 11       		.uleb128 0x11
- 1676 000e 01       		.uleb128 0x1
- 1677 000f 10       		.uleb128 0x10
- 1678 0010 17       		.uleb128 0x17
- 1679 0011 00       		.byte	0
- 1680 0012 00       		.byte	0
- 1681 0013 02       		.uleb128 0x2
- 1682 0014 24       		.uleb128 0x24
- 1683 0015 00       		.byte	0
- 1684 0016 0B       		.uleb128 0xb
- 1685 0017 0B       		.uleb128 0xb
- 1686 0018 3E       		.uleb128 0x3e
- 1687 0019 0B       		.uleb128 0xb
- 1688 001a 03       		.uleb128 0x3
- 1689 001b 0E       		.uleb128 0xe
- 1690 001c 00       		.byte	0
- 1691 001d 00       		.byte	0
- 1692 001e 03       		.uleb128 0x3
- 1693 001f 16       		.uleb128 0x16
- 1694 0020 00       		.byte	0
- 1695 0021 03       		.uleb128 0x3
- 1696 0022 0E       		.uleb128 0xe
- 1697 0023 3A       		.uleb128 0x3a
- 1698 0024 0B       		.uleb128 0xb
- 1699 0025 3B       		.uleb128 0x3b
- 1700 0026 0B       		.uleb128 0xb
- 1701 0027 49       		.uleb128 0x49
- 1702 0028 13       		.uleb128 0x13
- 1703 0029 00       		.byte	0
- 1704 002a 00       		.byte	0
- 1705 002b 04       		.uleb128 0x4
- 1706 002c 24       		.uleb128 0x24
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 37
-
-
- 1707 002d 00       		.byte	0
- 1708 002e 0B       		.uleb128 0xb
- 1709 002f 0B       		.uleb128 0xb
- 1710 0030 3E       		.uleb128 0x3e
- 1711 0031 0B       		.uleb128 0xb
- 1712 0032 03       		.uleb128 0x3
- 1713 0033 08       		.uleb128 0x8
- 1714 0034 00       		.byte	0
- 1715 0035 00       		.byte	0
- 1716 0036 05       		.uleb128 0x5
- 1717 0037 16       		.uleb128 0x16
- 1718 0038 00       		.byte	0
- 1719 0039 03       		.uleb128 0x3
- 1720 003a 0E       		.uleb128 0xe
- 1721 003b 3A       		.uleb128 0x3a
- 1722 003c 0B       		.uleb128 0xb
- 1723 003d 3B       		.uleb128 0x3b
- 1724 003e 05       		.uleb128 0x5
- 1725 003f 49       		.uleb128 0x49
- 1726 0040 13       		.uleb128 0x13
- 1727 0041 00       		.byte	0
- 1728 0042 00       		.byte	0
- 1729 0043 06       		.uleb128 0x6
- 1730 0044 0F       		.uleb128 0xf
- 1731 0045 00       		.byte	0
- 1732 0046 0B       		.uleb128 0xb
- 1733 0047 0B       		.uleb128 0xb
- 1734 0048 49       		.uleb128 0x49
- 1735 0049 13       		.uleb128 0x13
- 1736 004a 00       		.byte	0
- 1737 004b 00       		.byte	0
- 1738 004c 07       		.uleb128 0x7
- 1739 004d 13       		.uleb128 0x13
- 1740 004e 01       		.byte	0x1
- 1741 004f 03       		.uleb128 0x3
- 1742 0050 0E       		.uleb128 0xe
- 1743 0051 0B       		.uleb128 0xb
- 1744 0052 0B       		.uleb128 0xb
- 1745 0053 3A       		.uleb128 0x3a
- 1746 0054 0B       		.uleb128 0xb
- 1747 0055 3B       		.uleb128 0x3b
- 1748 0056 0B       		.uleb128 0xb
- 1749 0057 01       		.uleb128 0x1
- 1750 0058 13       		.uleb128 0x13
- 1751 0059 00       		.byte	0
- 1752 005a 00       		.byte	0
- 1753 005b 08       		.uleb128 0x8
- 1754 005c 0D       		.uleb128 0xd
- 1755 005d 00       		.byte	0
- 1756 005e 03       		.uleb128 0x3
- 1757 005f 0E       		.uleb128 0xe
- 1758 0060 3A       		.uleb128 0x3a
- 1759 0061 0B       		.uleb128 0xb
- 1760 0062 3B       		.uleb128 0x3b
- 1761 0063 0B       		.uleb128 0xb
- 1762 0064 49       		.uleb128 0x49
- 1763 0065 13       		.uleb128 0x13
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 38
-
-
- 1764 0066 38       		.uleb128 0x38
- 1765 0067 0B       		.uleb128 0xb
- 1766 0068 00       		.byte	0
- 1767 0069 00       		.byte	0
- 1768 006a 09       		.uleb128 0x9
- 1769 006b 0D       		.uleb128 0xd
- 1770 006c 00       		.byte	0
- 1771 006d 03       		.uleb128 0x3
- 1772 006e 08       		.uleb128 0x8
- 1773 006f 3A       		.uleb128 0x3a
- 1774 0070 0B       		.uleb128 0xb
- 1775 0071 3B       		.uleb128 0x3b
- 1776 0072 0B       		.uleb128 0xb
- 1777 0073 49       		.uleb128 0x49
- 1778 0074 13       		.uleb128 0x13
- 1779 0075 38       		.uleb128 0x38
- 1780 0076 0B       		.uleb128 0xb
- 1781 0077 00       		.byte	0
- 1782 0078 00       		.byte	0
- 1783 0079 0A       		.uleb128 0xa
- 1784 007a 01       		.uleb128 0x1
- 1785 007b 01       		.byte	0x1
- 1786 007c 49       		.uleb128 0x49
- 1787 007d 13       		.uleb128 0x13
- 1788 007e 01       		.uleb128 0x1
- 1789 007f 13       		.uleb128 0x13
- 1790 0080 00       		.byte	0
- 1791 0081 00       		.byte	0
- 1792 0082 0B       		.uleb128 0xb
- 1793 0083 21       		.uleb128 0x21
- 1794 0084 00       		.byte	0
- 1795 0085 49       		.uleb128 0x49
- 1796 0086 13       		.uleb128 0x13
- 1797 0087 2F       		.uleb128 0x2f
- 1798 0088 0B       		.uleb128 0xb
- 1799 0089 00       		.byte	0
- 1800 008a 00       		.byte	0
- 1801 008b 0C       		.uleb128 0xc
- 1802 008c 2E       		.uleb128 0x2e
- 1803 008d 00       		.byte	0
- 1804 008e 3F       		.uleb128 0x3f
- 1805 008f 19       		.uleb128 0x19
- 1806 0090 03       		.uleb128 0x3
- 1807 0091 0E       		.uleb128 0xe
- 1808 0092 3A       		.uleb128 0x3a
- 1809 0093 0B       		.uleb128 0xb
- 1810 0094 3B       		.uleb128 0x3b
- 1811 0095 0B       		.uleb128 0xb
- 1812 0096 27       		.uleb128 0x27
- 1813 0097 19       		.uleb128 0x19
- 1814 0098 11       		.uleb128 0x11
- 1815 0099 01       		.uleb128 0x1
- 1816 009a 12       		.uleb128 0x12
- 1817 009b 06       		.uleb128 0x6
- 1818 009c 40       		.uleb128 0x40
- 1819 009d 18       		.uleb128 0x18
- 1820 009e 9742     		.uleb128 0x2117
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 39
-
-
- 1821 00a0 19       		.uleb128 0x19
- 1822 00a1 00       		.byte	0
- 1823 00a2 00       		.byte	0
- 1824 00a3 0D       		.uleb128 0xd
- 1825 00a4 2E       		.uleb128 0x2e
- 1826 00a5 01       		.byte	0x1
- 1827 00a6 3F       		.uleb128 0x3f
- 1828 00a7 19       		.uleb128 0x19
- 1829 00a8 03       		.uleb128 0x3
- 1830 00a9 0E       		.uleb128 0xe
- 1831 00aa 3A       		.uleb128 0x3a
- 1832 00ab 0B       		.uleb128 0xb
- 1833 00ac 3B       		.uleb128 0x3b
- 1834 00ad 0B       		.uleb128 0xb
- 1835 00ae 27       		.uleb128 0x27
- 1836 00af 19       		.uleb128 0x19
- 1837 00b0 11       		.uleb128 0x11
- 1838 00b1 01       		.uleb128 0x1
- 1839 00b2 12       		.uleb128 0x12
- 1840 00b3 06       		.uleb128 0x6
- 1841 00b4 40       		.uleb128 0x40
- 1842 00b5 18       		.uleb128 0x18
- 1843 00b6 9742     		.uleb128 0x2117
- 1844 00b8 19       		.uleb128 0x19
- 1845 00b9 01       		.uleb128 0x1
- 1846 00ba 13       		.uleb128 0x13
- 1847 00bb 00       		.byte	0
- 1848 00bc 00       		.byte	0
- 1849 00bd 0E       		.uleb128 0xe
- 1850 00be 898201   		.uleb128 0x4109
- 1851 00c1 00       		.byte	0
- 1852 00c2 11       		.uleb128 0x11
- 1853 00c3 01       		.uleb128 0x1
- 1854 00c4 31       		.uleb128 0x31
- 1855 00c5 13       		.uleb128 0x13
- 1856 00c6 00       		.byte	0
- 1857 00c7 00       		.byte	0
- 1858 00c8 0F       		.uleb128 0xf
- 1859 00c9 898201   		.uleb128 0x4109
- 1860 00cc 01       		.byte	0x1
- 1861 00cd 11       		.uleb128 0x11
- 1862 00ce 01       		.uleb128 0x1
- 1863 00cf 31       		.uleb128 0x31
- 1864 00d0 13       		.uleb128 0x13
- 1865 00d1 01       		.uleb128 0x1
- 1866 00d2 13       		.uleb128 0x13
- 1867 00d3 00       		.byte	0
- 1868 00d4 00       		.byte	0
- 1869 00d5 10       		.uleb128 0x10
- 1870 00d6 8A8201   		.uleb128 0x410a
- 1871 00d9 00       		.byte	0
- 1872 00da 02       		.uleb128 0x2
- 1873 00db 18       		.uleb128 0x18
- 1874 00dc 9142     		.uleb128 0x2111
- 1875 00de 18       		.uleb128 0x18
- 1876 00df 00       		.byte	0
- 1877 00e0 00       		.byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 40
-
-
- 1878 00e1 11       		.uleb128 0x11
- 1879 00e2 898201   		.uleb128 0x4109
- 1880 00e5 01       		.byte	0x1
- 1881 00e6 11       		.uleb128 0x11
- 1882 00e7 01       		.uleb128 0x1
- 1883 00e8 31       		.uleb128 0x31
- 1884 00e9 13       		.uleb128 0x13
- 1885 00ea 00       		.byte	0
- 1886 00eb 00       		.byte	0
- 1887 00ec 12       		.uleb128 0x12
- 1888 00ed 2E       		.uleb128 0x2e
- 1889 00ee 01       		.byte	0x1
- 1890 00ef 3F       		.uleb128 0x3f
- 1891 00f0 19       		.uleb128 0x19
- 1892 00f1 03       		.uleb128 0x3
- 1893 00f2 0E       		.uleb128 0xe
- 1894 00f3 3A       		.uleb128 0x3a
- 1895 00f4 0B       		.uleb128 0xb
- 1896 00f5 3B       		.uleb128 0x3b
- 1897 00f6 0B       		.uleb128 0xb
- 1898 00f7 27       		.uleb128 0x27
- 1899 00f8 19       		.uleb128 0x19
- 1900 00f9 49       		.uleb128 0x49
- 1901 00fa 13       		.uleb128 0x13
- 1902 00fb 11       		.uleb128 0x11
- 1903 00fc 01       		.uleb128 0x1
- 1904 00fd 12       		.uleb128 0x12
- 1905 00fe 06       		.uleb128 0x6
- 1906 00ff 40       		.uleb128 0x40
- 1907 0100 18       		.uleb128 0x18
- 1908 0101 9742     		.uleb128 0x2117
- 1909 0103 19       		.uleb128 0x19
- 1910 0104 01       		.uleb128 0x1
- 1911 0105 13       		.uleb128 0x13
- 1912 0106 00       		.byte	0
- 1913 0107 00       		.byte	0
- 1914 0108 13       		.uleb128 0x13
- 1915 0109 05       		.uleb128 0x5
- 1916 010a 00       		.byte	0
- 1917 010b 03       		.uleb128 0x3
- 1918 010c 0E       		.uleb128 0xe
- 1919 010d 3A       		.uleb128 0x3a
- 1920 010e 0B       		.uleb128 0xb
- 1921 010f 3B       		.uleb128 0x3b
- 1922 0110 0B       		.uleb128 0xb
- 1923 0111 49       		.uleb128 0x49
- 1924 0112 13       		.uleb128 0x13
- 1925 0113 02       		.uleb128 0x2
- 1926 0114 17       		.uleb128 0x17
- 1927 0115 00       		.byte	0
- 1928 0116 00       		.byte	0
- 1929 0117 14       		.uleb128 0x14
- 1930 0118 05       		.uleb128 0x5
- 1931 0119 00       		.byte	0
- 1932 011a 03       		.uleb128 0x3
- 1933 011b 08       		.uleb128 0x8
- 1934 011c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 41
-
-
- 1935 011d 0B       		.uleb128 0xb
- 1936 011e 3B       		.uleb128 0x3b
- 1937 011f 0B       		.uleb128 0xb
- 1938 0120 49       		.uleb128 0x49
- 1939 0121 13       		.uleb128 0x13
- 1940 0122 02       		.uleb128 0x2
- 1941 0123 17       		.uleb128 0x17
- 1942 0124 00       		.byte	0
- 1943 0125 00       		.byte	0
- 1944 0126 15       		.uleb128 0x15
- 1945 0127 34       		.uleb128 0x34
- 1946 0128 00       		.byte	0
- 1947 0129 03       		.uleb128 0x3
- 1948 012a 08       		.uleb128 0x8
- 1949 012b 3A       		.uleb128 0x3a
- 1950 012c 0B       		.uleb128 0xb
- 1951 012d 3B       		.uleb128 0x3b
- 1952 012e 0B       		.uleb128 0xb
- 1953 012f 49       		.uleb128 0x49
- 1954 0130 13       		.uleb128 0x13
- 1955 0131 02       		.uleb128 0x2
- 1956 0132 17       		.uleb128 0x17
- 1957 0133 00       		.byte	0
- 1958 0134 00       		.byte	0
- 1959 0135 16       		.uleb128 0x16
- 1960 0136 34       		.uleb128 0x34
- 1961 0137 00       		.byte	0
- 1962 0138 03       		.uleb128 0x3
- 1963 0139 08       		.uleb128 0x8
- 1964 013a 3A       		.uleb128 0x3a
- 1965 013b 0B       		.uleb128 0xb
- 1966 013c 3B       		.uleb128 0x3b
- 1967 013d 0B       		.uleb128 0xb
- 1968 013e 49       		.uleb128 0x49
- 1969 013f 13       		.uleb128 0x13
- 1970 0140 00       		.byte	0
- 1971 0141 00       		.byte	0
- 1972 0142 17       		.uleb128 0x17
- 1973 0143 34       		.uleb128 0x34
- 1974 0144 00       		.byte	0
- 1975 0145 03       		.uleb128 0x3
- 1976 0146 0E       		.uleb128 0xe
- 1977 0147 3A       		.uleb128 0x3a
- 1978 0148 0B       		.uleb128 0xb
- 1979 0149 3B       		.uleb128 0x3b
- 1980 014a 0B       		.uleb128 0xb
- 1981 014b 49       		.uleb128 0x49
- 1982 014c 13       		.uleb128 0x13
- 1983 014d 02       		.uleb128 0x2
- 1984 014e 17       		.uleb128 0x17
- 1985 014f 00       		.byte	0
- 1986 0150 00       		.byte	0
- 1987 0151 18       		.uleb128 0x18
- 1988 0152 2E       		.uleb128 0x2e
- 1989 0153 01       		.byte	0x1
- 1990 0154 3F       		.uleb128 0x3f
- 1991 0155 19       		.uleb128 0x19
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 42
-
-
- 1992 0156 03       		.uleb128 0x3
- 1993 0157 0E       		.uleb128 0xe
- 1994 0158 3A       		.uleb128 0x3a
- 1995 0159 0B       		.uleb128 0xb
- 1996 015a 3B       		.uleb128 0x3b
- 1997 015b 0B       		.uleb128 0xb
- 1998 015c 27       		.uleb128 0x27
- 1999 015d 19       		.uleb128 0x19
- 2000 015e 49       		.uleb128 0x49
- 2001 015f 13       		.uleb128 0x13
- 2002 0160 8701     		.uleb128 0x87
- 2003 0162 19       		.uleb128 0x19
- 2004 0163 11       		.uleb128 0x11
- 2005 0164 01       		.uleb128 0x1
- 2006 0165 12       		.uleb128 0x12
- 2007 0166 06       		.uleb128 0x6
- 2008 0167 40       		.uleb128 0x40
- 2009 0168 18       		.uleb128 0x18
- 2010 0169 9742     		.uleb128 0x2117
- 2011 016b 19       		.uleb128 0x19
- 2012 016c 01       		.uleb128 0x1
- 2013 016d 13       		.uleb128 0x13
- 2014 016e 00       		.byte	0
- 2015 016f 00       		.byte	0
- 2016 0170 19       		.uleb128 0x19
- 2017 0171 0B       		.uleb128 0xb
- 2018 0172 01       		.byte	0x1
- 2019 0173 11       		.uleb128 0x11
- 2020 0174 01       		.uleb128 0x1
- 2021 0175 12       		.uleb128 0x12
- 2022 0176 06       		.uleb128 0x6
- 2023 0177 01       		.uleb128 0x1
- 2024 0178 13       		.uleb128 0x13
- 2025 0179 00       		.byte	0
- 2026 017a 00       		.byte	0
- 2027 017b 1A       		.uleb128 0x1a
- 2028 017c 34       		.uleb128 0x34
- 2029 017d 00       		.byte	0
- 2030 017e 03       		.uleb128 0x3
- 2031 017f 0E       		.uleb128 0xe
- 2032 0180 3A       		.uleb128 0x3a
- 2033 0181 0B       		.uleb128 0xb
- 2034 0182 3B       		.uleb128 0x3b
- 2035 0183 05       		.uleb128 0x5
- 2036 0184 49       		.uleb128 0x49
- 2037 0185 13       		.uleb128 0x13
- 2038 0186 3F       		.uleb128 0x3f
- 2039 0187 19       		.uleb128 0x19
- 2040 0188 3C       		.uleb128 0x3c
- 2041 0189 19       		.uleb128 0x19
- 2042 018a 00       		.byte	0
- 2043 018b 00       		.byte	0
- 2044 018c 1B       		.uleb128 0x1b
- 2045 018d 35       		.uleb128 0x35
- 2046 018e 00       		.byte	0
- 2047 018f 49       		.uleb128 0x49
- 2048 0190 13       		.uleb128 0x13
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 43
-
-
- 2049 0191 00       		.byte	0
- 2050 0192 00       		.byte	0
- 2051 0193 1C       		.uleb128 0x1c
- 2052 0194 34       		.uleb128 0x34
- 2053 0195 00       		.byte	0
- 2054 0196 03       		.uleb128 0x3
- 2055 0197 0E       		.uleb128 0xe
- 2056 0198 3A       		.uleb128 0x3a
- 2057 0199 0B       		.uleb128 0xb
- 2058 019a 3B       		.uleb128 0x3b
- 2059 019b 0B       		.uleb128 0xb
- 2060 019c 49       		.uleb128 0x49
- 2061 019d 13       		.uleb128 0x13
- 2062 019e 3F       		.uleb128 0x3f
- 2063 019f 19       		.uleb128 0x19
- 2064 01a0 02       		.uleb128 0x2
- 2065 01a1 18       		.uleb128 0x18
- 2066 01a2 00       		.byte	0
- 2067 01a3 00       		.byte	0
- 2068 01a4 1D       		.uleb128 0x1d
- 2069 01a5 34       		.uleb128 0x34
- 2070 01a6 00       		.byte	0
- 2071 01a7 03       		.uleb128 0x3
- 2072 01a8 08       		.uleb128 0x8
- 2073 01a9 3A       		.uleb128 0x3a
- 2074 01aa 0B       		.uleb128 0xb
- 2075 01ab 3B       		.uleb128 0x3b
- 2076 01ac 0B       		.uleb128 0xb
- 2077 01ad 49       		.uleb128 0x49
- 2078 01ae 13       		.uleb128 0x13
- 2079 01af 3F       		.uleb128 0x3f
- 2080 01b0 19       		.uleb128 0x19
- 2081 01b1 02       		.uleb128 0x2
- 2082 01b2 18       		.uleb128 0x18
- 2083 01b3 00       		.byte	0
- 2084 01b4 00       		.byte	0
- 2085 01b5 1E       		.uleb128 0x1e
- 2086 01b6 2E       		.uleb128 0x2e
- 2087 01b7 00       		.byte	0
- 2088 01b8 3F       		.uleb128 0x3f
- 2089 01b9 19       		.uleb128 0x19
- 2090 01ba 3C       		.uleb128 0x3c
- 2091 01bb 19       		.uleb128 0x19
- 2092 01bc 6E       		.uleb128 0x6e
- 2093 01bd 0E       		.uleb128 0xe
- 2094 01be 03       		.uleb128 0x3
- 2095 01bf 0E       		.uleb128 0xe
- 2096 01c0 3A       		.uleb128 0x3a
- 2097 01c1 0B       		.uleb128 0xb
- 2098 01c2 3B       		.uleb128 0x3b
- 2099 01c3 0B       		.uleb128 0xb
- 2100 01c4 00       		.byte	0
- 2101 01c5 00       		.byte	0
- 2102 01c6 00       		.byte	0
- 2103              		.section	.debug_loc,"",%progbits
- 2104              	.Ldebug_loc0:
- 2105              	.LLST0:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 44
-
-
- 2106 0000 00000000 		.4byte	.LVL6
- 2107 0004 08000000 		.4byte	.LVL8
- 2108 0008 0100     		.2byte	0x1
- 2109 000a 50       		.byte	0x50
- 2110 000b 08000000 		.4byte	.LVL8
- 2111 000f 1C000000 		.4byte	.LFE64
- 2112 0013 0400     		.2byte	0x4
- 2113 0015 F3       		.byte	0xf3
- 2114 0016 01       		.uleb128 0x1
- 2115 0017 50       		.byte	0x50
- 2116 0018 9F       		.byte	0x9f
- 2117 0019 00000000 		.4byte	0
- 2118 001d 00000000 		.4byte	0
- 2119              	.LLST1:
- 2120 0021 00000000 		.4byte	.LVL6
- 2121 0025 0A000000 		.4byte	.LVL9
- 2122 0029 0100     		.2byte	0x1
- 2123 002b 51       		.byte	0x51
- 2124 002c 0A000000 		.4byte	.LVL9
- 2125 0030 14000000 		.4byte	.LVL12
- 2126 0034 0100     		.2byte	0x1
- 2127 0036 55       		.byte	0x55
- 2128 0037 14000000 		.4byte	.LVL12
- 2129 003b 1C000000 		.4byte	.LFE64
- 2130 003f 0100     		.2byte	0x1
- 2131 0041 51       		.byte	0x51
- 2132 0042 00000000 		.4byte	0
- 2133 0046 00000000 		.4byte	0
- 2134              	.LLST2:
- 2135 004a 00000000 		.4byte	.LVL6
- 2136 004e 08000000 		.4byte	.LVL8
- 2137 0052 0100     		.2byte	0x1
- 2138 0054 52       		.byte	0x52
- 2139 0055 08000000 		.4byte	.LVL8
- 2140 0059 1C000000 		.4byte	.LFE64
- 2141 005d 0100     		.2byte	0x1
- 2142 005f 56       		.byte	0x56
- 2143 0060 00000000 		.4byte	0
- 2144 0064 00000000 		.4byte	0
- 2145              	.LLST3:
- 2146 0068 04000000 		.4byte	.LVL7
- 2147 006c 08000000 		.4byte	.LVL8
- 2148 0070 0200     		.2byte	0x2
- 2149 0072 30       		.byte	0x30
- 2150 0073 9F       		.byte	0x9f
- 2151 0074 08000000 		.4byte	.LVL8
- 2152 0078 1C000000 		.4byte	.LFE64
- 2153 007c 0100     		.2byte	0x1
- 2154 007e 54       		.byte	0x54
- 2155 007f 00000000 		.4byte	0
- 2156 0083 00000000 		.4byte	0
- 2157              	.LLST4:
- 2158 0087 00000000 		.4byte	.LVL13
- 2159 008b 07000000 		.4byte	.LVL15-1
- 2160 008f 0100     		.2byte	0x1
- 2161 0091 50       		.byte	0x50
- 2162 0092 07000000 		.4byte	.LVL15-1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 45
-
-
- 2163 0096 6E000000 		.4byte	.LFE70
- 2164 009a 0100     		.2byte	0x1
- 2165 009c 54       		.byte	0x54
- 2166 009d 00000000 		.4byte	0
- 2167 00a1 00000000 		.4byte	0
- 2168              	.LLST5:
- 2169 00a5 04000000 		.4byte	.LVL14
- 2170 00a9 10000000 		.4byte	.LVL16
- 2171 00ad 0200     		.2byte	0x2
- 2172 00af 30       		.byte	0x30
- 2173 00b0 9F       		.byte	0x9f
- 2174 00b1 10000000 		.4byte	.LVL16
- 2175 00b5 14000000 		.4byte	.LVL17
- 2176 00b9 0100     		.2byte	0x1
- 2177 00bb 50       		.byte	0x50
- 2178 00bc 44000000 		.4byte	.LVL24
- 2179 00c0 48000000 		.4byte	.LVL25
- 2180 00c4 0100     		.2byte	0x1
- 2181 00c6 50       		.byte	0x50
- 2182 00c7 00000000 		.4byte	0
- 2183 00cb 00000000 		.4byte	0
- 2184              	.LLST6:
- 2185 00cf C6000000 		.4byte	.LVL56
- 2186 00d3 26010000 		.4byte	.LVL62
- 2187 00d7 0700     		.2byte	0x7
- 2188 00d9 74       		.byte	0x74
- 2189 00da 00       		.sleb128 0
- 2190 00db 48       		.byte	0x48
- 2191 00dc 24       		.byte	0x24
- 2192 00dd 30       		.byte	0x30
- 2193 00de 2E       		.byte	0x2e
- 2194 00df 9F       		.byte	0x9f
- 2195 00e0 00000000 		.4byte	0
- 2196 00e4 00000000 		.4byte	0
- 2197              	.LLST7:
- 2198 00e8 CC000000 		.4byte	.LVL58
- 2199 00ec 26010000 		.4byte	.LVL62
- 2200 00f0 0700     		.2byte	0x7
- 2201 00f2 76       		.byte	0x76
- 2202 00f3 00       		.sleb128 0
- 2203 00f4 48       		.byte	0x48
- 2204 00f5 24       		.byte	0x24
- 2205 00f6 30       		.byte	0x30
- 2206 00f7 2E       		.byte	0x2e
- 2207 00f8 9F       		.byte	0x9f
- 2208 00f9 00000000 		.4byte	0
- 2209 00fd 00000000 		.4byte	0
- 2210              	.LLST8:
- 2211 0101 D2000000 		.4byte	.LVL60
- 2212 0105 26010000 		.4byte	.LVL62
- 2213 0109 0700     		.2byte	0x7
- 2214 010b 75       		.byte	0x75
- 2215 010c 00       		.sleb128 0
- 2216 010d 48       		.byte	0x48
- 2217 010e 24       		.byte	0x24
- 2218 010f 30       		.byte	0x30
- 2219 0110 2E       		.byte	0x2e
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 46
-
-
- 2220 0111 9F       		.byte	0x9f
- 2221 0112 00000000 		.4byte	0
- 2222 0116 00000000 		.4byte	0
- 2223              	.LLST9:
- 2224 011a D6000000 		.4byte	.LVL61
- 2225 011e 26010000 		.4byte	.LVL62
- 2226 0122 0700     		.2byte	0x7
- 2227 0124 70       		.byte	0x70
- 2228 0125 00       		.sleb128 0
- 2229 0126 48       		.byte	0x48
- 2230 0127 24       		.byte	0x24
- 2231 0128 30       		.byte	0x30
- 2232 0129 2E       		.byte	0x2e
- 2233 012a 9F       		.byte	0x9f
- 2234 012b 00000000 		.4byte	0
- 2235 012f 00000000 		.4byte	0
- 2236              		.section	.debug_aranges,"",%progbits
- 2237 0000 4C000000 		.4byte	0x4c
- 2238 0004 0200     		.2byte	0x2
- 2239 0006 00000000 		.4byte	.Ldebug_info0
- 2240 000a 04       		.byte	0x4
- 2241 000b 00       		.byte	0
- 2242 000c 0000     		.2byte	0
- 2243 000e 0000     		.2byte	0
- 2244 0010 00000000 		.4byte	.LFB65
- 2245 0014 0C000000 		.4byte	.LFE65-.LFB65
- 2246 0018 00000000 		.4byte	.LFB66
- 2247 001c 0C000000 		.4byte	.LFE66-.LFB66
- 2248 0020 00000000 		.4byte	.LFB67
- 2249 0024 58000000 		.4byte	.LFE67-.LFB67
- 2250 0028 00000000 		.4byte	.LFB68
- 2251 002c 1C000000 		.4byte	.LFE68-.LFB68
- 2252 0030 00000000 		.4byte	.LFB64
- 2253 0034 1C000000 		.4byte	.LFE64-.LFB64
- 2254 0038 00000000 		.4byte	.LFB70
- 2255 003c 6E000000 		.4byte	.LFE70-.LFB70
- 2256 0040 00000000 		.4byte	.LFB69
- 2257 0044 78010000 		.4byte	.LFE69-.LFB69
- 2258 0048 00000000 		.4byte	0
- 2259 004c 00000000 		.4byte	0
- 2260              		.section	.debug_ranges,"",%progbits
- 2261              	.Ldebug_ranges0:
- 2262 0000 00000000 		.4byte	.LFB65
- 2263 0004 0C000000 		.4byte	.LFE65
- 2264 0008 00000000 		.4byte	.LFB66
- 2265 000c 0C000000 		.4byte	.LFE66
- 2266 0010 00000000 		.4byte	.LFB67
- 2267 0014 58000000 		.4byte	.LFE67
- 2268 0018 00000000 		.4byte	.LFB68
- 2269 001c 1C000000 		.4byte	.LFE68
- 2270 0020 00000000 		.4byte	.LFB64
- 2271 0024 1C000000 		.4byte	.LFE64
- 2272 0028 00000000 		.4byte	.LFB70
- 2273 002c 6E000000 		.4byte	.LFE70
- 2274 0030 00000000 		.4byte	.LFB69
- 2275 0034 78010000 		.4byte	.LFE69
- 2276 0038 00000000 		.4byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 47
-
-
- 2277 003c 00000000 		.4byte	0
- 2278              		.section	.debug_line,"",%progbits
- 2279              	.Ldebug_line0:
- 2280 0000 47040000 		.section	.debug_str,"MS",%progbits,1
- 2280      02001C03 
- 2280      00000201 
- 2280      FB0E0D00 
- 2280      01010101 
- 2281              	.LASF81:
- 2282 0000 4D6F746F 		.ascii	"MotorControlRiseingEdge_StartEx\000"
- 2282      72436F6E 
- 2282      74726F6C 
- 2282      52697365 
- 2282      696E6745 
- 2283              	.LASF78:
- 2284 0020 486F7269 		.ascii	"Horizon_Render\000"
- 2284      7A6F6E5F 
- 2284      52656E64 
- 2284      657200
- 2285              	.LASF44:
- 2286 002f 585F4469 		.ascii	"X_Dir_Pin_Write\000"
- 2286      725F5069 
- 2286      6E5F5772 
- 2286      69746500 
- 2287              	.LASF69:
- 2288 003f 50574D5F 		.ascii	"PWM_1_Start\000"
- 2288      315F5374 
- 2288      61727400 
- 2289              	.LASF56:
- 2290 004b 4932435F 		.ascii	"I2C_Y_MasterSendStart\000"
- 2290      595F4D61 
- 2290      73746572 
- 2290      53656E64 
- 2290      53746172 
- 2291              	.LASF75:
- 2292 0061 6C6F6164 		.ascii	"loadWord\000"
- 2292      576F7264 
- 2292      00
- 2293              	.LASF2:
- 2294 006a 73686F72 		.ascii	"short int\000"
- 2294      7420696E 
- 2294      7400
- 2295              	.LASF17:
- 2296 0074 785F6465 		.ascii	"x_des\000"
- 2296      7300
- 2297              	.LASF71:
- 2298 007a 42757474 		.ascii	"Button_Refresh_Timer_Start\000"
- 2298      6F6E5F52 
- 2298      65667265 
- 2298      73685F54 
- 2298      696D6572 
- 2299              	.LASF85:
- 2300 0095 4C45445F 		.ascii	"LED_Pin_Write\000"
- 2300      50696E5F 
- 2300      57726974 
- 2300      6500
- 2301              	.LASF30:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 48
-
-
- 2302 00a3 726F7461 		.ascii	"rotator_state\000"
- 2302      746F725F 
- 2302      73746174 
- 2302      6500
- 2303              	.LASF42:
- 2304 00b1 72656672 		.ascii	"refresh_buttons\000"
- 2304      6573685F 
- 2304      62757474 
- 2304      6F6E7300 
- 2305              	.LASF46:
- 2306 00c1 585F5374 		.ascii	"X_Step_Pin_Write\000"
- 2306      65705F50 
- 2306      696E5F57 
- 2306      72697465 
- 2306      00
- 2307              	.LASF72:
- 2308 00d2 4932435F 		.ascii	"I2C_X_Start\000"
- 2308      585F5374 
- 2308      61727400 
- 2309              	.LASF28:
- 2310 00de 66696C65 		.ascii	"file\000"
- 2310      00
- 2311              	.LASF68:
- 2312 00e3 4932435F 		.ascii	"I2C_OLED_Start\000"
- 2312      4F4C4544 
- 2312      5F537461 
- 2312      727400
- 2313              	.LASF24:
- 2314 00f2 44495350 		.ascii	"DISPLAY_REFRESH_Handler\000"
- 2314      4C41595F 
- 2314      52454652 
- 2314      4553485F 
- 2314      48616E64 
- 2315              	.LASF76:
- 2316 010a 55415254 		.ascii	"UART_PutString\000"
- 2316      5F507574 
- 2316      53747269 
- 2316      6E6700
- 2317              	.LASF53:
- 2318 0119 4932435F 		.ascii	"I2C_X_MasterReadByte\000"
- 2318      585F4D61 
- 2318      73746572 
- 2318      52656164 
- 2318      42797465 
- 2319              	.LASF70:
- 2320 012e 44697370 		.ascii	"Display_Refresh_Timer_Start\000"
- 2320      6C61795F 
- 2320      52656672 
- 2320      6573685F 
- 2320      54696D65 
- 2321              	.LASF33:
- 2322 014a 646F776E 		.ascii	"down_button\000"
- 2322      5F627574 
- 2322      746F6E00 
- 2323              	.LASF84:
- 2324 0156 434C495F 		.ascii	"CLI_Update\000"
- 2324      55706461 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 49
-
-
- 2324      746500
- 2325              	.LASF20:
- 2326 0161 795F6163 		.ascii	"y_act\000"
- 2326      7400
- 2327              	.LASF26:
- 2328 0167 4D4F544F 		.ascii	"MOTOR_CONTROLL_RISEING_EDGE_Handler\000"
- 2328      525F434F 
- 2328      4E54524F 
- 2328      4C4C5F52 
- 2328      49534549 
- 2329              	.LASF45:
- 2330 018b 595F4469 		.ascii	"Y_Dir_Pin_Write\000"
- 2330      725F5069 
- 2330      6E5F5772 
- 2330      69746500 
- 2331              	.LASF89:
- 2332 019b 5F777269 		.ascii	"_write\000"
- 2332      746500
- 2333              	.LASF38:
- 2334 01a2 61726731 		.ascii	"arg1\000"
- 2334      00
- 2335              	.LASF12:
- 2336 01a7 666C6F61 		.ascii	"float\000"
- 2336      7400
- 2337              	.LASF59:
- 2338 01ad 4932435F 		.ascii	"I2C_Y_MasterReadByte\000"
- 2338      595F4D61 
- 2338      73746572 
- 2338      52656164 
- 2338      42797465 
- 2339              	.LASF6:
- 2340 01c2 6C6F6E67 		.ascii	"long long int\000"
- 2340      206C6F6E 
- 2340      6720696E 
- 2340      7400
- 2341              	.LASF63:
- 2342 01d0 53575F4C 		.ascii	"SW_LEFT_Pin_Read\000"
- 2342      4546545F 
- 2342      50696E5F 
- 2342      52656164 
- 2342      00
- 2343              	.LASF4:
- 2344 01e1 6C6F6E67 		.ascii	"long int\000"
- 2344      20696E74 
- 2344      00
- 2345              	.LASF58:
- 2346 01ea 4932435F 		.ascii	"I2C_Y_MasterSendRestart\000"
- 2346      595F4D61 
- 2346      73746572 
- 2346      53656E64 
- 2346      52657374 
- 2347              	.LASF51:
- 2348 0202 4932435F 		.ascii	"I2C_X_MasterWriteByte\000"
- 2348      585F4D61 
- 2348      73746572 
- 2348      57726974 
- 2348      65427974 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 50
-
-
- 2349              	.LASF82:
- 2350 0218 4D6F746F 		.ascii	"MotorControlFallingEdge_StartEx\000"
- 2350      72436F6E 
- 2350      74726F6C 
- 2350      46616C6C 
- 2350      696E6745 
- 2351              	.LASF88:
- 2352 0238 433A5C55 		.ascii	"C:\\Users\\Dell\\Documents\\GitHub\\PSoC_AntennaRot"
- 2352      73657273 
- 2352      5C44656C 
- 2352      6C5C446F 
- 2352      63756D65 
- 2353 0266 61746F72 		.ascii	"ator\\Workspace01\\AntennaRotator.cydsn\000"
- 2353      5C576F72 
- 2353      6B737061 
- 2353      63653031 
- 2353      5C416E74 
- 2354              	.LASF34:
- 2355 028c 6C656674 		.ascii	"left_button\000"
- 2355      5F627574 
- 2355      746F6E00 
- 2356              	.LASF66:
- 2357 0298 434C495F 		.ascii	"CLI_Init\000"
- 2357      496E6974 
- 2357      00
- 2358              	.LASF57:
- 2359 02a1 4932435F 		.ascii	"I2C_Y_MasterWriteByte\000"
- 2359      595F4D61 
- 2359      73746572 
- 2359      57726974 
- 2359      65427974 
- 2360              	.LASF18:
- 2361 02b7 795F6465 		.ascii	"y_des\000"
- 2361      7300
- 2362              	.LASF15:
- 2363 02bd 6C6F6E67 		.ascii	"long double\000"
- 2363      20646F75 
- 2363      626C6500 
- 2364              	.LASF62:
- 2365 02c9 53575F44 		.ascii	"SW_DOWN_Pin_Read\000"
- 2365      4F574E5F 
- 2365      50696E5F 
- 2365      52656164 
- 2365      00
- 2366              	.LASF80:
- 2367 02da 42757474 		.ascii	"Button_Refresh_Timer_Int_StartEx\000"
- 2367      6F6E5F52 
- 2367      65667265 
- 2367      73685F54 
- 2367      696D6572 
- 2368              	.LASF1:
- 2369 02fb 756E7369 		.ascii	"unsigned char\000"
- 2369      676E6564 
- 2369      20636861 
- 2369      7200
- 2370              	.LASF74:
- 2371 0309 74657374 		.ascii	"testBit\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 51
-
-
- 2371      42697400 
- 2372              	.LASF77:
- 2373 0311 486F7269 		.ascii	"Horizon_Init\000"
- 2373      7A6F6E5F 
- 2373      496E6974 
- 2373      00
- 2374              	.LASF29:
- 2375 031e 72656672 		.ascii	"refreshRotation\000"
- 2375      65736852 
- 2375      6F746174 
- 2375      696F6E00 
- 2376              	.LASF0:
- 2377 032e 7369676E 		.ascii	"signed char\000"
- 2377      65642063 
- 2377      68617200 
- 2378              	.LASF7:
- 2379 033a 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2379      206C6F6E 
- 2379      6720756E 
- 2379      7369676E 
- 2379      65642069 
- 2380              	.LASF47:
- 2381 0351 595F5374 		.ascii	"Y_Step_Pin_Write\000"
- 2381      65705F50 
- 2381      696E5F57 
- 2381      72697465 
- 2381      00
- 2382              	.LASF52:
- 2383 0362 4932435F 		.ascii	"I2C_X_MasterSendRestart\000"
- 2383      585F4D61 
- 2383      73746572 
- 2383      53656E64 
- 2383      52657374 
- 2384              	.LASF50:
- 2385 037a 4932435F 		.ascii	"I2C_X_MasterSendStart\000"
- 2385      585F4D61 
- 2385      73746572 
- 2385      53656E64 
- 2385      53746172 
- 2386              	.LASF8:
- 2387 0390 756E7369 		.ascii	"unsigned int\000"
- 2387      676E6564 
- 2387      20696E74 
- 2387      00
- 2388              	.LASF25:
- 2389 039d 42555454 		.ascii	"BUTTON_REFRESH_Handler\000"
- 2389      4F4E5F52 
- 2389      45465245 
- 2389      53485F48 
- 2389      616E646C 
- 2390              	.LASF83:
- 2391 03b4 4D6F746F 		.ascii	"Motor_Enable_Write\000"
- 2391      725F456E 
- 2391      61626C65 
- 2391      5F577269 
- 2391      746500
- 2392              	.LASF31:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 52
-
-
- 2393 03c7 73746174 		.ascii	"status\000"
- 2393      757300
- 2394              	.LASF23:
- 2395 03ce 64617461 		.ascii	"data\000"
- 2395      00
- 2396              	.LASF35:
- 2397 03d3 72696768 		.ascii	"right_button\000"
- 2397      745F6275 
- 2397      74746F6E 
- 2397      00
- 2398              	.LASF14:
- 2399 03e0 63686172 		.ascii	"char\000"
- 2399      00
- 2400              	.LASF90:
- 2401 03e5 6D61696E 		.ascii	"main\000"
- 2401      00
- 2402              	.LASF67:
- 2403 03ea 55415254 		.ascii	"UART_Start\000"
- 2403      5F537461 
- 2403      727400
- 2404              	.LASF10:
- 2405 03f5 696E7433 		.ascii	"int32_t\000"
- 2405      325F7400 
- 2406              	.LASF54:
- 2407 03fd 4932435F 		.ascii	"I2C_X_MasterSendStop\000"
- 2407      585F4D61 
- 2407      73746572 
- 2407      53656E64 
- 2407      53746F70 
- 2408              	.LASF3:
- 2409 0412 73686F72 		.ascii	"short unsigned int\000"
- 2409      7420756E 
- 2409      7369676E 
- 2409      65642069 
- 2409      6E7400
- 2410              	.LASF11:
- 2411 0425 75696E74 		.ascii	"uint8\000"
- 2411      3800
- 2412              	.LASF36:
- 2413 042b 5F426F6F 		.ascii	"_Bool\000"
- 2413      6C00
- 2414              	.LASF61:
- 2415 0431 53575F55 		.ascii	"SW_UP_Pin_Read\000"
- 2415      505F5069 
- 2415      6E5F5265 
- 2415      616400
- 2416              	.LASF65:
- 2417 0440 45455052 		.ascii	"EEPROM_1_Start\000"
- 2417      4F4D5F31 
- 2417      5F537461 
- 2417      727400
- 2418              	.LASF73:
- 2419 044f 4932435F 		.ascii	"I2C_Y_Start\000"
- 2419      595F5374 
- 2419      61727400 
- 2420              	.LASF87:
- 2421 045b 6D61696E 		.ascii	"main.c\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 53
-
-
- 2421      2E6300
- 2422              	.LASF5:
- 2423 0462 6C6F6E67 		.ascii	"long unsigned int\000"
- 2423      20756E73 
- 2423      69676E65 
- 2423      6420696E 
- 2423      7400
- 2424              	.LASF60:
- 2425 0474 4932435F 		.ascii	"I2C_Y_MasterSendStop\000"
- 2425      595F4D61 
- 2425      73746572 
- 2425      53656E64 
- 2425      53746F70 
- 2426              	.LASF13:
- 2427 0489 646F7562 		.ascii	"double\000"
- 2427      6C6500
- 2428              	.LASF49:
- 2429 0490 4932435F 		.ascii	"I2C_X_MasterClearStatus\000"
- 2429      585F4D61 
- 2429      73746572 
- 2429      436C6561 
- 2429      72537461 
- 2430              	.LASF21:
- 2431 04a8 524F5441 		.ascii	"ROTATOR_STATE\000"
- 2431      544F525F 
- 2431      53544154 
- 2431      4500
- 2432              	.LASF79:
- 2433 04b6 44697370 		.ascii	"Display_Refresh_Timer_Int_StartEx\000"
- 2433      6C61795F 
- 2433      52656672 
- 2433      6573685F 
- 2433      54696D65 
- 2434              	.LASF43:
- 2435 04d8 72656672 		.ascii	"refresh_rotation\000"
- 2435      6573685F 
- 2435      726F7461 
- 2435      74696F6E 
- 2435      00
- 2436              	.LASF9:
- 2437 04e9 5F5F696E 		.ascii	"__int32_t\000"
- 2437      7433325F 
- 2437      7400
- 2438              	.LASF41:
- 2439 04f3 72656672 		.ascii	"refresh_display\000"
- 2439      6573685F 
- 2439      64697370 
- 2439      6C617900 
- 2440              	.LASF16:
- 2441 0503 73697A65 		.ascii	"sizetype\000"
- 2441      74797065 
- 2441      00
- 2442              	.LASF55:
- 2443 050c 4932435F 		.ascii	"I2C_Y_MasterClearStatus\000"
- 2443      595F4D61 
- 2443      73746572 
- 2443      436C6561 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 54
-
-
- 2443      72537461 
- 2444              	.LASF64:
- 2445 0524 53575F52 		.ascii	"SW_RIGHT_Pin_Read\000"
- 2445      49474854 
- 2445      5F50696E 
- 2445      5F526561 
- 2445      6400
- 2446              	.LASF39:
- 2447 0536 61726732 		.ascii	"arg2\000"
- 2447      00
- 2448              	.LASF40:
- 2449 053b 61726733 		.ascii	"arg3\000"
- 2449      00
- 2450              	.LASF19:
- 2451 0540 785F6163 		.ascii	"x_act\000"
- 2451      7400
- 2452              	.LASF32:
- 2453 0546 75705F62 		.ascii	"up_button\000"
- 2453      7574746F 
- 2453      6E00
- 2454              	.LASF37:
- 2455 0550 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 2455      52784275 
- 2455      66666572 
- 2455      00
- 2456              	.LASF86:
- 2457 055d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2457      43313120 
- 2457      352E342E 
- 2457      31203230 
- 2457      31363036 
- 2458 0590 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2458      20726576 
- 2458      6973696F 
- 2458      6E203233 
- 2458      37373135 
- 2459 05c3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2459      66756E63 
- 2459      74696F6E 
- 2459      2D736563 
- 2459      74696F6E 
- 2460              	.LASF27:
- 2461 05eb 4D4F544F 		.ascii	"MOTOR_CONTROLL_FALLING_EDGE_Handler\000"
- 2461      525F434F 
- 2461      4E54524F 
- 2461      4C4C5F46 
- 2461      414C4C49 
- 2462              	.LASF48:
- 2463 060f 55415254 		.ascii	"UART_PutChar\000"
- 2463      5F507574 
- 2463      43686172 
- 2463      00
- 2464              	.LASF22:
- 2465 061c 494E5055 		.ascii	"INPUT_BUFFER\000"
- 2465      545F4255 
- 2465      46464552 
- 2465      00
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccW3Yhf8.s 			page 55
-
-
- 2466              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 552              		.loc 1 137 0 is_stmt 0 discriminator 1
+ 553 0120 0433     		adds	r3, r3, #4
+ 554 0122 0E4A     		ldr	r2, .L42
+ 555 0124 5360     		str	r3, [r2, #4]
+ 556              	.LVL62:
+ 557              	.L31:
+ 558              	.LBE2:
+ 141:main.c        ****         
+ 559              		.loc 1 141 0 is_stmt 1
+ 560 0126 FFF7FEFF 		bl	CLI_Update
+ 561              	.LVL63:
+ 143:main.c        ****     }
+ 562              		.loc 1 143 0
+ 563 012a FFF7FEFF 		bl	SW_UP_Pin_Read
+ 564              	.LVL64:
+ 565 012e 50B1     		cbz	r0, .L37
+ 143:main.c        ****     }
+ 566              		.loc 1 143 0 is_stmt 0 discriminator 1
+ 567 0130 FFF7FEFF 		bl	SW_DOWN_Pin_Read
+ 568              	.LVL65:
+ 569 0134 48B1     		cbz	r0, .L38
+ 143:main.c        ****     }
+ 570              		.loc 1 143 0 discriminator 3
+ 571 0136 FFF7FEFF 		bl	SW_LEFT_Pin_Read
+ 572              	.LVL66:
+ 573 013a 40B1     		cbz	r0, .L39
+ 143:main.c        ****     }
+ 574              		.loc 1 143 0 discriminator 5
+ 575 013c FFF7FEFF 		bl	SW_RIGHT_Pin_Read
+ 576              	.LVL67:
+ 577 0140 38B1     		cbz	r0, .L40
+ 143:main.c        ****     }
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 17
+
+
+ 578              		.loc 1 143 0
+ 579 0142 0120     		movs	r0, #1
+ 580 0144 06E0     		b	.L35
+ 581              	.L37:
+ 582 0146 0020     		movs	r0, #0
+ 583 0148 04E0     		b	.L35
+ 584              	.L38:
+ 585 014a 0020     		movs	r0, #0
+ 586 014c 02E0     		b	.L35
+ 587              	.L39:
+ 588 014e 0020     		movs	r0, #0
+ 589 0150 00E0     		b	.L35
+ 590              	.L40:
+ 591 0152 0020     		movs	r0, #0
+ 592              	.L35:
+ 143:main.c        ****     }
+ 593              		.loc 1 143 0 discriminator 10
+ 594 0154 FFF7FEFF 		bl	LED_Pin_Write
+ 595              	.LVL68:
+ 144:main.c        **** }
+ 596              		.loc 1 144 0 is_stmt 1 discriminator 10
+ 597 0158 99E7     		b	.L36
+ 598              	.L43:
+ 599 015a 00BF     		.align	2
+ 600              	.L42:
+ 601 015c 00000000 		.word	rotator_state
+ 602 0160 00000000 		.word	DISPLAY_REFRESH_Handler
+ 603 0164 00000000 		.word	BUTTON_REFRESH_Handler
+ 604 0168 00000000 		.word	MOTOR_CONTROLL_RISEING_EDGE_Handler
+ 605 016c 00000000 		.word	MOTOR_CONTROLL_FALLING_EDGE_Handler
+ 606 0170 00000000 		.word	.LC0
+ 607 0174 00000000 		.word	.LANCHOR0
+ 608              		.cfi_endproc
+ 609              	.LFE69:
+ 610              		.size	main, .-main
+ 611              		.global	refresh_rotation
+ 612              		.global	refresh_buttons
+ 613              		.global	refresh_display
+ 614              		.comm	arg3,12,4
+ 615              		.comm	arg2,12,4
+ 616              		.comm	arg1,12,4
+ 617              		.comm	cmd,12,4
+ 618              		.comm	rotator_state,16,4
+ 619              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 620              		.align	2
+ 621              	.LC0:
+ 622 0000 53797374 		.ascii	"System started.\015\012\000"
+ 622      656D2073 
+ 622      74617274 
+ 622      65642E0D 
+ 622      0A00
+ 623              		.bss
+ 624              		.set	.LANCHOR0,. + 0
+ 625              		.type	refresh_display, %object
+ 626              		.size	refresh_display, 1
+ 627              	refresh_display:
+ 628 0000 00       		.space	1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 18
+
+
+ 629              		.type	refresh_buttons, %object
+ 630              		.size	refresh_buttons, 1
+ 631              	refresh_buttons:
+ 632 0001 00       		.space	1
+ 633              		.type	refresh_rotation, %object
+ 634              		.size	refresh_rotation, 1
+ 635              	refresh_rotation:
+ 636 0002 00       		.space	1
+ 637              		.text
+ 638              	.Letext0:
+ 639              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 640              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 641              		.file 5 "Generated_Source\\PSoC5/cytypes.h"
+ 642              		.file 6 "main.h"
+ 643              		.file 7 "cli.h"
+ 644              		.file 8 "Generated_Source\\PSoC5/core_cm3.h"
+ 645              		.file 9 "Generated_Source\\PSoC5/X_Dir_Pin.h"
+ 646              		.file 10 "Generated_Source\\PSoC5/Y_Dir_Pin.h"
+ 647              		.file 11 "Generated_Source\\PSoC5/X_Step_Pin.h"
+ 648              		.file 12 "Generated_Source\\PSoC5/Y_Step_Pin.h"
+ 649              		.file 13 "Generated_Source\\PSoC5/UART.h"
+ 650              		.file 14 "Generated_Source\\PSoC5/I2C_X.h"
+ 651              		.file 15 "Generated_Source\\PSoC5/I2C_Y.h"
+ 652              		.file 16 "Generated_Source\\PSoC5/SW_UP_Pin.h"
+ 653              		.file 17 "Generated_Source\\PSoC5/SW_DOWN_Pin.h"
+ 654              		.file 18 "Generated_Source\\PSoC5/SW_LEFT_Pin.h"
+ 655              		.file 19 "Generated_Source\\PSoC5/SW_RIGHT_Pin.h"
+ 656              		.file 20 "Generated_Source\\PSoC5/EEPROM_1.h"
+ 657              		.file 21 "Generated_Source\\PSoC5/I2C_OLED.h"
+ 658              		.file 22 "Generated_Source\\PSoC5/PWM_1.h"
+ 659              		.file 23 "Generated_Source\\PSoC5/Display_Refresh_Timer.h"
+ 660              		.file 24 "Generated_Source\\PSoC5/Button_Refresh_Timer.h"
+ 661              		.file 25 "RotatorHorizon.h"
+ 662              		.file 26 "eeprom.h"
+ 663              		.file 27 "Generated_Source\\PSoC5/Display_Refresh_Timer_Int.h"
+ 664              		.file 28 "Generated_Source\\PSoC5/Button_Refresh_Timer_Int.h"
+ 665              		.file 29 "Generated_Source\\PSoC5/MotorControlRiseingEdge.h"
+ 666              		.file 30 "Generated_Source\\PSoC5/MotorControlFallingEdge.h"
+ 667              		.file 31 "Generated_Source\\PSoC5/Motor_Enable.h"
+ 668              		.file 32 "Generated_Source\\PSoC5/LED_Pin.h"
+ 669              		.section	.debug_info,"",%progbits
+ 670              	.Ldebug_info0:
+ 671 0000 38080000 		.4byte	0x838
+ 672 0004 0400     		.2byte	0x4
+ 673 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 674 000a 04       		.byte	0x4
+ 675 000b 01       		.uleb128 0x1
+ 676 000c 5D050000 		.4byte	.LASF86
+ 677 0010 0C       		.byte	0xc
+ 678 0011 5B040000 		.4byte	.LASF87
+ 679 0015 38020000 		.4byte	.LASF88
+ 680 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 681 001d 00000000 		.4byte	0
+ 682 0021 00000000 		.4byte	.Ldebug_line0
+ 683 0025 02       		.uleb128 0x2
+ 684 0026 01       		.byte	0x1
+ 685 0027 06       		.byte	0x6
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 19
+
+
+ 686 0028 2E030000 		.4byte	.LASF0
+ 687 002c 02       		.uleb128 0x2
+ 688 002d 01       		.byte	0x1
+ 689 002e 08       		.byte	0x8
+ 690 002f FB020000 		.4byte	.LASF1
+ 691 0033 02       		.uleb128 0x2
+ 692 0034 02       		.byte	0x2
+ 693 0035 05       		.byte	0x5
+ 694 0036 6A000000 		.4byte	.LASF2
+ 695 003a 02       		.uleb128 0x2
+ 696 003b 02       		.byte	0x2
+ 697 003c 07       		.byte	0x7
+ 698 003d 12040000 		.4byte	.LASF3
+ 699 0041 03       		.uleb128 0x3
+ 700 0042 E9040000 		.4byte	.LASF9
+ 701 0046 03       		.byte	0x3
+ 702 0047 3F       		.byte	0x3f
+ 703 0048 4C000000 		.4byte	0x4c
+ 704 004c 02       		.uleb128 0x2
+ 705 004d 04       		.byte	0x4
+ 706 004e 05       		.byte	0x5
+ 707 004f E1010000 		.4byte	.LASF4
+ 708 0053 02       		.uleb128 0x2
+ 709 0054 04       		.byte	0x4
+ 710 0055 07       		.byte	0x7
+ 711 0056 62040000 		.4byte	.LASF5
+ 712 005a 02       		.uleb128 0x2
+ 713 005b 08       		.byte	0x8
+ 714 005c 05       		.byte	0x5
+ 715 005d C2010000 		.4byte	.LASF6
+ 716 0061 02       		.uleb128 0x2
+ 717 0062 08       		.byte	0x8
+ 718 0063 07       		.byte	0x7
+ 719 0064 3A030000 		.4byte	.LASF7
+ 720 0068 04       		.uleb128 0x4
+ 721 0069 04       		.byte	0x4
+ 722 006a 05       		.byte	0x5
+ 723 006b 696E7400 		.ascii	"int\000"
+ 724 006f 02       		.uleb128 0x2
+ 725 0070 04       		.byte	0x4
+ 726 0071 07       		.byte	0x7
+ 727 0072 90030000 		.4byte	.LASF8
+ 728 0076 03       		.uleb128 0x3
+ 729 0077 F5030000 		.4byte	.LASF10
+ 730 007b 04       		.byte	0x4
+ 731 007c 2C       		.byte	0x2c
+ 732 007d 41000000 		.4byte	0x41
+ 733 0081 05       		.uleb128 0x5
+ 734 0082 25040000 		.4byte	.LASF11
+ 735 0086 05       		.byte	0x5
+ 736 0087 E801     		.2byte	0x1e8
+ 737 0089 2C000000 		.4byte	0x2c
+ 738 008d 02       		.uleb128 0x2
+ 739 008e 04       		.byte	0x4
+ 740 008f 04       		.byte	0x4
+ 741 0090 A7010000 		.4byte	.LASF12
+ 742 0094 02       		.uleb128 0x2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 20
+
+
+ 743 0095 08       		.byte	0x8
+ 744 0096 04       		.byte	0x4
+ 745 0097 89040000 		.4byte	.LASF13
+ 746 009b 02       		.uleb128 0x2
+ 747 009c 01       		.byte	0x1
+ 748 009d 08       		.byte	0x8
+ 749 009e E0030000 		.4byte	.LASF14
+ 750 00a2 02       		.uleb128 0x2
+ 751 00a3 08       		.byte	0x8
+ 752 00a4 04       		.byte	0x4
+ 753 00a5 BD020000 		.4byte	.LASF15
+ 754 00a9 02       		.uleb128 0x2
+ 755 00aa 04       		.byte	0x4
+ 756 00ab 07       		.byte	0x7
+ 757 00ac 03050000 		.4byte	.LASF16
+ 758 00b0 06       		.uleb128 0x6
+ 759 00b1 04       		.byte	0x4
+ 760 00b2 9B000000 		.4byte	0x9b
+ 761 00b6 07       		.uleb128 0x7
+ 762 00b7 A8040000 		.4byte	.LASF21
+ 763 00bb 10       		.byte	0x10
+ 764 00bc 06       		.byte	0x6
+ 765 00bd 12       		.byte	0x12
+ 766 00be F3000000 		.4byte	0xf3
+ 767 00c2 08       		.uleb128 0x8
+ 768 00c3 74000000 		.4byte	.LASF17
+ 769 00c7 06       		.byte	0x6
+ 770 00c8 13       		.byte	0x13
+ 771 00c9 68000000 		.4byte	0x68
+ 772 00cd 00       		.byte	0
+ 773 00ce 08       		.uleb128 0x8
+ 774 00cf B7020000 		.4byte	.LASF18
+ 775 00d3 06       		.byte	0x6
+ 776 00d4 14       		.byte	0x14
+ 777 00d5 68000000 		.4byte	0x68
+ 778 00d9 04       		.byte	0x4
+ 779 00da 08       		.uleb128 0x8
+ 780 00db 40050000 		.4byte	.LASF19
+ 781 00df 06       		.byte	0x6
+ 782 00e0 15       		.byte	0x15
+ 783 00e1 68000000 		.4byte	0x68
+ 784 00e5 08       		.byte	0x8
+ 785 00e6 08       		.uleb128 0x8
+ 786 00e7 61010000 		.4byte	.LASF20
+ 787 00eb 06       		.byte	0x6
+ 788 00ec 16       		.byte	0x16
+ 789 00ed 68000000 		.4byte	0x68
+ 790 00f1 0C       		.byte	0xc
+ 791 00f2 00       		.byte	0
+ 792 00f3 03       		.uleb128 0x3
+ 793 00f4 A8040000 		.4byte	.LASF21
+ 794 00f8 06       		.byte	0x6
+ 795 00f9 17       		.byte	0x17
+ 796 00fa B6000000 		.4byte	0xb6
+ 797 00fe 07       		.uleb128 0x7
+ 798 00ff 1C060000 		.4byte	.LASF22
+ 799 0103 0C       		.byte	0xc
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 21
+
+
+ 800 0104 07       		.byte	0x7
+ 801 0105 18       		.byte	0x18
+ 802 0106 23010000 		.4byte	0x123
+ 803 010a 08       		.uleb128 0x8
+ 804 010b CE030000 		.4byte	.LASF23
+ 805 010f 07       		.byte	0x7
+ 806 0110 19       		.byte	0x19
+ 807 0111 23010000 		.4byte	0x123
+ 808 0115 00       		.byte	0
+ 809 0116 09       		.uleb128 0x9
+ 810 0117 636E7400 		.ascii	"cnt\000"
+ 811 011b 07       		.byte	0x7
+ 812 011c 1A       		.byte	0x1a
+ 813 011d 68000000 		.4byte	0x68
+ 814 0121 08       		.byte	0x8
+ 815 0122 00       		.byte	0
+ 816 0123 0A       		.uleb128 0xa
+ 817 0124 9B000000 		.4byte	0x9b
+ 818 0128 33010000 		.4byte	0x133
+ 819 012c 0B       		.uleb128 0xb
+ 820 012d A9000000 		.4byte	0xa9
+ 821 0131 04       		.byte	0x4
+ 822 0132 00       		.byte	0
+ 823 0133 0C       		.uleb128 0xc
+ 824 0134 F2000000 		.4byte	.LASF24
+ 825 0138 01       		.byte	0x1
+ 826 0139 1E       		.byte	0x1e
+ 827 013a 00000000 		.4byte	.LFB65
+ 828 013e 0C000000 		.4byte	.LFE65-.LFB65
+ 829 0142 01       		.uleb128 0x1
+ 830 0143 9C       		.byte	0x9c
+ 831 0144 0C       		.uleb128 0xc
+ 832 0145 9D030000 		.4byte	.LASF25
+ 833 0149 01       		.byte	0x1
+ 834 014a 22       		.byte	0x22
+ 835 014b 00000000 		.4byte	.LFB66
+ 836 014f 0C000000 		.4byte	.LFE66-.LFB66
+ 837 0153 01       		.uleb128 0x1
+ 838 0154 9C       		.byte	0x9c
+ 839 0155 0D       		.uleb128 0xd
+ 840 0156 67010000 		.4byte	.LASF26
+ 841 015a 01       		.byte	0x1
+ 842 015b 26       		.byte	0x26
+ 843 015c 00000000 		.4byte	.LFB67
+ 844 0160 58000000 		.4byte	.LFE67-.LFB67
+ 845 0164 01       		.uleb128 0x1
+ 846 0165 9C       		.byte	0x9c
+ 847 0166 9F010000 		.4byte	0x19f
+ 848 016a 0E       		.uleb128 0xe
+ 849 016b 14000000 		.4byte	.LVL0
+ 850 016f 6D060000 		.4byte	0x66d
+ 851 0173 0E       		.uleb128 0xe
+ 852 0174 24000000 		.4byte	.LVL1
+ 853 0178 78060000 		.4byte	0x678
+ 854 017c 0F       		.uleb128 0xf
+ 855 017d 3A000000 		.4byte	.LVL2
+ 856 0181 83060000 		.4byte	0x683
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 22
+
+
+ 857 0185 8F010000 		.4byte	0x18f
+ 858 0189 10       		.uleb128 0x10
+ 859 018a 01       		.uleb128 0x1
+ 860 018b 50       		.byte	0x50
+ 861 018c 01       		.uleb128 0x1
+ 862 018d 31       		.byte	0x31
+ 863 018e 00       		.byte	0
+ 864 018f 11       		.uleb128 0x11
+ 865 0190 52000000 		.4byte	.LVL3
+ 866 0194 8E060000 		.4byte	0x68e
+ 867 0198 10       		.uleb128 0x10
+ 868 0199 01       		.uleb128 0x1
+ 869 019a 50       		.byte	0x50
+ 870 019b 01       		.uleb128 0x1
+ 871 019c 31       		.byte	0x31
+ 872 019d 00       		.byte	0
+ 873 019e 00       		.byte	0
+ 874 019f 0D       		.uleb128 0xd
+ 875 01a0 EB050000 		.4byte	.LASF27
+ 876 01a4 01       		.byte	0x1
+ 877 01a5 32       		.byte	0x32
+ 878 01a6 00000000 		.4byte	.LFB68
+ 879 01aa 1C000000 		.4byte	.LFE68-.LFB68
+ 880 01ae 01       		.uleb128 0x1
+ 881 01af 9C       		.byte	0x9c
+ 882 01b0 D7010000 		.4byte	0x1d7
+ 883 01b4 0F       		.uleb128 0xf
+ 884 01b5 08000000 		.4byte	.LVL4
+ 885 01b9 83060000 		.4byte	0x683
+ 886 01bd C7010000 		.4byte	0x1c7
+ 887 01c1 10       		.uleb128 0x10
+ 888 01c2 01       		.uleb128 0x1
+ 889 01c3 50       		.byte	0x50
+ 890 01c4 01       		.uleb128 0x1
+ 891 01c5 30       		.byte	0x30
+ 892 01c6 00       		.byte	0
+ 893 01c7 11       		.uleb128 0x11
+ 894 01c8 0E000000 		.4byte	.LVL5
+ 895 01cc 8E060000 		.4byte	0x68e
+ 896 01d0 10       		.uleb128 0x10
+ 897 01d1 01       		.uleb128 0x1
+ 898 01d2 50       		.byte	0x50
+ 899 01d3 01       		.uleb128 0x1
+ 900 01d4 30       		.byte	0x30
+ 901 01d5 00       		.byte	0
+ 902 01d6 00       		.byte	0
+ 903 01d7 12       		.uleb128 0x12
+ 904 01d8 9B010000 		.4byte	.LASF89
+ 905 01dc 02       		.byte	0x2
+ 906 01dd 55       		.byte	0x55
+ 907 01de 68000000 		.4byte	0x68
+ 908 01e2 00000000 		.4byte	.LFB64
+ 909 01e6 1C000000 		.4byte	.LFE64-.LFB64
+ 910 01ea 01       		.uleb128 0x1
+ 911 01eb 9C       		.byte	0x9c
+ 912 01ec 34020000 		.4byte	0x234
+ 913 01f0 13       		.uleb128 0x13
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 23
+
+
+ 914 01f1 DE000000 		.4byte	.LASF28
+ 915 01f5 02       		.byte	0x2
+ 916 01f6 55       		.byte	0x55
+ 917 01f7 68000000 		.4byte	0x68
+ 918 01fb 00000000 		.4byte	.LLST0
+ 919 01ff 14       		.uleb128 0x14
+ 920 0200 70747200 		.ascii	"ptr\000"
+ 921 0204 02       		.byte	0x2
+ 922 0205 55       		.byte	0x55
+ 923 0206 B0000000 		.4byte	0xb0
+ 924 020a 21000000 		.4byte	.LLST1
+ 925 020e 14       		.uleb128 0x14
+ 926 020f 6C656E00 		.ascii	"len\000"
+ 927 0213 02       		.byte	0x2
+ 928 0214 55       		.byte	0x55
+ 929 0215 68000000 		.4byte	0x68
+ 930 0219 4A000000 		.4byte	.LLST2
+ 931 021d 15       		.uleb128 0x15
+ 932 021e 6900     		.ascii	"i\000"
+ 933 0220 02       		.byte	0x2
+ 934 0221 57       		.byte	0x57
+ 935 0222 68000000 		.4byte	0x68
+ 936 0226 68000000 		.4byte	.LLST3
+ 937 022a 0E       		.uleb128 0xe
+ 938 022b 10000000 		.4byte	.LVL10
+ 939 022f 99060000 		.4byte	0x699
+ 940 0233 00       		.byte	0
+ 941 0234 0D       		.uleb128 0xd
+ 942 0235 1E030000 		.4byte	.LASF29
+ 943 0239 01       		.byte	0x1
+ 944 023a 93       		.byte	0x93
+ 945 023b 00000000 		.4byte	.LFB70
+ 946 023f 6E000000 		.4byte	.LFE70-.LFB70
+ 947 0243 01       		.uleb128 0x1
+ 948 0244 9C       		.byte	0x9c
+ 949 0245 6D030000 		.4byte	0x36d
+ 950 0249 13       		.uleb128 0x13
+ 951 024a A3000000 		.4byte	.LASF30
+ 952 024e 01       		.byte	0x1
+ 953 024f 93       		.byte	0x93
+ 954 0250 6D030000 		.4byte	0x36d
+ 955 0254 87000000 		.4byte	.LLST4
+ 956 0258 16       		.uleb128 0x16
+ 957 0259 62756600 		.ascii	"buf\000"
+ 958 025d 01       		.byte	0x1
+ 959 025e 94       		.byte	0x94
+ 960 025f 73030000 		.4byte	0x373
+ 961 0263 17       		.uleb128 0x17
+ 962 0264 C7030000 		.4byte	.LASF31
+ 963 0268 01       		.byte	0x1
+ 964 0269 95       		.byte	0x95
+ 965 026a 81000000 		.4byte	0x81
+ 966 026e A5000000 		.4byte	.LLST5
+ 967 0272 0E       		.uleb128 0xe
+ 968 0273 08000000 		.4byte	.LVL15
+ 969 0277 A4060000 		.4byte	0x6a4
+ 970 027b 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 24
+
+
+ 971 027c 10000000 		.4byte	.LVL16
+ 972 0280 AF060000 		.4byte	0x6af
+ 973 0284 94020000 		.4byte	0x294
+ 974 0288 10       		.uleb128 0x10
+ 975 0289 01       		.uleb128 0x1
+ 976 028a 50       		.byte	0x50
+ 977 028b 02       		.uleb128 0x2
+ 978 028c 08       		.byte	0x8
+ 979 028d 36       		.byte	0x36
+ 980 028e 10       		.uleb128 0x10
+ 981 028f 01       		.uleb128 0x1
+ 982 0290 51       		.byte	0x51
+ 983 0291 01       		.uleb128 0x1
+ 984 0292 30       		.byte	0x30
+ 985 0293 00       		.byte	0
+ 986 0294 0F       		.uleb128 0xf
+ 987 0295 18000000 		.4byte	.LVL18
+ 988 0299 BA060000 		.4byte	0x6ba
+ 989 029d A7020000 		.4byte	0x2a7
+ 990 02a1 10       		.uleb128 0x10
+ 991 02a2 01       		.uleb128 0x1
+ 992 02a3 50       		.byte	0x50
+ 993 02a4 01       		.uleb128 0x1
+ 994 02a5 3E       		.byte	0x3e
+ 995 02a6 00       		.byte	0
+ 996 02a7 0F       		.uleb128 0xf
+ 997 02a8 20000000 		.4byte	.LVL19
+ 998 02ac C5060000 		.4byte	0x6c5
+ 999 02b0 C0020000 		.4byte	0x2c0
+ 1000 02b4 10       		.uleb128 0x10
+ 1001 02b5 01       		.uleb128 0x1
+ 1002 02b6 50       		.byte	0x50
+ 1003 02b7 02       		.uleb128 0x2
+ 1004 02b8 08       		.byte	0x8
+ 1005 02b9 36       		.byte	0x36
+ 1006 02ba 10       		.uleb128 0x10
+ 1007 02bb 01       		.uleb128 0x1
+ 1008 02bc 51       		.byte	0x51
+ 1009 02bd 01       		.uleb128 0x1
+ 1010 02be 31       		.byte	0x31
+ 1011 02bf 00       		.byte	0
+ 1012 02c0 0F       		.uleb128 0xf
+ 1013 02c1 26000000 		.4byte	.LVL20
+ 1014 02c5 D0060000 		.4byte	0x6d0
+ 1015 02c9 D3020000 		.4byte	0x2d3
+ 1016 02cd 10       		.uleb128 0x10
+ 1017 02ce 01       		.uleb128 0x1
+ 1018 02cf 50       		.byte	0x50
+ 1019 02d0 01       		.uleb128 0x1
+ 1020 02d1 31       		.byte	0x31
+ 1021 02d2 00       		.byte	0
+ 1022 02d3 0F       		.uleb128 0xf
+ 1023 02d4 2E000000 		.4byte	.LVL21
+ 1024 02d8 D0060000 		.4byte	0x6d0
+ 1025 02dc E6020000 		.4byte	0x2e6
+ 1026 02e0 10       		.uleb128 0x10
+ 1027 02e1 01       		.uleb128 0x1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 25
+
+
+ 1028 02e2 50       		.byte	0x50
+ 1029 02e3 01       		.uleb128 0x1
+ 1030 02e4 30       		.byte	0x30
+ 1031 02e5 00       		.byte	0
+ 1032 02e6 0E       		.uleb128 0xe
+ 1033 02e7 38000000 		.4byte	.LVL22
+ 1034 02eb DB060000 		.4byte	0x6db
+ 1035 02ef 0E       		.uleb128 0xe
+ 1036 02f0 3C000000 		.4byte	.LVL23
+ 1037 02f4 E6060000 		.4byte	0x6e6
+ 1038 02f8 0F       		.uleb128 0xf
+ 1039 02f9 44000000 		.4byte	.LVL24
+ 1040 02fd F1060000 		.4byte	0x6f1
+ 1041 0301 11030000 		.4byte	0x311
+ 1042 0305 10       		.uleb128 0x10
+ 1043 0306 01       		.uleb128 0x1
+ 1044 0307 50       		.byte	0x50
+ 1045 0308 02       		.uleb128 0x2
+ 1046 0309 08       		.byte	0x8
+ 1047 030a 36       		.byte	0x36
+ 1048 030b 10       		.uleb128 0x10
+ 1049 030c 01       		.uleb128 0x1
+ 1050 030d 51       		.byte	0x51
+ 1051 030e 01       		.uleb128 0x1
+ 1052 030f 30       		.byte	0x30
+ 1053 0310 00       		.byte	0
+ 1054 0311 0F       		.uleb128 0xf
+ 1055 0312 4C000000 		.4byte	.LVL26
+ 1056 0316 FC060000 		.4byte	0x6fc
+ 1057 031a 24030000 		.4byte	0x324
+ 1058 031e 10       		.uleb128 0x10
+ 1059 031f 01       		.uleb128 0x1
+ 1060 0320 50       		.byte	0x50
+ 1061 0321 01       		.uleb128 0x1
+ 1062 0322 3E       		.byte	0x3e
+ 1063 0323 00       		.byte	0
+ 1064 0324 0F       		.uleb128 0xf
+ 1065 0325 54000000 		.4byte	.LVL27
+ 1066 0329 07070000 		.4byte	0x707
+ 1067 032d 3D030000 		.4byte	0x33d
+ 1068 0331 10       		.uleb128 0x10
+ 1069 0332 01       		.uleb128 0x1
+ 1070 0333 50       		.byte	0x50
+ 1071 0334 02       		.uleb128 0x2
+ 1072 0335 08       		.byte	0x8
+ 1073 0336 36       		.byte	0x36
+ 1074 0337 10       		.uleb128 0x10
+ 1075 0338 01       		.uleb128 0x1
+ 1076 0339 51       		.byte	0x51
+ 1077 033a 01       		.uleb128 0x1
+ 1078 033b 31       		.byte	0x31
+ 1079 033c 00       		.byte	0
+ 1080 033d 0F       		.uleb128 0xf
+ 1081 033e 5A000000 		.4byte	.LVL28
+ 1082 0342 12070000 		.4byte	0x712
+ 1083 0346 50030000 		.4byte	0x350
+ 1084 034a 10       		.uleb128 0x10
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 26
+
+
+ 1085 034b 01       		.uleb128 0x1
+ 1086 034c 50       		.byte	0x50
+ 1087 034d 01       		.uleb128 0x1
+ 1088 034e 31       		.byte	0x31
+ 1089 034f 00       		.byte	0
+ 1090 0350 0F       		.uleb128 0xf
+ 1091 0351 62000000 		.4byte	.LVL29
+ 1092 0355 12070000 		.4byte	0x712
+ 1093 0359 63030000 		.4byte	0x363
+ 1094 035d 10       		.uleb128 0x10
+ 1095 035e 01       		.uleb128 0x1
+ 1096 035f 50       		.byte	0x50
+ 1097 0360 01       		.uleb128 0x1
+ 1098 0361 30       		.byte	0x30
+ 1099 0362 00       		.byte	0
+ 1100 0363 0E       		.uleb128 0xe
+ 1101 0364 6C000000 		.4byte	.LVL30
+ 1102 0368 1D070000 		.4byte	0x71d
+ 1103 036c 00       		.byte	0
+ 1104 036d 06       		.uleb128 0x6
+ 1105 036e 04       		.byte	0x4
+ 1106 036f F3000000 		.4byte	0xf3
+ 1107 0373 0A       		.uleb128 0xa
+ 1108 0374 81000000 		.4byte	0x81
+ 1109 0378 83030000 		.4byte	0x383
+ 1110 037c 0B       		.uleb128 0xb
+ 1111 037d A9000000 		.4byte	0xa9
+ 1112 0381 01       		.byte	0x1
+ 1113 0382 00       		.byte	0
+ 1114 0383 18       		.uleb128 0x18
+ 1115 0384 E5030000 		.4byte	.LASF90
+ 1116 0388 01       		.byte	0x1
+ 1117 0389 38       		.byte	0x38
+ 1118 038a 68000000 		.4byte	0x68
+ 1119 038e 00000000 		.4byte	.LFB69
+ 1120 0392 78010000 		.4byte	.LFE69-.LFB69
+ 1121 0396 01       		.uleb128 0x1
+ 1122 0397 9C       		.byte	0x9c
+ 1123 0398 CD050000 		.4byte	0x5cd
+ 1124 039c 19       		.uleb128 0x19
+ 1125 039d BA000000 		.4byte	.LBB2
+ 1126 03a1 6C000000 		.4byte	.LBE2-.LBB2
+ 1127 03a5 0A040000 		.4byte	0x40a
+ 1128 03a9 17       		.uleb128 0x17
+ 1129 03aa 46050000 		.4byte	.LASF32
+ 1130 03ae 01       		.byte	0x1
+ 1131 03af 77       		.byte	0x77
+ 1132 03b0 CD050000 		.4byte	0x5cd
+ 1133 03b4 CF000000 		.4byte	.LLST6
+ 1134 03b8 17       		.uleb128 0x17
+ 1135 03b9 4A010000 		.4byte	.LASF33
+ 1136 03bd 01       		.byte	0x1
+ 1137 03be 78       		.byte	0x78
+ 1138 03bf CD050000 		.4byte	0x5cd
+ 1139 03c3 E8000000 		.4byte	.LLST7
+ 1140 03c7 17       		.uleb128 0x17
+ 1141 03c8 8C020000 		.4byte	.LASF34
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 27
+
+
+ 1142 03cc 01       		.byte	0x1
+ 1143 03cd 79       		.byte	0x79
+ 1144 03ce CD050000 		.4byte	0x5cd
+ 1145 03d2 01010000 		.4byte	.LLST8
+ 1146 03d6 17       		.uleb128 0x17
+ 1147 03d7 D3030000 		.4byte	.LASF35
+ 1148 03db 01       		.byte	0x1
+ 1149 03dc 7A       		.byte	0x7a
+ 1150 03dd CD050000 		.4byte	0x5cd
+ 1151 03e1 1A010000 		.4byte	.LLST9
+ 1152 03e5 0E       		.uleb128 0xe
+ 1153 03e6 C4000000 		.4byte	.LVL55
+ 1154 03ea 28070000 		.4byte	0x728
+ 1155 03ee 0E       		.uleb128 0xe
+ 1156 03ef CA000000 		.4byte	.LVL57
+ 1157 03f3 33070000 		.4byte	0x733
+ 1158 03f7 0E       		.uleb128 0xe
+ 1159 03f8 D0000000 		.4byte	.LVL59
+ 1160 03fc 3E070000 		.4byte	0x73e
+ 1161 0400 0E       		.uleb128 0xe
+ 1162 0401 D6000000 		.4byte	.LVL61
+ 1163 0405 49070000 		.4byte	0x749
+ 1164 0409 00       		.byte	0
+ 1165 040a 0E       		.uleb128 0xe
+ 1166 040b 08000000 		.4byte	.LVL31
+ 1167 040f 54070000 		.4byte	0x754
+ 1168 0413 0E       		.uleb128 0xe
+ 1169 0414 0C000000 		.4byte	.LVL32
+ 1170 0418 5F070000 		.4byte	0x75f
+ 1171 041c 0E       		.uleb128 0xe
+ 1172 041d 10000000 		.4byte	.LVL33
+ 1173 0421 6A070000 		.4byte	0x76a
+ 1174 0425 0E       		.uleb128 0xe
+ 1175 0426 14000000 		.4byte	.LVL34
+ 1176 042a 75070000 		.4byte	0x775
+ 1177 042e 0E       		.uleb128 0xe
+ 1178 042f 18000000 		.4byte	.LVL35
+ 1179 0433 80070000 		.4byte	0x780
+ 1180 0437 0E       		.uleb128 0xe
+ 1181 0438 1C000000 		.4byte	.LVL36
+ 1182 043c 8B070000 		.4byte	0x78b
+ 1183 0440 0E       		.uleb128 0xe
+ 1184 0441 20000000 		.4byte	.LVL37
+ 1185 0445 96070000 		.4byte	0x796
+ 1186 0449 0E       		.uleb128 0xe
+ 1187 044a 24000000 		.4byte	.LVL38
+ 1188 044e A1070000 		.4byte	0x7a1
+ 1189 0452 0F       		.uleb128 0xf
+ 1190 0453 2C000000 		.4byte	.LVL39
+ 1191 0457 34020000 		.4byte	0x234
+ 1192 045b 66040000 		.4byte	0x466
+ 1193 045f 10       		.uleb128 0x10
+ 1194 0460 01       		.uleb128 0x1
+ 1195 0461 50       		.byte	0x50
+ 1196 0462 02       		.uleb128 0x2
+ 1197 0463 74       		.byte	0x74
+ 1198 0464 00       		.sleb128 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 28
+
+
+ 1199 0465 00       		.byte	0
+ 1200 0466 0E       		.uleb128 0xe
+ 1201 0467 30000000 		.4byte	.LVL40
+ 1202 046b AC070000 		.4byte	0x7ac
+ 1203 046f 0E       		.uleb128 0xe
+ 1204 0470 34000000 		.4byte	.LVL41
+ 1205 0474 B7070000 		.4byte	0x7b7
+ 1206 0478 0F       		.uleb128 0xf
+ 1207 0479 3A000000 		.4byte	.LVL42
+ 1208 047d C2070000 		.4byte	0x7c2
+ 1209 0481 8C040000 		.4byte	0x48c
+ 1210 0485 10       		.uleb128 0x10
+ 1211 0486 01       		.uleb128 0x1
+ 1212 0487 50       		.byte	0x50
+ 1213 0488 02       		.uleb128 0x2
+ 1214 0489 74       		.byte	0x74
+ 1215 048a 00       		.sleb128 0
+ 1216 048b 00       		.byte	0
+ 1217 048c 0F       		.uleb128 0xf
+ 1218 048d 42000000 		.4byte	.LVL43
+ 1219 0491 CD070000 		.4byte	0x7cd
+ 1220 0495 A4040000 		.4byte	0x4a4
+ 1221 0499 10       		.uleb128 0x10
+ 1222 049a 01       		.uleb128 0x1
+ 1223 049b 50       		.byte	0x50
+ 1224 049c 01       		.uleb128 0x1
+ 1225 049d 30       		.byte	0x30
+ 1226 049e 10       		.uleb128 0x10
+ 1227 049f 01       		.uleb128 0x1
+ 1228 04a0 51       		.byte	0x51
+ 1229 04a1 01       		.uleb128 0x1
+ 1230 04a2 30       		.byte	0x30
+ 1231 04a3 00       		.byte	0
+ 1232 04a4 0F       		.uleb128 0xf
+ 1233 04a5 4A000000 		.4byte	.LVL44
+ 1234 04a9 D8070000 		.4byte	0x7d8
+ 1235 04ad B7040000 		.4byte	0x4b7
+ 1236 04b1 10       		.uleb128 0x10
+ 1237 04b2 01       		.uleb128 0x1
+ 1238 04b3 50       		.byte	0x50
+ 1239 04b4 01       		.uleb128 0x1
+ 1240 04b5 31       		.byte	0x31
+ 1241 04b6 00       		.byte	0
+ 1242 04b7 0F       		.uleb128 0xf
+ 1243 04b8 52000000 		.4byte	.LVL45
+ 1244 04bc D8070000 		.4byte	0x7d8
+ 1245 04c0 CA040000 		.4byte	0x4ca
+ 1246 04c4 10       		.uleb128 0x10
+ 1247 04c5 01       		.uleb128 0x1
+ 1248 04c6 50       		.byte	0x50
+ 1249 04c7 01       		.uleb128 0x1
+ 1250 04c8 33       		.byte	0x33
+ 1251 04c9 00       		.byte	0
+ 1252 04ca 0F       		.uleb128 0xf
+ 1253 04cb 66000000 		.4byte	.LVL46
+ 1254 04cf E3070000 		.4byte	0x7e3
+ 1255 04d3 E1040000 		.4byte	0x4e1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 29
+
+
+ 1256 04d7 10       		.uleb128 0x10
+ 1257 04d8 01       		.uleb128 0x1
+ 1258 04d9 50       		.byte	0x50
+ 1259 04da 05       		.uleb128 0x5
+ 1260 04db 03       		.byte	0x3
+ 1261 04dc 00000000 		.4byte	DISPLAY_REFRESH_Handler
+ 1262 04e0 00       		.byte	0
+ 1263 04e1 0F       		.uleb128 0xf
+ 1264 04e2 6C000000 		.4byte	.LVL47
+ 1265 04e6 EE070000 		.4byte	0x7ee
+ 1266 04ea F8040000 		.4byte	0x4f8
+ 1267 04ee 10       		.uleb128 0x10
+ 1268 04ef 01       		.uleb128 0x1
+ 1269 04f0 50       		.byte	0x50
+ 1270 04f1 05       		.uleb128 0x5
+ 1271 04f2 03       		.byte	0x3
+ 1272 04f3 00000000 		.4byte	BUTTON_REFRESH_Handler
+ 1273 04f7 00       		.byte	0
+ 1274 04f8 0F       		.uleb128 0xf
+ 1275 04f9 72000000 		.4byte	.LVL48
+ 1276 04fd F9070000 		.4byte	0x7f9
+ 1277 0501 0F050000 		.4byte	0x50f
+ 1278 0505 10       		.uleb128 0x10
+ 1279 0506 01       		.uleb128 0x1
+ 1280 0507 50       		.byte	0x50
+ 1281 0508 05       		.uleb128 0x5
+ 1282 0509 03       		.byte	0x3
+ 1283 050a 00000000 		.4byte	MOTOR_CONTROLL_RISEING_EDGE_Handler
+ 1284 050e 00       		.byte	0
+ 1285 050f 0F       		.uleb128 0xf
+ 1286 0510 78000000 		.4byte	.LVL49
+ 1287 0514 04080000 		.4byte	0x804
+ 1288 0518 26050000 		.4byte	0x526
+ 1289 051c 10       		.uleb128 0x10
+ 1290 051d 01       		.uleb128 0x1
+ 1291 051e 50       		.byte	0x50
+ 1292 051f 05       		.uleb128 0x5
+ 1293 0520 03       		.byte	0x3
+ 1294 0521 00000000 		.4byte	MOTOR_CONTROLL_FALLING_EDGE_Handler
+ 1295 0525 00       		.byte	0
+ 1296 0526 0F       		.uleb128 0xf
+ 1297 0527 7E000000 		.4byte	.LVL50
+ 1298 052b 0F080000 		.4byte	0x80f
+ 1299 052f 39050000 		.4byte	0x539
+ 1300 0533 10       		.uleb128 0x10
+ 1301 0534 01       		.uleb128 0x1
+ 1302 0535 50       		.byte	0x50
+ 1303 0536 01       		.uleb128 0x1
+ 1304 0537 31       		.byte	0x31
+ 1305 0538 00       		.byte	0
+ 1306 0539 0F       		.uleb128 0xf
+ 1307 053a 86000000 		.4byte	.LVL51
+ 1308 053e CD070000 		.4byte	0x7cd
+ 1309 0542 51050000 		.4byte	0x551
+ 1310 0546 10       		.uleb128 0x10
+ 1311 0547 01       		.uleb128 0x1
+ 1312 0548 50       		.byte	0x50
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 30
+
+
+ 1313 0549 01       		.uleb128 0x1
+ 1314 054a 31       		.byte	0x31
+ 1315 054b 10       		.uleb128 0x10
+ 1316 054c 01       		.uleb128 0x1
+ 1317 054d 51       		.byte	0x51
+ 1318 054e 01       		.uleb128 0x1
+ 1319 054f 30       		.byte	0x30
+ 1320 0550 00       		.byte	0
+ 1321 0551 0F       		.uleb128 0xf
+ 1322 0552 8E000000 		.4byte	.LVL52
+ 1323 0556 1A080000 		.4byte	0x81a
+ 1324 055a 68050000 		.4byte	0x568
+ 1325 055e 10       		.uleb128 0x10
+ 1326 055f 01       		.uleb128 0x1
+ 1327 0560 50       		.byte	0x50
+ 1328 0561 05       		.uleb128 0x5
+ 1329 0562 03       		.byte	0x3
+ 1330 0563 00000000 		.4byte	.LC0
+ 1331 0567 00       		.byte	0
+ 1332 0568 0F       		.uleb128 0xf
+ 1333 0569 A0000000 		.4byte	.LVL53
+ 1334 056d 34020000 		.4byte	0x234
+ 1335 0571 7F050000 		.4byte	0x57f
+ 1336 0575 10       		.uleb128 0x10
+ 1337 0576 01       		.uleb128 0x1
+ 1338 0577 50       		.byte	0x50
+ 1339 0578 05       		.uleb128 0x5
+ 1340 0579 03       		.byte	0x3
+ 1341 057a 00000000 		.4byte	rotator_state
+ 1342 057e 00       		.byte	0
+ 1343 057f 0F       		.uleb128 0xf
+ 1344 0580 B2000000 		.4byte	.LVL54
+ 1345 0584 C2070000 		.4byte	0x7c2
+ 1346 0588 96050000 		.4byte	0x596
+ 1347 058c 10       		.uleb128 0x10
+ 1348 058d 01       		.uleb128 0x1
+ 1349 058e 50       		.byte	0x50
+ 1350 058f 05       		.uleb128 0x5
+ 1351 0590 03       		.byte	0x3
+ 1352 0591 00000000 		.4byte	rotator_state
+ 1353 0595 00       		.byte	0
+ 1354 0596 0E       		.uleb128 0xe
+ 1355 0597 2A010000 		.4byte	.LVL63
+ 1356 059b 25080000 		.4byte	0x825
+ 1357 059f 0E       		.uleb128 0xe
+ 1358 05a0 2E010000 		.4byte	.LVL64
+ 1359 05a4 28070000 		.4byte	0x728
+ 1360 05a8 0E       		.uleb128 0xe
+ 1361 05a9 34010000 		.4byte	.LVL65
+ 1362 05ad 33070000 		.4byte	0x733
+ 1363 05b1 0E       		.uleb128 0xe
+ 1364 05b2 3A010000 		.4byte	.LVL66
+ 1365 05b6 3E070000 		.4byte	0x73e
+ 1366 05ba 0E       		.uleb128 0xe
+ 1367 05bb 40010000 		.4byte	.LVL67
+ 1368 05bf 49070000 		.4byte	0x749
+ 1369 05c3 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 31
+
+
+ 1370 05c4 58010000 		.4byte	.LVL68
+ 1371 05c8 30080000 		.4byte	0x830
+ 1372 05cc 00       		.byte	0
+ 1373 05cd 02       		.uleb128 0x2
+ 1374 05ce 01       		.byte	0x1
+ 1375 05cf 02       		.byte	0x2
+ 1376 05d0 2B040000 		.4byte	.LASF36
+ 1377 05d4 1A       		.uleb128 0x1a
+ 1378 05d5 50050000 		.4byte	.LASF37
+ 1379 05d9 08       		.byte	0x8
+ 1380 05da 1207     		.2byte	0x712
+ 1381 05dc E0050000 		.4byte	0x5e0
+ 1382 05e0 1B       		.uleb128 0x1b
+ 1383 05e1 76000000 		.4byte	0x76
+ 1384 05e5 1C       		.uleb128 0x1c
+ 1385 05e6 A3000000 		.4byte	.LASF30
+ 1386 05ea 06       		.byte	0x6
+ 1387 05eb 19       		.byte	0x19
+ 1388 05ec B6000000 		.4byte	0xb6
+ 1389 05f0 05       		.uleb128 0x5
+ 1390 05f1 03       		.byte	0x3
+ 1391 05f2 00000000 		.4byte	rotator_state
+ 1392 05f6 1D       		.uleb128 0x1d
+ 1393 05f7 636D6400 		.ascii	"cmd\000"
+ 1394 05fb 07       		.byte	0x7
+ 1395 05fc 1F       		.byte	0x1f
+ 1396 05fd FE000000 		.4byte	0xfe
+ 1397 0601 05       		.uleb128 0x5
+ 1398 0602 03       		.byte	0x3
+ 1399 0603 00000000 		.4byte	cmd
+ 1400 0607 1C       		.uleb128 0x1c
+ 1401 0608 A2010000 		.4byte	.LASF38
+ 1402 060c 07       		.byte	0x7
+ 1403 060d 20       		.byte	0x20
+ 1404 060e FE000000 		.4byte	0xfe
+ 1405 0612 05       		.uleb128 0x5
+ 1406 0613 03       		.byte	0x3
+ 1407 0614 00000000 		.4byte	arg1
+ 1408 0618 1C       		.uleb128 0x1c
+ 1409 0619 36050000 		.4byte	.LASF39
+ 1410 061d 07       		.byte	0x7
+ 1411 061e 21       		.byte	0x21
+ 1412 061f FE000000 		.4byte	0xfe
+ 1413 0623 05       		.uleb128 0x5
+ 1414 0624 03       		.byte	0x3
+ 1415 0625 00000000 		.4byte	arg2
+ 1416 0629 1C       		.uleb128 0x1c
+ 1417 062a 3B050000 		.4byte	.LASF40
+ 1418 062e 07       		.byte	0x7
+ 1419 062f 22       		.byte	0x22
+ 1420 0630 FE000000 		.4byte	0xfe
+ 1421 0634 05       		.uleb128 0x5
+ 1422 0635 03       		.byte	0x3
+ 1423 0636 00000000 		.4byte	arg3
+ 1424 063a 1C       		.uleb128 0x1c
+ 1425 063b F3040000 		.4byte	.LASF41
+ 1426 063f 01       		.byte	0x1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 32
+
+
+ 1427 0640 1A       		.byte	0x1a
+ 1428 0641 CD050000 		.4byte	0x5cd
+ 1429 0645 05       		.uleb128 0x5
+ 1430 0646 03       		.byte	0x3
+ 1431 0647 00000000 		.4byte	refresh_display
+ 1432 064b 1C       		.uleb128 0x1c
+ 1433 064c B1000000 		.4byte	.LASF42
+ 1434 0650 01       		.byte	0x1
+ 1435 0651 1B       		.byte	0x1b
+ 1436 0652 CD050000 		.4byte	0x5cd
+ 1437 0656 05       		.uleb128 0x5
+ 1438 0657 03       		.byte	0x3
+ 1439 0658 00000000 		.4byte	refresh_buttons
+ 1440 065c 1C       		.uleb128 0x1c
+ 1441 065d D8040000 		.4byte	.LASF43
+ 1442 0661 01       		.byte	0x1
+ 1443 0662 1C       		.byte	0x1c
+ 1444 0663 CD050000 		.4byte	0x5cd
+ 1445 0667 05       		.uleb128 0x5
+ 1446 0668 03       		.byte	0x3
+ 1447 0669 00000000 		.4byte	refresh_rotation
+ 1448 066d 1E       		.uleb128 0x1e
+ 1449 066e 2F000000 		.4byte	.LASF44
+ 1450 0672 2F000000 		.4byte	.LASF44
+ 1451 0676 09       		.byte	0x9
+ 1452 0677 26       		.byte	0x26
+ 1453 0678 1E       		.uleb128 0x1e
+ 1454 0679 8B010000 		.4byte	.LASF45
+ 1455 067d 8B010000 		.4byte	.LASF45
+ 1456 0681 0A       		.byte	0xa
+ 1457 0682 26       		.byte	0x26
+ 1458 0683 1E       		.uleb128 0x1e
+ 1459 0684 C1000000 		.4byte	.LASF46
+ 1460 0688 C1000000 		.4byte	.LASF46
+ 1461 068c 0B       		.byte	0xb
+ 1462 068d 26       		.byte	0x26
+ 1463 068e 1E       		.uleb128 0x1e
+ 1464 068f 51030000 		.4byte	.LASF47
+ 1465 0693 51030000 		.4byte	.LASF47
+ 1466 0697 0C       		.byte	0xc
+ 1467 0698 26       		.byte	0x26
+ 1468 0699 1E       		.uleb128 0x1e
+ 1469 069a 0F060000 		.4byte	.LASF48
+ 1470 069e 0F060000 		.4byte	.LASF48
+ 1471 06a2 0D       		.byte	0xd
+ 1472 06a3 8A       		.byte	0x8a
+ 1473 06a4 1E       		.uleb128 0x1e
+ 1474 06a5 90040000 		.4byte	.LASF49
+ 1475 06a9 90040000 		.4byte	.LASF49
+ 1476 06ad 0E       		.byte	0xe
+ 1477 06ae A4       		.byte	0xa4
+ 1478 06af 1E       		.uleb128 0x1e
+ 1479 06b0 7A030000 		.4byte	.LASF50
+ 1480 06b4 7A030000 		.4byte	.LASF50
+ 1481 06b8 0E       		.byte	0xe
+ 1482 06b9 B1       		.byte	0xb1
+ 1483 06ba 1E       		.uleb128 0x1e
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 33
+
+
+ 1484 06bb 02020000 		.4byte	.LASF51
+ 1485 06bf 02020000 		.4byte	.LASF51
+ 1486 06c3 0E       		.byte	0xe
+ 1487 06c4 B6       		.byte	0xb6
+ 1488 06c5 1E       		.uleb128 0x1e
+ 1489 06c6 62030000 		.4byte	.LASF52
+ 1490 06ca 62030000 		.4byte	.LASF52
+ 1491 06ce 0E       		.byte	0xe
+ 1492 06cf B3       		.byte	0xb3
+ 1493 06d0 1E       		.uleb128 0x1e
+ 1494 06d1 19010000 		.4byte	.LASF53
+ 1495 06d5 19010000 		.4byte	.LASF53
+ 1496 06d9 0E       		.byte	0xe
+ 1497 06da B7       		.byte	0xb7
+ 1498 06db 1E       		.uleb128 0x1e
+ 1499 06dc FD030000 		.4byte	.LASF54
+ 1500 06e0 FD030000 		.4byte	.LASF54
+ 1501 06e4 0E       		.byte	0xe
+ 1502 06e5 B5       		.byte	0xb5
+ 1503 06e6 1E       		.uleb128 0x1e
+ 1504 06e7 0C050000 		.4byte	.LASF55
+ 1505 06eb 0C050000 		.4byte	.LASF55
+ 1506 06ef 0F       		.byte	0xf
+ 1507 06f0 A4       		.byte	0xa4
+ 1508 06f1 1E       		.uleb128 0x1e
+ 1509 06f2 4B000000 		.4byte	.LASF56
+ 1510 06f6 4B000000 		.4byte	.LASF56
+ 1511 06fa 0F       		.byte	0xf
+ 1512 06fb B1       		.byte	0xb1
+ 1513 06fc 1E       		.uleb128 0x1e
+ 1514 06fd A1020000 		.4byte	.LASF57
+ 1515 0701 A1020000 		.4byte	.LASF57
+ 1516 0705 0F       		.byte	0xf
+ 1517 0706 B6       		.byte	0xb6
+ 1518 0707 1E       		.uleb128 0x1e
+ 1519 0708 EA010000 		.4byte	.LASF58
+ 1520 070c EA010000 		.4byte	.LASF58
+ 1521 0710 0F       		.byte	0xf
+ 1522 0711 B3       		.byte	0xb3
+ 1523 0712 1E       		.uleb128 0x1e
+ 1524 0713 AD010000 		.4byte	.LASF59
+ 1525 0717 AD010000 		.4byte	.LASF59
+ 1526 071b 0F       		.byte	0xf
+ 1527 071c B7       		.byte	0xb7
+ 1528 071d 1E       		.uleb128 0x1e
+ 1529 071e 74040000 		.4byte	.LASF60
+ 1530 0722 74040000 		.4byte	.LASF60
+ 1531 0726 0F       		.byte	0xf
+ 1532 0727 B5       		.byte	0xb5
+ 1533 0728 1E       		.uleb128 0x1e
+ 1534 0729 31040000 		.4byte	.LASF61
+ 1535 072d 31040000 		.4byte	.LASF61
+ 1536 0731 10       		.byte	0x10
+ 1537 0732 29       		.byte	0x29
+ 1538 0733 1E       		.uleb128 0x1e
+ 1539 0734 C9020000 		.4byte	.LASF62
+ 1540 0738 C9020000 		.4byte	.LASF62
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 34
+
+
+ 1541 073c 11       		.byte	0x11
+ 1542 073d 29       		.byte	0x29
+ 1543 073e 1E       		.uleb128 0x1e
+ 1544 073f D0010000 		.4byte	.LASF63
+ 1545 0743 D0010000 		.4byte	.LASF63
+ 1546 0747 12       		.byte	0x12
+ 1547 0748 29       		.byte	0x29
+ 1548 0749 1E       		.uleb128 0x1e
+ 1549 074a 24050000 		.4byte	.LASF64
+ 1550 074e 24050000 		.4byte	.LASF64
+ 1551 0752 13       		.byte	0x13
+ 1552 0753 29       		.byte	0x29
+ 1553 0754 1E       		.uleb128 0x1e
+ 1554 0755 40040000 		.4byte	.LASF65
+ 1555 0759 40040000 		.4byte	.LASF65
+ 1556 075d 14       		.byte	0x14
+ 1557 075e 1F       		.byte	0x1f
+ 1558 075f 1E       		.uleb128 0x1e
+ 1559 0760 EA030000 		.4byte	.LASF66
+ 1560 0764 EA030000 		.4byte	.LASF66
+ 1561 0768 0D       		.byte	0xd
+ 1562 0769 54       		.byte	0x54
+ 1563 076a 1E       		.uleb128 0x1e
+ 1564 076b E3000000 		.4byte	.LASF67
+ 1565 076f E3000000 		.4byte	.LASF67
+ 1566 0773 15       		.byte	0x15
+ 1567 0774 93       		.byte	0x93
+ 1568 0775 1E       		.uleb128 0x1e
+ 1569 0776 3F000000 		.4byte	.LASF68
+ 1570 077a 3F000000 		.4byte	.LASF68
+ 1571 077e 16       		.byte	0x16
+ 1572 077f 92       		.byte	0x92
+ 1573 0780 1E       		.uleb128 0x1e
+ 1574 0781 2E010000 		.4byte	.LASF69
+ 1575 0785 2E010000 		.4byte	.LASF69
+ 1576 0789 17       		.byte	0x17
+ 1577 078a 5A       		.byte	0x5a
+ 1578 078b 1E       		.uleb128 0x1e
+ 1579 078c 7A000000 		.4byte	.LASF70
+ 1580 0790 7A000000 		.4byte	.LASF70
+ 1581 0794 18       		.byte	0x18
+ 1582 0795 5A       		.byte	0x5a
+ 1583 0796 1E       		.uleb128 0x1e
+ 1584 0797 D2000000 		.4byte	.LASF71
+ 1585 079b D2000000 		.4byte	.LASF71
+ 1586 079f 0E       		.byte	0xe
+ 1587 07a0 93       		.byte	0x93
+ 1588 07a1 1E       		.uleb128 0x1e
+ 1589 07a2 4F040000 		.4byte	.LASF72
+ 1590 07a6 4F040000 		.4byte	.LASF72
+ 1591 07aa 0F       		.byte	0xf
+ 1592 07ab 93       		.byte	0x93
+ 1593 07ac 1E       		.uleb128 0x1e
+ 1594 07ad 98020000 		.4byte	.LASF73
+ 1595 07b1 98020000 		.4byte	.LASF73
+ 1596 07b5 07       		.byte	0x7
+ 1597 07b6 24       		.byte	0x24
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 35
+
+
+ 1598 07b7 1E       		.uleb128 0x1e
+ 1599 07b8 11030000 		.4byte	.LASF74
+ 1600 07bc 11030000 		.4byte	.LASF74
+ 1601 07c0 19       		.byte	0x19
+ 1602 07c1 0F       		.byte	0xf
+ 1603 07c2 1E       		.uleb128 0x1e
+ 1604 07c3 20000000 		.4byte	.LASF75
+ 1605 07c7 20000000 		.4byte	.LASF75
+ 1606 07cb 19       		.byte	0x19
+ 1607 07cc 10       		.byte	0x10
+ 1608 07cd 1E       		.uleb128 0x1e
+ 1609 07ce 09030000 		.4byte	.LASF76
+ 1610 07d2 09030000 		.4byte	.LASF76
+ 1611 07d6 1A       		.byte	0x1a
+ 1612 07d7 15       		.byte	0x15
+ 1613 07d8 1E       		.uleb128 0x1e
+ 1614 07d9 61000000 		.4byte	.LASF77
+ 1615 07dd 61000000 		.4byte	.LASF77
+ 1616 07e1 1A       		.byte	0x1a
+ 1617 07e2 13       		.byte	0x13
+ 1618 07e3 1E       		.uleb128 0x1e
+ 1619 07e4 B6040000 		.4byte	.LASF78
+ 1620 07e8 B6040000 		.4byte	.LASF78
+ 1621 07ec 1B       		.byte	0x1b
+ 1622 07ed 18       		.byte	0x18
+ 1623 07ee 1E       		.uleb128 0x1e
+ 1624 07ef DA020000 		.4byte	.LASF79
+ 1625 07f3 DA020000 		.4byte	.LASF79
+ 1626 07f7 1C       		.byte	0x1c
+ 1627 07f8 18       		.byte	0x18
+ 1628 07f9 1E       		.uleb128 0x1e
+ 1629 07fa 00000000 		.4byte	.LASF80
+ 1630 07fe 00000000 		.4byte	.LASF80
+ 1631 0802 1D       		.byte	0x1d
+ 1632 0803 18       		.byte	0x18
+ 1633 0804 1E       		.uleb128 0x1e
+ 1634 0805 18020000 		.4byte	.LASF81
+ 1635 0809 18020000 		.4byte	.LASF81
+ 1636 080d 1E       		.byte	0x1e
+ 1637 080e 18       		.byte	0x18
+ 1638 080f 1E       		.uleb128 0x1e
+ 1639 0810 B4030000 		.4byte	.LASF82
+ 1640 0814 B4030000 		.4byte	.LASF82
+ 1641 0818 1F       		.byte	0x1f
+ 1642 0819 2F       		.byte	0x2f
+ 1643 081a 1E       		.uleb128 0x1e
+ 1644 081b 0A010000 		.4byte	.LASF83
+ 1645 081f 0A010000 		.4byte	.LASF83
+ 1646 0823 0D       		.byte	0xd
+ 1647 0824 8B       		.byte	0x8b
+ 1648 0825 1E       		.uleb128 0x1e
+ 1649 0826 56010000 		.4byte	.LASF84
+ 1650 082a 56010000 		.4byte	.LASF84
+ 1651 082e 07       		.byte	0x7
+ 1652 082f 25       		.byte	0x25
+ 1653 0830 1E       		.uleb128 0x1e
+ 1654 0831 95000000 		.4byte	.LASF85
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 36
+
+
+ 1655 0835 95000000 		.4byte	.LASF85
+ 1656 0839 20       		.byte	0x20
+ 1657 083a 26       		.byte	0x26
+ 1658 083b 00       		.byte	0
+ 1659              		.section	.debug_abbrev,"",%progbits
+ 1660              	.Ldebug_abbrev0:
+ 1661 0000 01       		.uleb128 0x1
+ 1662 0001 11       		.uleb128 0x11
+ 1663 0002 01       		.byte	0x1
+ 1664 0003 25       		.uleb128 0x25
+ 1665 0004 0E       		.uleb128 0xe
+ 1666 0005 13       		.uleb128 0x13
+ 1667 0006 0B       		.uleb128 0xb
+ 1668 0007 03       		.uleb128 0x3
+ 1669 0008 0E       		.uleb128 0xe
+ 1670 0009 1B       		.uleb128 0x1b
+ 1671 000a 0E       		.uleb128 0xe
+ 1672 000b 55       		.uleb128 0x55
+ 1673 000c 17       		.uleb128 0x17
+ 1674 000d 11       		.uleb128 0x11
+ 1675 000e 01       		.uleb128 0x1
+ 1676 000f 10       		.uleb128 0x10
+ 1677 0010 17       		.uleb128 0x17
+ 1678 0011 00       		.byte	0
+ 1679 0012 00       		.byte	0
+ 1680 0013 02       		.uleb128 0x2
+ 1681 0014 24       		.uleb128 0x24
+ 1682 0015 00       		.byte	0
+ 1683 0016 0B       		.uleb128 0xb
+ 1684 0017 0B       		.uleb128 0xb
+ 1685 0018 3E       		.uleb128 0x3e
+ 1686 0019 0B       		.uleb128 0xb
+ 1687 001a 03       		.uleb128 0x3
+ 1688 001b 0E       		.uleb128 0xe
+ 1689 001c 00       		.byte	0
+ 1690 001d 00       		.byte	0
+ 1691 001e 03       		.uleb128 0x3
+ 1692 001f 16       		.uleb128 0x16
+ 1693 0020 00       		.byte	0
+ 1694 0021 03       		.uleb128 0x3
+ 1695 0022 0E       		.uleb128 0xe
+ 1696 0023 3A       		.uleb128 0x3a
+ 1697 0024 0B       		.uleb128 0xb
+ 1698 0025 3B       		.uleb128 0x3b
+ 1699 0026 0B       		.uleb128 0xb
+ 1700 0027 49       		.uleb128 0x49
+ 1701 0028 13       		.uleb128 0x13
+ 1702 0029 00       		.byte	0
+ 1703 002a 00       		.byte	0
+ 1704 002b 04       		.uleb128 0x4
+ 1705 002c 24       		.uleb128 0x24
+ 1706 002d 00       		.byte	0
+ 1707 002e 0B       		.uleb128 0xb
+ 1708 002f 0B       		.uleb128 0xb
+ 1709 0030 3E       		.uleb128 0x3e
+ 1710 0031 0B       		.uleb128 0xb
+ 1711 0032 03       		.uleb128 0x3
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 37
+
+
+ 1712 0033 08       		.uleb128 0x8
+ 1713 0034 00       		.byte	0
+ 1714 0035 00       		.byte	0
+ 1715 0036 05       		.uleb128 0x5
+ 1716 0037 16       		.uleb128 0x16
+ 1717 0038 00       		.byte	0
+ 1718 0039 03       		.uleb128 0x3
+ 1719 003a 0E       		.uleb128 0xe
+ 1720 003b 3A       		.uleb128 0x3a
+ 1721 003c 0B       		.uleb128 0xb
+ 1722 003d 3B       		.uleb128 0x3b
+ 1723 003e 05       		.uleb128 0x5
+ 1724 003f 49       		.uleb128 0x49
+ 1725 0040 13       		.uleb128 0x13
+ 1726 0041 00       		.byte	0
+ 1727 0042 00       		.byte	0
+ 1728 0043 06       		.uleb128 0x6
+ 1729 0044 0F       		.uleb128 0xf
+ 1730 0045 00       		.byte	0
+ 1731 0046 0B       		.uleb128 0xb
+ 1732 0047 0B       		.uleb128 0xb
+ 1733 0048 49       		.uleb128 0x49
+ 1734 0049 13       		.uleb128 0x13
+ 1735 004a 00       		.byte	0
+ 1736 004b 00       		.byte	0
+ 1737 004c 07       		.uleb128 0x7
+ 1738 004d 13       		.uleb128 0x13
+ 1739 004e 01       		.byte	0x1
+ 1740 004f 03       		.uleb128 0x3
+ 1741 0050 0E       		.uleb128 0xe
+ 1742 0051 0B       		.uleb128 0xb
+ 1743 0052 0B       		.uleb128 0xb
+ 1744 0053 3A       		.uleb128 0x3a
+ 1745 0054 0B       		.uleb128 0xb
+ 1746 0055 3B       		.uleb128 0x3b
+ 1747 0056 0B       		.uleb128 0xb
+ 1748 0057 01       		.uleb128 0x1
+ 1749 0058 13       		.uleb128 0x13
+ 1750 0059 00       		.byte	0
+ 1751 005a 00       		.byte	0
+ 1752 005b 08       		.uleb128 0x8
+ 1753 005c 0D       		.uleb128 0xd
+ 1754 005d 00       		.byte	0
+ 1755 005e 03       		.uleb128 0x3
+ 1756 005f 0E       		.uleb128 0xe
+ 1757 0060 3A       		.uleb128 0x3a
+ 1758 0061 0B       		.uleb128 0xb
+ 1759 0062 3B       		.uleb128 0x3b
+ 1760 0063 0B       		.uleb128 0xb
+ 1761 0064 49       		.uleb128 0x49
+ 1762 0065 13       		.uleb128 0x13
+ 1763 0066 38       		.uleb128 0x38
+ 1764 0067 0B       		.uleb128 0xb
+ 1765 0068 00       		.byte	0
+ 1766 0069 00       		.byte	0
+ 1767 006a 09       		.uleb128 0x9
+ 1768 006b 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 38
+
+
+ 1769 006c 00       		.byte	0
+ 1770 006d 03       		.uleb128 0x3
+ 1771 006e 08       		.uleb128 0x8
+ 1772 006f 3A       		.uleb128 0x3a
+ 1773 0070 0B       		.uleb128 0xb
+ 1774 0071 3B       		.uleb128 0x3b
+ 1775 0072 0B       		.uleb128 0xb
+ 1776 0073 49       		.uleb128 0x49
+ 1777 0074 13       		.uleb128 0x13
+ 1778 0075 38       		.uleb128 0x38
+ 1779 0076 0B       		.uleb128 0xb
+ 1780 0077 00       		.byte	0
+ 1781 0078 00       		.byte	0
+ 1782 0079 0A       		.uleb128 0xa
+ 1783 007a 01       		.uleb128 0x1
+ 1784 007b 01       		.byte	0x1
+ 1785 007c 49       		.uleb128 0x49
+ 1786 007d 13       		.uleb128 0x13
+ 1787 007e 01       		.uleb128 0x1
+ 1788 007f 13       		.uleb128 0x13
+ 1789 0080 00       		.byte	0
+ 1790 0081 00       		.byte	0
+ 1791 0082 0B       		.uleb128 0xb
+ 1792 0083 21       		.uleb128 0x21
+ 1793 0084 00       		.byte	0
+ 1794 0085 49       		.uleb128 0x49
+ 1795 0086 13       		.uleb128 0x13
+ 1796 0087 2F       		.uleb128 0x2f
+ 1797 0088 0B       		.uleb128 0xb
+ 1798 0089 00       		.byte	0
+ 1799 008a 00       		.byte	0
+ 1800 008b 0C       		.uleb128 0xc
+ 1801 008c 2E       		.uleb128 0x2e
+ 1802 008d 00       		.byte	0
+ 1803 008e 3F       		.uleb128 0x3f
+ 1804 008f 19       		.uleb128 0x19
+ 1805 0090 03       		.uleb128 0x3
+ 1806 0091 0E       		.uleb128 0xe
+ 1807 0092 3A       		.uleb128 0x3a
+ 1808 0093 0B       		.uleb128 0xb
+ 1809 0094 3B       		.uleb128 0x3b
+ 1810 0095 0B       		.uleb128 0xb
+ 1811 0096 27       		.uleb128 0x27
+ 1812 0097 19       		.uleb128 0x19
+ 1813 0098 11       		.uleb128 0x11
+ 1814 0099 01       		.uleb128 0x1
+ 1815 009a 12       		.uleb128 0x12
+ 1816 009b 06       		.uleb128 0x6
+ 1817 009c 40       		.uleb128 0x40
+ 1818 009d 18       		.uleb128 0x18
+ 1819 009e 9742     		.uleb128 0x2117
+ 1820 00a0 19       		.uleb128 0x19
+ 1821 00a1 00       		.byte	0
+ 1822 00a2 00       		.byte	0
+ 1823 00a3 0D       		.uleb128 0xd
+ 1824 00a4 2E       		.uleb128 0x2e
+ 1825 00a5 01       		.byte	0x1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 39
+
+
+ 1826 00a6 3F       		.uleb128 0x3f
+ 1827 00a7 19       		.uleb128 0x19
+ 1828 00a8 03       		.uleb128 0x3
+ 1829 00a9 0E       		.uleb128 0xe
+ 1830 00aa 3A       		.uleb128 0x3a
+ 1831 00ab 0B       		.uleb128 0xb
+ 1832 00ac 3B       		.uleb128 0x3b
+ 1833 00ad 0B       		.uleb128 0xb
+ 1834 00ae 27       		.uleb128 0x27
+ 1835 00af 19       		.uleb128 0x19
+ 1836 00b0 11       		.uleb128 0x11
+ 1837 00b1 01       		.uleb128 0x1
+ 1838 00b2 12       		.uleb128 0x12
+ 1839 00b3 06       		.uleb128 0x6
+ 1840 00b4 40       		.uleb128 0x40
+ 1841 00b5 18       		.uleb128 0x18
+ 1842 00b6 9742     		.uleb128 0x2117
+ 1843 00b8 19       		.uleb128 0x19
+ 1844 00b9 01       		.uleb128 0x1
+ 1845 00ba 13       		.uleb128 0x13
+ 1846 00bb 00       		.byte	0
+ 1847 00bc 00       		.byte	0
+ 1848 00bd 0E       		.uleb128 0xe
+ 1849 00be 898201   		.uleb128 0x4109
+ 1850 00c1 00       		.byte	0
+ 1851 00c2 11       		.uleb128 0x11
+ 1852 00c3 01       		.uleb128 0x1
+ 1853 00c4 31       		.uleb128 0x31
+ 1854 00c5 13       		.uleb128 0x13
+ 1855 00c6 00       		.byte	0
+ 1856 00c7 00       		.byte	0
+ 1857 00c8 0F       		.uleb128 0xf
+ 1858 00c9 898201   		.uleb128 0x4109
+ 1859 00cc 01       		.byte	0x1
+ 1860 00cd 11       		.uleb128 0x11
+ 1861 00ce 01       		.uleb128 0x1
+ 1862 00cf 31       		.uleb128 0x31
+ 1863 00d0 13       		.uleb128 0x13
+ 1864 00d1 01       		.uleb128 0x1
+ 1865 00d2 13       		.uleb128 0x13
+ 1866 00d3 00       		.byte	0
+ 1867 00d4 00       		.byte	0
+ 1868 00d5 10       		.uleb128 0x10
+ 1869 00d6 8A8201   		.uleb128 0x410a
+ 1870 00d9 00       		.byte	0
+ 1871 00da 02       		.uleb128 0x2
+ 1872 00db 18       		.uleb128 0x18
+ 1873 00dc 9142     		.uleb128 0x2111
+ 1874 00de 18       		.uleb128 0x18
+ 1875 00df 00       		.byte	0
+ 1876 00e0 00       		.byte	0
+ 1877 00e1 11       		.uleb128 0x11
+ 1878 00e2 898201   		.uleb128 0x4109
+ 1879 00e5 01       		.byte	0x1
+ 1880 00e6 11       		.uleb128 0x11
+ 1881 00e7 01       		.uleb128 0x1
+ 1882 00e8 31       		.uleb128 0x31
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 40
+
+
+ 1883 00e9 13       		.uleb128 0x13
+ 1884 00ea 00       		.byte	0
+ 1885 00eb 00       		.byte	0
+ 1886 00ec 12       		.uleb128 0x12
+ 1887 00ed 2E       		.uleb128 0x2e
+ 1888 00ee 01       		.byte	0x1
+ 1889 00ef 3F       		.uleb128 0x3f
+ 1890 00f0 19       		.uleb128 0x19
+ 1891 00f1 03       		.uleb128 0x3
+ 1892 00f2 0E       		.uleb128 0xe
+ 1893 00f3 3A       		.uleb128 0x3a
+ 1894 00f4 0B       		.uleb128 0xb
+ 1895 00f5 3B       		.uleb128 0x3b
+ 1896 00f6 0B       		.uleb128 0xb
+ 1897 00f7 27       		.uleb128 0x27
+ 1898 00f8 19       		.uleb128 0x19
+ 1899 00f9 49       		.uleb128 0x49
+ 1900 00fa 13       		.uleb128 0x13
+ 1901 00fb 11       		.uleb128 0x11
+ 1902 00fc 01       		.uleb128 0x1
+ 1903 00fd 12       		.uleb128 0x12
+ 1904 00fe 06       		.uleb128 0x6
+ 1905 00ff 40       		.uleb128 0x40
+ 1906 0100 18       		.uleb128 0x18
+ 1907 0101 9742     		.uleb128 0x2117
+ 1908 0103 19       		.uleb128 0x19
+ 1909 0104 01       		.uleb128 0x1
+ 1910 0105 13       		.uleb128 0x13
+ 1911 0106 00       		.byte	0
+ 1912 0107 00       		.byte	0
+ 1913 0108 13       		.uleb128 0x13
+ 1914 0109 05       		.uleb128 0x5
+ 1915 010a 00       		.byte	0
+ 1916 010b 03       		.uleb128 0x3
+ 1917 010c 0E       		.uleb128 0xe
+ 1918 010d 3A       		.uleb128 0x3a
+ 1919 010e 0B       		.uleb128 0xb
+ 1920 010f 3B       		.uleb128 0x3b
+ 1921 0110 0B       		.uleb128 0xb
+ 1922 0111 49       		.uleb128 0x49
+ 1923 0112 13       		.uleb128 0x13
+ 1924 0113 02       		.uleb128 0x2
+ 1925 0114 17       		.uleb128 0x17
+ 1926 0115 00       		.byte	0
+ 1927 0116 00       		.byte	0
+ 1928 0117 14       		.uleb128 0x14
+ 1929 0118 05       		.uleb128 0x5
+ 1930 0119 00       		.byte	0
+ 1931 011a 03       		.uleb128 0x3
+ 1932 011b 08       		.uleb128 0x8
+ 1933 011c 3A       		.uleb128 0x3a
+ 1934 011d 0B       		.uleb128 0xb
+ 1935 011e 3B       		.uleb128 0x3b
+ 1936 011f 0B       		.uleb128 0xb
+ 1937 0120 49       		.uleb128 0x49
+ 1938 0121 13       		.uleb128 0x13
+ 1939 0122 02       		.uleb128 0x2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 41
+
+
+ 1940 0123 17       		.uleb128 0x17
+ 1941 0124 00       		.byte	0
+ 1942 0125 00       		.byte	0
+ 1943 0126 15       		.uleb128 0x15
+ 1944 0127 34       		.uleb128 0x34
+ 1945 0128 00       		.byte	0
+ 1946 0129 03       		.uleb128 0x3
+ 1947 012a 08       		.uleb128 0x8
+ 1948 012b 3A       		.uleb128 0x3a
+ 1949 012c 0B       		.uleb128 0xb
+ 1950 012d 3B       		.uleb128 0x3b
+ 1951 012e 0B       		.uleb128 0xb
+ 1952 012f 49       		.uleb128 0x49
+ 1953 0130 13       		.uleb128 0x13
+ 1954 0131 02       		.uleb128 0x2
+ 1955 0132 17       		.uleb128 0x17
+ 1956 0133 00       		.byte	0
+ 1957 0134 00       		.byte	0
+ 1958 0135 16       		.uleb128 0x16
+ 1959 0136 34       		.uleb128 0x34
+ 1960 0137 00       		.byte	0
+ 1961 0138 03       		.uleb128 0x3
+ 1962 0139 08       		.uleb128 0x8
+ 1963 013a 3A       		.uleb128 0x3a
+ 1964 013b 0B       		.uleb128 0xb
+ 1965 013c 3B       		.uleb128 0x3b
+ 1966 013d 0B       		.uleb128 0xb
+ 1967 013e 49       		.uleb128 0x49
+ 1968 013f 13       		.uleb128 0x13
+ 1969 0140 00       		.byte	0
+ 1970 0141 00       		.byte	0
+ 1971 0142 17       		.uleb128 0x17
+ 1972 0143 34       		.uleb128 0x34
+ 1973 0144 00       		.byte	0
+ 1974 0145 03       		.uleb128 0x3
+ 1975 0146 0E       		.uleb128 0xe
+ 1976 0147 3A       		.uleb128 0x3a
+ 1977 0148 0B       		.uleb128 0xb
+ 1978 0149 3B       		.uleb128 0x3b
+ 1979 014a 0B       		.uleb128 0xb
+ 1980 014b 49       		.uleb128 0x49
+ 1981 014c 13       		.uleb128 0x13
+ 1982 014d 02       		.uleb128 0x2
+ 1983 014e 17       		.uleb128 0x17
+ 1984 014f 00       		.byte	0
+ 1985 0150 00       		.byte	0
+ 1986 0151 18       		.uleb128 0x18
+ 1987 0152 2E       		.uleb128 0x2e
+ 1988 0153 01       		.byte	0x1
+ 1989 0154 3F       		.uleb128 0x3f
+ 1990 0155 19       		.uleb128 0x19
+ 1991 0156 03       		.uleb128 0x3
+ 1992 0157 0E       		.uleb128 0xe
+ 1993 0158 3A       		.uleb128 0x3a
+ 1994 0159 0B       		.uleb128 0xb
+ 1995 015a 3B       		.uleb128 0x3b
+ 1996 015b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 42
+
+
+ 1997 015c 27       		.uleb128 0x27
+ 1998 015d 19       		.uleb128 0x19
+ 1999 015e 49       		.uleb128 0x49
+ 2000 015f 13       		.uleb128 0x13
+ 2001 0160 8701     		.uleb128 0x87
+ 2002 0162 19       		.uleb128 0x19
+ 2003 0163 11       		.uleb128 0x11
+ 2004 0164 01       		.uleb128 0x1
+ 2005 0165 12       		.uleb128 0x12
+ 2006 0166 06       		.uleb128 0x6
+ 2007 0167 40       		.uleb128 0x40
+ 2008 0168 18       		.uleb128 0x18
+ 2009 0169 9742     		.uleb128 0x2117
+ 2010 016b 19       		.uleb128 0x19
+ 2011 016c 01       		.uleb128 0x1
+ 2012 016d 13       		.uleb128 0x13
+ 2013 016e 00       		.byte	0
+ 2014 016f 00       		.byte	0
+ 2015 0170 19       		.uleb128 0x19
+ 2016 0171 0B       		.uleb128 0xb
+ 2017 0172 01       		.byte	0x1
+ 2018 0173 11       		.uleb128 0x11
+ 2019 0174 01       		.uleb128 0x1
+ 2020 0175 12       		.uleb128 0x12
+ 2021 0176 06       		.uleb128 0x6
+ 2022 0177 01       		.uleb128 0x1
+ 2023 0178 13       		.uleb128 0x13
+ 2024 0179 00       		.byte	0
+ 2025 017a 00       		.byte	0
+ 2026 017b 1A       		.uleb128 0x1a
+ 2027 017c 34       		.uleb128 0x34
+ 2028 017d 00       		.byte	0
+ 2029 017e 03       		.uleb128 0x3
+ 2030 017f 0E       		.uleb128 0xe
+ 2031 0180 3A       		.uleb128 0x3a
+ 2032 0181 0B       		.uleb128 0xb
+ 2033 0182 3B       		.uleb128 0x3b
+ 2034 0183 05       		.uleb128 0x5
+ 2035 0184 49       		.uleb128 0x49
+ 2036 0185 13       		.uleb128 0x13
+ 2037 0186 3F       		.uleb128 0x3f
+ 2038 0187 19       		.uleb128 0x19
+ 2039 0188 3C       		.uleb128 0x3c
+ 2040 0189 19       		.uleb128 0x19
+ 2041 018a 00       		.byte	0
+ 2042 018b 00       		.byte	0
+ 2043 018c 1B       		.uleb128 0x1b
+ 2044 018d 35       		.uleb128 0x35
+ 2045 018e 00       		.byte	0
+ 2046 018f 49       		.uleb128 0x49
+ 2047 0190 13       		.uleb128 0x13
+ 2048 0191 00       		.byte	0
+ 2049 0192 00       		.byte	0
+ 2050 0193 1C       		.uleb128 0x1c
+ 2051 0194 34       		.uleb128 0x34
+ 2052 0195 00       		.byte	0
+ 2053 0196 03       		.uleb128 0x3
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 43
+
+
+ 2054 0197 0E       		.uleb128 0xe
+ 2055 0198 3A       		.uleb128 0x3a
+ 2056 0199 0B       		.uleb128 0xb
+ 2057 019a 3B       		.uleb128 0x3b
+ 2058 019b 0B       		.uleb128 0xb
+ 2059 019c 49       		.uleb128 0x49
+ 2060 019d 13       		.uleb128 0x13
+ 2061 019e 3F       		.uleb128 0x3f
+ 2062 019f 19       		.uleb128 0x19
+ 2063 01a0 02       		.uleb128 0x2
+ 2064 01a1 18       		.uleb128 0x18
+ 2065 01a2 00       		.byte	0
+ 2066 01a3 00       		.byte	0
+ 2067 01a4 1D       		.uleb128 0x1d
+ 2068 01a5 34       		.uleb128 0x34
+ 2069 01a6 00       		.byte	0
+ 2070 01a7 03       		.uleb128 0x3
+ 2071 01a8 08       		.uleb128 0x8
+ 2072 01a9 3A       		.uleb128 0x3a
+ 2073 01aa 0B       		.uleb128 0xb
+ 2074 01ab 3B       		.uleb128 0x3b
+ 2075 01ac 0B       		.uleb128 0xb
+ 2076 01ad 49       		.uleb128 0x49
+ 2077 01ae 13       		.uleb128 0x13
+ 2078 01af 3F       		.uleb128 0x3f
+ 2079 01b0 19       		.uleb128 0x19
+ 2080 01b1 02       		.uleb128 0x2
+ 2081 01b2 18       		.uleb128 0x18
+ 2082 01b3 00       		.byte	0
+ 2083 01b4 00       		.byte	0
+ 2084 01b5 1E       		.uleb128 0x1e
+ 2085 01b6 2E       		.uleb128 0x2e
+ 2086 01b7 00       		.byte	0
+ 2087 01b8 3F       		.uleb128 0x3f
+ 2088 01b9 19       		.uleb128 0x19
+ 2089 01ba 3C       		.uleb128 0x3c
+ 2090 01bb 19       		.uleb128 0x19
+ 2091 01bc 6E       		.uleb128 0x6e
+ 2092 01bd 0E       		.uleb128 0xe
+ 2093 01be 03       		.uleb128 0x3
+ 2094 01bf 0E       		.uleb128 0xe
+ 2095 01c0 3A       		.uleb128 0x3a
+ 2096 01c1 0B       		.uleb128 0xb
+ 2097 01c2 3B       		.uleb128 0x3b
+ 2098 01c3 0B       		.uleb128 0xb
+ 2099 01c4 00       		.byte	0
+ 2100 01c5 00       		.byte	0
+ 2101 01c6 00       		.byte	0
+ 2102              		.section	.debug_loc,"",%progbits
+ 2103              	.Ldebug_loc0:
+ 2104              	.LLST0:
+ 2105 0000 00000000 		.4byte	.LVL6
+ 2106 0004 08000000 		.4byte	.LVL8
+ 2107 0008 0100     		.2byte	0x1
+ 2108 000a 50       		.byte	0x50
+ 2109 000b 08000000 		.4byte	.LVL8
+ 2110 000f 1C000000 		.4byte	.LFE64
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 44
+
+
+ 2111 0013 0400     		.2byte	0x4
+ 2112 0015 F3       		.byte	0xf3
+ 2113 0016 01       		.uleb128 0x1
+ 2114 0017 50       		.byte	0x50
+ 2115 0018 9F       		.byte	0x9f
+ 2116 0019 00000000 		.4byte	0
+ 2117 001d 00000000 		.4byte	0
+ 2118              	.LLST1:
+ 2119 0021 00000000 		.4byte	.LVL6
+ 2120 0025 0A000000 		.4byte	.LVL9
+ 2121 0029 0100     		.2byte	0x1
+ 2122 002b 51       		.byte	0x51
+ 2123 002c 0A000000 		.4byte	.LVL9
+ 2124 0030 14000000 		.4byte	.LVL12
+ 2125 0034 0100     		.2byte	0x1
+ 2126 0036 55       		.byte	0x55
+ 2127 0037 14000000 		.4byte	.LVL12
+ 2128 003b 1C000000 		.4byte	.LFE64
+ 2129 003f 0100     		.2byte	0x1
+ 2130 0041 51       		.byte	0x51
+ 2131 0042 00000000 		.4byte	0
+ 2132 0046 00000000 		.4byte	0
+ 2133              	.LLST2:
+ 2134 004a 00000000 		.4byte	.LVL6
+ 2135 004e 08000000 		.4byte	.LVL8
+ 2136 0052 0100     		.2byte	0x1
+ 2137 0054 52       		.byte	0x52
+ 2138 0055 08000000 		.4byte	.LVL8
+ 2139 0059 1C000000 		.4byte	.LFE64
+ 2140 005d 0100     		.2byte	0x1
+ 2141 005f 56       		.byte	0x56
+ 2142 0060 00000000 		.4byte	0
+ 2143 0064 00000000 		.4byte	0
+ 2144              	.LLST3:
+ 2145 0068 04000000 		.4byte	.LVL7
+ 2146 006c 08000000 		.4byte	.LVL8
+ 2147 0070 0200     		.2byte	0x2
+ 2148 0072 30       		.byte	0x30
+ 2149 0073 9F       		.byte	0x9f
+ 2150 0074 08000000 		.4byte	.LVL8
+ 2151 0078 1C000000 		.4byte	.LFE64
+ 2152 007c 0100     		.2byte	0x1
+ 2153 007e 54       		.byte	0x54
+ 2154 007f 00000000 		.4byte	0
+ 2155 0083 00000000 		.4byte	0
+ 2156              	.LLST4:
+ 2157 0087 00000000 		.4byte	.LVL13
+ 2158 008b 07000000 		.4byte	.LVL15-1
+ 2159 008f 0100     		.2byte	0x1
+ 2160 0091 50       		.byte	0x50
+ 2161 0092 07000000 		.4byte	.LVL15-1
+ 2162 0096 6E000000 		.4byte	.LFE70
+ 2163 009a 0100     		.2byte	0x1
+ 2164 009c 54       		.byte	0x54
+ 2165 009d 00000000 		.4byte	0
+ 2166 00a1 00000000 		.4byte	0
+ 2167              	.LLST5:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 45
+
+
+ 2168 00a5 04000000 		.4byte	.LVL14
+ 2169 00a9 10000000 		.4byte	.LVL16
+ 2170 00ad 0200     		.2byte	0x2
+ 2171 00af 30       		.byte	0x30
+ 2172 00b0 9F       		.byte	0x9f
+ 2173 00b1 10000000 		.4byte	.LVL16
+ 2174 00b5 14000000 		.4byte	.LVL17
+ 2175 00b9 0100     		.2byte	0x1
+ 2176 00bb 50       		.byte	0x50
+ 2177 00bc 44000000 		.4byte	.LVL24
+ 2178 00c0 48000000 		.4byte	.LVL25
+ 2179 00c4 0100     		.2byte	0x1
+ 2180 00c6 50       		.byte	0x50
+ 2181 00c7 00000000 		.4byte	0
+ 2182 00cb 00000000 		.4byte	0
+ 2183              	.LLST6:
+ 2184 00cf C6000000 		.4byte	.LVL56
+ 2185 00d3 26010000 		.4byte	.LVL62
+ 2186 00d7 0700     		.2byte	0x7
+ 2187 00d9 74       		.byte	0x74
+ 2188 00da 00       		.sleb128 0
+ 2189 00db 48       		.byte	0x48
+ 2190 00dc 24       		.byte	0x24
+ 2191 00dd 30       		.byte	0x30
+ 2192 00de 2E       		.byte	0x2e
+ 2193 00df 9F       		.byte	0x9f
+ 2194 00e0 00000000 		.4byte	0
+ 2195 00e4 00000000 		.4byte	0
+ 2196              	.LLST7:
+ 2197 00e8 CC000000 		.4byte	.LVL58
+ 2198 00ec 26010000 		.4byte	.LVL62
+ 2199 00f0 0700     		.2byte	0x7
+ 2200 00f2 76       		.byte	0x76
+ 2201 00f3 00       		.sleb128 0
+ 2202 00f4 48       		.byte	0x48
+ 2203 00f5 24       		.byte	0x24
+ 2204 00f6 30       		.byte	0x30
+ 2205 00f7 2E       		.byte	0x2e
+ 2206 00f8 9F       		.byte	0x9f
+ 2207 00f9 00000000 		.4byte	0
+ 2208 00fd 00000000 		.4byte	0
+ 2209              	.LLST8:
+ 2210 0101 D2000000 		.4byte	.LVL60
+ 2211 0105 26010000 		.4byte	.LVL62
+ 2212 0109 0700     		.2byte	0x7
+ 2213 010b 75       		.byte	0x75
+ 2214 010c 00       		.sleb128 0
+ 2215 010d 48       		.byte	0x48
+ 2216 010e 24       		.byte	0x24
+ 2217 010f 30       		.byte	0x30
+ 2218 0110 2E       		.byte	0x2e
+ 2219 0111 9F       		.byte	0x9f
+ 2220 0112 00000000 		.4byte	0
+ 2221 0116 00000000 		.4byte	0
+ 2222              	.LLST9:
+ 2223 011a D6000000 		.4byte	.LVL61
+ 2224 011e 26010000 		.4byte	.LVL62
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 46
+
+
+ 2225 0122 0700     		.2byte	0x7
+ 2226 0124 70       		.byte	0x70
+ 2227 0125 00       		.sleb128 0
+ 2228 0126 48       		.byte	0x48
+ 2229 0127 24       		.byte	0x24
+ 2230 0128 30       		.byte	0x30
+ 2231 0129 2E       		.byte	0x2e
+ 2232 012a 9F       		.byte	0x9f
+ 2233 012b 00000000 		.4byte	0
+ 2234 012f 00000000 		.4byte	0
+ 2235              		.section	.debug_aranges,"",%progbits
+ 2236 0000 4C000000 		.4byte	0x4c
+ 2237 0004 0200     		.2byte	0x2
+ 2238 0006 00000000 		.4byte	.Ldebug_info0
+ 2239 000a 04       		.byte	0x4
+ 2240 000b 00       		.byte	0
+ 2241 000c 0000     		.2byte	0
+ 2242 000e 0000     		.2byte	0
+ 2243 0010 00000000 		.4byte	.LFB65
+ 2244 0014 0C000000 		.4byte	.LFE65-.LFB65
+ 2245 0018 00000000 		.4byte	.LFB66
+ 2246 001c 0C000000 		.4byte	.LFE66-.LFB66
+ 2247 0020 00000000 		.4byte	.LFB67
+ 2248 0024 58000000 		.4byte	.LFE67-.LFB67
+ 2249 0028 00000000 		.4byte	.LFB68
+ 2250 002c 1C000000 		.4byte	.LFE68-.LFB68
+ 2251 0030 00000000 		.4byte	.LFB64
+ 2252 0034 1C000000 		.4byte	.LFE64-.LFB64
+ 2253 0038 00000000 		.4byte	.LFB70
+ 2254 003c 6E000000 		.4byte	.LFE70-.LFB70
+ 2255 0040 00000000 		.4byte	.LFB69
+ 2256 0044 78010000 		.4byte	.LFE69-.LFB69
+ 2257 0048 00000000 		.4byte	0
+ 2258 004c 00000000 		.4byte	0
+ 2259              		.section	.debug_ranges,"",%progbits
+ 2260              	.Ldebug_ranges0:
+ 2261 0000 00000000 		.4byte	.LFB65
+ 2262 0004 0C000000 		.4byte	.LFE65
+ 2263 0008 00000000 		.4byte	.LFB66
+ 2264 000c 0C000000 		.4byte	.LFE66
+ 2265 0010 00000000 		.4byte	.LFB67
+ 2266 0014 58000000 		.4byte	.LFE67
+ 2267 0018 00000000 		.4byte	.LFB68
+ 2268 001c 1C000000 		.4byte	.LFE68
+ 2269 0020 00000000 		.4byte	.LFB64
+ 2270 0024 1C000000 		.4byte	.LFE64
+ 2271 0028 00000000 		.4byte	.LFB70
+ 2272 002c 6E000000 		.4byte	.LFE70
+ 2273 0030 00000000 		.4byte	.LFB69
+ 2274 0034 78010000 		.4byte	.LFE69
+ 2275 0038 00000000 		.4byte	0
+ 2276 003c 00000000 		.4byte	0
+ 2277              		.section	.debug_line,"",%progbits
+ 2278              	.Ldebug_line0:
+ 2279 0000 45040000 		.section	.debug_str,"MS",%progbits,1
+ 2279      02001C03 
+ 2279      00000201 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 47
+
+
+ 2279      FB0E0D00 
+ 2279      01010101 
+ 2280              	.LASF80:
+ 2281 0000 4D6F746F 		.ascii	"MotorControlRiseingEdge_StartEx\000"
+ 2281      72436F6E 
+ 2281      74726F6C 
+ 2281      52697365 
+ 2281      696E6745 
+ 2282              	.LASF75:
+ 2283 0020 486F7269 		.ascii	"Horizon_Render\000"
+ 2283      7A6F6E5F 
+ 2283      52656E64 
+ 2283      657200
+ 2284              	.LASF44:
+ 2285 002f 585F4469 		.ascii	"X_Dir_Pin_Write\000"
+ 2285      725F5069 
+ 2285      6E5F5772 
+ 2285      69746500 
+ 2286              	.LASF68:
+ 2287 003f 50574D5F 		.ascii	"PWM_1_Start\000"
+ 2287      315F5374 
+ 2287      61727400 
+ 2288              	.LASF56:
+ 2289 004b 4932435F 		.ascii	"I2C_Y_MasterSendStart\000"
+ 2289      595F4D61 
+ 2289      73746572 
+ 2289      53656E64 
+ 2289      53746172 
+ 2290              	.LASF77:
+ 2291 0061 6C6F6164 		.ascii	"loadWord\000"
+ 2291      576F7264 
+ 2291      00
+ 2292              	.LASF2:
+ 2293 006a 73686F72 		.ascii	"short int\000"
+ 2293      7420696E 
+ 2293      7400
+ 2294              	.LASF17:
+ 2295 0074 785F6465 		.ascii	"x_des\000"
+ 2295      7300
+ 2296              	.LASF70:
+ 2297 007a 42757474 		.ascii	"Button_Refresh_Timer_Start\000"
+ 2297      6F6E5F52 
+ 2297      65667265 
+ 2297      73685F54 
+ 2297      696D6572 
+ 2298              	.LASF85:
+ 2299 0095 4C45445F 		.ascii	"LED_Pin_Write\000"
+ 2299      50696E5F 
+ 2299      57726974 
+ 2299      6500
+ 2300              	.LASF30:
+ 2301 00a3 726F7461 		.ascii	"rotator_state\000"
+ 2301      746F725F 
+ 2301      73746174 
+ 2301      6500
+ 2302              	.LASF42:
+ 2303 00b1 72656672 		.ascii	"refresh_buttons\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 48
+
+
+ 2303      6573685F 
+ 2303      62757474 
+ 2303      6F6E7300 
+ 2304              	.LASF46:
+ 2305 00c1 585F5374 		.ascii	"X_Step_Pin_Write\000"
+ 2305      65705F50 
+ 2305      696E5F57 
+ 2305      72697465 
+ 2305      00
+ 2306              	.LASF71:
+ 2307 00d2 4932435F 		.ascii	"I2C_X_Start\000"
+ 2307      585F5374 
+ 2307      61727400 
+ 2308              	.LASF28:
+ 2309 00de 66696C65 		.ascii	"file\000"
+ 2309      00
+ 2310              	.LASF67:
+ 2311 00e3 4932435F 		.ascii	"I2C_OLED_Start\000"
+ 2311      4F4C4544 
+ 2311      5F537461 
+ 2311      727400
+ 2312              	.LASF24:
+ 2313 00f2 44495350 		.ascii	"DISPLAY_REFRESH_Handler\000"
+ 2313      4C41595F 
+ 2313      52454652 
+ 2313      4553485F 
+ 2313      48616E64 
+ 2314              	.LASF83:
+ 2315 010a 55415254 		.ascii	"UART_PutString\000"
+ 2315      5F507574 
+ 2315      53747269 
+ 2315      6E6700
+ 2316              	.LASF53:
+ 2317 0119 4932435F 		.ascii	"I2C_X_MasterReadByte\000"
+ 2317      585F4D61 
+ 2317      73746572 
+ 2317      52656164 
+ 2317      42797465 
+ 2318              	.LASF69:
+ 2319 012e 44697370 		.ascii	"Display_Refresh_Timer_Start\000"
+ 2319      6C61795F 
+ 2319      52656672 
+ 2319      6573685F 
+ 2319      54696D65 
+ 2320              	.LASF33:
+ 2321 014a 646F776E 		.ascii	"down_button\000"
+ 2321      5F627574 
+ 2321      746F6E00 
+ 2322              	.LASF84:
+ 2323 0156 434C495F 		.ascii	"CLI_Update\000"
+ 2323      55706461 
+ 2323      746500
+ 2324              	.LASF20:
+ 2325 0161 795F6163 		.ascii	"y_act\000"
+ 2325      7400
+ 2326              	.LASF26:
+ 2327 0167 4D4F544F 		.ascii	"MOTOR_CONTROLL_RISEING_EDGE_Handler\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 49
+
+
+ 2327      525F434F 
+ 2327      4E54524F 
+ 2327      4C4C5F52 
+ 2327      49534549 
+ 2328              	.LASF45:
+ 2329 018b 595F4469 		.ascii	"Y_Dir_Pin_Write\000"
+ 2329      725F5069 
+ 2329      6E5F5772 
+ 2329      69746500 
+ 2330              	.LASF89:
+ 2331 019b 5F777269 		.ascii	"_write\000"
+ 2331      746500
+ 2332              	.LASF38:
+ 2333 01a2 61726731 		.ascii	"arg1\000"
+ 2333      00
+ 2334              	.LASF12:
+ 2335 01a7 666C6F61 		.ascii	"float\000"
+ 2335      7400
+ 2336              	.LASF59:
+ 2337 01ad 4932435F 		.ascii	"I2C_Y_MasterReadByte\000"
+ 2337      595F4D61 
+ 2337      73746572 
+ 2337      52656164 
+ 2337      42797465 
+ 2338              	.LASF6:
+ 2339 01c2 6C6F6E67 		.ascii	"long long int\000"
+ 2339      206C6F6E 
+ 2339      6720696E 
+ 2339      7400
+ 2340              	.LASF63:
+ 2341 01d0 53575F4C 		.ascii	"SW_LEFT_Pin_Read\000"
+ 2341      4546545F 
+ 2341      50696E5F 
+ 2341      52656164 
+ 2341      00
+ 2342              	.LASF4:
+ 2343 01e1 6C6F6E67 		.ascii	"long int\000"
+ 2343      20696E74 
+ 2343      00
+ 2344              	.LASF58:
+ 2345 01ea 4932435F 		.ascii	"I2C_Y_MasterSendRestart\000"
+ 2345      595F4D61 
+ 2345      73746572 
+ 2345      53656E64 
+ 2345      52657374 
+ 2346              	.LASF51:
+ 2347 0202 4932435F 		.ascii	"I2C_X_MasterWriteByte\000"
+ 2347      585F4D61 
+ 2347      73746572 
+ 2347      57726974 
+ 2347      65427974 
+ 2348              	.LASF81:
+ 2349 0218 4D6F746F 		.ascii	"MotorControlFallingEdge_StartEx\000"
+ 2349      72436F6E 
+ 2349      74726F6C 
+ 2349      46616C6C 
+ 2349      696E6745 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 50
+
+
+ 2350              	.LASF88:
+ 2351 0238 433A5C55 		.ascii	"C:\\Users\\Dell\\Documents\\GitHub\\PSoC_AntennaRot"
+ 2351      73657273 
+ 2351      5C44656C 
+ 2351      6C5C446F 
+ 2351      63756D65 
+ 2352 0266 61746F72 		.ascii	"ator\\Workspace01\\AntennaRotator.cydsn\000"
+ 2352      5C576F72 
+ 2352      6B737061 
+ 2352      63653031 
+ 2352      5C416E74 
+ 2353              	.LASF34:
+ 2354 028c 6C656674 		.ascii	"left_button\000"
+ 2354      5F627574 
+ 2354      746F6E00 
+ 2355              	.LASF73:
+ 2356 0298 434C495F 		.ascii	"CLI_Init\000"
+ 2356      496E6974 
+ 2356      00
+ 2357              	.LASF57:
+ 2358 02a1 4932435F 		.ascii	"I2C_Y_MasterWriteByte\000"
+ 2358      595F4D61 
+ 2358      73746572 
+ 2358      57726974 
+ 2358      65427974 
+ 2359              	.LASF18:
+ 2360 02b7 795F6465 		.ascii	"y_des\000"
+ 2360      7300
+ 2361              	.LASF15:
+ 2362 02bd 6C6F6E67 		.ascii	"long double\000"
+ 2362      20646F75 
+ 2362      626C6500 
+ 2363              	.LASF62:
+ 2364 02c9 53575F44 		.ascii	"SW_DOWN_Pin_Read\000"
+ 2364      4F574E5F 
+ 2364      50696E5F 
+ 2364      52656164 
+ 2364      00
+ 2365              	.LASF79:
+ 2366 02da 42757474 		.ascii	"Button_Refresh_Timer_Int_StartEx\000"
+ 2366      6F6E5F52 
+ 2366      65667265 
+ 2366      73685F54 
+ 2366      696D6572 
+ 2367              	.LASF1:
+ 2368 02fb 756E7369 		.ascii	"unsigned char\000"
+ 2368      676E6564 
+ 2368      20636861 
+ 2368      7200
+ 2369              	.LASF76:
+ 2370 0309 74657374 		.ascii	"testBit\000"
+ 2370      42697400 
+ 2371              	.LASF74:
+ 2372 0311 486F7269 		.ascii	"Horizon_Init\000"
+ 2372      7A6F6E5F 
+ 2372      496E6974 
+ 2372      00
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 51
+
+
+ 2373              	.LASF29:
+ 2374 031e 72656672 		.ascii	"refreshRotation\000"
+ 2374      65736852 
+ 2374      6F746174 
+ 2374      696F6E00 
+ 2375              	.LASF0:
+ 2376 032e 7369676E 		.ascii	"signed char\000"
+ 2376      65642063 
+ 2376      68617200 
+ 2377              	.LASF7:
+ 2378 033a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2378      206C6F6E 
+ 2378      6720756E 
+ 2378      7369676E 
+ 2378      65642069 
+ 2379              	.LASF47:
+ 2380 0351 595F5374 		.ascii	"Y_Step_Pin_Write\000"
+ 2380      65705F50 
+ 2380      696E5F57 
+ 2380      72697465 
+ 2380      00
+ 2381              	.LASF52:
+ 2382 0362 4932435F 		.ascii	"I2C_X_MasterSendRestart\000"
+ 2382      585F4D61 
+ 2382      73746572 
+ 2382      53656E64 
+ 2382      52657374 
+ 2383              	.LASF50:
+ 2384 037a 4932435F 		.ascii	"I2C_X_MasterSendStart\000"
+ 2384      585F4D61 
+ 2384      73746572 
+ 2384      53656E64 
+ 2384      53746172 
+ 2385              	.LASF8:
+ 2386 0390 756E7369 		.ascii	"unsigned int\000"
+ 2386      676E6564 
+ 2386      20696E74 
+ 2386      00
+ 2387              	.LASF25:
+ 2388 039d 42555454 		.ascii	"BUTTON_REFRESH_Handler\000"
+ 2388      4F4E5F52 
+ 2388      45465245 
+ 2388      53485F48 
+ 2388      616E646C 
+ 2389              	.LASF82:
+ 2390 03b4 4D6F746F 		.ascii	"Motor_Enable_Write\000"
+ 2390      725F456E 
+ 2390      61626C65 
+ 2390      5F577269 
+ 2390      746500
+ 2391              	.LASF31:
+ 2392 03c7 73746174 		.ascii	"status\000"
+ 2392      757300
+ 2393              	.LASF23:
+ 2394 03ce 64617461 		.ascii	"data\000"
+ 2394      00
+ 2395              	.LASF35:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 52
+
+
+ 2396 03d3 72696768 		.ascii	"right_button\000"
+ 2396      745F6275 
+ 2396      74746F6E 
+ 2396      00
+ 2397              	.LASF14:
+ 2398 03e0 63686172 		.ascii	"char\000"
+ 2398      00
+ 2399              	.LASF90:
+ 2400 03e5 6D61696E 		.ascii	"main\000"
+ 2400      00
+ 2401              	.LASF66:
+ 2402 03ea 55415254 		.ascii	"UART_Start\000"
+ 2402      5F537461 
+ 2402      727400
+ 2403              	.LASF10:
+ 2404 03f5 696E7433 		.ascii	"int32_t\000"
+ 2404      325F7400 
+ 2405              	.LASF54:
+ 2406 03fd 4932435F 		.ascii	"I2C_X_MasterSendStop\000"
+ 2406      585F4D61 
+ 2406      73746572 
+ 2406      53656E64 
+ 2406      53746F70 
+ 2407              	.LASF3:
+ 2408 0412 73686F72 		.ascii	"short unsigned int\000"
+ 2408      7420756E 
+ 2408      7369676E 
+ 2408      65642069 
+ 2408      6E7400
+ 2409              	.LASF11:
+ 2410 0425 75696E74 		.ascii	"uint8\000"
+ 2410      3800
+ 2411              	.LASF36:
+ 2412 042b 5F426F6F 		.ascii	"_Bool\000"
+ 2412      6C00
+ 2413              	.LASF61:
+ 2414 0431 53575F55 		.ascii	"SW_UP_Pin_Read\000"
+ 2414      505F5069 
+ 2414      6E5F5265 
+ 2414      616400
+ 2415              	.LASF65:
+ 2416 0440 45455052 		.ascii	"EEPROM_1_Start\000"
+ 2416      4F4D5F31 
+ 2416      5F537461 
+ 2416      727400
+ 2417              	.LASF72:
+ 2418 044f 4932435F 		.ascii	"I2C_Y_Start\000"
+ 2418      595F5374 
+ 2418      61727400 
+ 2419              	.LASF87:
+ 2420 045b 6D61696E 		.ascii	"main.c\000"
+ 2420      2E6300
+ 2421              	.LASF5:
+ 2422 0462 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2422      20756E73 
+ 2422      69676E65 
+ 2422      6420696E 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 53
+
+
+ 2422      7400
+ 2423              	.LASF60:
+ 2424 0474 4932435F 		.ascii	"I2C_Y_MasterSendStop\000"
+ 2424      595F4D61 
+ 2424      73746572 
+ 2424      53656E64 
+ 2424      53746F70 
+ 2425              	.LASF13:
+ 2426 0489 646F7562 		.ascii	"double\000"
+ 2426      6C6500
+ 2427              	.LASF49:
+ 2428 0490 4932435F 		.ascii	"I2C_X_MasterClearStatus\000"
+ 2428      585F4D61 
+ 2428      73746572 
+ 2428      436C6561 
+ 2428      72537461 
+ 2429              	.LASF21:
+ 2430 04a8 524F5441 		.ascii	"ROTATOR_STATE\000"
+ 2430      544F525F 
+ 2430      53544154 
+ 2430      4500
+ 2431              	.LASF78:
+ 2432 04b6 44697370 		.ascii	"Display_Refresh_Timer_Int_StartEx\000"
+ 2432      6C61795F 
+ 2432      52656672 
+ 2432      6573685F 
+ 2432      54696D65 
+ 2433              	.LASF43:
+ 2434 04d8 72656672 		.ascii	"refresh_rotation\000"
+ 2434      6573685F 
+ 2434      726F7461 
+ 2434      74696F6E 
+ 2434      00
+ 2435              	.LASF9:
+ 2436 04e9 5F5F696E 		.ascii	"__int32_t\000"
+ 2436      7433325F 
+ 2436      7400
+ 2437              	.LASF41:
+ 2438 04f3 72656672 		.ascii	"refresh_display\000"
+ 2438      6573685F 
+ 2438      64697370 
+ 2438      6C617900 
+ 2439              	.LASF16:
+ 2440 0503 73697A65 		.ascii	"sizetype\000"
+ 2440      74797065 
+ 2440      00
+ 2441              	.LASF55:
+ 2442 050c 4932435F 		.ascii	"I2C_Y_MasterClearStatus\000"
+ 2442      595F4D61 
+ 2442      73746572 
+ 2442      436C6561 
+ 2442      72537461 
+ 2443              	.LASF64:
+ 2444 0524 53575F52 		.ascii	"SW_RIGHT_Pin_Read\000"
+ 2444      49474854 
+ 2444      5F50696E 
+ 2444      5F526561 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc2w1b0f.s 			page 54
+
+
+ 2444      6400
+ 2445              	.LASF39:
+ 2446 0536 61726732 		.ascii	"arg2\000"
+ 2446      00
+ 2447              	.LASF40:
+ 2448 053b 61726733 		.ascii	"arg3\000"
+ 2448      00
+ 2449              	.LASF19:
+ 2450 0540 785F6163 		.ascii	"x_act\000"
+ 2450      7400
+ 2451              	.LASF32:
+ 2452 0546 75705F62 		.ascii	"up_button\000"
+ 2452      7574746F 
+ 2452      6E00
+ 2453              	.LASF37:
+ 2454 0550 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2454      52784275 
+ 2454      66666572 
+ 2454      00
+ 2455              	.LASF86:
+ 2456 055d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2456      43313120 
+ 2456      352E342E 
+ 2456      31203230 
+ 2456      31363036 
+ 2457 0590 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2457      20726576 
+ 2457      6973696F 
+ 2457      6E203233 
+ 2457      37373135 
+ 2458 05c3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2458      66756E63 
+ 2458      74696F6E 
+ 2458      2D736563 
+ 2458      74696F6E 
+ 2459              	.LASF27:
+ 2460 05eb 4D4F544F 		.ascii	"MOTOR_CONTROLL_FALLING_EDGE_Handler\000"
+ 2460      525F434F 
+ 2460      4E54524F 
+ 2460      4C4C5F46 
+ 2460      414C4C49 
+ 2461              	.LASF48:
+ 2462 060f 55415254 		.ascii	"UART_PutChar\000"
+ 2462      5F507574 
+ 2462      43686172 
+ 2462      00
+ 2463              	.LASF22:
+ 2464 061c 494E5055 		.ascii	"INPUT_BUFFER\000"
+ 2464      545F4255 
+ 2464      46464552 
+ 2464      00
+ 2465              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

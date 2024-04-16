@@ -27,6 +27,7 @@ void CLI_Update(){
             bool error = false;
             switch(inChar){
                 case 13:
+                    UART_PutString("\r\n");
                     readState = CMD;
                     error = ProcessCommand();
                     if(!error){
@@ -232,8 +233,15 @@ bool ProcessCommand(){
         } else if(!strcmp(cmd.data, "rpoi")){
             
             if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                listSaveSlot();
+                listSaveSlots();
                 return false;
+            } else if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
+                uint8 id = ParseArgument(&arg1);
+                if(1 <= id && 16 >= id){
+                    saveSlotDetails(id);
+                    return false;
+                }
+                UART_PutString("Invalid ID.");
             }
             return true;
             

@@ -97,7 +97,7 @@ int main(void)
     
     //Signal on restart
     if(testBit(1, 0x00)){
-        UART_PutString("System started.");
+        UART_PutString("System started.\r\n");
     }
     
     for(;;)

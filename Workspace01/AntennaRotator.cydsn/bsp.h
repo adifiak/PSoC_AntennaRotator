@@ -15,9 +15,11 @@
 #include "stdbool.h"
 #include "project.h"
     
-void listSaveSlot();
+void listSaveSlots();
     
 bool testSaveSlot(uint8 id);
+
+void saveSlotDetails(uint8 id);
 
 void saveToSaveSlot(uint8 id);
 

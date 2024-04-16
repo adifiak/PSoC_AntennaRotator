@@ -103,6 +103,7 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\bsp.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Button_Refresh_Timer.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Button_Refresh_Timer_Int.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Button_Refresh_Timer_PM.lst</v>
@@ -188,6 +189,7 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\bsp.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Button_Refresh_Timer.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Button_Refresh_Timer_Int.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\Button_Refresh_Timer_PM.lst</v>
@@ -229,7 +231,6 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_Y_PM.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_Y_SLAVE.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\LED_Pin.lst</v>
-<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
