@@ -10,9 +10,9 @@
  * ========================================
 */
 #include "cli.h"
-#include "main.h"
 #include "eeprom.h"
 #include "bsp.h"
+#include "rotation.h"
 
 enum READ_STATE readState = CMD;
 
@@ -26,6 +26,10 @@ void CLI_Update(){
             UART_PutChar(inChar);
             bool error = false;
             switch(inChar){
+                case 27:
+                    UART_PutString("\r\n");
+                    ResetInput();
+                    break;
                 case 13:
                     UART_PutString("\r\n");
                     readState = CMD;
@@ -78,118 +82,56 @@ void CLI_Update(){
 bool ProcessCommand(){
     if(cmd.cnt == 4) {
         if(!strcmp(cmd.data, "rhom")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                uint16 x = loadWord(0x01);
-                uint16 y = loadWord(0x03);
-                
-                char str[32];
-                sprintf(str, "Home: X=%d Y=%d\r\n", (int)AS5600_TO_ANGULAR(x), (int)AS5600_TO_ANGULAR(y));
-                UART_PutString(str);
+            if(isNoArgFnc()){
+                ReadHomePosition();
                 return false;
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "rhor")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                bool tmp;
-                tmp = testBit(0, 0x00);
-                
-                char str[32];
-                sprintf(str, "Home on restart: %d\r\n", tmp);
-                UART_PutString(str);
+            if(isNoArgFnc()){
+                ReadHomeOnRestart();
                 return false;
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "ract")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                char str[32];
-                sprintf(str, "Home: X=%d Y=%d\r\n",  (int)AS5600_TO_ANGULAR(rotator_state.x_act), (int)AS5600_TO_ANGULAR(rotator_state.y_act));
-                UART_PutString(str);
+            if(isNoArgFnc()){
+                ReadActualPosition();
                 return false;
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "rpos")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                char str[32];
-                sprintf(str, "Home: X=%d Y=%d\r\n",  (int)AS5600_TO_ANGULAR(rotator_state.x_des), (int)AS5600_TO_ANGULAR(rotator_state.y_des));
-                UART_PutString(str);
+            if(isNoArgFnc()){
+                ReadDesiredPosition();
                 return false;
-            }
-            return true;
-            
+            }            
         } else if(!strcmp(cmd.data, "rsos")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                bool tmp;
-                tmp = testBit(1, 0x00);
-                
-                char str[32];
-                sprintf(str, "Signal on restart: %d\r\n", tmp);
-                UART_PutString(str);
+            if(isNoArgFnc()){
+                ReadSignalOnStart();
                 return false;
-            }
-            return true;
-            
+            }    
         }else if(!strcmp(cmd.data, "whom")){
-            
-            if(arg1.cnt > 0 && arg2.cnt > 0 && arg3.cnt == 0){              
+            if(isTwoArgFnc()){              
                 uint16 x = ParseArgument(&arg1);
-                if(x > 360) {x = 360;}
-                x = AS5600_FROM_ANGULAR(x);
-                saveWord(x, 0x01);
-                
                 uint16 y = ParseArgument(&arg2);
-                if(y > 360) {y = 360;}
-                y = AS5600_FROM_ANGULAR(y);
-                saveWord(y, 0x03);
-                
+                WriteHomePosition(x, y);
                 return false;
-            }
-            return true;
-            
+            }   
         } else if(!strcmp(cmd.data, "whor")){
-            
-            if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                setBit((ParseArgument(&arg1) > 0), 0, 0x00);
+            if(isOneArgFnc()){
+                WriteHomeOnRestart(ParseArgument(&arg1));
                 return false;
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "wpos")){
-            
-            if(arg1.cnt > 0 && arg2.cnt > 0 && arg3.cnt == 0){
-                uint16 tmp1, tmp2;
-                
-                tmp1 = ParseArgument(&arg1);
-                tmp2 = ParseArgument(&arg2);
-                
-                if(tmp1 >360) {tmp1 = 360;}
-                if(tmp2 >360) {tmp2 = 360;}
-                
-                rotator_state.x_des = AS5600_FROM_ANGULAR(tmp1);
-                rotator_state.y_des = AS5600_FROM_ANGULAR(tmp2);
-                
+            if(isTwoArgFnc()){            
+                uint16 x = ParseArgument(&arg1);
+                uint16 y = ParseArgument(&arg2);
+                WriteDesiredPosition(x, y);
                 return false;
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "wsos")){
-            
-            if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                setBit((ParseArgument(&arg1) > 0), 1, 0x00);
+            if(isOneArgFnc()){
+                WriteSignalOnStart(ParseArgument(&arg1));
                 return false;
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "wpoi")){
-            
-            if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
+            if(isOneArgFnc()){
                 uint8 id = ParseArgument(&arg1);
                 if(1 <= id && 16 >= id){
                     saveToSaveSlot(id);
@@ -197,30 +139,13 @@ bool ProcessCommand(){
                 }
                 UART_PutString("Invalid ID.");
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "mhom")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
-                
-                uint16 x = loadWord(0x01);
-                uint16 y = loadWord(0x03);
-                
-                rotator_state.x_des = x;
-                rotator_state.y_des = y;
-                
+            if(isNoArgFnc()){
+                MoveToHome();
                 return false;
             }
-            return true;
-            
-        } else if(!strcmp(cmd.data, "mact")){
-            
-            //FELESLEGES PARANCS
-            return true;
-            
         } else if(!strcmp(cmd.data, "mpoi")){
-            
-            if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
+            if(isOneArgFnc()){
                 uint8 id = ParseArgument(&arg1);
                 if(1 <= id && 16 >= id){
                     moveToSaveSlot(id);
@@ -228,14 +153,11 @@ bool ProcessCommand(){
                 }
                 UART_PutString("Invalid ID.");
             }
-            return true;
-            
         } else if(!strcmp(cmd.data, "rpoi")){
-            
-            if(arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0){
+            if(isNoArgFnc()){
                 listSaveSlots();
                 return false;
-            } else if(arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0){
+            } else if(isOneArgFnc()){
                 uint8 id = ParseArgument(&arg1);
                 if(1 <= id && 16 >= id){
                     saveSlotDetails(id);
@@ -243,8 +165,6 @@ bool ProcessCommand(){
                 }
                 UART_PutString("Invalid ID.");
             }
-            return true;
-            
         }
     }
     return true;
@@ -262,7 +182,6 @@ void ResetInput(){
         arg2.data[i] = 0;
         arg3.data[i] = 0;
     }
-    
 }
 
 bool AddArgumentDigit(char c, struct INPUT_BUFFER* arg){
@@ -291,5 +210,10 @@ int ParseArgument(struct INPUT_BUFFER* arg){
     }
     return res;
 }
+
+bool isNoArgFnc(){return arg1.cnt == 0 && arg2.cnt == 0 && arg3.cnt == 0;}
+bool isOneArgFnc(){return arg1.cnt > 0 && arg2.cnt == 0 && arg3.cnt == 0;}
+bool isTwoArgFnc(){return arg1.cnt > 0 && arg2.cnt > 0 && arg3.cnt == 0;}
+bool isThreeArgFnc(){return arg1.cnt > 0 && arg2.cnt > 0 && arg3.cnt > 0;}
 
 /* [] END OF FILE */

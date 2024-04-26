@@ -14,7 +14,6 @@
 
 #include "project.h"
 #include <stdbool.h>
-#include "main.h"
 #include <stdio.h>
 
 typedef enum READ_STATE{
@@ -42,6 +41,11 @@ bool AddArgumentDigit(char c, struct INPUT_BUFFER* arg);
 bool AddCommandChar(char c, struct INPUT_BUFFER* cmd);
 
 int ParseArgument(struct INPUT_BUFFER* arg);
+
+bool isNoArgFnc();
+bool isOneArgFnc();
+bool isTwoArgFnc();
+bool isThreeArgFnc();
 
 #endif
 /* [] END OF FILE */

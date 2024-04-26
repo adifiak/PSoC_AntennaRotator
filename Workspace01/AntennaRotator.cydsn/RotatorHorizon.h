@@ -10,9 +10,9 @@
  * ========================================
 */
 
-#include "main.h"
+#include "rotation.h"
 
 void Horizon_Init();
-void Horizon_Render(ROTATOR_STATE* rotator_state);
+void Horizon_Render();
 
 /* [] END OF FILE */

@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\AntennaRotator\Source Files">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\AntennaRotator\Header Files\font.h">
 <ExpandedNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\AntennaRotator</v>
@@ -34,7 +34,7 @@
 <v>Workspace01\AntennaRotator\Header Files\cyapicallbacks.h</v>
 <v>Workspace01\AntennaRotator\Header Files\eeprom.h</v>
 <v>Workspace01\AntennaRotator\Header Files\font.h</v>
-<v>Workspace01\AntennaRotator\Header Files\main.h</v>
+<v>Workspace01\AntennaRotator\Header Files\rotation.h</v>
 <v>Workspace01\AntennaRotator\Header Files\RotatorHorizon.h</v>
 <v>Workspace01\AntennaRotator\Header Files\ssd1306.h</v>
 <v>Workspace01\AntennaRotator\Header Files\util.h</v>
@@ -43,6 +43,7 @@
 <v>Workspace01\AntennaRotator\Source Files\cli.c</v>
 <v>Workspace01\AntennaRotator\Source Files\eeprom.c</v>
 <v>Workspace01\AntennaRotator\Source Files\main.c</v>
+<v>Workspace01\AntennaRotator\Source Files\rotation.c</v>
 <v>Workspace01\AntennaRotator\Source Files\RotatorHorizon.c</v>
 <v>Workspace01\AntennaRotator\Source Files\ssd1306.c</v>
 <v>Workspace01\AntennaRotator\Generated_Source\PSoC5</v>
@@ -67,7 +68,7 @@
 <v>Workspace01\AntennaRotator\Header Files\cyapicallbacks.h</v>
 <v>Workspace01\AntennaRotator\Header Files\eeprom.h</v>
 <v>Workspace01\AntennaRotator\Header Files\font.h</v>
-<v>Workspace01\AntennaRotator\Header Files\main.h</v>
+<v>Workspace01\AntennaRotator\Header Files\rotation.h</v>
 <v>Workspace01\AntennaRotator\Header Files\RotatorHorizon.h</v>
 <v>Workspace01\AntennaRotator\Header Files\ssd1306.h</v>
 <v>Workspace01\AntennaRotator\Header Files\util.h</v>
@@ -76,6 +77,7 @@
 <v>Workspace01\AntennaRotator\Source Files\cli.c</v>
 <v>Workspace01\AntennaRotator\Source Files\eeprom.c</v>
 <v>Workspace01\AntennaRotator\Source Files\main.c</v>
+<v>Workspace01\AntennaRotator\Source Files\rotation.c</v>
 <v>Workspace01\AntennaRotator\Source Files\RotatorHorizon.c</v>
 <v>Workspace01\AntennaRotator\Source Files\ssd1306.c</v>
 <v>Workspace01\AntennaRotator\Generated_Source</v>
@@ -152,6 +154,7 @@
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\MotorControlRiseingEdge.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\rotation.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\RotatorHorizon.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_OLED.lst</v>
 <v>Workspace01\AntennaRotator\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_X.lst</v>
@@ -318,9 +321,13 @@
 <name v=".\AntennaRotator.cydsn\AntennaRotator.cydwr" />
 <name v=".\AntennaRotator.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\AntennaRotator.cydsn\main.c" />
-<name v=".\AntennaRotator.cydsn\RotatorHorizon.h" />
-<name v=".\AntennaRotator.cydsn\RotatorHorizon.c" />
 <name v=".\AntennaRotator.cydsn\main.h" />
+<name v=".\AntennaRotator.cydsn\cli.h" />
+<name v=".\AntennaRotator.cydsn\cli.c" />
+<name v=".\AntennaRotator.cydsn\eeprom.h" />
+<name v=".\AntennaRotator.cydsn\eeprom.c" />
+<name v=".\AntennaRotator.cydsn\bsp.h" />
+<name v=".\AntennaRotator.cydsn\bsp.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -328,7 +335,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 711" SelectedTabbedMdiWindow="932f4ada-ced6-43d7-bced-9e424f7113ca"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="417adb73-3a14-42b3-be62-db20c2488fa9" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\AntennaRotator.cydwr" Guid="fd2cb371-494b-49bb-a794-b436251f7b14" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\TopDesign\TopDesign.cysch" Guid="932f4ada-ced6-43d7-bced-9e424f7113ca" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.c" Guid="c1ab82df-2ba5-4e12-9618-07b63a829a81" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\RotatorHorizon.h" Guid="8b1db46b-19d3-45fe-b075-302712cc8da6" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\RotatorHorizon.c" Guid="71687775-3da1-4b4e-a2b9-b201992680e3" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.h" Guid="29146c79-743c-4377-81c3-4d1c6ae9e192" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 711" SelectedTabbedMdiWindow="932f4ada-ced6-43d7-bced-9e424f7113ca"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="417adb73-3a14-42b3-be62-db20c2488fa9" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\AntennaRotator.cydwr" Guid="fd2cb371-494b-49bb-a794-b436251f7b14" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\TopDesign\TopDesign.cysch" Guid="932f4ada-ced6-43d7-bced-9e424f7113ca" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.c" Guid="c1ab82df-2ba5-4e12-9618-07b63a829a81" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\main.h" Guid="29146c79-743c-4377-81c3-4d1c6ae9e192" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\cli.h" Guid="7eb29e96-efce-4218-a589-066ddd9571ef" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\cli.c" Guid="76f2c28f-5fa7-4d27-86e7-2828ff8b82cc" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\eeprom.h" Guid="d1cadc99-91c3-4398-bd5f-12d02b4a8679" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\eeprom.c" Guid="7a32367f-eca7-4d0b-a450-778a6fb3c20a" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\bsp.h" Guid="21a4f899-0641-4051-a915-72f3f13a732b" /><DocumentWindow Key="C:\Users\Dell\Documents\GitHub\PSoC_AntennaRotator\Workspace01\AntennaRotator.cydsn\bsp.c" Guid="45d30667-decd-4a04-97fb-b9c1b464309b" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

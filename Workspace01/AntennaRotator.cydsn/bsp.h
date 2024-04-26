@@ -15,6 +15,21 @@
 #include "stdbool.h"
 #include "project.h"
     
+//Service functions
+    
+void ReadHomePosition();
+void ReadHomeOnRestart();
+void ReadActualPosition();
+void ReadDesiredPosition();
+void ReadSignalOnStart();
+void WriteHomePosition(uint16 x, uint16 y);
+void WriteHomeOnRestart(uint16 b);
+void WriteDesiredPosition(uint16 x, uint16 y);
+void WriteSignalOnStart(uint16 b);
+void MoveToHome();
+    
+//Auxilary functions
+    
 void listSaveSlots();
     
 bool testSaveSlot(uint8 id);

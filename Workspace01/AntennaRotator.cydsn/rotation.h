@@ -9,9 +9,13 @@
  *
  * ========================================
 */
-#ifndef MAIN_H
-#define MAIN_H
+
+#ifndef ROTATION_H
+#define ROTATION_H
     
+#define ENCODER_ADDRESS 0x36
+#define ENCODER_POS_REG 0x0E
+
 #define AS5600_FROM_ANGULAR(x) (uint16)(((float)(1 << 12) / 360.0f) * x)
 #define AS5600_TO_ANGULAR(x) (x / ((float)(1 << 12) / 360.0f))
 
@@ -22,9 +26,11 @@ typedef struct ROTATOR_STATE{
     int y_act;
 }ROTATOR_STATE;
 
-struct ROTATOR_STATE rotator_state;
+void setRotation(int x, int y);
 
-void refreshRotation(ROTATOR_STATE* rotator_state);
+ROTATOR_STATE getRotation();
 
-#endif /*MAIN_H*/
+void refreshRotation();
+    
+#endif
 /* [] END OF FILE */

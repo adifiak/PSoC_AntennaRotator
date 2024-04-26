@@ -22,7 +22,9 @@ void Horizon_Init(){
     display_update(); 
 }
 
-void Horizon_Render(ROTATOR_STATE* rotator_state){
+void Horizon_Render(){
+    ROTATOR_STATE rotator_state = getRotation();
+    
     char str[32];
     display_clear();    
         
@@ -34,10 +36,10 @@ void Horizon_Render(ROTATOR_STATE* rotator_state){
     gfx_setTextSize(1);
     gfx_setTextColor(WHITE);
     gfx_setCursor(0,0);
-    sprintf(str, "X : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state->x_des), AS5600_TO_ANGULAR(rotator_state->x_act));
+    sprintf(str, "X : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state.x_des), AS5600_TO_ANGULAR(rotator_state.x_act));
     gfx_println(str); 
     gfx_setTextColor(WHITE);
-    sprintf(str, "Y : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state->y_des), AS5600_TO_ANGULAR(rotator_state->y_act));
+    sprintf(str, "Y : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state.y_des), AS5600_TO_ANGULAR(rotator_state.y_act));
     gfx_setCursor(0,8);
     gfx_println(str); 
     display_update();
