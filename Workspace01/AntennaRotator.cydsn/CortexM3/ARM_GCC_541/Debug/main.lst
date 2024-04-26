@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 1
 
 
    1              		.syntax unified
@@ -50,23 +50,21 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
   20:main.c        **** 
   21:main.c        **** #define STEPPING_TRESHOLD 4
   22:main.c        **** 
-  23:main.c        **** 
-  24:main.c        **** 
-  25:main.c        **** bool refresh_display = false;
-  26:main.c        **** bool refresh_buttons = false;
-  27:main.c        **** bool refresh_rotation = false;
-  28:main.c        **** 
-  29:main.c        **** CY_ISR( DISPLAY_REFRESH_Handler ){
-  28              		.loc 1 29 0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 2
-
-
+  23:main.c        **** bool refresh_display = false;
+  24:main.c        **** bool refresh_buttons = false;
+  25:main.c        **** bool refresh_rotation = false;
+  26:main.c        **** 
+  27:main.c        **** CY_ISR( DISPLAY_REFRESH_Handler ){
+  28              		.loc 1 27 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 2
+
+
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32              		@ link register save eliminated.
-  30:main.c        ****     refresh_display = true;
-  33              		.loc 1 30 0
+  28:main.c        ****     refresh_display = true;
+  33              		.loc 1 28 0
   34 0000 0122     		movs	r2, #1
   35 0002 014B     		ldr	r3, .L2
   36 0004 1A70     		strb	r2, [r3]
@@ -86,16 +84,16 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
   50              		.type	BUTTON_REFRESH_Handler, %function
   51              	BUTTON_REFRESH_Handler:
   52              	.LFB66:
-  31:main.c        **** }
-  32:main.c        **** 
-  33:main.c        **** CY_ISR( BUTTON_REFRESH_Handler ){
-  53              		.loc 1 33 0
+  29:main.c        **** }
+  30:main.c        **** 
+  31:main.c        **** CY_ISR( BUTTON_REFRESH_Handler ){
+  53              		.loc 1 31 0
   54              		.cfi_startproc
   55              		@ args = 0, pretend = 0, frame = 0
   56              		@ frame_needed = 0, uses_anonymous_args = 0
   57              		@ link register save eliminated.
-  34:main.c        ****     refresh_buttons = true;
-  58              		.loc 1 34 0
+  32:main.c        ****     refresh_buttons = true;
+  58              		.loc 1 32 0
   59 0000 0122     		movs	r2, #1
   60 0002 014B     		ldr	r3, .L5
   61 0004 5A70     		strb	r2, [r3, #1]
@@ -115,14 +113,14 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
   75              		.type	MOTOR_CONTROLL_RISEING_EDGE_Handler, %function
   76              	MOTOR_CONTROLL_RISEING_EDGE_Handler:
   77              	.LFB67:
-  35:main.c        **** }
-  36:main.c        **** 
-  37:main.c        **** CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 3
-
-
-  78              		.loc 1 37 0
+  33:main.c        **** }
+  34:main.c        **** 
+  35:main.c        **** CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
+  78              		.loc 1 35 0
   79              		.cfi_startproc
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 3
+
+
   80              		@ args = 0, pretend = 0, frame = 16
   81              		@ frame_needed = 0, uses_anonymous_args = 0
   82 0000 F0B5     		push	{r4, r5, r6, r7, lr}
@@ -134,14 +132,14 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
   88              		.cfi_offset 14, -4
   89 0002 85B0     		sub	sp, sp, #20
   90              		.cfi_def_cfa_offset 40
-  38:main.c        ****     ROTATOR_STATE rotator_state = getRotation();
-  91              		.loc 1 38 0
+  36:main.c        ****     ROTATOR_STATE rotator_state = getRotation();
+  91              		.loc 1 36 0
   92 0004 6846     		mov	r0, sp
   93 0006 FFF7FEFF 		bl	getRotation
   94              	.LVL0:
-  39:main.c        ****     
-  40:main.c        ****     X_Dir_Pin_Write(rotator_state.x_act < rotator_state.x_des);
-  95              		.loc 1 40 0
+  37:main.c        ****     
+  38:main.c        ****     X_Dir_Pin_Write(rotator_state.x_act < rotator_state.x_des);
+  95              		.loc 1 38 0
   96 000a 029D     		ldr	r5, [sp, #8]
   97 000c 009F     		ldr	r7, [sp]
   98 000e BD42     		cmp	r5, r7
@@ -150,8 +148,8 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  101 0014 0120     		movlt	r0, #1
  102 0016 FFF7FEFF 		bl	X_Dir_Pin_Write
  103              	.LVL1:
-  41:main.c        ****     Y_Dir_Pin_Write(rotator_state.y_act < rotator_state.y_des);
- 104              		.loc 1 41 0
+  39:main.c        ****     Y_Dir_Pin_Write(rotator_state.y_act < rotator_state.y_des);
+ 104              		.loc 1 39 0
  105 001a 039C     		ldr	r4, [sp, #12]
  106 001c 019E     		ldr	r6, [sp, #4]
  107 001e B442     		cmp	r4, r6
@@ -160,42 +158,42 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  110 0024 0120     		movlt	r0, #1
  111 0026 FFF7FEFF 		bl	Y_Dir_Pin_Write
  112              	.LVL2:
-  42:main.c        ****     
-  43:main.c        ****     if(abs(rotator_state.x_act - rotator_state.x_des) > STEPPING_TRESHOLD) {
- 113              		.loc 1 43 0
+  40:main.c        ****     
+  41:main.c        ****     if(abs(rotator_state.x_act - rotator_state.x_des) > STEPPING_TRESHOLD) {
+ 113              		.loc 1 41 0
  114 002a ED1B     		subs	r5, r5, r7
  115 002c 002D     		cmp	r5, #0
  116 002e B8BF     		it	lt
  117 0030 6D42     		rsblt	r5, r5, #0
  118 0032 042D     		cmp	r5, #4
  119 0034 02DD     		ble	.L8
-  44:main.c        ****         X_Step_Pin_Write(1);
- 120              		.loc 1 44 0
+  42:main.c        ****         X_Step_Pin_Write(1);
+ 120              		.loc 1 42 0
  121 0036 0120     		movs	r0, #1
  122 0038 FFF7FEFF 		bl	X_Step_Pin_Write
  123              	.LVL3:
  124              	.L8:
-  45:main.c        ****     }
-  46:main.c        ****     if(abs(rotator_state.y_act - rotator_state.y_des) > STEPPING_TRESHOLD) {
- 125              		.loc 1 46 0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 4
-
-
+  43:main.c        ****     }
+  44:main.c        ****     if(abs(rotator_state.y_act - rotator_state.y_des) > STEPPING_TRESHOLD) {
+ 125              		.loc 1 44 0
  126 003c A41B     		subs	r4, r4, r6
  127 003e 002C     		cmp	r4, #0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 4
+
+
  128 0040 B8BF     		it	lt
  129 0042 6442     		rsblt	r4, r4, #0
  130 0044 042C     		cmp	r4, #4
  131 0046 02DD     		ble	.L7
-  47:main.c        ****         Y_Step_Pin_Write(1);
- 132              		.loc 1 47 0
+  45:main.c        ****         Y_Step_Pin_Write(1);
+ 132              		.loc 1 45 0
  133 0048 0120     		movs	r0, #1
  134 004a FFF7FEFF 		bl	Y_Step_Pin_Write
  135              	.LVL4:
  136              	.L7:
-  48:main.c        ****     }
-  49:main.c        **** }
- 137              		.loc 1 49 0
+  46:main.c        ****     }
+  47:main.c        **** }
+ 137              		.loc 1 47 0
  138 004e 05B0     		add	sp, sp, #20
  139              		.cfi_def_cfa_offset 20
  140              		@ sp needed
@@ -211,9 +209,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  150              		.type	MOTOR_CONTROLL_FALLING_EDGE_Handler, %function
  151              	MOTOR_CONTROLL_FALLING_EDGE_Handler:
  152              	.LFB68:
-  50:main.c        **** 
-  51:main.c        **** CY_ISR( MOTOR_CONTROLL_FALLING_EDGE_Handler ){
- 153              		.loc 1 51 0
+  48:main.c        **** 
+  49:main.c        **** CY_ISR( MOTOR_CONTROLL_FALLING_EDGE_Handler ){
+ 153              		.loc 1 49 0
  154              		.cfi_startproc
  155              		@ args = 0, pretend = 0, frame = 0
  156              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -221,28 +219,28 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  158              		.cfi_def_cfa_offset 8
  159              		.cfi_offset 3, -8
  160              		.cfi_offset 14, -4
-  52:main.c        ****     X_Step_Pin_Write(0);
- 161              		.loc 1 52 0
+  50:main.c        ****     X_Step_Pin_Write(0);
+ 161              		.loc 1 50 0
  162 0002 0020     		movs	r0, #0
  163 0004 FFF7FEFF 		bl	X_Step_Pin_Write
  164              	.LVL5:
-  53:main.c        ****     Y_Step_Pin_Write(0);
- 165              		.loc 1 53 0
+  51:main.c        ****     Y_Step_Pin_Write(0);
+ 165              		.loc 1 51 0
  166 0008 0020     		movs	r0, #0
  167 000a FFF7FEFF 		bl	Y_Step_Pin_Write
  168              	.LVL6:
-  54:main.c        ****     refresh_rotation = true;
- 169              		.loc 1 54 0
+  52:main.c        ****     refresh_rotation = true;
+ 169              		.loc 1 52 0
  170 000e 0122     		movs	r2, #1
  171 0010 014B     		ldr	r3, .L13
  172 0012 9A70     		strb	r2, [r3, #2]
  173 0014 08BD     		pop	{r3, pc}
  174              	.L14:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 5
-
-
  175 0016 00BF     		.align	2
  176              	.L13:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 5
+
+
  177 0018 00000000 		.word	.LANCHOR0
  178              		.cfi_endproc
  179              	.LFE68:
@@ -298,11 +296,11 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
   40:util.h        ****         case STDOUT_HANDLE:
   41:util.h        ****             UART_UartPutChar(ch);
   42:util.h        ****             ret = ch ;
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 6
-
-
   43:util.h        ****             break ;
   44:util.h        **** 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 6
+
+
   45:util.h        ****         case STDERR_HANDLE:
   46:util.h        ****             ret = ch ;
   47:util.h        ****             break ;
@@ -358,11 +356,11 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  200              		.cfi_offset 14, -4
  201 0002 1646     		mov	r6, r2
  202              	.LVL8:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 7
-
-
   87:util.h        ****     int i;
   88:util.h        ****     file = file;
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 7
+
+
   89:util.h        ****     for (i = 0; i < len; i++)
  203              		.loc 2 89 0
  204 0004 0024     		movs	r4, #0
@@ -406,11 +404,11 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  235              		.type	main, %function
  236              	main:
  237              	.LFB69:
-  55:main.c        **** }
-  56:main.c        **** 
-  57:main.c        **** int main(void)
-  58:main.c        **** {
- 238              		.loc 1 58 0
+  53:main.c        **** }
+  54:main.c        **** 
+  55:main.c        **** int main(void)
+  56:main.c        **** {
+ 238              		.loc 1 56 0
  239              		.cfi_startproc
  240              		@ args = 0, pretend = 0, frame = 16
  241              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -418,92 +416,90 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  243              		.cfi_def_cfa_offset 20
  244              		.cfi_offset 4, -20
  245              		.cfi_offset 5, -16
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 8
-
-
  246              		.cfi_offset 6, -12
  247              		.cfi_offset 7, -8
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 8
+
+
  248              		.cfi_offset 14, -4
  249 0002 85B0     		sub	sp, sp, #20
  250              		.cfi_def_cfa_offset 40
-  59:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
- 251              		.loc 1 59 0
+  57:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 251              		.loc 1 57 0
  252              		.syntax unified
- 253              	@ 59 "main.c" 1
+ 253              	@ 57 "main.c" 1
  254 0004 62B6     		CPSIE   i
  255              	@ 0 "" 2
-  60:main.c        ****     
-  61:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */     
-  62:main.c        ****     
-  63:main.c        ****     //Start internal peripherials
-  64:main.c        ****     EEPROM_1_Start();   
- 256              		.loc 1 64 0
+  58:main.c        ****     
+  59:main.c        ****     //Start internal peripherials
+  60:main.c        ****     EEPROM_1_Start();   
+ 256              		.loc 1 60 0
  257              		.thumb
  258              		.syntax unified
  259 0006 FFF7FEFF 		bl	EEPROM_1_Start
  260              	.LVL14:
-  65:main.c        ****     UART_Start();
- 261              		.loc 1 65 0
+  61:main.c        ****     UART_Start();
+ 261              		.loc 1 61 0
  262 000a FFF7FEFF 		bl	UART_Start
  263              	.LVL15:
-  66:main.c        ****     I2C_OLED_Start();
- 264              		.loc 1 66 0
+  62:main.c        ****     I2C_OLED_Start();
+ 264              		.loc 1 62 0
  265 000e FFF7FEFF 		bl	I2C_OLED_Start
  266              	.LVL16:
-  67:main.c        ****     PWM_1_Start();
- 267              		.loc 1 67 0
+  63:main.c        ****     PWM_1_Start();
+ 267              		.loc 1 63 0
  268 0012 FFF7FEFF 		bl	PWM_1_Start
  269              	.LVL17:
-  68:main.c        ****     Display_Refresh_Timer_Start();
- 270              		.loc 1 68 0
+  64:main.c        ****     Display_Refresh_Timer_Start();
+ 270              		.loc 1 64 0
  271 0016 FFF7FEFF 		bl	Display_Refresh_Timer_Start
  272              	.LVL18:
-  69:main.c        ****     Button_Refresh_Timer_Start();
- 273              		.loc 1 69 0
+  65:main.c        ****     Button_Refresh_Timer_Start();
+ 273              		.loc 1 65 0
  274 001a FFF7FEFF 		bl	Button_Refresh_Timer_Start
  275              	.LVL19:
-  70:main.c        ****     I2C_X_Start();
- 276              		.loc 1 70 0
+  66:main.c        ****     I2C_X_Start();
+ 276              		.loc 1 66 0
  277 001e FFF7FEFF 		bl	I2C_X_Start
  278              	.LVL20:
-  71:main.c        ****     I2C_Y_Start();
- 279              		.loc 1 71 0
+  67:main.c        ****     I2C_Y_Start();
+ 279              		.loc 1 67 0
  280 0022 FFF7FEFF 		bl	I2C_Y_Start
  281              	.LVL21:
-  72:main.c        ****     
-  73:main.c        ****     //Get rotator state
-  74:main.c        ****     refreshRotation();
- 282              		.loc 1 74 0
+  68:main.c        ****     
+  69:main.c        ****     //Get rotator state
+  70:main.c        ****     refreshRotation();
+ 282              		.loc 1 70 0
  283 0026 FFF7FEFF 		bl	refreshRotation
  284              	.LVL22:
-  75:main.c        ****     
-  76:main.c        ****     //Init external peripherials
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 9
-
-
-  77:main.c        ****     CLI_Init();
- 285              		.loc 1 77 0
+  71:main.c        ****     
+  72:main.c        ****     //Init external peripherials
+  73:main.c        ****     CLI_Init();
+ 285              		.loc 1 73 0
  286 002a FFF7FEFF 		bl	CLI_Init
  287              	.LVL23:
-  78:main.c        ****     Horizon_Init();
- 288              		.loc 1 78 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 9
+
+
+  74:main.c        ****     Horizon_Init();
+ 288              		.loc 1 74 0
  289 002e FFF7FEFF 		bl	Horizon_Init
  290              	.LVL24:
-  79:main.c        ****     Horizon_Render();
- 291              		.loc 1 79 0
+  75:main.c        ****     Horizon_Render();
+ 291              		.loc 1 75 0
  292 0032 FFF7FEFF 		bl	Horizon_Render
  293              	.LVL25:
-  80:main.c        ****     
-  81:main.c        ****     //Home on restart
-  82:main.c        ****     if(testBit(0, 0x00)){
- 294              		.loc 1 82 0
+  76:main.c        ****     
+  77:main.c        ****     //Home on restart
+  78:main.c        ****     if(testBit(0, 0x00)){
+ 294              		.loc 1 78 0
  295 0036 0021     		movs	r1, #0
  296 0038 0846     		mov	r0, r1
  297 003a FFF7FEFF 		bl	testBit
  298              	.LVL26:
  299 003e 58B1     		cbz	r0, .L20
-  83:main.c        ****         setRotation(loadWord(0x01), loadWord(0x03));
- 300              		.loc 1 83 0
+  79:main.c        ****         setRotation(loadWord(0x01), loadWord(0x03));
+ 300              		.loc 1 79 0
  301 0040 0120     		movs	r0, #1
  302 0042 FFF7FEFF 		bl	loadWord
  303              	.LVL27:
@@ -518,242 +514,242 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  312 0056 02E0     		b	.L21
  313              	.L20:
  314              	.LBB2:
-  84:main.c        ****     } else {
-  85:main.c        ****         ROTATOR_STATE rotator_state = getRotation();
- 315              		.loc 1 85 0
+  80:main.c        ****     } else {
+  81:main.c        ****         ROTATOR_STATE rotator_state = getRotation();
+ 315              		.loc 1 81 0
  316 0058 6846     		mov	r0, sp
  317 005a FFF7FEFF 		bl	getRotation
  318              	.LVL30:
  319              	.L21:
  320              	.LBE2:
-  86:main.c        ****         rotator_state.x_des = rotator_state.x_act;
-  87:main.c        ****         rotator_state.y_des = rotator_state.y_act;
-  88:main.c        ****     }
-  89:main.c        ****     
-  90:main.c        ****     //Register interrupt service handlers
-  91:main.c        ****     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
- 321              		.loc 1 91 0
+  82:main.c        ****         rotator_state.x_des = rotator_state.x_act;
+  83:main.c        ****         rotator_state.y_des = rotator_state.y_act;
+  84:main.c        ****     }
+  85:main.c        ****     
+  86:main.c        ****     //Register interrupt service handlers
+  87:main.c        ****     Display_Refresh_Timer_Int_StartEx(DISPLAY_REFRESH_Handler);
+ 321              		.loc 1 87 0
  322 005e 3348     		ldr	r0, .L37
  323 0060 FFF7FEFF 		bl	Display_Refresh_Timer_Int_StartEx
  324              	.LVL31:
-  92:main.c        ****     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
- 325              		.loc 1 92 0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 10
-
-
+  88:main.c        ****     Button_Refresh_Timer_Int_StartEx(BUTTON_REFRESH_Handler);
+ 325              		.loc 1 88 0
  326 0064 3248     		ldr	r0, .L37+4
  327 0066 FFF7FEFF 		bl	Button_Refresh_Timer_Int_StartEx
  328              	.LVL32:
-  93:main.c        ****     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
- 329              		.loc 1 93 0
+  89:main.c        ****     MotorControlRiseingEdge_StartEx(MOTOR_CONTROLL_RISEING_EDGE_Handler);
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 10
+
+
+ 329              		.loc 1 89 0
  330 006a 3248     		ldr	r0, .L37+8
  331 006c FFF7FEFF 		bl	MotorControlRiseingEdge_StartEx
  332              	.LVL33:
-  94:main.c        ****     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
- 333              		.loc 1 94 0
+  90:main.c        ****     MotorControlFallingEdge_StartEx(MOTOR_CONTROLL_FALLING_EDGE_Handler);
+ 333              		.loc 1 90 0
  334 0070 3148     		ldr	r0, .L37+12
  335 0072 FFF7FEFF 		bl	MotorControlFallingEdge_StartEx
  336              	.LVL34:
-  95:main.c        ****     
-  96:main.c        ****     //Enable the movement of the motors
-  97:main.c        ****     Motor_Enable_Write(1);
- 337              		.loc 1 97 0
+  91:main.c        ****     
+  92:main.c        ****     //Enable the movement of the motors
+  93:main.c        ****     Motor_Enable_Write(1);
+ 337              		.loc 1 93 0
  338 0076 0120     		movs	r0, #1
  339 0078 FFF7FEFF 		bl	Motor_Enable_Write
  340              	.LVL35:
-  98:main.c        ****     
-  99:main.c        ****     //Signal on restart
- 100:main.c        ****     if(testBit(1, 0x00)){
- 341              		.loc 1 100 0
+  94:main.c        ****     
+  95:main.c        ****     //Signal on restart
+  96:main.c        ****     if(testBit(1, 0x00)){
+ 341              		.loc 1 96 0
  342 007c 0021     		movs	r1, #0
  343 007e 0120     		movs	r0, #1
  344 0080 FFF7FEFF 		bl	testBit
  345              	.LVL36:
  346 0084 10B1     		cbz	r0, .L31
- 101:main.c        ****         UART_PutString("System started.\r\n");
- 347              		.loc 1 101 0
+  97:main.c        ****         UART_PutString("System started.\r\n");
+ 347              		.loc 1 97 0
  348 0086 2D48     		ldr	r0, .L37+16
  349 0088 FFF7FEFF 		bl	UART_PutString
  350              	.LVL37:
  351              	.L31:
- 102:main.c        ****     }
- 103:main.c        ****     
- 104:main.c        ****     for(;;)
- 105:main.c        ****     {
- 106:main.c        ****         //Refresh rotation data
- 107:main.c        ****         if(refresh_rotation){
- 352              		.loc 1 107 0
+  98:main.c        ****     }
+  99:main.c        ****     
+ 100:main.c        ****     for(;;)
+ 101:main.c        ****     {
+ 102:main.c        ****         //Refresh rotation data
+ 103:main.c        ****         if(refresh_rotation){
+ 352              		.loc 1 103 0
  353 008c 2C4B     		ldr	r3, .L37+20
  354 008e 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
  355 0090 23B1     		cbz	r3, .L23
- 108:main.c        ****             refresh_rotation = false;
- 356              		.loc 1 108 0
+ 104:main.c        ****             refresh_rotation = false;
+ 356              		.loc 1 104 0
  357 0092 0022     		movs	r2, #0
  358 0094 2A4B     		ldr	r3, .L37+20
  359 0096 9A70     		strb	r2, [r3, #2]
- 109:main.c        ****             refreshRotation();
- 360              		.loc 1 109 0
+ 105:main.c        ****             refreshRotation();
+ 360              		.loc 1 105 0
  361 0098 FFF7FEFF 		bl	refreshRotation
  362              	.LVL38:
  363              	.L23:
- 110:main.c        ****         }
- 111:main.c        ****         //Refresh display
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 11
-
-
- 112:main.c        ****         if(refresh_display){
- 364              		.loc 1 112 0
+ 106:main.c        ****         }
+ 107:main.c        ****         //Refresh display
+ 108:main.c        ****         if(refresh_display){
+ 364              		.loc 1 108 0
  365 009c 284B     		ldr	r3, .L37+20
  366 009e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 11
+
+
  367 00a0 23B1     		cbz	r3, .L24
- 113:main.c        ****             refresh_display = false;
- 368              		.loc 1 113 0
+ 109:main.c        ****             refresh_display = false;
+ 368              		.loc 1 109 0
  369 00a2 0022     		movs	r2, #0
  370 00a4 264B     		ldr	r3, .L37+20
  371 00a6 1A70     		strb	r2, [r3]
- 114:main.c        ****             Horizon_Render();
- 372              		.loc 1 114 0
+ 110:main.c        ****             Horizon_Render();
+ 372              		.loc 1 110 0
  373 00a8 FFF7FEFF 		bl	Horizon_Render
  374              	.LVL39:
  375              	.L24:
- 115:main.c        ****         }
- 116:main.c        ****         //Refresh buttons
- 117:main.c        ****         if(refresh_buttons){
- 376              		.loc 1 117 0
+ 111:main.c        ****         }
+ 112:main.c        ****         //Refresh buttons
+ 113:main.c        ****         if(refresh_buttons){
+ 376              		.loc 1 113 0
  377 00ac 244B     		ldr	r3, .L37+20
  378 00ae 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
  379 00b0 0BB3     		cbz	r3, .L25
  380              	.LBB3:
- 118:main.c        ****             refresh_buttons = false;
- 381              		.loc 1 118 0
+ 114:main.c        ****             refresh_buttons = false;
+ 381              		.loc 1 114 0
  382 00b2 0022     		movs	r2, #0
  383 00b4 224B     		ldr	r3, .L37+20
  384 00b6 5A70     		strb	r2, [r3, #1]
- 119:main.c        ****             
- 120:main.c        ****             bool up_button = SW_UP_Pin_Read();
- 385              		.loc 1 120 0
+ 115:main.c        ****             
+ 116:main.c        ****             bool up_button = SW_UP_Pin_Read();
+ 385              		.loc 1 116 0
  386 00b8 FFF7FEFF 		bl	SW_UP_Pin_Read
  387              	.LVL40:
  388 00bc 0446     		mov	r4, r0
  389              	.LVL41:
- 121:main.c        ****             bool down_button = SW_DOWN_Pin_Read();
- 390              		.loc 1 121 0
+ 117:main.c        ****             bool down_button = SW_DOWN_Pin_Read();
+ 390              		.loc 1 117 0
  391 00be FFF7FEFF 		bl	SW_DOWN_Pin_Read
  392              	.LVL42:
  393 00c2 0646     		mov	r6, r0
  394              	.LVL43:
- 122:main.c        ****             bool left_button = SW_LEFT_Pin_Read();
- 395              		.loc 1 122 0
+ 118:main.c        ****             bool left_button = SW_LEFT_Pin_Read();
+ 395              		.loc 1 118 0
  396 00c4 FFF7FEFF 		bl	SW_LEFT_Pin_Read
  397              	.LVL44:
  398 00c8 0546     		mov	r5, r0
  399              	.LVL45:
- 123:main.c        ****             bool right_button = SW_RIGHT_Pin_Read();
- 400              		.loc 1 123 0
+ 119:main.c        ****             bool right_button = SW_RIGHT_Pin_Read();
+ 400              		.loc 1 119 0
  401 00ca FFF7FEFF 		bl	SW_RIGHT_Pin_Read
  402              	.LVL46:
  403 00ce 0746     		mov	r7, r0
  404              	.LVL47:
- 124:main.c        ****             
- 125:main.c        ****             ROTATOR_STATE rotator_state = getRotation();
- 405              		.loc 1 125 0
+ 120:main.c        ****             
+ 121:main.c        ****             ROTATOR_STATE rotator_state = getRotation();
+ 405              		.loc 1 121 0
  406 00d0 6846     		mov	r0, sp
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 12
-
-
  407 00d2 FFF7FEFF 		bl	getRotation
  408              	.LVL48:
- 126:main.c        ****             int x = rotator_state.x_des;
- 409              		.loc 1 126 0
+ 122:main.c        ****             int x = rotator_state.x_des;
+ 409              		.loc 1 122 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 12
+
+
  410 00d6 0098     		ldr	r0, [sp]
  411              	.LVL49:
- 127:main.c        ****             int y = rotator_state.y_des;
- 412              		.loc 1 127 0
+ 123:main.c        ****             int y = rotator_state.y_des;
+ 412              		.loc 1 123 0
  413 00d8 0199     		ldr	r1, [sp, #4]
  414              	.LVL50:
- 128:main.c        ****             
- 129:main.c        ****             //X
- 130:main.c        ****             if(left_button && !right_button){
- 415              		.loc 1 130 0
+ 124:main.c        ****             
+ 125:main.c        ****             //X
+ 126:main.c        ****             if(left_button && !right_button){
+ 415              		.loc 1 126 0
  416 00da 0DB1     		cbz	r5, .L26
- 417              		.loc 1 130 0 is_stmt 0 discriminator 1
+ 417              		.loc 1 126 0 is_stmt 0 discriminator 1
  418 00dc 07B9     		cbnz	r7, .L26
- 131:main.c        ****                 x -= 4;
- 419              		.loc 1 131 0 is_stmt 1
+ 127:main.c        ****                 x -= 4;
+ 419              		.loc 1 127 0 is_stmt 1
  420 00de 0438     		subs	r0, r0, #4
  421              	.LVL51:
  422              	.L26:
- 132:main.c        ****             }
- 133:main.c        ****             if(!left_button && right_button){
- 423              		.loc 1 133 0
+ 128:main.c        ****             }
+ 129:main.c        ****             if(!left_button && right_button){
+ 423              		.loc 1 129 0
  424 00e0 0DB9     		cbnz	r5, .L27
- 425              		.loc 1 133 0 is_stmt 0 discriminator 1
+ 425              		.loc 1 129 0 is_stmt 0 discriminator 1
  426 00e2 07B1     		cbz	r7, .L27
- 134:main.c        ****                 x += 4;
- 427              		.loc 1 134 0 is_stmt 1
+ 130:main.c        ****                 x += 4;
+ 427              		.loc 1 130 0 is_stmt 1
  428 00e4 0430     		adds	r0, r0, #4
  429              	.LVL52:
  430              	.L27:
- 135:main.c        ****             }
- 136:main.c        ****             
- 137:main.c        ****             //Y
- 138:main.c        ****             if(up_button && !down_button){
- 431              		.loc 1 138 0
+ 131:main.c        ****             }
+ 132:main.c        ****             
+ 133:main.c        ****             //Y
+ 134:main.c        ****             if(up_button && !down_button){
+ 431              		.loc 1 134 0
  432 00e6 0CB1     		cbz	r4, .L28
- 433              		.loc 1 138 0 is_stmt 0 discriminator 1
+ 433              		.loc 1 134 0 is_stmt 0 discriminator 1
  434 00e8 06B9     		cbnz	r6, .L28
- 139:main.c        ****                 y -= 4;
- 435              		.loc 1 139 0 is_stmt 1
+ 135:main.c        ****                 y -= 4;
+ 435              		.loc 1 135 0 is_stmt 1
  436 00ea 0439     		subs	r1, r1, #4
  437              	.LVL53:
  438              	.L28:
- 140:main.c        ****             }
- 141:main.c        ****             if(!up_button && down_button){
- 439              		.loc 1 141 0
+ 136:main.c        ****             }
+ 137:main.c        ****             if(!up_button && down_button){
+ 439              		.loc 1 137 0
  440 00ec 0CB9     		cbnz	r4, .L29
- 441              		.loc 1 141 0 is_stmt 0 discriminator 1
+ 441              		.loc 1 137 0 is_stmt 0 discriminator 1
  442 00ee 06B1     		cbz	r6, .L29
- 142:main.c        ****                 y += 4;
- 443              		.loc 1 142 0 is_stmt 1
+ 138:main.c        ****                 y += 4;
+ 443              		.loc 1 138 0 is_stmt 1
  444 00f0 0431     		adds	r1, r1, #4
  445              	.LVL54:
  446              	.L29:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 13
+ 139:main.c        ****             }
+ 140:main.c        ****             
+ 141:main.c        ****             setRotation(x, y);
+ 447              		.loc 1 141 0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 13
 
 
- 143:main.c        ****             }
- 144:main.c        ****             
- 145:main.c        ****             setRotation(x, y);
- 447              		.loc 1 145 0
  448 00f2 FFF7FEFF 		bl	setRotation
  449              	.LVL55:
  450              	.L25:
  451              	.LBE3:
- 146:main.c        ****         }
- 147:main.c        ****         //Input processing
- 148:main.c        ****         CLI_Update();
- 452              		.loc 1 148 0
+ 142:main.c        ****         }
+ 143:main.c        ****         //Input processing
+ 144:main.c        ****         CLI_Update();
+ 452              		.loc 1 144 0
  453 00f6 FFF7FEFF 		bl	CLI_Update
  454              	.LVL56:
- 149:main.c        ****         
- 150:main.c        ****         LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_
- 455              		.loc 1 150 0
+ 145:main.c        ****         
+ 146:main.c        ****         LED_Pin_Write(SW_UP_Pin_Read() && SW_DOWN_Pin_Read() && SW_LEFT_Pin_Read() && SW_RIGHT_Pin_
+ 455              		.loc 1 146 0
  456 00fa FFF7FEFF 		bl	SW_UP_Pin_Read
  457              	.LVL57:
  458 00fe 50B1     		cbz	r0, .L32
- 459              		.loc 1 150 0 is_stmt 0 discriminator 1
+ 459              		.loc 1 146 0 is_stmt 0 discriminator 1
  460 0100 FFF7FEFF 		bl	SW_DOWN_Pin_Read
  461              	.LVL58:
  462 0104 48B1     		cbz	r0, .L33
- 463              		.loc 1 150 0 discriminator 3
+ 463              		.loc 1 146 0 discriminator 3
  464 0106 FFF7FEFF 		bl	SW_LEFT_Pin_Read
  465              	.LVL59:
  466 010a 40B1     		cbz	r0, .L34
- 467              		.loc 1 150 0 discriminator 5
+ 467              		.loc 1 146 0 discriminator 5
  468 010c FFF7FEFF 		bl	SW_RIGHT_Pin_Read
  469              	.LVL60:
  470 0110 38B1     		cbz	r0, .L35
- 471              		.loc 1 150 0
+ 471              		.loc 1 146 0
  472 0112 0120     		movs	r0, #1
  473 0114 06E0     		b	.L30
  474              	.L32:
@@ -768,23 +764,23 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  483              	.L35:
  484 0122 0020     		movs	r0, #0
  485              	.L30:
- 486              		.loc 1 150 0 discriminator 10
+ 486              		.loc 1 146 0 discriminator 10
  487 0124 FFF7FEFF 		bl	LED_Pin_Write
  488              	.LVL61:
- 151:main.c        ****     }
- 489              		.loc 1 151 0 is_stmt 1 discriminator 10
+ 147:main.c        ****     }
+ 489              		.loc 1 147 0 is_stmt 1 discriminator 10
  490 0128 B0E7     		b	.L31
  491              	.L38:
  492 012a 00BF     		.align	2
  493              	.L37:
  494 012c 00000000 		.word	DISPLAY_REFRESH_Handler
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 14
-
-
  495 0130 00000000 		.word	BUTTON_REFRESH_Handler
  496 0134 00000000 		.word	MOTOR_CONTROLL_RISEING_EDGE_Handler
  497 0138 00000000 		.word	MOTOR_CONTROLL_FALLING_EDGE_Handler
  498 013c 00000000 		.word	.LC0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 14
+
+
  499 0140 00000000 		.word	.LANCHOR0
  500              		.cfi_endproc
  501              	.LFE69:
@@ -838,13 +834,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  545              		.file 18 "Generated_Source\\PSoC5/I2C_OLED.h"
  546              		.file 19 "Generated_Source\\PSoC5/PWM_1.h"
  547              		.file 20 "Generated_Source\\PSoC5/Display_Refresh_Timer.h"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 15
-
-
  548              		.file 21 "Generated_Source\\PSoC5/Button_Refresh_Timer.h"
  549              		.file 22 "Generated_Source\\PSoC5/I2C_X.h"
  550              		.file 23 "Generated_Source\\PSoC5/I2C_Y.h"
  551              		.file 24 "RotatorHorizon.h"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 15
+
+
  552              		.file 25 "eeprom.h"
  553              		.file 26 "Generated_Source\\PSoC5/Display_Refresh_Timer_Int.h"
  554              		.file 27 "Generated_Source\\PSoC5/Button_Refresh_Timer_Int.h"
@@ -898,13 +894,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  602 005a 02       		.uleb128 0x2
  603 005b 08       		.byte	0x8
  604 005c 05       		.byte	0x5
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 16
-
-
  605 005d 87010000 		.4byte	.LASF6
  606 0061 02       		.uleb128 0x2
  607 0062 08       		.byte	0x8
  608 0063 07       		.byte	0x7
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 16
+
+
  609 0064 D3020000 		.4byte	.LASF7
  610 0068 04       		.uleb128 0x4
  611 0069 04       		.byte	0x4
@@ -958,13 +954,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  659 00c3 44020000 		.4byte	.LASF17
  660 00c7 05       		.byte	0x5
  661 00c8 18       		.byte	0x18
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 17
-
-
  662 00c9 68000000 		.4byte	0x68
  663 00cd 04       		.byte	0x4
  664 00ce 07       		.uleb128 0x7
  665 00cf 3F040000 		.4byte	.LASF18
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 17
+
+
  666 00d3 05       		.byte	0x5
  667 00d4 19       		.byte	0x19
  668 00d5 68000000 		.4byte	0x68
@@ -1010,7 +1006,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  708 0127 0B       		.uleb128 0xb
  709 0128 DC000000 		.4byte	.LASF23
  710 012c 01       		.byte	0x1
- 711 012d 1D       		.byte	0x1d
+ 711 012d 1B       		.byte	0x1b
  712 012e 00000000 		.4byte	.LFB65
  713 0132 0C000000 		.4byte	.LFE65-.LFB65
  714 0136 01       		.uleb128 0x1
@@ -1018,18 +1014,18 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  716 0138 0B       		.uleb128 0xb
  717 0139 08030000 		.4byte	.LASF24
  718 013d 01       		.byte	0x1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 18
-
-
- 719 013e 21       		.byte	0x21
+ 719 013e 1F       		.byte	0x1f
  720 013f 00000000 		.4byte	.LFB66
  721 0143 0C000000 		.4byte	.LFE66-.LFB66
  722 0147 01       		.uleb128 0x1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 18
+
+
  723 0148 9C       		.byte	0x9c
  724 0149 0C       		.uleb128 0xc
  725 014a 3C010000 		.4byte	.LASF25
  726 014e 01       		.byte	0x1
- 727 014f 25       		.byte	0x25
+ 727 014f 23       		.byte	0x23
  728 0150 00000000 		.4byte	.LFB67
  729 0154 52000000 		.4byte	.LFE67-.LFB67
  730 0158 01       		.uleb128 0x1
@@ -1038,7 +1034,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  733 015e 0D       		.uleb128 0xd
  734 015f 8D000000 		.4byte	.LASF28
  735 0163 01       		.byte	0x1
- 736 0164 26       		.byte	0x26
+ 736 0164 24       		.byte	0x24
  737 0165 E7000000 		.4byte	0xe7
  738 0169 02       		.uleb128 0x2
  739 016a 91       		.byte	0x91
@@ -1078,15 +1074,15 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  773 01b0 50       		.byte	0x50
  774 01b1 01       		.uleb128 0x1
  775 01b2 31       		.byte	0x31
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 19
-
-
  776 01b3 00       		.byte	0
  777 01b4 00       		.byte	0
  778 01b5 0C       		.uleb128 0xc
  779 01b6 EA040000 		.4byte	.LASF26
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 19
+
+
  780 01ba 01       		.byte	0x1
- 781 01bb 33       		.byte	0x33
+ 781 01bb 31       		.byte	0x31
  782 01bc 00000000 		.4byte	.LFB68
  783 01c0 1C000000 		.4byte	.LFE68-.LFB68
  784 01c4 01       		.uleb128 0x1
@@ -1138,13 +1134,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  830 0225 6C656E00 		.ascii	"len\000"
  831 0229 02       		.byte	0x2
  832 022a 55       		.byte	0x55
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 20
-
-
  833 022b 68000000 		.4byte	0x68
  834 022f 4A000000 		.4byte	.LLST2
  835 0233 15       		.uleb128 0x15
  836 0234 6900     		.ascii	"i\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 20
+
+
  837 0236 02       		.byte	0x2
  838 0237 57       		.byte	0x57
  839 0238 68000000 		.4byte	0x68
@@ -1156,7 +1152,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  845 024a 16       		.uleb128 0x16
  846 024b 49030000 		.4byte	.LASF78
  847 024f 01       		.byte	0x1
- 848 0250 39       		.byte	0x39
+ 848 0250 37       		.byte	0x37
  849 0251 68000000 		.4byte	0x68
  850 0255 00000000 		.4byte	.LFB69
  851 0259 44010000 		.4byte	.LFE69-.LFB69
@@ -1170,7 +1166,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  859 0270 0D       		.uleb128 0xd
  860 0271 8D000000 		.4byte	.LASF28
  861 0275 01       		.byte	0x1
- 862 0276 55       		.byte	0x55
+ 862 0276 51       		.byte	0x51
  863 0277 E7000000 		.4byte	0xe7
  864 027b 02       		.uleb128 0x2
  865 027c 91       		.byte	0x91
@@ -1193,34 +1189,34 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  882 029c 18       		.uleb128 0x18
  883 029d 45040000 		.4byte	.LASF29
  884 02a1 01       		.byte	0x1
- 885 02a2 78       		.byte	0x78
+ 885 02a2 74       		.byte	0x74
  886 02a3 E7040000 		.4byte	0x4e7
  887 02a7 87000000 		.4byte	.LLST4
  888 02ab 18       		.uleb128 0x18
  889 02ac 1F010000 		.4byte	.LASF30
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 21
-
-
  890 02b0 01       		.byte	0x1
- 891 02b1 79       		.byte	0x79
+ 891 02b1 75       		.byte	0x75
  892 02b2 E7040000 		.4byte	0x4e7
  893 02b6 A0000000 		.4byte	.LLST5
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 21
+
+
  894 02ba 18       		.uleb128 0x18
  895 02bb 2F020000 		.4byte	.LASF31
  896 02bf 01       		.byte	0x1
- 897 02c0 7A       		.byte	0x7a
+ 897 02c0 76       		.byte	0x76
  898 02c1 E7040000 		.4byte	0x4e7
  899 02c5 B9000000 		.4byte	.LLST6
  900 02c9 18       		.uleb128 0x18
  901 02ca 37030000 		.4byte	.LASF32
  902 02ce 01       		.byte	0x1
- 903 02cf 7B       		.byte	0x7b
+ 903 02cf 77       		.byte	0x77
  904 02d0 E7040000 		.4byte	0x4e7
  905 02d4 D2000000 		.4byte	.LLST7
  906 02d8 0D       		.uleb128 0xd
  907 02d9 8D000000 		.4byte	.LASF28
  908 02dd 01       		.byte	0x1
- 909 02de 7D       		.byte	0x7d
+ 909 02de 79       		.byte	0x79
  910 02df E7000000 		.4byte	0xe7
  911 02e3 02       		.uleb128 0x2
  912 02e4 91       		.byte	0x91
@@ -1228,13 +1224,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  914 02e6 15       		.uleb128 0x15
  915 02e7 7800     		.ascii	"x\000"
  916 02e9 01       		.byte	0x1
- 917 02ea 7E       		.byte	0x7e
+ 917 02ea 7A       		.byte	0x7a
  918 02eb 68000000 		.4byte	0x68
  919 02ef EB000000 		.4byte	.LLST8
  920 02f3 15       		.uleb128 0x15
  921 02f4 7900     		.ascii	"y\000"
  922 02f6 01       		.byte	0x1
- 923 02f7 7F       		.byte	0x7f
+ 923 02f7 7B       		.byte	0x7b
  924 02f8 68000000 		.4byte	0x68
  925 02fc FE000000 		.4byte	.LLST9
  926 0300 10       		.uleb128 0x10
@@ -1258,13 +1254,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  944 0333 50       		.byte	0x50
  945 0334 02       		.uleb128 0x2
  946 0335 7D       		.byte	0x7d
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 22
-
-
  947 0336 00       		.sleb128 0
  948 0337 00       		.byte	0
  949 0338 10       		.uleb128 0x10
  950 0339 F6000000 		.4byte	.LVL55
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 22
+
+
  951 033d E4050000 		.4byte	0x5e4
  952 0341 00       		.byte	0
  953 0342 10       		.uleb128 0x10
@@ -1318,13 +1314,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1001 03c3 01       		.uleb128 0x1
  1002 03c4 30       		.byte	0x30
  1003 03c5 00       		.byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 23
-
-
  1004 03c6 0E       		.uleb128 0xe
  1005 03c7 46000000 		.4byte	.LVL27
  1006 03cb 7E060000 		.4byte	0x67e
  1007 03cf D9030000 		.4byte	0x3d9
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 23
+
+
  1008 03d3 0F       		.uleb128 0xf
  1009 03d4 01       		.uleb128 0x1
  1010 03d5 50       		.byte	0x50
@@ -1378,13 +1374,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1058 042f 70000000 		.4byte	.LVL33
  1059 0433 9F060000 		.4byte	0x69f
  1060 0437 45040000 		.4byte	0x445
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 24
-
-
  1061 043b 0F       		.uleb128 0xf
  1062 043c 01       		.uleb128 0x1
  1063 043d 50       		.byte	0x50
  1064 043e 05       		.uleb128 0x5
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 24
+
+
  1065 043f 03       		.byte	0x3
  1066 0440 00000000 		.4byte	MOTOR_CONTROLL_RISEING_EDGE_Handler
  1067 0444 00       		.byte	0
@@ -1438,13 +1434,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1115 049e 10       		.uleb128 0x10
  1116 049f 9C000000 		.4byte	.LVL38
  1117 04a3 47060000 		.4byte	0x647
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 25
-
-
  1118 04a7 10       		.uleb128 0x10
  1119 04a8 AC000000 		.4byte	.LVL39
  1120 04ac 68060000 		.4byte	0x668
  1121 04b0 10       		.uleb128 0x10
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 25
+
+
  1122 04b1 FA000000 		.4byte	.LVL56
  1123 04b5 CB060000 		.4byte	0x6cb
  1124 04b9 10       		.uleb128 0x10
@@ -1498,13 +1494,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1172 052c 05       		.uleb128 0x5
  1173 052d 03       		.byte	0x3
  1174 052e 00000000 		.4byte	arg2
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 26
-
-
  1175 0532 1C       		.uleb128 0x1c
  1176 0533 82010000 		.4byte	.LASF37
  1177 0537 06       		.byte	0x6
  1178 0538 21       		.byte	0x21
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 26
+
+
  1179 0539 F2000000 		.4byte	0xf2
  1180 053d 05       		.uleb128 0x5
  1181 053e 03       		.byte	0x3
@@ -1512,7 +1508,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1183 0543 1C       		.uleb128 0x1c
  1184 0544 0F040000 		.4byte	.LASF38
  1185 0548 01       		.byte	0x1
- 1186 0549 19       		.byte	0x19
+ 1186 0549 17       		.byte	0x17
  1187 054a E7040000 		.4byte	0x4e7
  1188 054e 05       		.uleb128 0x5
  1189 054f 03       		.byte	0x3
@@ -1520,7 +1516,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1191 0554 1C       		.uleb128 0x1c
  1192 0555 9B000000 		.4byte	.LASF39
  1193 0559 01       		.byte	0x1
- 1194 055a 1A       		.byte	0x1a
+ 1194 055a 18       		.byte	0x18
  1195 055b E7040000 		.4byte	0x4e7
  1196 055f 05       		.uleb128 0x5
  1197 0560 03       		.byte	0x3
@@ -1528,7 +1524,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1199 0565 1C       		.uleb128 0x1c
  1200 0566 F4030000 		.4byte	.LASF40
  1201 056a 01       		.byte	0x1
- 1202 056b 1B       		.byte	0x1b
+ 1202 056b 19       		.byte	0x19
  1203 056c E7040000 		.4byte	0x4e7
  1204 0570 05       		.uleb128 0x5
  1205 0571 03       		.byte	0x3
@@ -1558,13 +1554,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1229 05a7 EA020000 		.4byte	.LASF45
  1230 05ab 0B       		.byte	0xb
  1231 05ac 26       		.byte	0x26
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 27
-
-
  1232 05ad 1D       		.uleb128 0x1d
  1233 05ae 0E050000 		.4byte	.LASF46
  1234 05b2 0E050000 		.4byte	.LASF46
  1235 05b6 0C       		.byte	0xc
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 27
+
+
  1236 05b7 8A       		.byte	0x8a
  1237 05b8 1D       		.uleb128 0x1d
  1238 05b9 7A030000 		.4byte	.LASF47
@@ -1618,13 +1614,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1286 0625 5A       		.byte	0x5a
  1287 0626 1D       		.uleb128 0x1d
  1288 0627 64000000 		.4byte	.LASF57
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 28
-
-
  1289 062b 64000000 		.4byte	.LASF57
  1290 062f 15       		.byte	0x15
  1291 0630 5A       		.byte	0x5a
  1292 0631 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 28
+
+
  1293 0632 BC000000 		.4byte	.LASF58
  1294 0636 BC000000 		.4byte	.LASF58
  1295 063a 16       		.byte	0x16
@@ -1678,13 +1674,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1343 06a0 00000000 		.4byte	.LASF68
  1344 06a4 00000000 		.4byte	.LASF68
  1345 06a8 1C       		.byte	0x1c
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 29
-
-
  1346 06a9 18       		.byte	0x18
  1347 06aa 1D       		.uleb128 0x1d
  1348 06ab BB010000 		.4byte	.LASF69
  1349 06af BB010000 		.4byte	.LASF69
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 29
+
+
  1350 06b3 1D       		.byte	0x1d
  1351 06b4 18       		.byte	0x18
  1352 06b5 1D       		.uleb128 0x1d
@@ -1738,13 +1734,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1400 0019 0B       		.uleb128 0xb
  1401 001a 03       		.uleb128 0x3
  1402 001b 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 30
-
-
  1403 001c 00       		.byte	0
  1404 001d 00       		.byte	0
  1405 001e 03       		.uleb128 0x3
  1406 001f 16       		.uleb128 0x16
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 30
+
+
  1407 0020 00       		.byte	0
  1408 0021 03       		.uleb128 0x3
  1409 0022 0E       		.uleb128 0xe
@@ -1798,13 +1794,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1457 0052 0E       		.uleb128 0xe
  1458 0053 3A       		.uleb128 0x3a
  1459 0054 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 31
-
-
  1460 0055 3B       		.uleb128 0x3b
  1461 0056 0B       		.uleb128 0xb
  1462 0057 49       		.uleb128 0x49
  1463 0058 13       		.uleb128 0x13
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 31
+
+
  1464 0059 38       		.uleb128 0x38
  1465 005a 0B       		.uleb128 0xb
  1466 005b 00       		.byte	0
@@ -1858,13 +1854,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1514 008b 11       		.uleb128 0x11
  1515 008c 01       		.uleb128 0x1
  1516 008d 12       		.uleb128 0x12
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 32
-
-
  1517 008e 06       		.uleb128 0x6
  1518 008f 40       		.uleb128 0x40
  1519 0090 18       		.uleb128 0x18
  1520 0091 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 32
+
+
  1521 0093 19       		.uleb128 0x19
  1522 0094 00       		.byte	0
  1523 0095 00       		.byte	0
@@ -1918,13 +1914,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1571 00c8 01       		.uleb128 0x1
  1572 00c9 13       		.uleb128 0x13
  1573 00ca 00       		.byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 33
-
-
  1574 00cb 00       		.byte	0
  1575 00cc 0F       		.uleb128 0xf
  1576 00cd 8A8201   		.uleb128 0x410a
  1577 00d0 00       		.byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 33
+
+
  1578 00d1 02       		.uleb128 0x2
  1579 00d2 18       		.uleb128 0x18
  1580 00d3 9142     		.uleb128 0x2111
@@ -1978,13 +1974,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1628 0109 00       		.byte	0
  1629 010a 13       		.uleb128 0x13
  1630 010b 05       		.uleb128 0x5
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 34
-
-
  1631 010c 00       		.byte	0
  1632 010d 03       		.uleb128 0x3
  1633 010e 0E       		.uleb128 0xe
  1634 010f 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 34
+
+
  1635 0110 0B       		.uleb128 0xb
  1636 0111 3B       		.uleb128 0x3b
  1637 0112 0B       		.uleb128 0xb
@@ -2038,13 +2034,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1685 0142 27       		.uleb128 0x27
  1686 0143 19       		.uleb128 0x19
  1687 0144 49       		.uleb128 0x49
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 35
-
-
  1688 0145 13       		.uleb128 0x13
  1689 0146 8701     		.uleb128 0x87
  1690 0148 19       		.uleb128 0x19
  1691 0149 11       		.uleb128 0x11
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 35
+
+
  1692 014a 01       		.uleb128 0x1
  1693 014b 12       		.uleb128 0x12
  1694 014c 06       		.uleb128 0x6
@@ -2098,13 +2094,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1742 017d 3C       		.uleb128 0x3c
  1743 017e 19       		.uleb128 0x19
  1744 017f 00       		.byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 36
-
-
  1745 0180 00       		.byte	0
  1746 0181 1A       		.uleb128 0x1a
  1747 0182 35       		.uleb128 0x35
  1748 0183 00       		.byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 36
+
+
  1749 0184 49       		.uleb128 0x49
  1750 0185 13       		.uleb128 0x13
  1751 0186 00       		.byte	0
@@ -2158,13 +2154,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1799 01b6 0B       		.uleb128 0xb
  1800 01b7 3B       		.uleb128 0x3b
  1801 01b8 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 37
-
-
  1802 01b9 00       		.byte	0
  1803 01ba 00       		.byte	0
  1804 01bb 00       		.byte	0
  1805              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 37
+
+
  1806              	.Ldebug_loc0:
  1807              	.LLST0:
  1808 0000 00000000 		.4byte	.LVL7
@@ -2218,13 +2214,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1856 007e 54       		.byte	0x54
  1857 007f 00000000 		.4byte	0
  1858 0083 00000000 		.4byte	0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 38
-
-
  1859              	.LLST4:
  1860 0087 BE000000 		.4byte	.LVL41
  1861 008b F6000000 		.4byte	.LVL55
  1862 008f 0700     		.2byte	0x7
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 38
+
+
  1863 0091 74       		.byte	0x74
  1864 0092 00       		.sleb128 0
  1865 0093 48       		.byte	0x48
@@ -2278,13 +2274,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1913 00ef F5000000 		.4byte	.LVL55-1
  1914 00f3 0100     		.2byte	0x1
  1915 00f5 50       		.byte	0x50
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 39
-
-
  1916 00f6 00000000 		.4byte	0
  1917 00fa 00000000 		.4byte	0
  1918              	.LLST9:
  1919 00fe DA000000 		.4byte	.LVL50
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 39
+
+
  1920 0102 F5000000 		.4byte	.LVL55-1
  1921 0106 0100     		.2byte	0x1
  1922 0108 51       		.byte	0x51
@@ -2338,13 +2334,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1966              	.LASF68:
  1967 0000 4D6F746F 		.ascii	"MotorControlRiseingEdge_StartEx\000"
  1967      72436F6E 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 40
-
-
  1967      74726F6C 
  1967      52697365 
  1967      696E6745 
  1968              	.LASF63:
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 40
+
+
  1969 0020 486F7269 		.ascii	"Horizon_Render\000"
  1969      7A6F6E5F 
  1969      52656E64 
@@ -2398,13 +2394,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  1989      00
  1990              	.LASF58:
  1991 00bc 4932435F 		.ascii	"I2C_X_Start\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 41
-
-
  1991      585F5374 
  1991      61727400 
  1992              	.LASF27:
  1993 00c8 66696C65 		.ascii	"file\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 41
+
+
  1993      00
  1994              	.LASF54:
  1995 00cd 4932435F 		.ascii	"I2C_OLED_Start\000"
@@ -2458,13 +2454,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  2015      00
  2016              	.LASF11:
  2017 017c 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 42
-
-
  2017      7400
  2018              	.LASF37:
  2019 0182 61726733 		.ascii	"arg3\000"
  2019      00
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 42
+
+
  2020              	.LASF6:
  2021 0187 6C6F6E67 		.ascii	"long long int\000"
  2021      206C6F6E 
@@ -2518,13 +2514,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  2040      626C6500 
  2041              	.LASF48:
  2042 0256 53575F44 		.ascii	"SW_DOWN_Pin_Read\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 43
-
-
  2042      4F574E5F 
  2042      50696E5F 
  2042      52656164 
  2042      00
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 43
+
+
  2043              	.LASF67:
  2044 0267 42757474 		.ascii	"Button_Refresh_Timer_Int_StartEx\000"
  2044      6F6E5F52 
@@ -2578,13 +2574,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  2064 0308 42555454 		.ascii	"BUTTON_REFRESH_Handler\000"
  2064      4F4E5F52 
  2064      45465245 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 44
-
-
  2064      53485F48 
  2064      616E646C 
  2065              	.LASF70:
  2066 031f 4D6F746F 		.ascii	"Motor_Enable_Write\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 44
+
+
  2066      725F456E 
  2066      61626C65 
  2066      5F577269 
@@ -2638,13 +2634,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  2090      2E6300
  2091              	.LASF5:
  2092 03ab 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 45
-
-
  2092      20756E73 
  2092      69676E65 
  2092      6420696E 
  2092      7400
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 45
+
+
  2093              	.LASF12:
  2094 03bd 646F7562 		.ascii	"double\000"
  2094      6C6500
@@ -2698,13 +2694,13 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 1
  2116 044f 49544D5F 		.ascii	"ITM_RxBuffer\000"
  2116      52784275 
  2116      66666572 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc3VSm23.s 			page 46
-
-
  2116      00
  2117              	.LASF74:
  2118 045c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
  2118      43313120 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\cc0VZ8E0.s 			page 46
+
+
  2118      352E342E 
  2118      31203230 
  2118      31363036 

@@ -14,6 +14,9 @@
 #include "bsp.h"
 #include "rotation.h"
 
+#define NO_ERROR false
+#define ERROR    true
+
 enum READ_STATE readState = CMD;
 
 void CLI_Init(){
@@ -24,7 +27,7 @@ void CLI_Update(){
     char inChar = UART_GetChar();
         if(inChar != 0){
             UART_PutChar(inChar);
-            bool error = false;
+            bool error = NO_ERROR;
             switch(inChar){
                 case 27:
                     UART_PutString("\r\n");
@@ -50,7 +53,7 @@ void CLI_Update(){
                             readState = ARG3;
                             break;
                         case ARG3:
-                            error = true;
+                            error = ERROR;
                             break;
                     }
                     break;
@@ -84,90 +87,90 @@ bool ProcessCommand(){
         if(!strcmp(cmd.data, "rhom")){
             if(isNoArgFnc()){
                 ReadHomePosition();
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "rhor")){
             if(isNoArgFnc()){
                 ReadHomeOnRestart();
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "ract")){
             if(isNoArgFnc()){
                 ReadActualPosition();
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "rpos")){
             if(isNoArgFnc()){
                 ReadDesiredPosition();
-                return false;
+                return NO_ERROR;
             }            
         } else if(!strcmp(cmd.data, "rsos")){
             if(isNoArgFnc()){
                 ReadSignalOnStart();
-                return false;
+                return NO_ERROR;
             }    
         }else if(!strcmp(cmd.data, "whom")){
             if(isTwoArgFnc()){              
                 uint16 x = ParseArgument(&arg1);
                 uint16 y = ParseArgument(&arg2);
                 WriteHomePosition(x, y);
-                return false;
+                return NO_ERROR;
             }   
         } else if(!strcmp(cmd.data, "whor")){
             if(isOneArgFnc()){
                 WriteHomeOnRestart(ParseArgument(&arg1));
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "wpos")){
             if(isTwoArgFnc()){            
                 uint16 x = ParseArgument(&arg1);
                 uint16 y = ParseArgument(&arg2);
                 WriteDesiredPosition(x, y);
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "wsos")){
             if(isOneArgFnc()){
                 WriteSignalOnStart(ParseArgument(&arg1));
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "wpoi")){
             if(isOneArgFnc()){
                 uint8 id = ParseArgument(&arg1);
                 if(1 <= id && 16 >= id){
                     saveToSaveSlot(id);
-                    return false;
+                    return NO_ERROR;
                 }
                 UART_PutString("Invalid ID.");
             }
         } else if(!strcmp(cmd.data, "mhom")){
             if(isNoArgFnc()){
                 MoveToHome();
-                return false;
+                return NO_ERROR;
             }
         } else if(!strcmp(cmd.data, "mpoi")){
             if(isOneArgFnc()){
                 uint8 id = ParseArgument(&arg1);
                 if(1 <= id && 16 >= id){
                     moveToSaveSlot(id);
-                    return false;
+                    return NO_ERROR;
                 }
                 UART_PutString("Invalid ID.");
             }
         } else if(!strcmp(cmd.data, "rpoi")){
             if(isNoArgFnc()){
                 listSaveSlots();
-                return false;
+                return NO_ERROR;
             } else if(isOneArgFnc()){
                 uint8 id = ParseArgument(&arg1);
                 if(1 <= id && 16 >= id){
                     saveSlotDetails(id);
-                    return false;
+                    return NO_ERROR;
                 }
                 UART_PutString("Invalid ID.");
             }
         }
     }
-    return true;
+    return ERROR;
 }
 
 void ResetInput(){
@@ -189,17 +192,17 @@ bool AddArgumentDigit(char c, struct INPUT_BUFFER* arg){
         if(arg->cnt <= 3){
             arg->data[arg->cnt++] = c;
         }
-        return false;
+        return NO_ERROR;
     }
-    return true;
+    return ERROR;
 }
 
 bool AddCommandChar(char c, struct INPUT_BUFFER* cmd){
     if(cmd->cnt <= 3){
             cmd->data[cmd->cnt++] = c;
-            return false;
+            return NO_ERROR;
     }
-    return true;
+    return ERROR;
 }
 
 int ParseArgument(struct INPUT_BUFFER* arg){
