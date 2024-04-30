@@ -24,14 +24,38 @@ bool refresh_display = false;
 bool refresh_buttons = false;
 bool refresh_rotation = false;
 
+/**
+ * @brief Interrupt service routine for DISPLAY_REFRESH.
+ * 
+ * This function is called when the DISPLAY_REFRESH interrupt occurs. It sets the refresh_display flag to true, indicating that the display needs to be refreshed.
+ */
+CY_ISR(DISPLAY_REFRESH_Handler) {
+    refresh_display = true;
+}
+
+/**
+ * @brief Interrupt service routine for BUTTON_REFRESH.
+ * 
+ * This function is called when the BUTTON_REFRESH interrupt occurs. It sets the refresh_buttons flag to true, indicating that the buttons need to be refreshed.
+ */
 CY_ISR( DISPLAY_REFRESH_Handler ){
     refresh_display = true;
 }
 
+/**
+ * @brief Interrupt service routine for BUTTON_REFRESH.
+ * 
+ * This function is called when the BUTTON_REFRESH interrupt occurs. It sets the refresh_buttons flag to true, indicating that the buttons need to be refreshed.
+ */
 CY_ISR( BUTTON_REFRESH_Handler ){
     refresh_buttons = true;
 }
 
+/**
+ * @brief Handle stepping the motors.
+ * 
+ * This function gets the current rotation data from the rotation module. Computes weather it neads to step the motors,sets the desired directions and issues a step if neccessary.
+ */
 CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
     ROTATOR_STATE rotator_state = getRotation();
     
@@ -46,6 +70,11 @@ CY_ISR( MOTOR_CONTROLL_RISEING_EDGE_Handler ){
     }
 }
 
+/**
+ * @brief Finishes stepping the motors. And signals a refresh rotation event
+ * 
+ * This function creates the falling edge of the stepping signal. It sets the refresh_rotation flag to true, indicating that the buttons need to be refreshed.
+ */
 CY_ISR( MOTOR_CONTROLL_FALLING_EDGE_Handler ){
     X_Step_Pin_Write(0);
     Y_Step_Pin_Write(0);

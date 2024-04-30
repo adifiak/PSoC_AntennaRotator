@@ -14,9 +14,6 @@
 #include "bsp.h"
 #include "rotation.h"
 
-#define NO_ERROR false
-#define ERROR    true
-
 enum READ_STATE readState = CMD;
 
 void CLI_Init(){

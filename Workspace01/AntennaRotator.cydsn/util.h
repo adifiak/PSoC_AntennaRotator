@@ -1,15 +1,4 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
-*/
-
+//Utilities to make sprintf work. (Based on Cypress forum posts.)
 #include "project.h"
 
 #if defined(__ARMCC_VERSION)
