@@ -62,7 +62,7 @@ void WriteHomePosition(uint16 x, uint16 y){
     x = AS5600_FROM_ANGULAR(x);
     saveWord(x, 0x01);
                 
-    if(y > 360) {y = 360;}
+    if(y > 180) {y = 180;}
     y = AS5600_FROM_ANGULAR(y);
     saveWord(y, 0x03);
 }
@@ -73,7 +73,7 @@ void WriteHomeOnRestart(uint16 b){
 
 void WriteDesiredPosition(uint16 x, uint16 y){
     if(x >360) {x = 360;}
-    if(y >360) {y = 360;}        
+    if(y >180) {y = 180;}        
     setRotation(AS5600_FROM_ANGULAR(x), AS5600_FROM_ANGULAR(y));       
 }
 

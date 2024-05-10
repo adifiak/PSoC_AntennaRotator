@@ -20,7 +20,7 @@ ROTATOR_STATE getRotation(){
 
 void setRotation(int x, int y){
     if(x < 0){x = 0;} else if(x > 4095){x = 4095;}
-    if(y < 0){y = 0;} else if(y > 4095){y = 4095;}
+    if(y < 0){y = 0;} else if(y > 2047){y = 2047;}
     rotator_state.x_des = x;
     rotator_state.y_des = y;
 }
