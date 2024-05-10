@@ -30,28 +30,13 @@ void Horizon_Init(){
 void Horizon_Render(){
     ROTATOR_STATE rotator_state = getRotation();
     
-    //char str[32];
     display_clear();    
         
     DrawDial( 0, "XD", AS5600_TO_ANGULAR(rotator_state.x_des));
     DrawDial(32, "XA", AS5600_TO_ANGULAR(rotator_state.x_act));
     DrawDial(64, "YD", AS5600_TO_ANGULAR(rotator_state.y_des));
     DrawDial(96, "YA", AS5600_TO_ANGULAR(rotator_state.y_act));
-    
-    /*gfx_setTextSize(1);
-    gfx_setTextColor(WHITE);
-    gfx_setCursor(0,0);*/
 
-    // text display
-    /*gfx_setTextSize(1);
-    gfx_setTextColor(WHITE);
-    gfx_setCursor(0,0);
-    sprintf(str, "X : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state.x_des), AS5600_TO_ANGULAR(rotator_state.x_act));
-    gfx_println(str); 
-    gfx_setTextColor(WHITE);
-    sprintf(str, "Y : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state.y_des), AS5600_TO_ANGULAR(rotator_state.y_act));
-    gfx_setCursor(0,8);
-    gfx_println(str); */
     display_update();
     
 }
@@ -61,7 +46,6 @@ void DrawDial(uint16_t horizontalOffset, const char* label, float degree){
     gfx_println(label);
     gfx_drawCircle( horizontalOffset + 16, 16, 12, WHITE);
     gfx_drawLine( horizontalOffset + 16, 15, horizontalOffset + 16 + cos(degree/360.0f*2*3.14f)*12, 16 + sin(degree/360.0f*2*3.14f)*12, WHITE);
-    
 }
 
 /* [] END OF FILE */

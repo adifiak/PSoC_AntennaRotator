@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
   34              		.cfi_offset 3, -8
   35              		.cfi_offset 14, -4
   22:RotatorHorizon.c ****     display_init(DISPLAY_ADDRESS);
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 2
 
 
   36              		.loc 1 22 0
@@ -114,37 +114,22 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
   30:RotatorHorizon.c **** void Horizon_Render(){
   31:RotatorHorizon.c ****     ROTATOR_STATE rotator_state = getRotation();
   32:RotatorHorizon.c ****     
-  33:RotatorHorizon.c ****     //char str[32];
-  34:RotatorHorizon.c ****     display_clear();    
-  35:RotatorHorizon.c ****         
-  36:RotatorHorizon.c ****     DrawDial( 0, "XD", AS5600_TO_ANGULAR(rotator_state.x_des));
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 3
+  33:RotatorHorizon.c ****     display_clear();    
+  34:RotatorHorizon.c ****         
+  35:RotatorHorizon.c ****     DrawDial( 0, "XD", AS5600_TO_ANGULAR(rotator_state.x_des));
+  36:RotatorHorizon.c ****     DrawDial(32, "XA", AS5600_TO_ANGULAR(rotator_state.x_act));
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 3
 
 
-  37:RotatorHorizon.c ****     DrawDial(32, "XA", AS5600_TO_ANGULAR(rotator_state.x_act));
-  38:RotatorHorizon.c ****     DrawDial(64, "YD", AS5600_TO_ANGULAR(rotator_state.y_des));
-  39:RotatorHorizon.c ****     DrawDial(96, "YA", AS5600_TO_ANGULAR(rotator_state.y_act));
-  40:RotatorHorizon.c ****     
-  41:RotatorHorizon.c ****     /*gfx_setTextSize(1);
-  42:RotatorHorizon.c ****     gfx_setTextColor(WHITE);
-  43:RotatorHorizon.c ****     gfx_setCursor(0,0);*/
-  44:RotatorHorizon.c **** 
-  45:RotatorHorizon.c ****     // text display
-  46:RotatorHorizon.c ****     /*gfx_setTextSize(1);
-  47:RotatorHorizon.c ****     gfx_setTextColor(WHITE);
-  48:RotatorHorizon.c ****     gfx_setCursor(0,0);
-  49:RotatorHorizon.c ****     sprintf(str, "X : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state.x_des), AS5600_TO_ANGULAR(rot
-  50:RotatorHorizon.c ****     gfx_println(str); 
-  51:RotatorHorizon.c ****     gfx_setTextColor(WHITE);
-  52:RotatorHorizon.c ****     sprintf(str, "Y : %3.2f : %3.2f", AS5600_TO_ANGULAR(rotator_state.y_des), AS5600_TO_ANGULAR(rot
-  53:RotatorHorizon.c ****     gfx_setCursor(0,8);
-  54:RotatorHorizon.c ****     gfx_println(str); */
-  55:RotatorHorizon.c ****     display_update();
-  56:RotatorHorizon.c ****     
-  57:RotatorHorizon.c **** }
-  58:RotatorHorizon.c **** 
-  59:RotatorHorizon.c **** void DrawDial(uint16_t horizontalOffset, const char* label, float degree){
-  79              		.loc 1 59 0
+  37:RotatorHorizon.c ****     DrawDial(64, "YD", AS5600_TO_ANGULAR(rotator_state.y_des));
+  38:RotatorHorizon.c ****     DrawDial(96, "YA", AS5600_TO_ANGULAR(rotator_state.y_act));
+  39:RotatorHorizon.c **** 
+  40:RotatorHorizon.c ****     display_update();
+  41:RotatorHorizon.c ****     
+  42:RotatorHorizon.c **** }
+  43:RotatorHorizon.c **** 
+  44:RotatorHorizon.c **** void DrawDial(uint16_t horizontalOffset, const char* label, float degree){
+  79              		.loc 1 44 0
   80              		.cfi_startproc
   81              		@ args = 0, pretend = 0, frame = 0
   82              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -163,24 +148,21 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
   95 0006 0446     		mov	r4, r0
   96 0008 0D46     		mov	r5, r1
   97 000a 1646     		mov	r6, r2
-  60:RotatorHorizon.c ****     gfx_setCursor(horizontalOffset, 0);
-  98              		.loc 1 60 0
+  45:RotatorHorizon.c ****     gfx_setCursor(horizontalOffset, 0);
+  98              		.loc 1 45 0
   99 000c 0021     		movs	r1, #0
  100              	.LVL7:
  101 000e 00B2     		sxth	r0, r0
  102 0010 FFF7FEFF 		bl	gfx_setCursor
  103              	.LVL8:
-  61:RotatorHorizon.c ****     gfx_println(label);
- 104              		.loc 1 61 0
+  46:RotatorHorizon.c ****     gfx_println(label);
+ 104              		.loc 1 46 0
  105 0014 2846     		mov	r0, r5
  106 0016 FFF7FEFF 		bl	gfx_println
  107              	.LVL9:
-  62:RotatorHorizon.c ****     gfx_drawCircle( horizontalOffset + 16, 16, 12, WHITE);
- 108              		.loc 1 62 0
+  47:RotatorHorizon.c ****     gfx_drawCircle( horizontalOffset + 16, 16, 12, WHITE);
+ 108              		.loc 1 47 0
  109 001a 1034     		adds	r4, r4, #16
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 4
-
-
  110 001c 25B2     		sxth	r5, r4
  111              	.LVL10:
  112 001e 0123     		movs	r3, #1
@@ -189,13 +171,16 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  115 0024 2846     		mov	r0, r5
  116 0026 FFF7FEFF 		bl	gfx_drawCircle
  117              	.LVL11:
-  63:RotatorHorizon.c ****     gfx_drawLine( horizontalOffset + 16, 15, horizontalOffset + 16 + cos(degree/360.0f*2*3.14f)*12,
- 118              		.loc 1 63 0
+  48:RotatorHorizon.c ****     gfx_drawLine( horizontalOffset + 16, 15, horizontalOffset + 16 + cos(degree/360.0f*2*3.14f)*12,
+ 118              		.loc 1 48 0
  119 002a 1E49     		ldr	r1, .L5
  120 002c 3046     		mov	r0, r6
  121 002e FFF7FEFF 		bl	__aeabi_fdiv
  122              	.LVL12:
  123 0032 0146     		mov	r1, r0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 4
+
+
  124 0034 FFF7FEFF 		bl	__aeabi_fadd
  125              	.LVL13:
  126 0038 1B49     		ldr	r1, .L5+4
@@ -238,9 +223,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  163 0080 FFF7FEFF 		bl	__aeabi_d2iz
  164              	.LVL24:
  165 0084 04B2     		sxth	r4, r0
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 5
-
-
  166 0086 4046     		mov	r0, r8
  167 0088 4946     		mov	r1, r9
  168 008a FFF7FEFF 		bl	__aeabi_d2iz
@@ -253,10 +235,12 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  175 0098 2846     		mov	r0, r5
  176 009a FFF7FEFF 		bl	gfx_drawLine
  177              	.LVL26:
-  64:RotatorHorizon.c ****     
-  65:RotatorHorizon.c **** }
- 178              		.loc 1 65 0
+  49:RotatorHorizon.c **** }
+ 178              		.loc 1 49 0
  179 009e 03B0     		add	sp, sp, #12
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 5
+
+
  180              		.cfi_def_cfa_offset 28
  181              		@ sp needed
  182 00a0 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
@@ -294,15 +278,12 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  212 0004 6846     		mov	r0, sp
  213 0006 FFF7FEFF 		bl	getRotation
  214              	.LVL27:
-  34:RotatorHorizon.c ****         
- 215              		.loc 1 34 0
+  33:RotatorHorizon.c ****         
+ 215              		.loc 1 33 0
  216 000a FFF7FEFF 		bl	display_clear
  217              	.LVL28:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 6
-
-
-  36:RotatorHorizon.c ****     DrawDial(32, "XA", AS5600_TO_ANGULAR(rotator_state.x_act));
- 218              		.loc 1 36 0
+  35:RotatorHorizon.c ****     DrawDial(32, "XA", AS5600_TO_ANGULAR(rotator_state.x_act));
+ 218              		.loc 1 35 0
  219 000e 0098     		ldr	r0, [sp]
  220 0010 FFF7FEFF 		bl	__aeabi_i2f
  221              	.LVL29:
@@ -314,9 +295,12 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  227 001e 0020     		movs	r0, #0
  228 0020 FFF7FEFF 		bl	DrawDial
  229              	.LVL31:
-  37:RotatorHorizon.c ****     DrawDial(64, "YD", AS5600_TO_ANGULAR(rotator_state.y_des));
- 230              		.loc 1 37 0
+  36:RotatorHorizon.c ****     DrawDial(64, "YD", AS5600_TO_ANGULAR(rotator_state.y_des));
+ 230              		.loc 1 36 0
  231 0024 0298     		ldr	r0, [sp, #8]
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 6
+
+
  232 0026 FFF7FEFF 		bl	__aeabi_i2f
  233              	.LVL32:
  234 002a 1149     		ldr	r1, .L9
@@ -327,8 +311,8 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  239 0034 2020     		movs	r0, #32
  240 0036 FFF7FEFF 		bl	DrawDial
  241              	.LVL34:
-  38:RotatorHorizon.c ****     DrawDial(96, "YA", AS5600_TO_ANGULAR(rotator_state.y_act));
- 242              		.loc 1 38 0
+  37:RotatorHorizon.c ****     DrawDial(96, "YA", AS5600_TO_ANGULAR(rotator_state.y_act));
+ 242              		.loc 1 37 0
  243 003a 0198     		ldr	r0, [sp, #4]
  244 003c FFF7FEFF 		bl	__aeabi_i2f
  245              	.LVL35:
@@ -340,8 +324,8 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  251 004a 4020     		movs	r0, #64
  252 004c FFF7FEFF 		bl	DrawDial
  253              	.LVL37:
-  39:RotatorHorizon.c ****     
- 254              		.loc 1 39 0
+  38:RotatorHorizon.c **** 
+ 254              		.loc 1 38 0
  255 0050 0398     		ldr	r0, [sp, #12]
  256 0052 FFF7FEFF 		bl	__aeabi_i2f
  257              	.LVL38:
@@ -353,15 +337,12 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  263 0060 6020     		movs	r0, #96
  264 0062 FFF7FEFF 		bl	DrawDial
  265              	.LVL40:
-  55:RotatorHorizon.c ****     
- 266              		.loc 1 55 0
+  40:RotatorHorizon.c ****     
+ 266              		.loc 1 40 0
  267 0066 FFF7FEFF 		bl	display_update
  268              	.LVL41:
-  57:RotatorHorizon.c **** 
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 7
-
-
- 269              		.loc 1 57 0
+  42:RotatorHorizon.c **** 
+ 269              		.loc 1 42 0
  270 006a 05B0     		add	sp, sp, #20
  271              		.cfi_def_cfa_offset 4
  272              		@ sp needed
@@ -377,6 +358,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  282              		.cfi_endproc
  283              	.LFE65:
  284              		.size	Horizon_Render, .-Horizon_Render
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 7
+
+
  285              		.section	.rodata.str1.4,"aMS",%progbits,1
  286              		.align	2
  287              	.LC0:
@@ -418,9 +402,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  323 0028 5E000000 		.4byte	.LASF0
  324 002c 02       		.uleb128 0x2
  325 002d 01       		.byte	0x1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 8
-
-
  326 002e 06       		.byte	0x6
  327 002f B2020000 		.4byte	.LASF1
  328 0033 02       		.uleb128 0x2
@@ -437,6 +418,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  339 0047 2B       		.byte	0x2b
  340 0048 4C000000 		.4byte	0x4c
  341 004c 02       		.uleb128 0x2
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 8
+
+
  342 004d 02       		.byte	0x2
  343 004e 07       		.byte	0x7
  344 004f 26010000 		.4byte	.LASF4
@@ -478,9 +462,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  380 0094 1B020000 		.4byte	.LASF13
  381 0098 03       		.byte	0x3
  382 0099 2C       		.byte	0x2c
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 9
-
-
  383 009a 53000000 		.4byte	0x53
  384 009e 02       		.uleb128 0x2
  385 009f 08       		.byte	0x8
@@ -497,6 +478,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  396 00b3 02       		.uleb128 0x2
  397 00b4 04       		.byte	0x4
  398 00b5 07       		.byte	0x7
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 9
+
+
  399 00b6 23020000 		.4byte	.LASF17
  400 00ba 05       		.uleb128 0x5
  401 00bb 04       		.byte	0x4
@@ -538,9 +522,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  437 0103 9C010000 		.4byte	.LASF22
  438 0107 04       		.byte	0x4
  439 0108 31       		.byte	0x31
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 10
-
-
  440 0109 C5000000 		.4byte	0xc5
  441 010d 09       		.uleb128 0x9
  442 010e 19010000 		.4byte	.LASF26
@@ -557,6 +538,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  453 012b 36010000 		.4byte	0x136
  454 012f 0B       		.uleb128 0xb
  455 0130 01       		.uleb128 0x1
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 10
+
+
  456 0131 50       		.byte	0x50
  457 0132 02       		.uleb128 0x2
  458 0133 08       		.byte	0x8
@@ -598,9 +582,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  494 017b 30       		.byte	0x30
  495 017c 0B       		.uleb128 0xb
  496 017d 01       		.uleb128 0x1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 11
-
-
  497 017e 51       		.byte	0x51
  498 017f 01       		.uleb128 0x1
  499 0180 30       		.byte	0x30
@@ -609,7 +590,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  502 0183 0E       		.uleb128 0xe
  503 0184 55000000 		.4byte	.LASF41
  504 0188 01       		.byte	0x1
- 505 0189 3B       		.byte	0x3b
+ 505 0189 2C       		.byte	0x2c
  506 018a 00000000 		.4byte	.LFB66
  507 018e B4000000 		.4byte	.LFE66-.LFB66
  508 0192 01       		.uleb128 0x1
@@ -617,20 +598,23 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  510 0194 4A020000 		.4byte	0x24a
  511 0198 0F       		.uleb128 0xf
  512 0199 7E010000 		.4byte	.LASF23
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 11
+
+
  513 019d 01       		.byte	0x1
- 514 019e 3B       		.byte	0x3b
+ 514 019e 2C       		.byte	0x2c
  515 019f 88000000 		.4byte	0x88
  516 01a3 00000000 		.4byte	.LLST0
  517 01a7 0F       		.uleb128 0xf
  518 01a8 15020000 		.4byte	.LASF24
  519 01ac 01       		.byte	0x1
- 520 01ad 3B       		.byte	0x3b
+ 520 01ad 2C       		.byte	0x2c
  521 01ae BA000000 		.4byte	0xba
  522 01b2 21000000 		.4byte	.LLST1
  523 01b6 0F       		.uleb128 0xf
  524 01b7 00010000 		.4byte	.LASF25
  525 01bb 01       		.byte	0x1
- 526 01bc 3B       		.byte	0x3b
+ 526 01bc 2C       		.byte	0x2c
  527 01bd 25000000 		.4byte	0x25
  528 01c1 4D000000 		.4byte	.LLST2
  529 01c5 0A       		.uleb128 0xa
@@ -658,9 +642,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  551 01ed 01       		.uleb128 0x1
  552 01ee 50       		.byte	0x50
  553 01ef 02       		.uleb128 0x2
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 12
-
-
  554 01f0 75       		.byte	0x75
  555 01f1 00       		.sleb128 0
  556 01f2 00       		.byte	0
@@ -677,6 +658,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  567 0206 0B       		.uleb128 0xb
  568 0207 01       		.uleb128 0x1
  569 0208 51       		.byte	0x51
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 12
+
+
  570 0209 01       		.uleb128 0x1
  571 020a 40       		.byte	0x40
  572 020b 0B       		.uleb128 0xb
@@ -718,9 +702,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  608 0241 00       		.sleb128 0
  609 0242 0B       		.uleb128 0xb
  610 0243 02       		.uleb128 0x2
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 13
-
-
  611 0244 7D       		.byte	0x7d
  612 0245 00       		.sleb128 0
  613 0246 01       		.uleb128 0x1
@@ -737,6 +718,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  624 025a 9C       		.byte	0x9c
  625 025b 07030000 		.4byte	0x307
  626 025f 11       		.uleb128 0x11
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 13
+
+
  627 0260 2C000000 		.4byte	.LASF42
  628 0264 01       		.byte	0x1
  629 0265 1F       		.byte	0x1f
@@ -778,9 +762,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  665 02a7 3A000000 		.4byte	.LVL34
  666 02ab 83010000 		.4byte	0x183
  667 02af C3020000 		.4byte	0x2c3
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 14
-
-
  668 02b3 0B       		.uleb128 0xb
  669 02b4 01       		.uleb128 0x1
  670 02b5 50       		.byte	0x50
@@ -797,6 +778,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  681 02c3 0A       		.uleb128 0xa
  682 02c4 50000000 		.4byte	.LVL37
  683 02c8 83010000 		.4byte	0x183
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 14
+
+
  684 02cc E0020000 		.4byte	0x2e0
  685 02d0 0B       		.uleb128 0xb
  686 02d1 01       		.uleb128 0x1
@@ -838,9 +822,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  722 030d 1207     		.2byte	0x712
  723 030f 13030000 		.4byte	0x313
  724 0313 13       		.uleb128 0x13
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 15
-
-
  725 0314 93000000 		.4byte	0x93
  726 0318 14       		.uleb128 0x14
  727 0319 93020000 		.4byte	.LASF28
@@ -857,6 +838,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  738 0333 63010000 		.4byte	.LASF30
  739 0337 05       		.byte	0x5
  740 0338 3F       		.byte	0x3f
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 15
+
+
  741 0339 14       		.uleb128 0x14
  742 033a 00000000 		.4byte	.LASF31
  743 033e 00000000 		.4byte	.LASF31
@@ -898,9 +882,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  779 038f 05       		.byte	0x5
  780 0390 72       		.byte	0x72
  781 0391 14       		.uleb128 0x14
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 16
-
-
  782 0392 72010000 		.4byte	.LASF37
  783 0396 72010000 		.4byte	.LASF37
  784 039a 04       		.byte	0x4
@@ -917,6 +898,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  795 0006 0B       		.uleb128 0xb
  796 0007 03       		.uleb128 0x3
  797 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 16
+
+
  798 0009 1B       		.uleb128 0x1b
  799 000a 0E       		.uleb128 0xe
  800 000b 55       		.uleb128 0x55
@@ -958,9 +942,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  836 002f 0B       		.uleb128 0xb
  837 0030 3E       		.uleb128 0x3e
  838 0031 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 17
-
-
  839 0032 03       		.uleb128 0x3
  840 0033 08       		.uleb128 0x8
  841 0034 00       		.byte	0
@@ -977,6 +958,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  852 003f 06       		.uleb128 0x6
  853 0040 26       		.uleb128 0x26
  854 0041 00       		.byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 17
+
+
  855 0042 49       		.uleb128 0x49
  856 0043 13       		.uleb128 0x13
  857 0044 00       		.byte	0
@@ -1018,9 +1002,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  893 0068 19       		.uleb128 0x19
  894 0069 03       		.uleb128 0x3
  895 006a 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 18
-
-
  896 006b 3A       		.uleb128 0x3a
  897 006c 0B       		.uleb128 0xb
  898 006d 3B       		.uleb128 0x3b
@@ -1037,6 +1018,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  909 0079 13       		.uleb128 0x13
  910 007a 00       		.byte	0
  911 007b 00       		.byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 18
+
+
  912 007c 0A       		.uleb128 0xa
  913 007d 898201   		.uleb128 0x4109
  914 0080 01       		.byte	0x1
@@ -1078,9 +1062,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  950 00ab 0E       		.uleb128 0xe
  951 00ac 2E       		.uleb128 0x2e
  952 00ad 01       		.byte	0x1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 19
-
-
  953 00ae 3F       		.uleb128 0x3f
  954 00af 19       		.uleb128 0x19
  955 00b0 03       		.uleb128 0x3
@@ -1097,6 +1078,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  966 00bb 06       		.uleb128 0x6
  967 00bc 40       		.uleb128 0x40
  968 00bd 18       		.uleb128 0x18
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 19
+
+
  969 00be 9642     		.uleb128 0x2116
  970 00c0 19       		.uleb128 0x19
  971 00c1 01       		.uleb128 0x1
@@ -1138,9 +1122,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1007 00e5 9642     		.uleb128 0x2116
  1008 00e7 19       		.uleb128 0x19
  1009 00e8 01       		.uleb128 0x1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 20
-
-
  1010 00e9 13       		.uleb128 0x13
  1011 00ea 00       		.byte	0
  1012 00eb 00       		.byte	0
@@ -1157,6 +1138,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1023 00f6 13       		.uleb128 0x13
  1024 00f7 02       		.uleb128 0x2
  1025 00f8 18       		.uleb128 0x18
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 20
+
+
  1026 00f9 00       		.byte	0
  1027 00fa 00       		.byte	0
  1028 00fb 12       		.uleb128 0x12
@@ -1198,9 +1182,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1064 011f 0B       		.uleb128 0xb
  1065 0120 3B       		.uleb128 0x3b
  1066 0121 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 21
-
-
  1067 0122 00       		.byte	0
  1068 0123 00       		.byte	0
  1069 0124 15       		.uleb128 0x15
@@ -1217,6 +1198,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1080 012f 3A       		.uleb128 0x3a
  1081 0130 0B       		.uleb128 0xb
  1082 0131 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 21
+
+
  1083 0132 0B       		.uleb128 0xb
  1084 0133 00       		.byte	0
  1085 0134 00       		.byte	0
@@ -1258,9 +1242,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1121              	.LLST2:
  1122 004d 00000000 		.4byte	.LVL6
  1123 0051 13000000 		.4byte	.LVL8-1
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 22
-
-
  1124 0055 0100     		.2byte	0x1
  1125 0057 52       		.byte	0x52
  1126 0058 13000000 		.4byte	.LVL8-1
@@ -1277,6 +1258,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1137 0071 25       		.uleb128 0x25
  1138 0072 9F       		.byte	0x9f
  1139 0073 00000000 		.4byte	0
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 22
+
+
  1140 0077 00000000 		.4byte	0
  1141              		.section	.debug_aranges,"",%progbits
  1142 0000 2C000000 		.4byte	0x2c
@@ -1306,7 +1290,7 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1166 001c 00000000 		.4byte	0
  1167              		.section	.debug_line,"",%progbits
  1168              	.Ldebug_line0:
- 1169 0000 20020000 		.section	.debug_str,"MS",%progbits,1
+ 1169 0000 1E020000 		.section	.debug_str,"MS",%progbits,1
  1169      0200D601 
  1169      00000201 
  1169      FB0E0D00 
@@ -1318,9 +1302,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1171      697A6500 
  1172              	.LASF18:
  1173 0010 785F6465 		.ascii	"x_des\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 23
-
-
  1173      7300
  1174              	.LASF34:
  1175 0016 6766785F 		.ascii	"gfx_println\000"
@@ -1337,6 +1318,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1179      6500
  1180              	.LASF14:
  1181 003a 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 23
+
+
  1181      6C6500
  1182              	.LASF21:
  1183 0041 795F6163 		.ascii	"y_act\000"
@@ -1378,9 +1362,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1197 0100 64656772 		.ascii	"degree\000"
  1197      656500
  1198              	.LASF8:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 24
-
-
  1199 0107 6C6F6E67 		.ascii	"long unsigned int\000"
  1199      20756E73 
  1199      69676E65 
@@ -1397,6 +1378,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1203      7369676E 
  1203      65642069 
  1203      6E7400
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 24
+
+
  1204              	.LASF43:
  1205 0139 49544D5F 		.ascii	"ITM_RxBuffer\000"
  1205      52784275 
@@ -1438,9 +1422,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1219      53544154 
  1219      4500
  1220              	.LASF10:
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 25
-
-
  1221 01aa 6C6F6E67 		.ascii	"long long unsigned int\000"
  1221      206C6F6E 
  1221      6720756E 
@@ -1457,6 +1438,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1224      6B737061 
  1224      63653031 
  1224      5C416E74 
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 25
+
+
  1225              	.LASF24:
  1226 0215 6C616265 		.ascii	"label\000"
  1226      6C00
@@ -1498,9 +1482,6 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1242      5F7400
  1243              	.LASF12:
  1244 027c 75696E74 		.ascii	"uint16_t\000"
-ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 26
-
-
  1244      31365F74 
  1244      00
  1245              	.LASF7:
@@ -1517,6 +1498,9 @@ ARM GAS  C:\Users\Dell\AppData\Local\Temp\cclEcZol.s 			page 1
  1250      00
  1251              	.LASF16:
  1252 02a0 6C6F6E67 		.ascii	"long double\000"
+ARM GAS  C:\Users\Dell\AppData\Local\Temp\ccME0Rcw.s 			page 26
+
+
  1252      20646F75 
  1252      626C6500 
  1253              	.LASF19:

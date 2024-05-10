@@ -124,9 +124,9 @@ void saveToSaveSlot(uint8 id){
     ROTATOR_STATE rotator_state = getRotation();
     saveWord(rotator_state.x_des, 0x06 + (id - 1) * 4);
     saveWord(rotator_state.y_des, 0x06 + (id - 1) * 4 + 0x02);
-    if(!testSaveSlot(id+1)){
+    if(!testSaveSlot(id)){
         uint16 tmp = loadWord(0x05);
-        tmp = tmp + (1 << id);
+        tmp = tmp + (1 << (id-1));
         saveWord(tmp, 0x05);
     }
 }
