@@ -25,7 +25,7 @@ void setRotation(int x, int y){
     rotator_state.y_des = y;
 }
 
-void refreshRotation(ROTATOR_STATE* rotator_state){
+void refreshRotation(){
     uint8 buf[2];
     uint8 status = 0;
     
@@ -40,7 +40,7 @@ void refreshRotation(ROTATOR_STATE* rotator_state){
         buf[0] = I2C_X_MasterReadByte(I2C_X_ACK_DATA);
         buf[1] = I2C_X_MasterReadByte(I2C_X_NAK_DATA);
                 
-        rotator_state->x_act = ((buf[0])<<8) + (buf[1]);
+        rotator_state.x_act = ((buf[0])<<8) + (buf[1]);
     }
     I2C_X_MasterSendStop(); /* Send Stop */
     
@@ -55,7 +55,7 @@ void refreshRotation(ROTATOR_STATE* rotator_state){
         buf[0] = I2C_Y_MasterReadByte(I2C_X_ACK_DATA);
         buf[1] = I2C_Y_MasterReadByte(I2C_X_NAK_DATA);
                 
-        rotator_state->y_act = ((buf[0])<<8) + (buf[1]);
+        rotator_state.y_act = (((buf[0])<<8) + (buf[1]))/2;// /2 is neccessary because the sensor on this axies is faulty.
     }
     I2C_Y_MasterSendStop(); /* Send Stop */
 }

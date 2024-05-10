@@ -6,6 +6,8 @@
 #ifndef _SSD1306_H
 #define _SSD1306_H
 
+#include "project.h"    
+    
 /**
  * @brief Color definitions for OLED display.
  */
@@ -98,6 +100,19 @@ void display_invert(uint8_t invert);
  * @param color The color of the pixel.
  */
 void gfx_drawPixel(int16_t x, int16_t y, uint16_t color);
+
+void gfx_setTextSize(uint8_t size);
+
+void gfx_setTextColor(uint16_t color);
+
+void gfx_setCursor(int16_t r, int16_t c);
+
+void gfx_println(const char*);
+
+void gfx_drawCircle( int16_t x0, int16_t y0, int16_t r,uint16_t color );
+
+void gfx_drawLine( int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color );
+
 
 #endif // _SSD1306_H
 

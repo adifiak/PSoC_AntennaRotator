@@ -1,5 +1,7 @@
 #ifndef ROTATOR_HORIZON_H
 #define ROTATOR_HORIZON_H
+    
+#include "project.h"
 
 /**
  * @brief Initializes the horizon module.
@@ -16,6 +18,8 @@ void Horizon_Init();
  * It should be called periodically to update the horizon display.
  */
 void Horizon_Render();
+
+void DrawDial(uint16_t horizontalOffset, const char* label, float degree);
 
 #endif
 /* [] END OF FILE */

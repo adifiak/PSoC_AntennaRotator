@@ -17,6 +17,7 @@
 #include "cli.h"
 #include "util.h"
 #include "eeprom.h"
+#include "rotation.h"
 
 #define STEPPING_TRESHOLD 4
 
@@ -30,15 +31,6 @@ bool refresh_rotation = false;
  * This function is called when the DISPLAY_REFRESH interrupt occurs. It sets the refresh_display flag to true, indicating that the display needs to be refreshed.
  */
 CY_ISR(DISPLAY_REFRESH_Handler) {
-    refresh_display = true;
-}
-
-/**
- * @brief Interrupt service routine for BUTTON_REFRESH.
- * 
- * This function is called when the BUTTON_REFRESH interrupt occurs. It sets the refresh_buttons flag to true, indicating that the buttons need to be refreshed.
- */
-CY_ISR( DISPLAY_REFRESH_Handler ){
     refresh_display = true;
 }
 
